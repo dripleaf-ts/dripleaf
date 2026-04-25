@@ -1,0 +1,3 @@
+[submodule "codegen/azalea-burger"]
+	path = codegen/azalea-burger
+	url = https://github.com/azalea-rs/azalea-burger.git
