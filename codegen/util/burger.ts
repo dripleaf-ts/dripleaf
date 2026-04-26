@@ -1,3 +1,5 @@
+import { sleep } from "bun";
+
 export async function getBurgerData(jar: string) {
   const outputFile = Bun.file("tmp/output.json");
 
@@ -17,6 +19,7 @@ export async function getBurgerData(jar: string) {
     console.log(`Burger data already generated for ${jar}, skipping...`);
   }
 
+  await sleep(100);
   const output = await outputFile.json() as any[];
   if (!Array.isArray(output) || output.length == 0) throw new Error("Output file is not in the expected format (array) or is empty, please try again.");
   return output[0];
