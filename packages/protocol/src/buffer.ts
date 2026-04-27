@@ -1,3 +1,5 @@
+import type { UUID } from "node:crypto";
+
 const INT_MIN = -2147483648;
 const INT_MAX = 2147483647;
 const LONG_MIN = -(1n << 63n);
@@ -119,11 +121,12 @@ export class PacketWriter {
     this.writeString(value, 32767);
   }
 
-  writeUUID(value: bigint) {
-    this.range("UUID", value, 0n, UUID_MAX);
+  writeUUID(value: UUID) {
+    const n = BigInt("0x" + value.replace(/-/g, ""));
+    this.range("UUID", n, 0n, UUID_MAX);
 
     for (let s = 120n; s >= 0n; s -= 8n)
-      this.writeUnsignedByte(Number((value >> s) & 0xffn));
+      this.writeUnsignedByte(Number((n >> s) & 0xffn));
   }
 
   writePosition(x: number, y: number, z: number) {
@@ -334,13 +337,10 @@ export class PacketReader {
     return this.readString(32767);
   }
 
-  readUUID(): bigint {
-    let value = 0n;
-
-    for (let i = 0; i < 16; i++)
-      value = (value << 8n) | BigInt(this.readUnsignedByte());
-
-    return value;
+  readUUID(): UUID {
+    const bytes = this.readBytes(16);
+    const hex = Array.from(bytes, b => b.toString(16).padStart(2, "0")).join("");
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
   }
 
   readPosition() {
