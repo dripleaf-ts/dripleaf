@@ -3,6 +3,7 @@
 import { Direction, State } from '../../types';
 import { GlowstonePacket } from '../../packet';
 import { PacketReader, PacketWriter } from '../../buffer';
+import type { UUID } from 'node:crypto';
 
 class ServerboundHelloPacket extends GlowstonePacket {
 	override id = 0x00;
@@ -10,17 +11,24 @@ class ServerboundHelloPacket extends GlowstonePacket {
 	override direction = Direction.Serverbound;
 
 	constructor(
-		// todo
+		public name: string,
+		public uuid: UUID
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeString(this.name);
+		writer.writeUUID(this.uuid);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ServerboundHelloPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const name = reader.readString();
+		const uuid = reader.readUUID();
+		return new ServerboundHelloPacket(name, uuid);
 	}
 }
 

@@ -10,17 +10,27 @@ class ClientboundCustomQueryPacket extends GlowstonePacket {
 	override direction = Direction.Clientbound;
 
 	constructor(
-		// todo
+		public messageId: number,
+		public channel: string,
+		public data: Uint8Array
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeVarInt(this.messageId);
+		writer.writeString(this.channel);
+		writer.writeByteArray(this.data);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ClientboundCustomQueryPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const messageId = reader.readVarInt();
+		const channel = reader.readString();
+		const data = reader.readByteArray();
+		return new ClientboundCustomQueryPacket(messageId, channel, data);
 	}
 }
 

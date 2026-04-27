@@ -10,17 +10,24 @@ class ServerboundKeyPacket extends GlowstonePacket {
 	override direction = Direction.Serverbound;
 
 	constructor(
-		// todo
+		public sharedSecret: Uint8Array,
+		public verifyToken: Uint8Array
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeByteArray(this.sharedSecret);
+		writer.writeByteArray(this.verifyToken);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ServerboundKeyPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const sharedSecret = reader.readByteArray();
+		const verifyToken = reader.readByteArray();
+		return new ServerboundKeyPacket(sharedSecret, verifyToken);
 	}
 }
 

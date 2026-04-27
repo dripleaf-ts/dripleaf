@@ -10,17 +10,21 @@ class ClientboundLoginCompressionPacket extends GlowstonePacket {
 	override direction = Direction.Clientbound;
 
 	constructor(
-		// todo
+		public threshold: number
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeVarInt(this.threshold);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ClientboundLoginCompressionPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const threshold = reader.readVarInt();
+		return new ClientboundLoginCompressionPacket(threshold);
 	}
 }
 

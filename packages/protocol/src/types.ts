@@ -1,3 +1,5 @@
+import type { UUID } from "node:crypto";
+
 export const PROTOCOL_VERSION = 775;
 export const VERSION_NAME = "26.1";
 
@@ -18,4 +20,14 @@ export enum ClientIntention {
   Status = 1,
   Login = 2,
   Transfer = 3,
+}
+
+export type GameProfile = {
+  id: UUID;
+  name: string;
+  properties: {
+    name: string;
+    value: string;
+    signature?: string | null;
+  }[]; 
 }

@@ -10,17 +10,30 @@ class ClientboundHelloPacket extends GlowstonePacket {
 	override direction = Direction.Clientbound;
 
 	constructor(
-		// todo
+		public serverId: string,
+		public publicKey: Uint8Array,
+		public verifyToken: Uint8Array,
+		public shouldAuthenticate: boolean
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeString(this.serverId, 20);
+		writer.writeByteArray(this.publicKey);
+		writer.writeByteArray(this.verifyToken);
+		writer.writeBoolean(this.shouldAuthenticate);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ClientboundHelloPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const serverId = reader.readString(20);
+		const publicKey = reader.readByteArray();
+		const verifyToken = reader.readByteArray();
+		const shouldAuthenticate = reader.readBoolean();
+		return new ClientboundHelloPacket(serverId, publicKey, verifyToken, shouldAuthenticate);
 	}
 }
 

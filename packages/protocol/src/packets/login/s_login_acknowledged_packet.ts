@@ -9,18 +9,16 @@ class ServerboundLoginAcknowledgedPacket extends GlowstonePacket {
 	override state = State.Login;
 	override direction = Direction.Serverbound;
 
-	constructor(
-		// todo
-	) {
+	constructor() {
 		super();
 	}
 
 	serialize() {
-		// todo
+		return new Uint8Array();
 	}
 
 	static override deserialize(bytes: Uint8Array): ServerboundLoginAcknowledgedPacket {
-		// todo
+		return new ServerboundLoginAcknowledgedPacket();
 	}
 }
 

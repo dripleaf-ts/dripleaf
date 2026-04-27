@@ -10,17 +10,21 @@ class ClientboundLoginDisconnectPacket extends GlowstonePacket {
 	override direction = Direction.Clientbound;
 
 	constructor(
-		// todo
+		public reason: Object,
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeString(JSON.stringify(this.reason));
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ClientboundLoginDisconnectPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const reason = JSON.parse(reader.readString());
+		return new ClientboundLoginDisconnectPacket(reason);
 	}
 }
 

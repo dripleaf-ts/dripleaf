@@ -10,17 +10,24 @@ class ServerboundCustomQueryAnswerPacket extends GlowstonePacket {
 	override direction = Direction.Serverbound;
 
 	constructor(
-		// todo
+		public messageId: number,
+		public response: Uint8Array
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeVarInt(this.messageId);
+		writer.writeByteArray(this.response);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ServerboundCustomQueryAnswerPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const messageId = reader.readVarInt();
+		const response = reader.readByteArray();
+		return new ServerboundCustomQueryAnswerPacket(messageId, response);
 	}
 }
 
