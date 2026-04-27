@@ -14,7 +14,15 @@ export function toSnakeCase(str: string) {
 
 export function toCamelCase(str: string) {
   const pascalCase = toPascalCase(str);
-  return pascalCase.charAt(0).toLowerCase() + pascalCase.slice(1);
+  return lowerCaseFirst(pascalCase);
+}
+
+export function upperCaseFirst(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export function lowerCaseFirst(str: string) {
+  return str.charAt(0).toLowerCase() + str.slice(1);
 }
 
 export function identifierToNamespace(identifier: string) {
@@ -32,7 +40,7 @@ export function identifierToPath(identifier: string) {
 
 export function registryNameToEnumName(registryName: string) {
   switch (registryName) {
-    case "block_type": 
+    case "block_type":
       registryName = "abstract_" + registryName;
       break;
     case "menu":
