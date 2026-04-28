@@ -1,5 +1,5 @@
 {
-  "name": "nbt",
+  "name": "@dripleaf/nbt",
   "module": "src/index.ts",
   "type": "module",
   "devDependencies": {

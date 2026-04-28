@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "glowstone-ts",
+      "name": "dripleaf-project",
       "devDependencies": {
         "@types/bun": "latest",
         "@types/node": "^25.6.0",
@@ -13,7 +13,7 @@
       },
     },
     "packages/nbt": {
-      "name": "nbt",
+      "name": "@dripleaf/nbt",
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -22,7 +22,7 @@
       },
     },
     "packages/protocol": {
-      "name": "protocol",
+      "name": "@dripleaf/protocol",
       "devDependencies": {
         "@types/bun": "latest",
       },
@@ -41,15 +41,15 @@
     },
   },
   "packages": {
+    "@dripleaf/nbt": ["@dripleaf/nbt@workspace:packages/nbt"],
+
+    "@dripleaf/protocol": ["@dripleaf/protocol@workspace:packages/protocol"],
+
     "@types/bun": ["@types/bun@1.3.13", "", { "dependencies": { "bun-types": "1.3.13" } }, "sha512-9fqXWk5YIHGGnUau9TEi+qdlTYDAnOj+xLCmSTwXfAIqXr2x4tytJb43E9uCvt09zJURKXwAtkoH4nLQfzeTXw=="],
 
     "@types/node": ["@types/node@25.6.0", "", { "dependencies": { "undici-types": "~7.19.0" } }, "sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ=="],
 
     "bun-types": ["bun-types@1.3.13", "", { "dependencies": { "@types/node": "*" } }, "sha512-QXKeHLlOLqQX9LgYaHJfzdBaV21T63HhFJnvuRCcjZiaUDpbs5ED1MgxbMra71CsryN/1dAoXuJJJwIv/2drVA=="],
-
-    "nbt": ["nbt@workspace:packages/nbt"],
-
-    "protocol": ["protocol@workspace:packages/protocol"],
 
     "registry": ["registry@workspace:packages/registry"],
 

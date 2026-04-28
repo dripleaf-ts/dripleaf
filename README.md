@@ -1,4 +1,4 @@
-# glowstone
+# dripleaf
 
 a heavily inspired from [azalea](https://github.com/azalea-rs/azalea) soon-to-be minecraft bot library in typescript.
 
