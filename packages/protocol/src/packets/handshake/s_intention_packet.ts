@@ -10,17 +10,30 @@ class ServerboundIntentionPacket extends GlowstonePacket {
 	override direction = Direction.Serverbound;
 
 	constructor(
-		// todo
+		public protocolVersion: number,
+		public serverAddress: string,
+		public serverPort: number,
+		public intention: number
 	) {
 		super();
 	}
 
 	serialize() {
-		// todo
+		const writer = new PacketWriter();
+		writer.writeVarInt(this.protocolVersion);
+		writer.writeString(this.serverAddress, 255);
+		writer.writeUnsignedShort(this.serverPort);
+		writer.writeVarInt(this.intention);
+		return writer.finish();
 	}
 
 	static override deserialize(bytes: Uint8Array): ServerboundIntentionPacket {
-		// todo
+		const reader = new PacketReader(bytes);
+		const protocolVersion = reader.readVarInt();
+		const serverAddress = reader.readString(255);
+		const serverPort = reader.readUnsignedShort();
+		const intention = reader.readVarInt();
+		return new ServerboundIntentionPacket(protocolVersion, serverAddress, serverPort, intention);
 	}
 }
 
