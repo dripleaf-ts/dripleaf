@@ -187,6 +187,10 @@ export class PacketReader {
     };
   }
 
+  readEither<T1, T2>(read1: () => T1, read2: () => T2): T1 | T2 {
+    return this.readBoolean() ? read1() : read2();
+  }
+
   readRemaining(): Uint8Array {
     return this.readBytes(this.remaining);
   }

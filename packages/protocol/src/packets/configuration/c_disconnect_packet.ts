@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ClientboundDisconnectPacket extends DripleafPacket {
 	static readonly id = 0x02;
@@ -14,16 +15,17 @@ export class ClientboundDisconnectPacket extends DripleafPacket {
 	override readonly direction = ClientboundDisconnectPacket.direction;
 
 	constructor(
-		// todo: waiting on nbt
+		public reason: UnnamedNbtTag
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeNbt(this.reason);
 	}
 
 	static read(reader: PacketReader): ClientboundDisconnectPacket {
-		// todo
+		const reason = reader.readNbt();
+		return new ClientboundDisconnectPacket(reason);
 	}
 }

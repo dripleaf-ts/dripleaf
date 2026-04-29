@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ServerboundCustomClickActionPacket extends DripleafPacket {
 	static readonly id = 0x08;
@@ -14,16 +15,20 @@ export class ServerboundCustomClickActionPacket extends DripleafPacket {
 	override readonly direction = ServerboundCustomClickActionPacket.direction;
 
 	constructor(
-		// todo: waiting on nbt
+		public identifier: string,
+		public payload: UnnamedNbtTag
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeString(this.identifier);
+		writer.writeNbt(this.payload);
 	}
 
 	static read(reader: PacketReader): ServerboundCustomClickActionPacket {
-		// todo
+		const identifier = reader.readString();
+		const payload = reader.readNbt();
+		return new ServerboundCustomClickActionPacket(identifier, payload);
 	}
 }

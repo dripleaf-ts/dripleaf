@@ -181,6 +181,19 @@ export class PacketWriter {
     this.writeBytes(nbtWriter.finish());
   }
 
+  writeEither<T1, T2>(value: T1 | T2, write1: (value: T1) => void, write2: (value: T2) => void) {
+    if (value === null || value === undefined)
+      throw new Error("Cannot write null or undefined with writeEither");
+
+    const isType1 = (write1 as unknown as (value: unknown) => void)(value) === undefined;
+    this.writeBoolean(isType1);
+    if (isType1) {
+      write1(value as T1);
+    } else {
+      write2(value as T2);
+    }
+  }
+
   writeUnknown(fieldName: string, _value?: unknown): never {
     throw new Error(`Cannot write unknown packet field: ${fieldName}`);
   }

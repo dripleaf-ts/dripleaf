@@ -3,6 +3,8 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { ServerLink, ServerLinkType } from '../common';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ClientboundServerLinksPacket extends DripleafPacket {
 	static readonly id = 0x89;
@@ -14,16 +16,31 @@ export class ClientboundServerLinksPacket extends DripleafPacket {
 	override readonly direction = ClientboundServerLinksPacket.direction;
 
 	constructor(
-		// todo
+		public links: ServerLink[]
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeArray(this.links, (link) => {
+			writer.writeEither<ServerLinkType, UnnamedNbtTag>(
+				link.label,
+				(label) => writer.writeVarInt(label),
+				(label) => writer.writeNbt(label)
+			);
+			writer.writeString(link.url);
+		});
 	}
 
 	static read(reader: PacketReader): ClientboundServerLinksPacket {
-		// todo
+		const links = reader.readArray(() => {
+			const label = reader.readEither<ServerLinkType, UnnamedNbtTag>(
+				() => reader.readVarInt(),
+				() => reader.readNbt()
+			);
+			const url = reader.readString();
+			return { label, url };
+		});
+		return new ClientboundServerLinksPacket(links);
 	}
 }

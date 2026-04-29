@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ClientboundResourcePackPushPacket extends DripleafPacket {
 	static readonly id = 0x09;
@@ -14,16 +15,29 @@ export class ClientboundResourcePackPushPacket extends DripleafPacket {
 	override readonly direction = ClientboundResourcePackPushPacket.direction;
 
 	constructor(
-		// todo: waiting on nbt
+		public uuid: string,
+		public url: string,
+		public hash: string,
+		public forced: boolean,
+		public promptMessage: UnnamedNbtTag | null
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeUUID(this.uuid);
+		writer.writeString(this.url);
+		writer.writeString(this.hash);
+		writer.writeBoolean(this.forced);
+		writer.writePrefixedOptional(this.promptMessage, (value) => writer.writeNbt(value));
 	}
 
 	static read(reader: PacketReader): ClientboundResourcePackPushPacket {
-		// todo
+		const uuid = reader.readUUID();
+		const url = reader.readString();
+		const hash = reader.readString();
+		const forced = reader.readBoolean();
+		const promptMessage = reader.readPrefixedOptional(() => reader.readNbt());
+		return new ClientboundResourcePackPushPacket(uuid, url, hash, forced, promptMessage);
 	}
 }

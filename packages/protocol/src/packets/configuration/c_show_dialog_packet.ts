@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ClientboundShowDialogPacket extends DripleafPacket {
 	static readonly id = 0x12;
@@ -14,16 +15,17 @@ export class ClientboundShowDialogPacket extends DripleafPacket {
 	override readonly direction = ClientboundShowDialogPacket.direction;
 
 	constructor(
-		// todo: waiting on nbt
+		public dialog: UnnamedNbtTag
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeNbt(this.dialog);
 	}
 
 	static read(reader: PacketReader): ClientboundShowDialogPacket {
-		// todo
+		const dialog = reader.readNbt();
+		return new ClientboundShowDialogPacket(dialog);
 	}
 }
