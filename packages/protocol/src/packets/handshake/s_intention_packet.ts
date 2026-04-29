@@ -2,7 +2,7 @@
 
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
-import { Direction, State } from '../../types';
+import { ClientIntention, Direction, State } from '../../types';
 
 export class ServerboundIntentionPacket extends DripleafPacket {
 	static readonly id = 0x00;
@@ -17,7 +17,7 @@ export class ServerboundIntentionPacket extends DripleafPacket {
 		public protocolVersion: number,
 		public serverAddress: string,
 		public serverPort: number,
-		public intention: number
+		public intention: ClientIntention
 	) {
 		super();
 	}
