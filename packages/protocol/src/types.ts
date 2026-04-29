@@ -20,6 +20,18 @@ export enum ClientIntention {
   Transfer = 3,
 }
 
+export type LpVec3 = {
+  x: number;
+  y: number;
+  z: number;
+}
+
+export type Position = {
+  x: number;
+  y: number;
+  z: number;
+}
+
 export type GameProfile = {
   id: string;
   name: string;
