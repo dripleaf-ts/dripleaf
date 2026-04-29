@@ -33,6 +33,9 @@
     },
     "packages/protocol": {
       "name": "@dripleaf/protocol",
+      "dependencies": {
+        "@dripleaf/nbt": "workspace:*",
+      },
       "devDependencies": {
         "@types/bun": "latest",
         "typed-emitter": "^2.1.0",

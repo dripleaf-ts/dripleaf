@@ -1,3 +1,4 @@
+import { NbtWriter, type NbtTag } from "@dripleaf/nbt";
 import { writeVarInt, writeVarLong } from "./varint";
 
 const INT_MIN = -2147483648;
@@ -171,6 +172,13 @@ export class PacketWriter {
   writeBytes(value: Uint8Array) {
     for (const byte of value)
       this.chunks.push(byte);
+  }
+
+  writeNbt(value: Omit<NbtTag, "name">) {
+    this.writeUnsignedByte(value.type);
+    const nbtWriter = new NbtWriter();
+    nbtWriter.writePayload(value.type, value.value);
+    this.writeBytes(nbtWriter.finish());
   }
 
   writeUnknown(fieldName: string, _value?: unknown): never {

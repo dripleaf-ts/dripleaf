@@ -3,6 +3,12 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { NbtTag } from '@dripleaf/nbt';
+
+type RegistryEntry = {
+	entryId: string;
+	data?: Omit<NbtTag, "name"> | null;
+}
 
 export class ClientboundRegistryDataPacket extends DripleafPacket {
 	static readonly id = 0x07;
@@ -14,16 +20,30 @@ export class ClientboundRegistryDataPacket extends DripleafPacket {
 	override readonly direction = ClientboundRegistryDataPacket.direction;
 
 	constructor(
-		// todo: waiting on nbt
+		public registryId: string,
+		public entries: RegistryEntry[]
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		// todo
+		writer.writeString(this.registryId);
+		writer.writeVarInt(this.entries.length);
+		for (const entry of this.entries) {
+			writer.writeString(entry.entryId);
+			writer.writePrefixedOptional(entry.data, (v) => writer.writeNbt(v));
+		}
 	}
 
 	static read(reader: PacketReader): ClientboundRegistryDataPacket {
-		// todo
+		const registryId = reader.readString();
+		const entriesLength = reader.readVarInt();
+		const entries: RegistryEntry[] = [];
+		for (let i = 0; i < entriesLength; i++) {
+			const entryId = reader.readString();
+			const data = reader.readPrefixedOptional(() => reader.readNbt());
+			entries.push({ entryId, data });
+		}
+		return new ClientboundRegistryDataPacket(registryId, entries);
 	}
 }
