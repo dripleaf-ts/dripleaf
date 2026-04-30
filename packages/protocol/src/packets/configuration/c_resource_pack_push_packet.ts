@@ -4,6 +4,7 @@ import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
 import type { UnnamedNbtTag } from '@dripleaf/nbt';
+import type { UUID } from 'node:crypto';
 
 export class ClientboundResourcePackPushPacket extends DripleafPacket {
 	static readonly id = 0x09;
@@ -15,7 +16,7 @@ export class ClientboundResourcePackPushPacket extends DripleafPacket {
 	override readonly direction = ClientboundResourcePackPushPacket.direction;
 
 	constructor(
-		public uuid: string,
+		public uuid: UUID,
 		public url: string,
 		public hash: string,
 		public forced: boolean,

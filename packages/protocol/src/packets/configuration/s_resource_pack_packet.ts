@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UUID } from 'node:crypto';
 
 enum ResourcePackResult {
 	SuccessfullyDownloaded = 0,
@@ -25,7 +26,7 @@ export class ServerboundResourcePackPacket extends DripleafPacket {
 	override readonly direction = ServerboundResourcePackPacket.direction;
 
 	constructor(
-		public uuid: string,
+		public uuid: UUID,
 		public result: ResourcePackResult
 	) {
 		super();

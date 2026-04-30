@@ -4,6 +4,7 @@ import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
 import type { Vec3 } from 'vec3';
+import type { UUID } from 'node:crypto';
 
 export class ClientboundAddEntityPacket extends DripleafPacket {
 	static readonly id = 0x01;
@@ -16,7 +17,7 @@ export class ClientboundAddEntityPacket extends DripleafPacket {
 
 	constructor(
 		public entityId: number,
-		public entityUuid: string,
+		public entityUuid: UUID,
 		public type: number,
 		public x: number,
 		public y: number,

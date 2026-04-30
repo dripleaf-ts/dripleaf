@@ -4,6 +4,7 @@ import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
 import type { UnnamedNbtTag } from '@dripleaf/nbt';
+import type { UUID } from 'node:crypto';
 
 export enum PlayerInfoUpdateAction {
 	AddPlayer = 0x01,
@@ -34,12 +35,12 @@ export type PlayerInfoPublicKey = {
 }
 
 export type PlayerInfoChatSession = {
-	uuid: string;
+	uuid: UUID;
 	publicKey: PlayerInfoPublicKey;
 }
 
 export type PlayerInfoEntry = {
-	uuid: string;
+	uuid: UUID;
 	player?: PlayerInfoProfile;
 	chatSession?: PlayerInfoChatSession | null;
 	gameMode?: number;

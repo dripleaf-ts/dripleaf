@@ -4,6 +4,7 @@ import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
 import type { UnnamedNbtTag } from '@dripleaf/nbt';
+import type { UUID } from 'node:crypto';
 
 export enum BossEventAction {
 	Add = 0,
@@ -77,7 +78,7 @@ export class ClientboundBossEventPacket extends DripleafPacket {
 	override readonly direction = ClientboundBossEventPacket.direction;
 
 	constructor(
-		public uuid: string,
+		public uuid: UUID,
 		public action: BossEventAction,
 		public operation: BossEventOperation
 	) {

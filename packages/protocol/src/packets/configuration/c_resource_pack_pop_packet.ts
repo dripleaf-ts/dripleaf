@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UUID } from 'node:crypto';
 
 export class ClientboundResourcePackPopPacket extends DripleafPacket {
 	static readonly id = 0x08;
@@ -14,7 +15,7 @@ export class ClientboundResourcePackPopPacket extends DripleafPacket {
 	override readonly direction = ClientboundResourcePackPopPacket.direction;
 
 	constructor(
-		public uuid?: string | null,
+		public uuid: UUID | null,
 	) {
 		super();
 	}

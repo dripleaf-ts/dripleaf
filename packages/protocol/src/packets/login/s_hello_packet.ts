@@ -3,6 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
+import type { UUID } from 'node:crypto';
 
 export class ServerboundHelloPacket extends DripleafPacket {
 	static readonly id = 0x00;
@@ -15,7 +16,7 @@ export class ServerboundHelloPacket extends DripleafPacket {
 
 	constructor(
 		public name: string,
-		public uuid: string
+		public uuid: UUID
 	) {
 		super();
 	}

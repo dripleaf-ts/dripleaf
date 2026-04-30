@@ -2,6 +2,7 @@ import { NbtReader, NbtTagType, type NbtTag } from "@dripleaf/nbt";
 import { readLpVec3, readLpVec3 as readLpVec3Value } from "./lpvec3";
 import { decodeVarInt, decodeVarLong } from "./varint";
 import { Vec3 } from "vec3";
+import type { UUID } from "node:crypto";
 import { Either } from "./utils";
 
 const IDENTIFIER_PATTERN = /^[0-9a-z._-]+:[0-9a-z._\-\/]+$/;
@@ -112,14 +113,23 @@ export class PacketReader {
     return value;
   }
 
-  readUUID(): string {
-    const bytes = this.readBytes(16);
-    const value = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("");
+  readUUID(): UUID {
+    const msb = this.readLong();
+    const lsb = this.readLong();
 
-    if (!/^[0-9a-f]{32}$/.test(value))
-      throw new Error(`Invalid UUID: ${value}`);
+    const value =
+      ((msb & ((1n << 64n) - 1n)) << 64n) |
+      (lsb & ((1n << 64n) - 1n));
 
-    return value;
+    const hex = value.toString(16).padStart(32, "0");
+
+    return (
+      hex.slice(0, 8) + "-" +
+      hex.slice(8, 12) + "-" +
+      hex.slice(12, 16) + "-" +
+      hex.slice(16, 20) + "-" +
+      hex.slice(20)
+    ) as UUID;
   }
 
   readBlockPos(): Vec3 {

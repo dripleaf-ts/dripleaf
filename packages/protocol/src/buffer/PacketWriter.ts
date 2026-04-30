@@ -2,6 +2,7 @@ import { NbtWriter, type NbtTag } from "@dripleaf/nbt";
 import { writeLpVec3, writeLpVec3 as writeLpVec3Value } from "./lpvec3";
 import { writeVarInt, writeVarLong } from "./varint";
 import type { Vec3 } from "vec3";
+import type { UUID } from "node:crypto";
 import type { Either } from "./utils";
 
 const INT_MIN = -2147483648;
@@ -104,8 +105,8 @@ export class PacketWriter {
     this.writeString(value, 32767);
   }
 
-  writeUUID(value: string) {
-    const normalized = value.toLowerCase();
+  writeUUID(value: string | UUID) {
+    const normalized = value.replace(/-/g, "").toLowerCase();
 
     if (!/^[0-9a-f]{32}$/.test(normalized))
       throw new Error(`Invalid UUID: ${value}`);
@@ -113,8 +114,11 @@ export class PacketWriter {
     const number = BigInt(`0x${normalized}`);
     this.range("UUID", number, 0n, UUID_MAX);
 
-    for (let shift = 120n; shift >= 0n; shift -= 8n)
-      this.writeUnsignedByte(Number((number >> shift) & 0xffn));
+    const msb = (number >> 64n) & ((1n << 64n) - 1n);
+    const lsb = number & ((1n << 64n) - 1n);
+
+    this.writeLong(msb);
+    this.writeLong(lsb);
   }
 
   writeBlockPos(pos: Vec3) {
