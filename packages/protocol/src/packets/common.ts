@@ -1,11 +1,5 @@
 import type { UnnamedNbtTag } from "@dripleaf/nbt";
 
-export type PackEntry = {
-	namespace: string;
-	id: string;
-	version: number;
-}
-
 export enum ServerLinkType {
 	BugReport = 0,
 	CommunityGuidelines = 1,

@@ -3,7 +3,7 @@
 import { PacketReader, PacketWriter } from '../../buffer';
 import { DripleafPacket } from '../DripleafPacket';
 import { Direction, State } from '../../types';
-import type { PackEntry } from '../common';
+import { KnownPack } from '../../datatypes/KnownPack';
 
 export class ServerboundSelectKnownPacksPacket extends DripleafPacket {
 	static readonly id = 0x07;
@@ -15,26 +15,17 @@ export class ServerboundSelectKnownPacksPacket extends DripleafPacket {
 	override readonly direction = ServerboundSelectKnownPacksPacket.direction;
 
 	constructor(
-		public knownPacks: PackEntry[],
+		public knownPacks: KnownPack[],
 	) {
 		super();
 	}
 
 	write(writer: PacketWriter) {
-		writer.writeArray(this.knownPacks, (pack) => {
-			writer.writeString(pack.namespace);
-			writer.writeString(pack.id);
-			writer.writeVarInt(pack.version);
-		});
+		writer.writeArray(this.knownPacks, (pack) => pack.write(writer));
 	}
 
 	static read(reader: PacketReader): ServerboundSelectKnownPacksPacket {
-		const knownPacks = reader.readArray(() => {
-			const namespace = reader.readString();
-			const id = reader.readString();
-			const version = reader.readVarInt();
-			return { namespace, id, version };
-		});
+		const knownPacks = reader.readArray(() => KnownPack.read(reader));
 		return new ServerboundSelectKnownPacksPacket(knownPacks);
 	}
 }
