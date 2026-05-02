@@ -23,6 +23,11 @@
     },
     "packages/inventory": {
       "name": "@dripleaf/inventory",
+      "dependencies": {
+        "@dripleaf/nbt": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+        "vec3": "^0.2.0",
+      },
       "devDependencies": {
         "@types/bun": "latest",
       },

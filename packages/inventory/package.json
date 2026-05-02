@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@dripleaf/nbt": "workspace:*",
-    "@dripleaf/registry": "workspace:*"
+    "@dripleaf/registry": "workspace:*",
+    "vec3": "^0.2.0"
   }
 }
