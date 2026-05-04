@@ -10,7 +10,7 @@ currently work-in-progress in a very broken state.
 
 ## discord
 
-join the discord server [**here!**](https://discord.gg/Gv8UNeHTVk) - the very broad todo list is currently being handled in here
+join the discord server [**here!**](https://discord.gg/Gv8UNeHTVk)
 
 ## license
 
