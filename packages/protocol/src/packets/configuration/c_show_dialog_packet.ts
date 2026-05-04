@@ -20,5 +20,4 @@ export class ClientboundShowDialogPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

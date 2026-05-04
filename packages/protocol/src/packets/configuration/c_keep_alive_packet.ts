@@ -13,5 +13,4 @@ export class ClientboundKeepAlivePacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

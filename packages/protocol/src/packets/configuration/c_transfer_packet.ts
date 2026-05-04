@@ -15,5 +15,4 @@ export class ClientboundTransferPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

@@ -20,6 +20,11 @@ export enum ClientIntention {
   Transfer = 3,
 }
 
+export enum InteractionHand {
+  MainHand = 0,
+  OffHand = 1,
+}
+
 export type GameProfile = {
   id: string;
   name: string;

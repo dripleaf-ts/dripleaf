@@ -23,5 +23,4 @@ export class ClientboundResourcePackPushPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

@@ -28,6 +28,7 @@ export const Codecs = {
   double: primitive<number>((writer, value) => writer.writeDouble(value), reader => reader.readDouble()),
   varInt: primitive<number>((writer, value) => writer.writeVarInt(value), reader => reader.readVarInt()),
   varLong: primitive<bigint>((writer, value) => writer.writeVarLong(value), reader => reader.readVarLong()),
+  containerId: primitive<number>((writer, value) => writer.writeVarInt(value), reader => reader.readVarInt()),
   string(maxLength = 32767): Codec<string> {
     return primitive<string>((writer, value) => writer.writeString(value, maxLength), reader => reader.readString(maxLength));
   },
@@ -43,6 +44,21 @@ export const Codecs = {
   bitSet: primitive<bigint[]>((writer, value) => writer.writeBitSet(value), reader => reader.readBitSet()),
   fixedBitSet(byteLength: number): Codec<Uint8Array> {
     return primitive<Uint8Array>((writer, value) => writer.writeFixedBitSet(value, byteLength), reader => reader.readFixedBitSet(byteLength));
+  },
+  varIntEnum<T extends number>(): Codec<T> {
+    return primitive<T>((writer, value) => writer.writeVarInt(value), reader => reader.readVarInt() as T);
+  },
+  byteEnum<T extends number>(): Codec<T> {
+    return primitive<T>((writer, value) => writer.writeByte(value), reader => reader.readByte() as T);
+  },
+  unsignedByteEnum<T extends number>(): Codec<T> {
+    return primitive<T>((writer, value) => writer.writeUnsignedByte(value), reader => reader.readUnsignedByte() as T);
+  },
+  boolMask(bit: number): Codec<boolean> {
+    return primitive<boolean>(
+      (writer, value) => writer.writeUnsignedByte(value ? bit : 0),
+      reader => (reader.readUnsignedByte() & bit) !== 0,
+    );
   },
   array<T>(itemCodec: Codec<T>): Codec<T[]> {
     return primitive<T[]>((writer, value) => writer.writeArray(value, entry => itemCodec.encode(writer, entry)), reader => reader.readArray(() => itemCodec.decode(reader)));

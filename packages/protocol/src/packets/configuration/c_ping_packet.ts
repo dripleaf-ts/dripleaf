@@ -13,5 +13,4 @@ export class ClientboundPingPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

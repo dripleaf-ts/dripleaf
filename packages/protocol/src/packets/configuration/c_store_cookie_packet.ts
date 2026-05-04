@@ -15,5 +15,4 @@ export class ClientboundStoreCookiePacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

@@ -14,5 +14,4 @@ export class ClientboundResourcePackPopPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

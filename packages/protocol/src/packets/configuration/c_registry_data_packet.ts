@@ -35,5 +35,4 @@ export class ClientboundRegistryDataPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }
