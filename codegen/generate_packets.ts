@@ -47,7 +47,7 @@ for (const state in packetsReport) {
   ];
 
   for (const side of ["clientbound", "serverbound"] as const) {
-    for (const [packetName, packetInfo] of packetEntriesBySide[side]) {
+    for (const [packetName, { protocol_id: packetId }] of packetEntriesBySide[side]) {
       const packetPathPart = identifierToPath(packetName)!;
 
       const fileStem = `${side[0]!.toLowerCase()}_${toSnakeCase(packetPathPart)}_packet`;
@@ -63,13 +63,8 @@ for (const state in packetsReport) {
           "import { DripleafPacket, packetCodec } from '../DripleafPacket';",
           "",
           `export class ${packetClassName} extends DripleafPacket {`,
-          `\tstatic readonly codec = packetCodec<${packetClassName}>({`,
-          "\t\tencode(writer: PacketWriter, value: " + packetClassName + ") {",
-          `\t\t\tthrow new Error(${JSON.stringify(`TODO: implement ${packetClassName} codec encode`)});`,
-          "\t\t},",
-          "\t\tdecode(reader: PacketReader): " + packetClassName + " {",
-          `\t\t\tthrow new Error(${JSON.stringify(`TODO: implement ${packetClassName} codec decode`)});`,
-          "\t\t},",
+          `\tstatic readonly codec = packetCodec(${packetClassName}, {`,
+          "\t\t// todo",
           "\t});",
           "",
           "\tconstructor(",
