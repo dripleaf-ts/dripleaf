@@ -150,6 +150,28 @@ export const Codecs = {
       },
     );
   },
+  boundedMap<K, V>(keyCodec: Codec<K>, valueCodec: Codec<V>, maxSize: number): Codec<Map<K, V>> {
+    return primitive<Map<K, V>>(
+      (writer, value) => {
+        if (value.size > maxSize)
+          throw new Error(`Map exceeded max size: ${value.size}`);
+        writer.writeVarInt(value.size);
+        for (const [key, entry] of value) {
+          keyCodec.encode(writer, key);
+          valueCodec.encode(writer, entry);
+        }
+      },
+      reader => {
+        const size = reader.readVarInt();
+        if (size > maxSize)
+          throw new Error(`Map exceeded max size: ${size}`);
+        const value = new Map<K, V>();
+        for (let index = 0; index < size; index++)
+          value.set(keyCodec.decode(reader), valueCodec.decode(reader));
+        return value;
+      },
+    );
+  },
   prefixedOptional<T>(valueCodec: Codec<T>): Codec<T | null> {
     return primitive<T | null>((writer, value) => writer.writePrefixedOptional(value, entry => valueCodec.encode(writer, entry)), reader => reader.readPrefixedOptional(() => valueCodec.decode(reader)));
   },
