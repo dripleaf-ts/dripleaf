@@ -6,8 +6,8 @@ import { DripleafPacket, packetCodec } from '../DripleafPacket';
 export class ClientboundSetExperiencePacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundSetExperiencePacket, {
 		experienceProgress: Codecs.float,
-		totalExperience: Codecs.varInt,
 		experienceLevel: Codecs.varInt,
+		totalExperience: Codecs.varInt,
 	});
 
 	constructor(
@@ -17,5 +17,4 @@ export class ClientboundSetExperiencePacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

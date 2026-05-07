@@ -5,13 +5,13 @@ import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 export class ClientboundEntityEventPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundEntityEventPacket, {
-		entityId: Codecs.varInt,
-		entityStatus: Codecs.byte,
+		entityId: Codecs.int,
+		eventId: Codecs.byte,
 	});
 
 	constructor(
 		public entityId: number,
-		public entityStatus: number // todo: enum
+		public eventId: number
 	) {
 		super();
 	}

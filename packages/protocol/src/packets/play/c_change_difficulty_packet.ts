@@ -3,14 +3,21 @@
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
+export enum Difficulty {
+	Peaceful = 0,
+	Easy = 1,
+	Normal = 2,
+	Hard = 3,
+}
+
 export class ClientboundChangeDifficultyPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundChangeDifficultyPacket, {
-		difficulty: Codecs.unsignedByte, // todo: enum
+		difficulty: Codecs.unsignedByteEnum(Difficulty),
 		locked: Codecs.bool,
 	});
 
 	constructor(
-		public difficulty: number,
+		public difficulty: Difficulty,
 		public locked: boolean
 	) {
 		super();

@@ -2,21 +2,16 @@
 
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
-
-enum Hand {
-	MainHand = 0,
-	OffHand = 1
-}
+import { InteractionHand } from '../../types';
 
 export class ClientboundOpenBookPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundOpenBookPacket, {
-		hand: Codecs.varInt,
+		hand: Codecs.varIntEnum(InteractionHand),
 	});
 
 	constructor(
-		public hand: Hand
+		public hand: InteractionHand
 	) {
 		super();
 	}
-
 }

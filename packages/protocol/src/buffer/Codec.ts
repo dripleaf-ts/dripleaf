@@ -41,7 +41,7 @@ export const Codecs = {
   string(maxLength = 32767): Codec<string> {
     return primitive<string>((writer, value) => writer.writeString(value, maxLength), reader => reader.readString(maxLength));
   },
-  identifier: primitive<string | Identifier>((writer, value) => writer.writeIdentifier(value), reader => reader.readIdentifier()),
+  identifier: primitive<Identifier>((writer, value) => writer.writeIdentifier(value), reader => reader.readIdentifier()),
   uuid: primitive<UUID>((writer, value) => writer.writeUUID(value), reader => reader.readUUID()),
   nbt: primitive<Omit<NbtTag, "name">>((writer, value) => writer.writeNbt(value), reader => reader.readNbt()),
   byteArray(maxLength = 1048576): Codec<Uint8Array> {
