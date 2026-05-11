@@ -24,5 +24,4 @@ export class PositionMoveRotation {
     public yaw: number,
     public pitch: number
   ) {}
-
 }

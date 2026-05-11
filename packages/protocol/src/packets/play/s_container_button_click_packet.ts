@@ -15,5 +15,4 @@ export class ServerboundContainerButtonClickPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

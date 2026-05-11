@@ -2,11 +2,12 @@
 
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
+// todo: move to common or make all enums individual datatypes
 import { GameType } from '../../datatypes/GameType';
 
 export class ServerboundChangeGameModePacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundChangeGameModePacket, {
-		mode: Codecs.varIntEnum<GameType>(),
+		mode: Codecs.varIntEnum(GameType),
 	});
 
 	constructor(
@@ -14,5 +15,4 @@ export class ServerboundChangeGameModePacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

@@ -1,5 +1,7 @@
 import type { UnnamedNbtTag } from "@dripleaf/nbt";
-import { DebugSubscription } from "@dripleaf/registry";
+import { ItemStack, ItemStackData, type ItemStack as ItemStackType } from "@dripleaf/inventory";
+import { DebugSubscription, ItemType } from "@dripleaf/registry";
+import { codec, Codecs } from "../buffer";
 import type { Either } from "../buffer";
 
 export enum ServerLinkType {
@@ -20,7 +22,62 @@ export type ServerLink = {
 	url: string;
 }
 
+export const ItemStackCodec = codec<ItemStackType>({
+	encode(writer, value) {
+		if (value.type === "empty") {
+			writer.writeVarInt(0)
+			return
+		}
+
+		writer.writeVarInt(value.item.count)
+		Codecs.varIntEnum(ItemType).encode(writer, value.item.kind)
+		writer.writeVarInt(0)
+		writer.writeVarInt(0)
+	},
+	decode(reader) {
+		const count = reader.readVarInt()
+		if (count <= 0) return ItemStack.Empty
+
+		const kind = Codecs.varIntEnum(ItemType).decode(reader)
+		const componentsWithData = reader.readVarInt()
+		const componentsWithoutData = reader.readVarInt()
+		for (let index = 0; index < componentsWithData; index++)
+			throw new Error("Data component decoding not implemented yet")
+		for (let index = 0; index < componentsWithoutData; index++)
+			throw new Error("Data component removal decoding not implemented yet")
+
+		return ItemStack.Present(new ItemStackData(kind, count))
+	},
+});
+
 export type DebugUpdatePayload = {
 	subscription: DebugSubscription
 	payload: Uint8Array
+}
+
+export enum SoundSource {
+	Master,
+	Music,
+	Records,
+	Weather,
+	Blocks,
+	Hostile,
+	Neutral,
+	Players,
+	Ambient,
+	Voice,
+	UI
+}
+
+export enum Difficulty {
+	Peaceful,
+	Easy,
+	Normal,
+	Hard,
+}
+
+export enum ClientCommandAction {
+	PerformRespawn = 0,
+	RequestStats = 1,
+	RequestGameruleValues = 2,
 }
