@@ -6,7 +6,7 @@ import { InteractionHand } from '../../types';
 
 export class ServerboundSwingPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundSwingPacket, {
-		hand: Codecs.varIntEnum<InteractionHand>(),
+		hand: Codecs.varIntEnum(InteractionHand),
 	});
 
 	constructor(
@@ -14,5 +14,4 @@ export class ServerboundSwingPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

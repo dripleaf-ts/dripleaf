@@ -16,7 +16,7 @@ export enum PlayerCommandAction {
 export class ServerboundPlayerCommandPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundPlayerCommandPacket, {
 		id: Codecs.varInt,
-		action: Codecs.varIntEnum<PlayerCommandAction>(),
+		action: Codecs.varIntEnum(PlayerCommandAction),
 		data: Codecs.varInt,
 	});
 
@@ -27,5 +27,4 @@ export class ServerboundPlayerCommandPacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }
