@@ -1,0 +1,12 @@
+services:
+  papermc:
+    image: ghcr.io/anomalyco/papermc:26.1
+    ports:
+      - "25565:25565"
+    environment:
+      - ENABLE_QUERY=true
+      - ONLINE_MODE=false
+      - PAPER_MC_FLAGS=--nogui
+    volumes:
+      - ./docker-data/papermc:/data
+      - ./docker-data/papermq/plugins:/plugins
