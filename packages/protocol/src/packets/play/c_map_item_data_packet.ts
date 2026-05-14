@@ -46,7 +46,7 @@ type IconEntry = {
 	type: IconType,
 	x: number,
 	z: number,
-	direction: number, // todo: enum
+	direction: number,
 	displayName: UnnamedNbtTag | null
 }
 
@@ -59,9 +59,9 @@ type MapPatch = {
 }
 
 export class ClientboundMapItemDataPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ClientboundMapItemDataPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ClientboundMapItemDataPacket) {
-		writer.writeInt(value.mapId);
+		writer.writeVarInt(value.mapId);
 		writer.writeByte(value.scale);
 		writer.writeBoolean(value.locked);
 		writer.writePrefixedOptional(value.icons, (icons) => {
@@ -84,7 +84,7 @@ export class ClientboundMapItemDataPacket extends DripleafPacket {
 		});
 		},
 		decode(reader: PacketReader): ClientboundMapItemDataPacket {
-		const mapId = reader.readInt();
+		const mapId = reader.readVarInt();
 		const scale = reader.readByte();
 		const locked = reader.readBoolean();
 		const icons = reader.readPrefixedOptional(() => {

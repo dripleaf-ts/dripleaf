@@ -13,7 +13,7 @@ type Abilities = {
 };
 
 export class ClientboundPlayerAbilitiesPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ClientboundPlayerAbilitiesPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ClientboundPlayerAbilitiesPacket) {
 		writer.writeByte(
 			(value.abilities.invulnerable ? 0x01 : 0) |

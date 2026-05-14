@@ -51,7 +51,7 @@ export type PlayerInfoEntry = {
 }
 
 export class ClientboundPlayerInfoUpdatePacket extends DripleafPacket {
-	static readonly codec = packetCodec<ClientboundPlayerInfoUpdatePacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ClientboundPlayerInfoUpdatePacket) {
 		writer.writeUnsignedByte(value.actions);
 		writer.writeVarInt(value.entries.length);

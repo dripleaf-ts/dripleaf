@@ -16,7 +16,7 @@ type RecipeBookSettings = {
 }
 
 export class ClientboundRecipeBookSettingsPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ClientboundRecipeBookSettingsPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ClientboundRecipeBookSettingsPacket) {
 		writer.writeBoolean(value.settings.crafting.open);
 		writer.writeBoolean(value.settings.crafting.filtering);
