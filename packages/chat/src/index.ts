@@ -181,3 +181,24 @@ export function fromNbt(nbt: UnnamedNbtTag): ChatComponent {
   if (nbt.type !== NbtTagType.Compound) return ""
   return fromNbtCompound(nbt.value as NbtCompound)
 }
+
+function extractText(component: ChatComponent): string {
+  if (typeof component === "string") return component
+  let result = component.text ?? ""
+  if (component.extra) {
+    for (const child of component.extra)
+      result += extractText(child)
+  }
+  if (component.translate && !component.text) {
+    result += component.translate
+  }
+  return result
+}
+
+export function toPlainText(component: ChatComponent): string {
+  return extractText(component)
+}
+
+export function chatComponentFromNbt(nbt: UnnamedNbtTag): string {
+  return toPlainText(fromNbt(nbt))
+}

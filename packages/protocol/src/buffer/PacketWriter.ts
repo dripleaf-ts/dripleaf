@@ -12,7 +12,7 @@ const INT_MAX = 2147483647;
 const LONG_MIN = -(1n << 63n);
 const LONG_MAX = (1n << 63n) - 1n;
 const UUID_MAX = (1n << 128n) - 1n;
-const IDENTIFIER_PATTERN = /^[0-9a-z._-]+:[0-9a-z._\-\/]+$/;
+const IDENTIFIER_PATTERN = /^([0-9a-z._-]+:)?[0-9a-z._\-\/]+$/;
 
 export class PacketWriter {
   private readonly chunks: number[] = [];

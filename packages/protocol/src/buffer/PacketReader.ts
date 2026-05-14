@@ -7,7 +7,7 @@ import type { UUID } from "node:crypto";
 import { Either } from "./utils";
 import type { Codec } from "./Codec";
 
-const IDENTIFIER_PATTERN = /^[0-9a-z._-]+:[0-9a-z._\-\/]+$/;
+const IDENTIFIER_PATTERN = /^([0-9a-z._-]+:)?[0-9a-z._\-\/]+$/;
 
 export class PacketReader {
   offset = 0;

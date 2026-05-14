@@ -6,6 +6,7 @@ import { resolveSrv } from "node:dns"
 import { Connection, State, ClientIntention, ChatVisibility, HumanoidArm, ParticleStatus } from "@dripleaf/protocol"
 import { handshake, login, play, configuration } from "@dripleaf/protocol"
 import type { GameProfile } from "@dripleaf/core"
+import { chatComponentFromNbt } from "@dripleaf/chat"
 
 type ClientEvents = {
   spawn: (packet: any) => void
@@ -134,7 +135,7 @@ export class Client {
     })
 
     conn.onPacket(play.ClientboundSystemChatPacket, (packet: any) => {
-      const text = typeof packet.content === "string" ? packet.content : JSON.stringify(packet.content)
+      const text = chatComponentFromNbt(packet.content)
       this.emit("chat", text, null)
     })
   }
