@@ -9,7 +9,7 @@ function packFlags(onGround: boolean, horizontalCollision: boolean): number {
 }
 
 export class ServerboundMovePlayerRotPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ServerboundMovePlayerRotPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundMovePlayerRotPacket) {
 			writer.writeFloat(value.yRot);
 			writer.writeFloat(value.xRot);

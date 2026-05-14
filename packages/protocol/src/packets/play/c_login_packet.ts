@@ -31,8 +31,6 @@ export class ClientboundLoginPacket extends DripleafPacket {
 		public enableRespawnScreen: boolean,
 		public doLimitedCrafting: boolean,
 		public commonPlayerSpawnInfo: CommonPlayerSpawnInfo,
-		public portalCooldown: number,
-		public seaLevel: number,
 		public enforcesSecureChat: boolean
 	) {
 		super();

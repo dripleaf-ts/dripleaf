@@ -9,7 +9,7 @@ function packFlags(onGround: boolean, horizontalCollision: boolean): number {
 }
 
 export class ServerboundMovePlayerStatusOnlyPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ServerboundMovePlayerStatusOnlyPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundMovePlayerStatusOnlyPacket) {
 			writer.writeUnsignedByte(packFlags(value.onGround, value.horizontalCollision));
 		},

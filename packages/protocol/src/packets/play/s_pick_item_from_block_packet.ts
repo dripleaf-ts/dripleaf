@@ -2,17 +2,14 @@
 
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
-import type { Vec3 } from 'vec3';
 
 export class ServerboundPickItemFromBlockPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundPickItemFromBlockPacket, {
-		pos: Codecs.blockPos,
-		includeData: Codecs.bool,
+		slot: Codecs.varInt,
 	});
 
 	constructor(
-		public pos: Vec3,
-		public includeData: boolean,
+		public slot: number,
 	) {
 		super();
 	}

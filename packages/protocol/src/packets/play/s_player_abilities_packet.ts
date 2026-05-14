@@ -4,7 +4,7 @@ import { type PacketReader, type PacketWriter } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 export class ServerboundPlayerAbilitiesPacket extends DripleafPacket {
-	static readonly codec = packetCodec<ServerboundPlayerAbilitiesPacket>({
+	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundPlayerAbilitiesPacket) {
 			writer.writeByte(value.isFlying ? 2 : 0);
 		},

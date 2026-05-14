@@ -9,14 +9,12 @@ export class ServerboundMoveVehiclePacket extends DripleafPacket {
 		position: Codecs.vec3d,
 		yRot: Codecs.float,
 		xRot: Codecs.float,
-		onGround: Codecs.bool,
 	});
 
 	constructor(
 		public position: Vec3,
 		public yRot: number,
 		public xRot: number,
-		public onGround: boolean,
 	) {
 		super();
 	}
