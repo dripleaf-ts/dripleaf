@@ -2,6 +2,7 @@ import { EventEmitter } from "node:events"
 import { connect as tcpConnect } from "node:net"
 import { randomUUID } from "node:crypto"
 import type { UUID } from "node:crypto"
+import { resolveSrv } from "node:dns"
 import { Connection, State, ClientIntention, ChatVisibility, HumanoidArm, ParticleStatus } from "@dripleaf/protocol"
 import { handshake, login, play, configuration } from "@dripleaf/protocol"
 import type { GameProfile } from "@dripleaf/core"
@@ -38,16 +39,42 @@ export class Client {
     return this
   }
 
+  private srvHost: string | null = null
+
   async connect(host: string, port = 25565): Promise<void> {
+    const resolved = await this.resolveSrv(host, port)
     return new Promise((resolve, reject) => {
-      const socket = tcpConnect(port, host, () => {
+      const socket = tcpConnect(resolved.port, resolved.host, () => {
         this.connection = new Connection(socket, false)
         this.setupHandlers()
-        this.startLogin(host, port)
+        this.startLogin(host, resolved.port)
         resolve()
       })
       socket.on("error", reject)
       socket.setTimeout(10000)
+    })
+  }
+
+  private isIpAddress(host: string): boolean {
+    const ipv4 = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/
+    const ipv6 = /^\[?([0-9a-fA-F:]+)\]?$/
+    return ipv4.test(host) || ipv6.test(host)
+  }
+
+  private resolveSrv(host: string, port: number): Promise<{ host: string; port: number }> {
+    if (this.isIpAddress(host) || port !== 25565)
+      return Promise.resolve({ host, port })
+
+    return new Promise((resolve) => {
+      resolveSrv(`_minecraft._tcp.${host}`, (err, records) => {
+        if (err || !records || records.length === 0) {
+          resolve({ host, port })
+          return
+        }
+        const sorted = records.sort((a, b) => a.priority - b.priority || b.weight - a.weight)
+        const srv = sorted[0]!
+        resolve({ host: srv.name, port: srv.port })
+      })
     })
   }
 
