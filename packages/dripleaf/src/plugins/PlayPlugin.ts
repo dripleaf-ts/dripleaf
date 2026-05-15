@@ -1,5 +1,7 @@
 import * as play from "@dripleaf/protocol"
 import { World, type Dimension } from "@dripleaf/world"
+import { Pathfinder } from "@dripleaf/pathfinder"
+import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/src/dripleaf.ts"
 import { chatComponentFromNbt } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
@@ -16,6 +18,7 @@ export class PlayPlugin implements ClientPlugin {
         identifier: packet.commonPlayerSpawnInfo.dimension.toString(),
       }
       ctx.world = new World(dim)
+      ctx.pathfinder = new Pathfinder(pathWorldFromDripleaf(ctx.world))
       ctx.emit("spawn", packet)
       conn.write(new play.ServerboundPlayerLoadedPacket())
     })

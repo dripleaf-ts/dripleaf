@@ -4,12 +4,13 @@ import { resolveSrv } from "node:dns"
 import { Connection, State, InteractionHand, BlockFace, play } from "@dripleaf/protocol"
 import type { GameProfile } from "@dripleaf/core"
 import { BlockPos } from "@dripleaf/core"
-import { Window } from "@dripleaf/inventory"
+import { Window, simulatePickupClick, ClickType } from "@dripleaf/inventory"
 import { RegistryManager } from "@dripleaf/registry"
 import type { World } from "@dripleaf/world"
 import type { EntityData } from "@dripleaf/entity"
+import type { Pathfinder, PathResult } from "@dripleaf/pathfinder"
 import type { ClientContext, EquipmentEntry } from "./context"
-import { defaultPlugins, ConnectionPlugin } from "./plugins"
+import { defaultPlugins, ConnectionPlugin, goto as gotoPath, stopPathfinding, startMining, finishMining, stopMining } from "./plugins"
 
 type ClientEvents = {
   spawn: (packet: play.ClientboundLoginPacket) => void
@@ -24,6 +25,12 @@ type ClientEvents = {
   heldItemChange: (slot: number) => void
   entitySpawn: (entity: EntityData) => void
   entityDespawn: (entityId: number) => void
+  windowOpen: (window: Window) => void
+  windowClose: (window: Window) => void
+  playerJoin: (player: { uuid: string; name: string }) => void
+  playerLeave: (player: { uuid: string; name: string }) => void
+  pathFound: (result: PathResult) => void
+  pathStop: () => void
 }
 
 export class Client {
@@ -48,11 +55,15 @@ export class Client {
 
   world: World | null = null
   entities: Map<number, EntityData> = new Map()
+  players = new Map<string, { uuid: string; name: string }>()
 
   inventory: Window
+  windows = new Map<number, Window>()
+  currentWindowId: number | null = null
   heldItem = 0
   equipment: Map<number, EquipmentEntry[]> = new Map()
 
+  pathfinder: Pathfinder | null = null
   readonly registries = new RegistryManager()
 
   constructor(username: string) {
@@ -90,12 +101,19 @@ export class Client {
       set world(v) { client.world = v },
       get entities() { return client.entities },
       get inventory() { return client.inventory },
+      get windows() { return client.windows },
+      get currentWindowId() { return client.currentWindowId },
+      set currentWindowId(v) { client.currentWindowId = v },
       get heldItem() { return client.heldItem },
       set heldItem(v) { client.heldItem = v },
       sequence: 0,
       get equipment() { return client.equipment },
       get registries() { return client.registries },
       chunkBatchSize: 0,
+      get pathfinder() { return client.pathfinder },
+      set pathfinder(v) { client.pathfinder = v },
+      mining: null,
+      get players() { return client.players },
       emitter: this.emitter,
       emit: (event, ...args) => client.emit(event, ...args),
     }
@@ -113,6 +131,11 @@ export class Client {
 
   blockAt(pos: BlockPos) {
     return this.world?.getBlock(pos)
+  }
+
+  getWindow(windowId = this.currentWindowId ?? 0): Window {
+    if (windowId === 0) return this.inventory
+    return this.windows.get(windowId) ?? this.inventory
   }
 
   async connect(host: string, port = 25565): Promise<void> {
@@ -217,14 +240,24 @@ export class Client {
     this.connection.write(new play.ServerboundAttackPacket(entityId))
   }
 
-  mine(x: number, y: number, z: number): void {
-    if (!this.connection || !this.loggedIn) throw new Error("Not connected")
-    this.connection.write(new play.ServerboundPlayerActionPacket(
-      play.PlayerAction.StartDestroyBlock,
-      new BlockPos(x, y, z),
-      BlockFace.Up,
-      this.ctx.sequence++,
-    ))
+  mine(x: number, y: number, z: number, face = BlockFace.Up): void {
+    if (!this.connection) throw new Error("Not connected")
+    startMining(this.ctx, this.connection, x, y, z, face)
+  }
+
+  stopMine(): void {
+    if (!this.connection) return
+    stopMining(this.ctx, this.connection)
+  }
+
+  dig(x: number, y: number, z: number, face = BlockFace.Up): void {
+    if (!this.connection) throw new Error("Not connected")
+    startMining(this.ctx, this.connection, x, y, z, face)
+    finishMining(this.ctx, this.connection)
+  }
+
+  placeBlock(x: number, y: number, z: number, face: BlockFace): void {
+    this.blockInteract(x, y, z, face)
   }
 
   blockInteract(x: number, y: number, z: number, face: BlockFace): void {
@@ -240,6 +273,37 @@ export class Client {
       },
       this.ctx.sequence++,
     ))
+  }
+
+  clickSlot(slot: number, button = 0, windowId?: number): void {
+    if (!this.connection || !this.loggedIn) throw new Error("Not connected")
+    const window = this.getWindow(windowId)
+    const result = simulatePickupClick(window, slot, button)
+    if (!result) throw new Error("Invalid click")
+    this.connection.write(new play.ServerboundContainerClickPacket(
+      window.id,
+      window.state,
+      slot,
+      button,
+      ClickType.Pickup,
+      result.changedSlots,
+      result.carriedItem,
+    ))
+  }
+
+  closeWindow(windowId?: number): void {
+    if (!this.connection || !this.loggedIn) throw new Error("Not connected")
+    const id = windowId ?? this.currentWindowId
+    if (id === null || id === 0) return
+    this.connection.write(new play.ServerboundContainerClosePacket(id))
+  }
+
+  goto(x: number, y: number, z: number): void {
+    gotoPath(this.ctx, new BlockPos(x, y, z))
+  }
+
+  stopPathfinding(): void {
+    stopPathfinding(this.ctx)
   }
 
   disconnect(): void {

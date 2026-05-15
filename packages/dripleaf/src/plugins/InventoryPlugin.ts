@@ -1,24 +1,56 @@
+import { MenuType } from "@dripleaf/registry"
+import { chatComponentFromNbt } from "@dripleaf/chat"
+import { Window, menuSlotCount, menuTypeToWindowType } from "@dripleaf/inventory"
 import * as play from "@dripleaf/protocol"
 import type { ItemStack } from "@dripleaf/inventory"
 import type { ClientContext, EquipmentEntry } from "../context"
 import type { ClientPlugin } from "./types"
 
+function getWindow(ctx: ClientContext, windowId: number): Window | undefined {
+  if (windowId === 0) return ctx.inventory
+  return ctx.windows.get(windowId)
+}
+
 export class InventoryPlugin implements ClientPlugin {
   readonly name = "inventory"
 
   register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+    conn.onPacket(play.ClientboundOpenScreenPacket, (packet) => {
+      const slotCount = menuSlotCount(packet.type as MenuType)
+      const window = new Window(
+        packet.containerId,
+        menuTypeToWindowType(packet.type as MenuType),
+        chatComponentFromNbt(packet.title),
+        slotCount,
+      )
+      ctx.windows.set(packet.containerId, window)
+      ctx.currentWindowId = packet.containerId
+      ctx.emit("windowOpen", window)
+    })
+
+    conn.onPacket(play.ClientboundContainerClosePacket, (packet) => {
+      const window = ctx.windows.get(packet.windowId)
+      ctx.windows.delete(packet.windowId)
+      if (ctx.currentWindowId === packet.windowId)
+        ctx.currentWindowId = null
+      if (window) ctx.emit("windowClose", window)
+    })
+
     conn.onPacket(play.ClientboundContainerSetContentPacket, (packet) => {
-      if (packet.windowId !== 0) return
-      ctx.inventory.state = packet.stateId
+      const window = getWindow(ctx, packet.windowId)
+      if (!window) return
+      window.state = packet.stateId
       for (let i = 0; i < packet.slots.length; i++)
-        ctx.inventory.setSlot(i, packet.slots[i]!)
-      ctx.inventory.setSlot(-1, packet.carriedItem)
+        window.setSlot(i, packet.slots[i]!)
+      if (packet.windowId === ctx.currentWindowId || packet.windowId === 0)
+        window.setSlot(-1, packet.carriedItem)
     })
 
     conn.onPacket(play.ClientboundContainerSetSlotPacket, (packet) => {
-      if (packet.windowId !== 0) return
-      ctx.inventory.state = packet.stateId
-      ctx.inventory.setSlot(packet.slot, packet.slotData)
+      const window = getWindow(ctx, packet.windowId)
+      if (!window) return
+      window.state = packet.stateId
+      window.setSlot(packet.slot, packet.slotData)
     })
 
     conn.onPacket(play.ClientboundSetPlayerInventoryPacket, (packet) => {
@@ -30,7 +62,10 @@ export class InventoryPlugin implements ClientPlugin {
     })
 
     conn.onPacket(play.ClientboundSetCursorItemPacket, (packet) => {
-      ctx.inventory.setSlot(-1, packet.contents)
+      const window = ctx.currentWindowId !== null
+        ? ctx.windows.get(ctx.currentWindowId) ?? ctx.inventory
+        : ctx.inventory
+      window.setSlot(-1, packet.contents)
     })
 
     conn.onPacket(play.ClientboundSetEquipmentPacket, (packet) => {
@@ -44,15 +79,32 @@ export class InventoryPlugin implements ClientPlugin {
 
     conn.onPacket(play.ClientboundPlayerInfoUpdatePacket, (packet) => {
       for (const entry of packet.entries) {
-        if (!entry.chatSession) continue
-        conn.write(new play.ServerboundChatSessionUpdatePacket({
-          sessionId: entry.chatSession.uuid,
-          publicKey: {
-            expiresAt: { seconds: entry.chatSession.publicKey.expireTime, nanos: 0 },
-            key: entry.chatSession.publicKey.keyBytes,
-            keySignature: entry.chatSession.publicKey.keySignature,
-          },
-        }))
+        if (entry.player) {
+          const id = entry.uuid
+          const name = entry.player.name
+          const had = ctx.players.has(id)
+          ctx.players.set(id, { uuid: id, name })
+          if (!had) ctx.emit("playerJoin", { uuid: id, name })
+        }
+        if (entry.chatSession) {
+          conn.write(new play.ServerboundChatSessionUpdatePacket({
+            sessionId: entry.chatSession.uuid,
+            publicKey: {
+              expiresAt: { seconds: entry.chatSession.publicKey.expireTime, nanos: 0 },
+              key: entry.chatSession.publicKey.keyBytes,
+              keySignature: entry.chatSession.publicKey.keySignature,
+            },
+          }))
+        }
+      }
+    })
+
+    conn.onPacket(play.ClientboundPlayerInfoRemovePacket, (packet) => {
+      for (const uuid of packet.profileIds) {
+        const player = ctx.players.get(uuid)
+        if (!player) continue
+        ctx.players.delete(uuid)
+        ctx.emit("playerLeave", player)
       }
     })
   }

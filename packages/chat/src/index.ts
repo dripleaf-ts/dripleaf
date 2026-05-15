@@ -214,3 +214,5 @@ export function toPlainText(component: ChatComponent): string {
 export function chatComponentFromNbt(nbt: UnnamedNbtTag): string {
   return toPlainText(fromNbt(nbt))
 }
+
+export { MessageBuilder } from "./MessageBuilder"

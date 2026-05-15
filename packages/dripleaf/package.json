@@ -21,6 +21,8 @@
     "@dripleaf/entity": "workspace:*",
     "@dripleaf/world": "workspace:*",
     "@dripleaf/item": "workspace:*",
-    "@dripleaf/recipe": "workspace:*"
+    "@dripleaf/recipe": "workspace:*",
+    "@dripleaf/pathfinder": "workspace:*",
+    "@dripleaf/physics": "workspace:*"
   }
 }

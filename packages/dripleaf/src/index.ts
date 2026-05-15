@@ -1,5 +1,8 @@
 export { Client } from "./Client"
 export type { GameProfile } from "@dripleaf/core"
 export { BlockPos, ChunkPos, GlobalPos } from "@dripleaf/core"
+export { World, parseChunkSections, applyLevelChunk } from "@dripleaf/world"
+export { RegistryManager } from "@dripleaf/registry"
+export { Pathfinder, findPath, blockPosGoal } from "@dripleaf/pathfinder"
 export * from "@dripleaf/item"
 export * from "@dripleaf/recipe"
