@@ -15,6 +15,7 @@
     "@dripleaf/core": "workspace:*",
     "@dripleaf/block": "workspace:*",
     "@dripleaf/entity": "workspace:*",
-    "@dripleaf/registry": "workspace:*"
+    "@dripleaf/registry": "workspace:*",
+    "@dripleaf/protocol": "workspace:*"
   }
 }

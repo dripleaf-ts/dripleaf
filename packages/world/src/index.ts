@@ -2,6 +2,7 @@ import { BlockPos, ChunkPos } from "@dripleaf/core"
 import { type BlockData, stateToBlock } from "@dripleaf/block"
 import { type EntityData } from "@dripleaf/entity"
 import { DimensionType, DimensionTypeRegistry, WorldgenBiome, WorldgenBiomeRegistry } from "@dripleaf/registry"
+import { PacketReader } from "@dripleaf/protocol"
 
 export { DimensionType, DimensionTypeRegistry, WorldgenBiome, WorldgenBiomeRegistry }
 
@@ -190,6 +191,14 @@ export class ChunkSection {
     return this.palette.getState(paletteIndex)
   }
 
+  getBiome(x: number, y: number, z: number): number {
+    const index = (y >> 2) * 16 + (z >> 2) * 4 + (x >> 2)
+    if (this.biomePalette.type === "singleton")
+      return this.biomePalette.getState(0)
+    const paletteIndex = readEntry(this.biomes, index, this.biomePalette.bitsPerEntry())
+    return this.biomePalette.getState(paletteIndex)
+  }
+
   setBlock(x: number, y: number, z: number, state: number): void {
     const index = posToIndex(x, y, z)
     const oldState = this.getBlock(x, y, z)
@@ -252,6 +261,16 @@ export class ChunkData {
     const section = this.sections[sectionIndex]
     if (!section) return undefined
     return section.getBlock(pos.x & 0xf, pos.y & 0xf, pos.z & 0xf)
+  }
+
+  getBiome(pos: BlockPos): number | undefined {
+    const sectionY = Math.floor(pos.y / 16)
+    const sectionIndex = sectionY - MIN_SECTION_Y
+    if (sectionIndex < 0 || sectionIndex >= this.sections.length)
+      return undefined
+    const section = this.sections[sectionIndex]
+    if (!section) return undefined
+    return section.getBiome(pos.x & 0xf, pos.y & 0xf, pos.z & 0xf)
   }
 
   setBlock(pos: BlockPos, state: number): void {
@@ -317,4 +336,108 @@ export class World {
   getChunk(pos: ChunkPos): ChunkData | undefined {
     return this.chunks.get(chunkKey(pos.x, pos.z))
   }
+
+  getBiome(pos: BlockPos): number | undefined {
+    const chunkX = Math.floor(pos.x / 16)
+    const chunkZ = Math.floor(pos.z / 16)
+    const chunk = this.chunks.get(chunkKey(chunkX, chunkZ))
+    if (!chunk) return undefined
+    return chunk.getBiome(pos)
+  }
+
+  forgetChunk(x: number, z: number): void {
+    this.chunks.delete(chunkKey(x, z))
+  }
+}
+
+export function swappedLongs(bytes: Uint8Array): Uint8Array {
+  const out = new Uint8Array(bytes.length)
+  for (let i = 0; i < bytes.length; i += 8) {
+    for (let j = 0; j < 8; j++)
+      out[i + j] = bytes[i + 7 - j]!
+  }
+  return out
+}
+
+function createIdentityPalette(bpe: number): Palette {
+  return {
+    type: "linear",
+    getState(index: number): number {
+      return index
+    },
+    setState(_index: number, _value: number): void {},
+    addState(value: number): number {
+      return value
+    },
+    getIds(): number[] {
+      return []
+    },
+    bitsPerEntry(): number {
+      return bpe
+    },
+  }
+}
+
+export function parseChunkSections(data: Uint8Array, count = SECTION_COUNT): (ChunkSection | null)[] {
+  const reader = new PacketReader(data)
+  const sections: (ChunkSection | null)[] = []
+
+  for (let i = 0; i < count; i++) {
+    const section = new ChunkSection(MIN_SECTION_Y + i)
+
+    if (reader.remaining <= 0) {
+      sections.push(null)
+      continue
+    }
+
+    section.blockCount = reader.readUnsignedShort()
+    const bpe = reader.readUnsignedByte()
+
+    if (bpe === 0) {
+      const state = reader.readVarInt()
+      section.palette = createSingletonPalette(state)
+      section.states = new Uint8Array(0)
+    } else if (bpe <= 8) {
+      const paletteLen = reader.readVarInt()
+      const ids: number[] = []
+      for (let j = 0; j < paletteLen; j++) ids.push(reader.readVarInt())
+      section.palette = createLinearPalette(ids)
+      const dataLongs = reader.readVarInt()
+      section.states = swappedLongs(reader.readBytes(dataLongs * 8))
+    } else {
+      const dataLongs = reader.readVarInt()
+      section.palette = createIdentityPalette(bpe)
+      section.states = swappedLongs(reader.readBytes(dataLongs * 8))
+    }
+
+    const biomeBits = reader.readUnsignedByte()
+
+    if (biomeBits === 0) {
+      section.biomePalette = createSingletonPalette(reader.readVarInt())
+      section.biomes = new Uint8Array(0)
+    } else {
+      const paletteLen = reader.readVarInt()
+      const ids: number[] = []
+      for (let j = 0; j < paletteLen; j++) ids.push(reader.readVarInt())
+      section.biomePalette = createBiomePalette(ids)
+      const dataLongs = reader.readVarInt()
+      section.biomes = swappedLongs(reader.readBytes(dataLongs * 8))
+    }
+
+    sections.push(section)
+  }
+
+  return sections
+}
+
+export function applyLevelChunk(chunks: Map<number, ChunkData>, x: number, z: number, data: Uint8Array): void {
+  const key = chunkKey(x, z)
+  let chunk = chunks.get(key)
+  if (!chunk) {
+    chunk = new ChunkData(x, z)
+    chunks.set(key, chunk)
+  }
+  const sections = parseChunkSections(data, SECTION_COUNT)
+  for (let i = 0; i < SECTION_COUNT; i++)
+    chunk.sections[i] = sections[i]!
 }
