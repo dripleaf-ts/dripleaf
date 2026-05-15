@@ -49,4 +49,32 @@ export class RegistryManager {
   hasTag(registryId: string, tagName: string): boolean {
     return this.tags.get(registryId)?.has(tagName) ?? false
   }
+
+  protocolId(registryId: string, entry: string | number): number | undefined {
+    if (typeof entry === "number")
+      return Number.isInteger(entry) ? entry : undefined
+    return this.registries.get(registryId)?.resolveProtocolId(stripMinecraftNamespace(entry))
+  }
+
+  entryId(registryId: string, protocolId: number): string | undefined {
+    return this.registries.get(registryId)?.getByProtocolId(protocolId)?.key
+  }
+
+  blockStateId(block: string | number): number | undefined {
+    return this.protocolId("minecraft:block", block)
+  }
+
+  itemId(item: string | number): number | undefined {
+    return this.protocolId("minecraft:item", item)
+  }
+
+  isInTag(registryId: string, tagName: string, entry: string | number): boolean {
+    const protocolId = this.protocolId(registryId, entry)
+    if (protocolId === undefined) return false
+    return this.tags.get(registryId)?.get(tagName)?.includes(protocolId) ?? false
+  }
+}
+
+function stripMinecraftNamespace(entry: string): string {
+  return entry.startsWith("minecraft:") ? entry.slice("minecraft:".length) : entry
 }

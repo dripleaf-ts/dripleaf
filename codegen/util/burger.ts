@@ -1,12 +1,15 @@
 import { sleep } from "bun";
+import { CODEGEN_CACHE_DIR } from "./cache";
+
+const BURGER_OUTPUT = `${CODEGEN_CACHE_DIR}/burger-output.json`;
 
 export async function getBurgerData(jar: string) {
-  const outputFile = Bun.file("generated/output.json");
+  const outputFile = Bun.file(BURGER_OUTPUT);
 
   if (!await outputFile.exists()) {
     console.log(`Generating burger data for ${jar}...`);
     const proc = Bun.spawn({
-      cmd: ["uv", "run", "munch.py", "../../" + jar, "--output", "../../generated/output.json"],
+      cmd: ["uv", "run", "munch.py", "../../" + jar, "--output", `../../${BURGER_OUTPUT}`],
       cwd: "codegen/azalea-burger",
     });
 

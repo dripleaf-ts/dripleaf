@@ -4,7 +4,7 @@ import { getGeneratedHeader } from "./util/generated";
 import { registryNameToEnumName, toPascalCase, toSnakeCase } from "./util/misc";
 import { getDataRegistries } from "./util/registry";
 
-const serverJar = await downloadServerJar("generated", "26.1");
+const serverJar = await downloadServerJar();
 await generateDataFromServerJar(serverJar);
 
 const builtinFile = Bun.file("packages/registry/src/builtin.ts");

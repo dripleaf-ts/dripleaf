@@ -25,10 +25,10 @@ TypeScript Minecraft **26.1** bot ecosystem (protocol **775**), inspired by [Aza
 ```bash
 pnpm install
 git submodule update --init --recursive   # azalea/, codegen/azalea-burger/
-bun run codegen                           # packets, registries, generated/
+bun run codegen                           # packets, registries, embedded package data
 ```
 
-`generated/` is gitignored — required for `@dripleaf/block`, `@dripleaf/item`, `@dripleaf/recipe`.
+Codegen downloads the 26.1 server JAR into `codegen/cache/` (gitignored). Outputs are committed `.ts` files inside packages (Azalea-style).
 
 ## Local server
 
@@ -49,6 +49,8 @@ bun run example:bot
 | Script | Output |
 |--------|--------|
 | `codegen/generate_packets.ts` | `packages/protocol/src/packets/` |
-| `codegen/generate_registries.ts` | `packages/registry/src/builtin.ts`, `data.ts`, `generated/reports/` |
+| `codegen/generate_registries.ts` | `packages/registry/src/builtin.ts`, `data.ts` |
 | `codegen/generate_tags.ts` | `packages/registry/src/tags/` |
 | `codegen/generate_data_components.ts` | `packages/inventory/.../generated.ts` |
+| `codegen/generate_blocks.ts` | `packages/block/src/states.generated.ts` |
+| `codegen/generate_recipes.ts` | `packages/recipe/src/data.generated.ts` |

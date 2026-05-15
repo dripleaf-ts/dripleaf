@@ -21,5 +21,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Verify generated data
+        run: bun run codegen && git diff --exit-code
+
       - name: Run unit tests
-        run: bun test packages/nbt/tests packages/registry/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests
+        run: bun test packages/nbt/tests packages/registry/tests packages/chunk/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests

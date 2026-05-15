@@ -21,7 +21,10 @@ clone prismarine-chat https://github.com/PrismarineJS/prismarine-chat.git
 clone prismarine-window https://github.com/PrismarineJS/prismarine-window.git
 clone prismarine-block https://github.com/PrismarineJS/prismarine-block.git
 clone prismarine-world https://github.com/PrismarineJS/prismarine-world.git
+clone prismarine-chunk https://github.com/PrismarineJS/prismarine-chunk.git
 clone prismarine-entity https://github.com/PrismarineJS/prismarine-entity.git
+clone prismarine-physics https://github.com/PrismarineJS/prismarine-physics.git
+clone prismarine-item https://github.com/PrismarineJS/prismarine-item.git
 clone prismarine-registry https://github.com/PrismarineJS/prismarine-registry.git
 
 echo "done: references in $REF"

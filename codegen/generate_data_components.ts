@@ -2,14 +2,14 @@ import path from "node:path";
 import { readdir } from "node:fs/promises";
 import { DataComponentType, ItemType } from "../packages/registry/src/index";
 import { downloadServerJar, generateDataFromServerJar } from "./util/download";
+import { reportSubPath } from "./util/cache";
 import { getGeneratedHeader } from "./util/generated";
 import { identifierToPath } from "./util/misc";
 
-const VERSION = "26.1";
-const REPORTS_DIR = "generated/reports/minecraft/components/item";
+const REPORTS_DIR = reportSubPath("minecraft", "components", "item");
 const OUTPUT_FILE = "packages/inventory/src/default_components/generated.ts";
 
-const serverJar = await downloadServerJar("generated", VERSION);
+const serverJar = await downloadServerJar();
 await generateDataFromServerJar(serverJar);
 
 const itemTypeNames = new Map<string, string>(Object.entries(ItemType).map(([name, value]) => [value, name]));

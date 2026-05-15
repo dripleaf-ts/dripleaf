@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@dripleaf/chunk':
+        specifier: workspace:*
+        version: link:packages/chunk
       '@dripleaf/pathfinder':
         specifier: workspace:*
         version: link:packages/pathfinder
@@ -46,6 +49,22 @@ importers:
       '@dripleaf/registry':
         specifier: workspace:*
         version: link:../registry
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+    devDependencies:
+      '@types/bun':
+        specifier: latest
+        version: 1.3.14
+
+  packages/chunk:
+    dependencies:
+      '@dripleaf/core':
+        specifier: workspace:*
+        version: link:../core
+      '@dripleaf/protocol':
+        specifier: workspace:*
+        version: link:../protocol
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -159,6 +178,9 @@ importers:
 
   packages/item:
     dependencies:
+      '@dripleaf/inventory':
+        specifier: workspace:*
+        version: link:../inventory
       '@dripleaf/registry':
         specifier: workspace:*
         version: link:../registry
@@ -193,9 +215,6 @@ importers:
 
   packages/physics:
     dependencies:
-      '@dripleaf/block':
-        specifier: workspace:*
-        version: link:../block
       '@dripleaf/core':
         specifier: workspace:*
         version: link:../core
@@ -255,6 +274,9 @@ importers:
       '@dripleaf/block':
         specifier: workspace:*
         version: link:../block
+      '@dripleaf/chunk':
+        specifier: workspace:*
+        version: link:../chunk
       '@dripleaf/core':
         specifier: workspace:*
         version: link:../core

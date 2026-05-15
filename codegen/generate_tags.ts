@@ -2,7 +2,7 @@ import { downloadServerJar } from "./util/download";
 import { generateTag, getRegistryTags } from "./util/tags";
 
 const VERSION = "26.1";
-const serverJar = await downloadServerJar("generated", VERSION);
+const serverJar = await downloadServerJar();
 
 const blockTags = await getRegistryTags(serverJar, "block");
 const itemTags = await getRegistryTags(serverJar, "item");

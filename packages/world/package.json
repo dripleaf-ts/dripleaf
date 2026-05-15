@@ -12,6 +12,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@dripleaf/chunk": "workspace:*",
     "@dripleaf/core": "workspace:*",
     "@dripleaf/block": "workspace:*",
     "@dripleaf/entity": "workspace:*",
