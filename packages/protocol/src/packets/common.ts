@@ -93,7 +93,7 @@ const DataComponentPatchCodec = codec<Record<string, unknown>>({
 
 export const ItemStackCodec = codec<ItemStackType>({
 	encode(writer, value) {
-		if (value.type === "empty") {
+		if (!value || value.type === "empty") {
 			writer.writeVarInt(0)
 			return
 		}

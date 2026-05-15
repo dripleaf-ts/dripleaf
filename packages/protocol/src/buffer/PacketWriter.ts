@@ -134,6 +134,12 @@ export class PacketWriter {
     this.writeDouble(pos.z);
   }
 
+  writeVec3f(pos: Vec3) {
+    this.writeFloat(pos.x);
+    this.writeFloat(pos.y);
+    this.writeFloat(pos.z);
+  }
+
   writeLpVec3(value: Vec3) {
     writeLpVec3(value, byte => this.writeUnsignedByte(byte), encoded => this.writeVarInt(encoded));
   }

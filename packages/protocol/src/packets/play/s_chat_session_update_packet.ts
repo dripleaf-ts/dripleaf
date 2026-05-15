@@ -12,11 +12,11 @@ interface Instant {
 interface ProfilePublicKeyData {
 	expiresAt: Instant;
 	key: Uint8Array;
+	keySignature: Uint8Array;
 }
 
 interface RemoteChatSessionData {
 	sessionId: UUID;
-	profileId: UUID;
 	publicKey: ProfilePublicKeyData;
 }
 
@@ -24,21 +24,21 @@ export class ServerboundChatSessionUpdatePacket extends DripleafPacket {
 	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundChatSessionUpdatePacket) {
 			writer.writeUUID(value.chatSession.sessionId);
-			writer.writeUUID(value.chatSession.profileId);
 			writer.writeLong(value.chatSession.publicKey.expiresAt.seconds);
 			writer.writeVarInt(value.chatSession.publicKey.expiresAt.nanos);
 			writer.writeByteArray(value.chatSession.publicKey.key);
+			writer.writeByteArray(value.chatSession.publicKey.keySignature);
 		},
 		decode(reader: PacketReader): ServerboundChatSessionUpdatePacket {
 			return new ServerboundChatSessionUpdatePacket({
 				sessionId: reader.readUUID(),
-				profileId: reader.readUUID(),
 				publicKey: {
 					expiresAt: {
 						seconds: reader.readLong(),
 						nanos: reader.readVarInt(),
 					},
 					key: reader.readByteArray(),
+					keySignature: reader.readByteArray(),
 				},
 			});
 		},
@@ -49,5 +49,4 @@ export class ServerboundChatSessionUpdatePacket extends DripleafPacket {
 	) {
 		super();
 	}
-
 }

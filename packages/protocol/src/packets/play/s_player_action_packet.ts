@@ -4,7 +4,7 @@ import { BlockPos } from '@dripleaf/core';
 import { BlockPosCodec } from '../../datatypes/BlockPos';
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
-import { Direction } from '../../types';
+import { BlockFace } from '../../types';
 
 export enum PlayerAction {
 	StartDestroyBlock = 0,
@@ -20,14 +20,14 @@ export class ServerboundPlayerActionPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundPlayerActionPacket, {
 		action: Codecs.varIntEnum(PlayerAction),
 		pos: BlockPosCodec,
-		direction: Codecs.varIntEnum(Direction),
+		direction: Codecs.varIntEnum(BlockFace),
 		seq: Codecs.varInt,
 	});
 
 	constructor(
 		public action: PlayerAction,
 		public pos: BlockPos,
-		public direction: Direction,
+		public direction: BlockFace,
 		public seq: number,
 	) {
 		super();

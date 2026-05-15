@@ -4,7 +4,7 @@ import { BlockPos } from '@dripleaf/core';
 import { BlockPosCodec } from '../../datatypes/BlockPos';
 import { Codecs, type PacketReader, type PacketWriter } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
-import { Direction, InteractionHand } from '../../types';
+import { BlockFace, InteractionHand } from '../../types';
 import type { Vec3 } from 'vec3';
 
 export class ServerboundUseItemOnPacket extends DripleafPacket {
@@ -12,8 +12,8 @@ export class ServerboundUseItemOnPacket extends DripleafPacket {
 		encode(writer: PacketWriter, value: ServerboundUseItemOnPacket) {
 			writer.writeVarInt(value.hand);
 			BlockPosCodec.encode(writer, value.blockHit.blockPos)
-			Codecs.varIntEnum(Direction).encode(writer, value.blockHit.direction)
-			writer.writeVec3d(value.blockHit.location)
+			Codecs.varIntEnum(BlockFace).encode(writer, value.blockHit.direction)
+			writer.writeVec3f(value.blockHit.location)
 			writer.writeBoolean(value.blockHit.inside)
 			writer.writeBoolean(value.blockHit.worldBorder)
 			writer.writeVarInt(value.seq)
@@ -23,8 +23,8 @@ export class ServerboundUseItemOnPacket extends DripleafPacket {
 				reader.readVarInt(),
 				{
 					blockPos: BlockPosCodec.decode(reader),
-					direction: Codecs.varIntEnum(Direction).decode(reader),
-					location: reader.readVec3d(),
+					direction: Codecs.varIntEnum(BlockFace).decode(reader),
+					location: reader.readVec3f(),
 					inside: reader.readBoolean(),
 					worldBorder: reader.readBoolean(),
 				},
@@ -35,7 +35,7 @@ export class ServerboundUseItemOnPacket extends DripleafPacket {
 
 	constructor(
 		public hand: InteractionHand,
-		public blockHit: { blockPos: BlockPos; direction: Direction; location: Vec3; inside: boolean; worldBorder: boolean },
+		public blockHit: { blockPos: BlockPos; direction: BlockFace; location: Vec3; inside: boolean; worldBorder: boolean },
 		public seq: number,
 	) {
 		super();

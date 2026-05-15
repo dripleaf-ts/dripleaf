@@ -142,6 +142,13 @@ export class PacketReader {
     return new Vec3(x, y, z);
   }
 
+  readVec3f(): Vec3 {
+    const x = this.readFloat();
+    const y = this.readFloat();
+    const z = this.readFloat();
+    return new Vec3(x, y, z);
+  }
+
   readLpVec3(): Vec3 {
     const [value, offset] = readLpVec3(this.bytes, this.offset);
     this.offset = offset;
