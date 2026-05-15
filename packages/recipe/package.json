@@ -1,0 +1,12 @@
+{
+  "name": "@dripleaf/recipe",
+  "version": "0.0.0",
+  "module": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@dripleaf/registry": "workspace:*"
+  }
+}

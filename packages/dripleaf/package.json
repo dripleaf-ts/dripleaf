@@ -18,6 +18,8 @@
     "@dripleaf/chat": "workspace:*",
     "@dripleaf/block": "workspace:*",
     "@dripleaf/entity": "workspace:*",
-    "@dripleaf/world": "workspace:*"
+    "@dripleaf/world": "workspace:*",
+    "@dripleaf/item": "workspace:*",
+    "@dripleaf/recipe": "workspace:*"
   }
 }
