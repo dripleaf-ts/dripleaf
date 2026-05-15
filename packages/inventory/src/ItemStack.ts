@@ -1,4 +1,4 @@
-import { ItemType } from "@dripleaf/registry"
+import { DataComponentType, ItemType } from "@dripleaf/registry"
 
 export type ItemKind = ItemType
 
@@ -37,11 +37,12 @@ export class ItemStackData {
 		return this.kind === other.kind && shallowEqual(this.component_patch, other.component_patch)
 	}
 
-	getComponent<T>(): T | undefined {
-		return undefined
+	getComponent<T>(key: DataComponentType): T | undefined {
+		return this.component_patch[key] as T | undefined
 	}
 
-	withComponent<T>(_component: T): this {
+	withComponent<T>(key: DataComponentType, value: T): this {
+		this.component_patch[key] = value as unknown
 		return this
 	}
 }
