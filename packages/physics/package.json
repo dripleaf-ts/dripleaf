@@ -1,0 +1,15 @@
+{
+  "name": "@dripleaf/physics",
+  "module": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@dripleaf/core": "workspace:*",
+    "@dripleaf/registry": "workspace:*"
+  }
+}

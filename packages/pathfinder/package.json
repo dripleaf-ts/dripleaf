@@ -1,0 +1,17 @@
+{
+  "name": "@dripleaf/pathfinder",
+  "module": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./dripleaf": "./src/dripleaf.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@dripleaf/core": "workspace:*",
+    "@dripleaf/physics": "workspace:*",
+    "@dripleaf/world": "workspace:*"
+  }
+}
