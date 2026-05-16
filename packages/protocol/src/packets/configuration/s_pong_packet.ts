@@ -5,11 +5,11 @@ import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 export class ServerboundPongPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundPongPacket, {
-		pingId: Codecs.long,
+		pingId: Codecs.int,
 	});
 
 	constructor(
-		public pingId: bigint
+		public pingId: number
 	) {
 		super();
 	}
