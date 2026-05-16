@@ -1,19 +1,19 @@
 import type { SoundEventValue } from "@dripleaf/core"
-import { Codecs } from "../buffer"
+import { type Codec, type PacketReader, type PacketWriter } from "../buffer"
+import type { Holder } from "../buffer"
 
 export type { SoundEventValue }
 
-const directSoundEventCodec = {
-  encode(writer: any, value: SoundEventValue) {
-    Codecs.identifier.encode(writer, value.location)
-    writer.writePrefixedOptional(value.fixedRange, (range: number) => writer.writeFloat(range))
+const soundEventHolderCodec: Codec<Holder<string, SoundEventValue>> = {
+  encode(writer: PacketWriter, value: Holder<string, SoundEventValue>) {
+    if (value.kind !== "reference")
+      throw new Error("Sound event holder must be a reference in protocol 775");
+    writer.writeVarInt(0);
   },
-  decode(reader: any): SoundEventValue {
-    return {
-      location: Codecs.identifier.decode(reader) as any,
-      fixedRange: reader.readPrefixedOptional(() => reader.readFloat()),
-    }
+  decode(reader: PacketReader): Holder<string, SoundEventValue> {
+    const idx = reader.readVarInt();
+    return { kind: "reference", value: `sound_${idx}` } as Holder<string, SoundEventValue>;
   },
-}
+};
 
-export const soundHolderCodec = Codecs.holderEither(Codecs.string(32767), directSoundEventCodec)
+export const soundHolderCodec = soundEventHolderCodec
