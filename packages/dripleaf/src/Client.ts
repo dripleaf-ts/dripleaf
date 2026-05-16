@@ -86,6 +86,16 @@ export class Client {
   attackCooldown = 0
   attackCooldownMax = 20
 
+  worldBorder = {
+    centerX: 0,
+    centerZ: 0,
+    diameter: 29999984,
+    targetDiameter: 29999984,
+    speed: 0,
+    warningBlocks: 0,
+    warningTime: 0,
+  }
+
   world: World | null = null
   entities: Map<number, EntityData> = new Map()
   players = new Map<string, { uuid: string; name: string }>()
@@ -175,6 +185,8 @@ export class Client {
       set attackCooldown(v) { client.attackCooldown = v },
       get attackCooldownMax() { return client.attackCooldownMax },
       set attackCooldownMax(v) { client.attackCooldownMax = v },
+      get worldBorder() { return client.worldBorder },
+      set worldBorder(v) { client.worldBorder = v },
       emitter: this.emitter,
       emit: (event, ...args) => client.emit(event, ...args),
     }

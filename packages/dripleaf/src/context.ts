@@ -55,4 +55,13 @@ export type ClientContext = {
   isDead: boolean
   attackCooldown: number
   attackCooldownMax: number
+  worldBorder: {
+    centerX: number
+    centerZ: number
+    diameter: number
+    targetDiameter: number
+    speed: number | bigint
+    warningBlocks: number
+    warningTime: number
+  }
 }

@@ -208,5 +208,40 @@ export class PlayPlugin implements ClientPlugin {
         ctx.emit("gameModeChanged", ctx.gameMode, ctx.previousGameMode)
       }
     })
+
+    conn.onPacket(play.ClientboundInitializeBorderPacket, (packet) => {
+      ctx.worldBorder = {
+        centerX: packet.x,
+        centerZ: packet.z,
+        diameter: packet.oldDiameter,
+        targetDiameter: packet.newDiameter,
+        speed: packet.speed,
+        warningBlocks: packet.warningBlocks,
+        warningTime: packet.warningTime,
+      }
+    })
+
+    conn.onPacket(play.ClientboundSetBorderSizePacket, (packet) => {
+      ctx.worldBorder.targetDiameter = packet.size
+      ctx.worldBorder.diameter = packet.size
+    })
+
+    conn.onPacket(play.ClientboundSetBorderLerpSizePacket, (packet) => {
+      ctx.worldBorder.targetDiameter = packet.newSize
+      ctx.worldBorder.speed = Number(packet.lerpTime)
+    })
+
+    conn.onPacket(play.ClientboundSetBorderCenterPacket, (packet) => {
+      ctx.worldBorder.centerX = packet.newCenterX
+      ctx.worldBorder.centerZ = packet.newCenterZ
+    })
+
+    conn.onPacket(play.ClientboundSetBorderWarningDistancePacket, (packet) => {
+      ctx.worldBorder.warningBlocks = packet.warningBlocks
+    })
+
+    conn.onPacket(play.ClientboundSetBorderWarningDelayPacket, (packet) => {
+      ctx.worldBorder.warningTime = packet.delay
+    })
   }
 }
