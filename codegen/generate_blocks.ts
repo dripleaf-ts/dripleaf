@@ -45,7 +45,6 @@ await generateDataFromServerJar(jar)
 const blocks = await getReport(jar, "blocks") as Record<string, BlockReportEntry>
 const typeLookup = buildTypeLookup()
 
-const stateByIdEntries: string[] = []
 const blockStatesEntries: string[] = []
 const blockPropertyDefs: string[] = []
 
@@ -63,9 +62,6 @@ for (const [key, entry] of Object.entries(blocks)) {
     for (const [propKey, propValue] of Object.entries(state.properties ?? {}))
       properties[propKey] = parsePropertyValue(propValue)
 
-    stateByIdEntries.push(
-      `\t[${state.id}, { type: BlockType.${enumName}, properties: ${stringifyProperties(properties)} }],`,
-    )
     stateEntries.push(
       `\t\t{ id: ${state.id}, properties: ${stringifyProperties(properties)} },`,
     )
@@ -105,9 +101,12 @@ const lines = [
   ...blockStatesEntries,
   "}",
   "",
-  "export const STATE_BY_ID = new Map<number, { type: BlockType; properties: GeneratedBlockProperties }>([",
-  ...stateByIdEntries,
-  "])",
+  "export const STATE_BY_ID = new Map<number, { type: BlockType; properties: GeneratedBlockProperties }>()",
+  "",
+  "for (const [type, states] of Object.entries(BLOCK_STATES) as Array<[BlockType, readonly GeneratedStateEntry[]]>) {",
+  "\tfor (const state of states)",
+  "\t\tSTATE_BY_ID.set(state.id, { type, properties: state.properties })",
+  "}",
   "",
 ]
 

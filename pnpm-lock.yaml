@@ -130,6 +130,9 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+      vec3:
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@types/bun':
         specifier: latest

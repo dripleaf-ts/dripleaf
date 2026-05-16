@@ -19,7 +19,8 @@
   },
   "scripts": {
     "codegen": "bun run codegen/generate_packets.ts && bun run codegen/generate_registries.ts && bun run codegen/generate_tags.ts && bun run codegen/generate_data_components.ts && bun run codegen/generate_blocks.ts && bun run codegen/generate_recipes.ts",
-    "test": "bun test packages/nbt/tests packages/registry/tests packages/chunk/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests",
+    "test": "bun test packages/nbt/tests packages/protocol/tests packages/registry/tests packages/chunk/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests",
+    "typecheck": "bunx tsc --noEmit",
     "test:smoke": "bun run tests/real_server_smoke.ts",
     "example:bot": "bun run examples/bot_features.ts"
   },

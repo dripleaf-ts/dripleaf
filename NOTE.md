@@ -6,3 +6,4 @@
 - Implementation order: keep-alive → registry sync → world chunk helpers → Client plugins
 - Done (2026-05-15): Phase 0 docs, RegistryManager, world getBiome/parseChunkSections, Client plugins, smoke test
 - Done: codegen cache (`codegen/cache/`), block/recipe/item data embedded in packages (no runtime `generated/`)
+- Done (2026-05-16): typecheck is a CI gate, protocol exports are both namespaced and uniquely flattened, `@dripleaf/chunk` owns chunk primitives, and `azalea/` is a local ignored reference checkout.

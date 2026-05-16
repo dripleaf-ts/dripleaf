@@ -2,1088 +2,17 @@
 
 import { BlockType } from "../builtin";
 
-const Logs = [
-	BlockType.CrimsonStem,
-	BlockType.StrippedCrimsonStem,
-	BlockType.CrimsonHyphae,
-	BlockType.StrippedCrimsonHyphae,
-	BlockType.WarpedStem,
-	BlockType.StrippedWarpedStem,
-	BlockType.WarpedHyphae,
-	BlockType.StrippedWarpedHyphae,
-	BlockType.DarkOakLog,
-	BlockType.DarkOakWood,
-	BlockType.StrippedDarkOakLog,
-	BlockType.StrippedDarkOakWood,
-	BlockType.PaleOakLog,
-	BlockType.PaleOakWood,
-	BlockType.StrippedPaleOakLog,
-	BlockType.StrippedPaleOakWood,
-	BlockType.OakLog,
-	BlockType.OakWood,
-	BlockType.StrippedOakLog,
-	BlockType.StrippedOakWood,
+const AcaciaLogs = [
 	BlockType.AcaciaLog,
 	BlockType.AcaciaWood,
 	BlockType.StrippedAcaciaLog,
 	BlockType.StrippedAcaciaWood,
-	BlockType.BirchLog,
-	BlockType.BirchWood,
-	BlockType.StrippedBirchLog,
-	BlockType.StrippedBirchWood,
-	BlockType.JungleLog,
-	BlockType.JungleWood,
-	BlockType.StrippedJungleLog,
-	BlockType.StrippedJungleWood,
-	BlockType.SpruceLog,
-	BlockType.SpruceWood,
-	BlockType.StrippedSpruceLog,
-	BlockType.StrippedSpruceWood,
-	BlockType.MangroveLog,
-	BlockType.MangroveWood,
-	BlockType.StrippedMangroveLog,
-	BlockType.StrippedMangroveWood,
-	BlockType.CherryLog,
-	BlockType.CherryWood,
-	BlockType.StrippedCherryLog,
-	BlockType.StrippedCherryWood,
 ] as const;
 
-const Sand = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-] as const;
-
-const SmeltsToGlass = [
-	BlockType.Sand,
-	BlockType.RedSand,
-] as const;
-
-const WoodenPressurePlates = [
-	BlockType.OakPressurePlate,
-	BlockType.SprucePressurePlate,
-	BlockType.BirchPressurePlate,
-	BlockType.JunglePressurePlate,
-	BlockType.AcaciaPressurePlate,
-	BlockType.DarkOakPressurePlate,
-	BlockType.PaleOakPressurePlate,
-	BlockType.CrimsonPressurePlate,
-	BlockType.WarpedPressurePlate,
-	BlockType.MangrovePressurePlate,
-	BlockType.BambooPressurePlate,
-	BlockType.CherryPressurePlate,
-] as const;
-
-const Slabs = [
-	BlockType.BambooMosaicSlab,
-	BlockType.StoneSlab,
-	BlockType.SmoothStoneSlab,
-	BlockType.StoneBrickSlab,
-	BlockType.SandstoneSlab,
-	BlockType.PurpurSlab,
-	BlockType.QuartzSlab,
-	BlockType.RedSandstoneSlab,
-	BlockType.BrickSlab,
-	BlockType.CobblestoneSlab,
-	BlockType.NetherBrickSlab,
-	BlockType.PetrifiedOakSlab,
-	BlockType.PrismarineSlab,
-	BlockType.PrismarineBrickSlab,
-	BlockType.DarkPrismarineSlab,
-	BlockType.PolishedGraniteSlab,
-	BlockType.SmoothRedSandstoneSlab,
-	BlockType.MossyStoneBrickSlab,
-	BlockType.PolishedDioriteSlab,
-	BlockType.MossyCobblestoneSlab,
-	BlockType.EndStoneBrickSlab,
-	BlockType.SmoothSandstoneSlab,
-	BlockType.SmoothQuartzSlab,
-	BlockType.GraniteSlab,
-	BlockType.AndesiteSlab,
-	BlockType.RedNetherBrickSlab,
-	BlockType.PolishedAndesiteSlab,
-	BlockType.DioriteSlab,
-	BlockType.CutSandstoneSlab,
-	BlockType.CutRedSandstoneSlab,
-	BlockType.BlackstoneSlab,
-	BlockType.PolishedBlackstoneBrickSlab,
-	BlockType.PolishedBlackstoneSlab,
-	BlockType.CobbledDeepslateSlab,
-	BlockType.PolishedDeepslateSlab,
-	BlockType.DeepslateTileSlab,
-	BlockType.DeepslateBrickSlab,
-	BlockType.WaxedWeatheredCutCopperSlab,
-	BlockType.WaxedExposedCutCopperSlab,
-	BlockType.WaxedCutCopperSlab,
-	BlockType.OxidizedCutCopperSlab,
-	BlockType.WeatheredCutCopperSlab,
-	BlockType.ExposedCutCopperSlab,
-	BlockType.CutCopperSlab,
-	BlockType.WaxedOxidizedCutCopperSlab,
-	BlockType.MudBrickSlab,
-	BlockType.TuffSlab,
-	BlockType.PolishedTuffSlab,
-	BlockType.TuffBrickSlab,
-	BlockType.ResinBrickSlab,
-	BlockType.OakSlab,
-	BlockType.SpruceSlab,
-	BlockType.BirchSlab,
-	BlockType.JungleSlab,
-	BlockType.AcaciaSlab,
-	BlockType.DarkOakSlab,
-	BlockType.PaleOakSlab,
-	BlockType.CrimsonSlab,
-	BlockType.WarpedSlab,
-	BlockType.MangroveSlab,
-	BlockType.BambooSlab,
-	BlockType.CherrySlab,
-] as const;
-
-const Anvil = [
-	BlockType.Anvil,
-	BlockType.ChippedAnvil,
-	BlockType.DamagedAnvil,
-] as const;
-
-const Walls = [
-	BlockType.CobblestoneWall,
-	BlockType.MossyCobblestoneWall,
-	BlockType.BrickWall,
-	BlockType.PrismarineWall,
-	BlockType.RedSandstoneWall,
-	BlockType.MossyStoneBrickWall,
-	BlockType.GraniteWall,
-	BlockType.StoneBrickWall,
-	BlockType.NetherBrickWall,
-	BlockType.AndesiteWall,
-	BlockType.RedNetherBrickWall,
-	BlockType.SandstoneWall,
-	BlockType.EndStoneBrickWall,
-	BlockType.DioriteWall,
-	BlockType.BlackstoneWall,
-	BlockType.PolishedBlackstoneBrickWall,
-	BlockType.PolishedBlackstoneWall,
-	BlockType.CobbledDeepslateWall,
-	BlockType.PolishedDeepslateWall,
-	BlockType.DeepslateTileWall,
-	BlockType.DeepslateBrickWall,
-	BlockType.MudBrickWall,
-	BlockType.TuffWall,
-	BlockType.PolishedTuffWall,
-	BlockType.TuffBrickWall,
-	BlockType.ResinBrickWall,
-] as const;
-
-const Rails = [
-	BlockType.Rail,
-	BlockType.PoweredRail,
-	BlockType.DetectorRail,
-	BlockType.ActivatorRail,
-] as const;
-
-const Stairs = [
-	BlockType.BambooMosaicStairs,
-	BlockType.CobblestoneStairs,
-	BlockType.SandstoneStairs,
-	BlockType.NetherBrickStairs,
-	BlockType.StoneBrickStairs,
-	BlockType.BrickStairs,
-	BlockType.PurpurStairs,
-	BlockType.QuartzStairs,
-	BlockType.RedSandstoneStairs,
-	BlockType.PrismarineBrickStairs,
-	BlockType.PrismarineStairs,
-	BlockType.DarkPrismarineStairs,
-	BlockType.PolishedGraniteStairs,
-	BlockType.SmoothRedSandstoneStairs,
-	BlockType.MossyStoneBrickStairs,
-	BlockType.PolishedDioriteStairs,
-	BlockType.MossyCobblestoneStairs,
-	BlockType.EndStoneBrickStairs,
-	BlockType.StoneStairs,
-	BlockType.SmoothSandstoneStairs,
-	BlockType.SmoothQuartzStairs,
-	BlockType.GraniteStairs,
-	BlockType.AndesiteStairs,
-	BlockType.RedNetherBrickStairs,
-	BlockType.PolishedAndesiteStairs,
-	BlockType.DioriteStairs,
-	BlockType.BlackstoneStairs,
-	BlockType.PolishedBlackstoneBrickStairs,
-	BlockType.PolishedBlackstoneStairs,
-	BlockType.CobbledDeepslateStairs,
-	BlockType.PolishedDeepslateStairs,
-	BlockType.DeepslateTileStairs,
-	BlockType.DeepslateBrickStairs,
-	BlockType.OxidizedCutCopperStairs,
-	BlockType.WeatheredCutCopperStairs,
-	BlockType.ExposedCutCopperStairs,
-	BlockType.CutCopperStairs,
-	BlockType.WaxedWeatheredCutCopperStairs,
-	BlockType.WaxedExposedCutCopperStairs,
-	BlockType.WaxedCutCopperStairs,
-	BlockType.WaxedOxidizedCutCopperStairs,
-	BlockType.MudBrickStairs,
-	BlockType.TuffStairs,
-	BlockType.PolishedTuffStairs,
-	BlockType.TuffBrickStairs,
-	BlockType.ResinBrickStairs,
-	BlockType.OakStairs,
-	BlockType.SpruceStairs,
-	BlockType.BirchStairs,
-	BlockType.JungleStairs,
-	BlockType.AcaciaStairs,
-	BlockType.DarkOakStairs,
-	BlockType.PaleOakStairs,
-	BlockType.CrimsonStairs,
-	BlockType.WarpedStairs,
-	BlockType.MangroveStairs,
-	BlockType.BambooStairs,
-	BlockType.CherryStairs,
-] as const;
-
-const WoodenTrapdoors = [
-	BlockType.AcaciaTrapdoor,
-	BlockType.BirchTrapdoor,
-	BlockType.DarkOakTrapdoor,
-	BlockType.PaleOakTrapdoor,
-	BlockType.JungleTrapdoor,
-	BlockType.OakTrapdoor,
-	BlockType.SpruceTrapdoor,
-	BlockType.CrimsonTrapdoor,
-	BlockType.WarpedTrapdoor,
-	BlockType.MangroveTrapdoor,
-	BlockType.BambooTrapdoor,
-	BlockType.CherryTrapdoor,
-] as const;
-
-const Leaves = [
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
-] as const;
-
-const Trapdoors = [
-	BlockType.IronTrapdoor,
-	BlockType.CopperTrapdoor,
-	BlockType.ExposedCopperTrapdoor,
-	BlockType.WeatheredCopperTrapdoor,
-	BlockType.OxidizedCopperTrapdoor,
-	BlockType.WaxedCopperTrapdoor,
-	BlockType.WaxedExposedCopperTrapdoor,
-	BlockType.WaxedWeatheredCopperTrapdoor,
-	BlockType.WaxedOxidizedCopperTrapdoor,
-	BlockType.AcaciaTrapdoor,
-	BlockType.BirchTrapdoor,
-	BlockType.DarkOakTrapdoor,
-	BlockType.PaleOakTrapdoor,
-	BlockType.JungleTrapdoor,
-	BlockType.OakTrapdoor,
-	BlockType.SpruceTrapdoor,
-	BlockType.CrimsonTrapdoor,
-	BlockType.WarpedTrapdoor,
-	BlockType.MangroveTrapdoor,
-	BlockType.BambooTrapdoor,
-	BlockType.CherryTrapdoor,
-] as const;
-
-const SmallFlowers = [
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.ClosedEyeblossom,
-	BlockType.GoldenDandelion,
-] as const;
-
-const Flowers = [
-	BlockType.Sunflower,
-	BlockType.Lilac,
-	BlockType.Peony,
-	BlockType.RoseBush,
-	BlockType.PitcherPlant,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.FloweringAzalea,
-	BlockType.MangrovePropagule,
-	BlockType.CherryLeaves,
-	BlockType.PinkPetals,
-	BlockType.Wildflowers,
-	BlockType.ChorusFlower,
-	BlockType.SporeBlossom,
-	BlockType.CactusFlower,
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.ClosedEyeblossom,
-	BlockType.GoldenDandelion,
-] as const;
-
-const Beds = [
-	BlockType.RedBed,
-	BlockType.BlackBed,
-	BlockType.BlueBed,
-	BlockType.BrownBed,
-	BlockType.CyanBed,
-	BlockType.GrayBed,
-	BlockType.GreenBed,
-	BlockType.LightBlueBed,
-	BlockType.LightGrayBed,
-	BlockType.LimeBed,
-	BlockType.MagentaBed,
-	BlockType.OrangeBed,
-	BlockType.PinkBed,
-	BlockType.PurpleBed,
-	BlockType.WhiteBed,
-	BlockType.YellowBed,
-] as const;
-
-const Fences = [
-	BlockType.NetherBrickFence,
-	BlockType.OakFence,
-	BlockType.AcaciaFence,
-	BlockType.DarkOakFence,
-	BlockType.PaleOakFence,
-	BlockType.SpruceFence,
-	BlockType.BirchFence,
-	BlockType.JungleFence,
-	BlockType.CrimsonFence,
-	BlockType.WarpedFence,
-	BlockType.MangroveFence,
-	BlockType.BambooFence,
-	BlockType.CherryFence,
-] as const;
-
-const SoulFireBaseBlocks = [
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-] as const;
-
-const Candles = [
-	BlockType.Candle,
-	BlockType.WhiteCandle,
-	BlockType.OrangeCandle,
-	BlockType.MagentaCandle,
-	BlockType.LightBlueCandle,
-	BlockType.YellowCandle,
-	BlockType.LimeCandle,
-	BlockType.PinkCandle,
-	BlockType.GrayCandle,
-	BlockType.LightGrayCandle,
-	BlockType.CyanCandle,
-	BlockType.PurpleCandle,
-	BlockType.BlueCandle,
-	BlockType.BrownCandle,
-	BlockType.GreenCandle,
-	BlockType.RedCandle,
-	BlockType.BlackCandle,
-] as const;
-
-const DampensVibrations = [
-	BlockType.WhiteWool,
-	BlockType.OrangeWool,
-	BlockType.MagentaWool,
-	BlockType.LightBlueWool,
-	BlockType.YellowWool,
-	BlockType.LimeWool,
-	BlockType.PinkWool,
-	BlockType.GrayWool,
-	BlockType.LightGrayWool,
-	BlockType.CyanWool,
-	BlockType.PurpleWool,
-	BlockType.BlueWool,
-	BlockType.BrownWool,
-	BlockType.GreenWool,
-	BlockType.RedWool,
-	BlockType.BlackWool,
-	BlockType.WhiteCarpet,
-	BlockType.OrangeCarpet,
-	BlockType.MagentaCarpet,
-	BlockType.LightBlueCarpet,
-	BlockType.YellowCarpet,
-	BlockType.LimeCarpet,
-	BlockType.PinkCarpet,
-	BlockType.GrayCarpet,
-	BlockType.LightGrayCarpet,
-	BlockType.CyanCarpet,
-	BlockType.PurpleCarpet,
-	BlockType.BlueCarpet,
-	BlockType.BrownCarpet,
-	BlockType.GreenCarpet,
-	BlockType.RedCarpet,
-	BlockType.BlackCarpet,
-] as const;
-
-const GoldOres = [
-	BlockType.GoldOre,
-	BlockType.NetherGoldOre,
-	BlockType.DeepslateGoldOre,
-] as const;
-
-const IronOres = [
-	BlockType.IronOre,
-	BlockType.DeepslateIronOre,
-] as const;
-
-const DiamondOres = [
-	BlockType.DiamondOre,
-	BlockType.DeepslateDiamondOre,
-] as const;
-
-const RedstoneOres = [
-	BlockType.RedstoneOre,
-	BlockType.DeepslateRedstoneOre,
-] as const;
-
-const LapisOres = [
-	BlockType.LapisOre,
-	BlockType.DeepslateLapisOre,
-] as const;
-
-const CoalOres = [
-	BlockType.CoalOre,
-	BlockType.DeepslateCoalOre,
-] as const;
-
-const EmeraldOres = [
-	BlockType.EmeraldOre,
-	BlockType.DeepslateEmeraldOre,
-] as const;
-
-const CopperOres = [
-	BlockType.CopperOre,
-	BlockType.DeepslateCopperOre,
-] as const;
-
-const Dirt = [
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-] as const;
-
-const Mud = [
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-] as const;
-
-const MossBlocks = [
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-] as const;
-
-const GrassBlocks = [
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const Terracotta = [
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-] as const;
-
-const CompletesFindTreeTutorial = [
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
-	BlockType.NetherWartBlock,
-	BlockType.WarpedWartBlock,
-	BlockType.CrimsonStem,
-	BlockType.StrippedCrimsonStem,
-	BlockType.CrimsonHyphae,
-	BlockType.StrippedCrimsonHyphae,
-	BlockType.WarpedStem,
-	BlockType.StrippedWarpedStem,
-	BlockType.WarpedHyphae,
-	BlockType.StrippedWarpedHyphae,
-	BlockType.DarkOakLog,
-	BlockType.DarkOakWood,
-	BlockType.StrippedDarkOakLog,
-	BlockType.StrippedDarkOakWood,
-	BlockType.PaleOakLog,
-	BlockType.PaleOakWood,
-	BlockType.StrippedPaleOakLog,
-	BlockType.StrippedPaleOakWood,
-	BlockType.OakLog,
-	BlockType.OakWood,
-	BlockType.StrippedOakLog,
-	BlockType.StrippedOakWood,
-	BlockType.AcaciaLog,
-	BlockType.AcaciaWood,
-	BlockType.StrippedAcaciaLog,
-	BlockType.StrippedAcaciaWood,
-	BlockType.BirchLog,
-	BlockType.BirchWood,
-	BlockType.StrippedBirchLog,
-	BlockType.StrippedBirchWood,
-	BlockType.JungleLog,
-	BlockType.JungleWood,
-	BlockType.StrippedJungleLog,
-	BlockType.StrippedJungleWood,
-	BlockType.SpruceLog,
-	BlockType.SpruceWood,
-	BlockType.StrippedSpruceLog,
-	BlockType.StrippedSpruceWood,
-	BlockType.MangroveLog,
-	BlockType.MangroveWood,
-	BlockType.StrippedMangroveLog,
-	BlockType.StrippedMangroveWood,
-	BlockType.CherryLog,
-	BlockType.CherryWood,
-	BlockType.StrippedCherryLog,
-	BlockType.StrippedCherryWood,
-] as const;
-
-const ShulkerBoxes = [
-	BlockType.ShulkerBox,
-	BlockType.BlackShulkerBox,
-	BlockType.BlueShulkerBox,
-	BlockType.BrownShulkerBox,
-	BlockType.CyanShulkerBox,
-	BlockType.GrayShulkerBox,
-	BlockType.GreenShulkerBox,
-	BlockType.LightBlueShulkerBox,
-	BlockType.LightGrayShulkerBox,
-	BlockType.LimeShulkerBox,
-	BlockType.MagentaShulkerBox,
-	BlockType.OrangeShulkerBox,
-	BlockType.PinkShulkerBox,
-	BlockType.PurpleShulkerBox,
-	BlockType.RedShulkerBox,
-	BlockType.WhiteShulkerBox,
-	BlockType.YellowShulkerBox,
-] as const;
-
-const CopperChests = [
-	BlockType.CopperChest,
-	BlockType.ExposedCopperChest,
-	BlockType.WeatheredCopperChest,
-	BlockType.OxidizedCopperChest,
-	BlockType.WaxedCopperChest,
-	BlockType.WaxedExposedCopperChest,
-	BlockType.WaxedWeatheredCopperChest,
-	BlockType.WaxedOxidizedCopperChest,
-] as const;
-
-const LightningRods = [
-	BlockType.LightningRod,
-	BlockType.ExposedLightningRod,
-	BlockType.WeatheredLightningRod,
-	BlockType.OxidizedLightningRod,
-	BlockType.WaxedLightningRod,
-	BlockType.WaxedExposedLightningRod,
-	BlockType.WaxedWeatheredLightningRod,
-	BlockType.WaxedOxidizedLightningRod,
-] as const;
-
-const CopperGolemStatues = [
-	BlockType.CopperGolemStatue,
-	BlockType.ExposedCopperGolemStatue,
-	BlockType.WeatheredCopperGolemStatue,
-	BlockType.OxidizedCopperGolemStatue,
-	BlockType.WaxedCopperGolemStatue,
-	BlockType.WaxedExposedCopperGolemStatue,
-	BlockType.WaxedWeatheredCopperGolemStatue,
-	BlockType.WaxedOxidizedCopperGolemStatue,
-] as const;
-
-const Copper = [
-	BlockType.CopperBlock,
-	BlockType.ExposedCopper,
-	BlockType.WeatheredCopper,
-	BlockType.OxidizedCopper,
-	BlockType.WaxedCopperBlock,
-	BlockType.WaxedExposedCopper,
-	BlockType.WaxedWeatheredCopper,
-	BlockType.WaxedOxidizedCopper,
-] as const;
-
-const Chains = [
-	BlockType.IronChain,
-	BlockType.CopperChain,
-	BlockType.WaxedCopperChain,
-	BlockType.ExposedCopperChain,
-	BlockType.WaxedExposedCopperChain,
-	BlockType.WeatheredCopperChain,
-	BlockType.WaxedWeatheredCopperChain,
-	BlockType.OxidizedCopperChain,
-	BlockType.WaxedOxidizedCopperChain,
-] as const;
-
-const WoodenShelves = [
-	BlockType.AcaciaShelf,
-	BlockType.BambooShelf,
-	BlockType.BirchShelf,
-	BlockType.CherryShelf,
-	BlockType.CrimsonShelf,
-	BlockType.DarkOakShelf,
-	BlockType.JungleShelf,
-	BlockType.MangroveShelf,
-	BlockType.OakShelf,
-	BlockType.PaleOakShelf,
-	BlockType.SpruceShelf,
-	BlockType.WarpedShelf,
-] as const;
-
-const Lanterns = [
-	BlockType.Lantern,
-	BlockType.SoulLantern,
-	BlockType.CopperLantern,
-	BlockType.WaxedCopperLantern,
-	BlockType.ExposedCopperLantern,
-	BlockType.WaxedExposedCopperLantern,
-	BlockType.WeatheredCopperLantern,
-	BlockType.WaxedWeatheredCopperLantern,
-	BlockType.OxidizedCopperLantern,
-	BlockType.WaxedOxidizedCopperLantern,
-] as const;
-
-const Bars = [
-	BlockType.IronBars,
-	BlockType.CopperBars,
-	BlockType.WaxedCopperBars,
-	BlockType.ExposedCopperBars,
-	BlockType.WaxedExposedCopperBars,
-	BlockType.WeatheredCopperBars,
-	BlockType.WaxedWeatheredCopperBars,
-	BlockType.OxidizedCopperBars,
-	BlockType.WaxedOxidizedCopperBars,
-] as const;
-
-const StandingSigns = [
-	BlockType.OakSign,
-	BlockType.SpruceSign,
-	BlockType.BirchSign,
-	BlockType.AcaciaSign,
-	BlockType.JungleSign,
-	BlockType.DarkOakSign,
-	BlockType.PaleOakSign,
-	BlockType.CrimsonSign,
-	BlockType.WarpedSign,
-	BlockType.MangroveSign,
-	BlockType.BambooSign,
-	BlockType.CherrySign,
-] as const;
-
-const CeilingHangingSigns = [
-	BlockType.OakHangingSign,
-	BlockType.SpruceHangingSign,
-	BlockType.BirchHangingSign,
-	BlockType.AcaciaHangingSign,
-	BlockType.CherryHangingSign,
-	BlockType.JungleHangingSign,
-	BlockType.DarkOakHangingSign,
-	BlockType.PaleOakHangingSign,
-	BlockType.CrimsonHangingSign,
-	BlockType.WarpedHangingSign,
-	BlockType.MangroveHangingSign,
-	BlockType.BambooHangingSign,
-] as const;
-
-const MobInteractableDoors = [
-	BlockType.CopperDoor,
-	BlockType.ExposedCopperDoor,
-	BlockType.WeatheredCopperDoor,
-	BlockType.OxidizedCopperDoor,
-	BlockType.WaxedCopperDoor,
-	BlockType.WaxedExposedCopperDoor,
-	BlockType.WaxedWeatheredCopperDoor,
-	BlockType.WaxedOxidizedCopperDoor,
-	BlockType.OakDoor,
-	BlockType.SpruceDoor,
-	BlockType.BirchDoor,
-	BlockType.JungleDoor,
-	BlockType.AcaciaDoor,
-	BlockType.DarkOakDoor,
-	BlockType.PaleOakDoor,
-	BlockType.CrimsonDoor,
-	BlockType.WarpedDoor,
-	BlockType.MangroveDoor,
-	BlockType.BambooDoor,
-	BlockType.CherryDoor,
-] as const;
-
-const BeeAttractive = [
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.Sunflower,
-	BlockType.Lilac,
-	BlockType.Peony,
-	BlockType.RoseBush,
-	BlockType.PitcherPlant,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.FloweringAzalea,
-	BlockType.MangrovePropagule,
-	BlockType.CherryLeaves,
-	BlockType.PinkPetals,
-	BlockType.Wildflowers,
-	BlockType.ChorusFlower,
-	BlockType.SporeBlossom,
-	BlockType.CactusFlower,
-] as const;
-
-const OverworldNaturalLogs = [
-	BlockType.AcaciaLog,
-	BlockType.BirchLog,
-	BlockType.OakLog,
-	BlockType.JungleLog,
-	BlockType.SpruceLog,
-	BlockType.DarkOakLog,
-	BlockType.PaleOakLog,
-	BlockType.MangroveLog,
-	BlockType.CherryLog,
-] as const;
-
-const EndermanHoldable = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.Gravel,
-	BlockType.BrownMushroom,
-	BlockType.RedMushroom,
-	BlockType.Tnt,
-	BlockType.Cactus,
-	BlockType.Clay,
-	BlockType.Pumpkin,
-	BlockType.CarvedPumpkin,
-	BlockType.Melon,
-	BlockType.CrimsonFungus,
-	BlockType.CrimsonNylium,
-	BlockType.CrimsonRoots,
-	BlockType.WarpedFungus,
-	BlockType.WarpedNylium,
-	BlockType.WarpedRoots,
-	BlockType.CactusFlower,
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.ClosedEyeblossom,
-	BlockType.GoldenDandelion,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const FlowerPots = [
-	BlockType.FlowerPot,
-	BlockType.PottedOpenEyeblossom,
-	BlockType.PottedClosedEyeblossom,
-	BlockType.PottedPoppy,
-	BlockType.PottedBlueOrchid,
-	BlockType.PottedAllium,
-	BlockType.PottedAzureBluet,
-	BlockType.PottedRedTulip,
-	BlockType.PottedOrangeTulip,
-	BlockType.PottedWhiteTulip,
-	BlockType.PottedPinkTulip,
-	BlockType.PottedOxeyeDaisy,
-	BlockType.PottedDandelion,
-	BlockType.PottedOakSapling,
-	BlockType.PottedSpruceSapling,
-	BlockType.PottedBirchSapling,
-	BlockType.PottedJungleSapling,
-	BlockType.PottedAcaciaSapling,
-	BlockType.PottedDarkOakSapling,
-	BlockType.PottedPaleOakSapling,
-	BlockType.PottedRedMushroom,
-	BlockType.PottedBrownMushroom,
-	BlockType.PottedDeadBush,
-	BlockType.PottedFern,
-	BlockType.PottedCactus,
-	BlockType.PottedCornflower,
-	BlockType.PottedLilyOfTheValley,
-	BlockType.PottedWitherRose,
-	BlockType.PottedBamboo,
-	BlockType.PottedCrimsonFungus,
-	BlockType.PottedWarpedFungus,
-	BlockType.PottedCrimsonRoots,
-	BlockType.PottedWarpedRoots,
-	BlockType.PottedAzaleaBush,
-	BlockType.PottedFloweringAzaleaBush,
-	BlockType.PottedMangrovePropagule,
-	BlockType.PottedCherrySapling,
-	BlockType.PottedTorchflower,
-	BlockType.PottedGoldenDandelion,
-] as const;
-
-const Banners = [
-	BlockType.WhiteBanner,
-	BlockType.OrangeBanner,
-	BlockType.MagentaBanner,
-	BlockType.LightBlueBanner,
-	BlockType.YellowBanner,
-	BlockType.LimeBanner,
-	BlockType.PinkBanner,
-	BlockType.GrayBanner,
-	BlockType.LightGrayBanner,
-	BlockType.CyanBanner,
-	BlockType.PurpleBanner,
-	BlockType.BlueBanner,
-	BlockType.BrownBanner,
-	BlockType.GreenBanner,
-	BlockType.RedBanner,
-	BlockType.BlackBanner,
-	BlockType.WhiteWallBanner,
-	BlockType.OrangeWallBanner,
-	BlockType.MagentaWallBanner,
-	BlockType.LightBlueWallBanner,
-	BlockType.YellowWallBanner,
-	BlockType.LimeWallBanner,
-	BlockType.PinkWallBanner,
-	BlockType.GrayWallBanner,
-	BlockType.LightGrayWallBanner,
-	BlockType.CyanWallBanner,
-	BlockType.PurpleWallBanner,
-	BlockType.BlueWallBanner,
-	BlockType.BrownWallBanner,
-	BlockType.GreenWallBanner,
-	BlockType.RedWallBanner,
-	BlockType.BlackWallBanner,
-] as const;
-
-const Corals = [
-	BlockType.TubeCoralFan,
-	BlockType.BrainCoralFan,
-	BlockType.BubbleCoralFan,
-	BlockType.FireCoralFan,
-	BlockType.HornCoralFan,
-	BlockType.TubeCoral,
-	BlockType.BrainCoral,
-	BlockType.BubbleCoral,
-	BlockType.FireCoral,
-	BlockType.HornCoral,
-] as const;
-
-const Doors = [
-	BlockType.CopperDoor,
-	BlockType.ExposedCopperDoor,
-	BlockType.WeatheredCopperDoor,
-	BlockType.OxidizedCopperDoor,
-	BlockType.WaxedCopperDoor,
-	BlockType.WaxedExposedCopperDoor,
-	BlockType.WaxedWeatheredCopperDoor,
-	BlockType.WaxedOxidizedCopperDoor,
-	BlockType.IronDoor,
-	BlockType.OakDoor,
-	BlockType.SpruceDoor,
-	BlockType.BirchDoor,
-	BlockType.JungleDoor,
-	BlockType.AcaciaDoor,
-	BlockType.DarkOakDoor,
-	BlockType.PaleOakDoor,
-	BlockType.CrimsonDoor,
-	BlockType.WarpedDoor,
-	BlockType.MangroveDoor,
-	BlockType.BambooDoor,
-	BlockType.CherryDoor,
-] as const;
-
-const WallCorals = [
-	BlockType.TubeCoralWallFan,
-	BlockType.BrainCoralWallFan,
-	BlockType.BubbleCoralWallFan,
-	BlockType.FireCoralWallFan,
-	BlockType.HornCoralWallFan,
-] as const;
-
-const CoralBlocks = [
-	BlockType.TubeCoralBlock,
-	BlockType.BrainCoralBlock,
-	BlockType.BubbleCoralBlock,
-	BlockType.FireCoralBlock,
-	BlockType.HornCoralBlock,
-] as const;
-
-const BambooBlocks = [
-	BlockType.BambooBlock,
-	BlockType.StrippedBambooBlock,
-] as const;
-
-const OakLogs = [
-	BlockType.OakLog,
-	BlockType.OakWood,
-	BlockType.StrippedOakLog,
-	BlockType.StrippedOakWood,
-] as const;
-
-const ValidSpawn = [
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-] as const;
-
-const Ice = [
-	BlockType.Ice,
-	BlockType.PackedIce,
-	BlockType.BlueIce,
-	BlockType.FrostedIce,
-] as const;
-
-const UnderwaterBonemeals = [
-	BlockType.Seagrass,
-	BlockType.TubeCoralFan,
-	BlockType.BrainCoralFan,
-	BlockType.BubbleCoralFan,
-	BlockType.FireCoralFan,
-	BlockType.HornCoralFan,
-	BlockType.TubeCoralWallFan,
-	BlockType.BrainCoralWallFan,
-	BlockType.BubbleCoralWallFan,
-	BlockType.FireCoralWallFan,
-	BlockType.HornCoralWallFan,
-	BlockType.TubeCoral,
-	BlockType.BrainCoral,
-	BlockType.BubbleCoral,
-	BlockType.FireCoral,
-	BlockType.HornCoral,
-] as const;
-
-const Impermeable = [
-	BlockType.Glass,
-	BlockType.WhiteStainedGlass,
-	BlockType.OrangeStainedGlass,
-	BlockType.MagentaStainedGlass,
-	BlockType.LightBlueStainedGlass,
-	BlockType.YellowStainedGlass,
-	BlockType.LimeStainedGlass,
-	BlockType.PinkStainedGlass,
-	BlockType.GrayStainedGlass,
-	BlockType.LightGrayStainedGlass,
-	BlockType.CyanStainedGlass,
-	BlockType.PurpleStainedGlass,
-	BlockType.BlueStainedGlass,
-	BlockType.BrownStainedGlass,
-	BlockType.GreenStainedGlass,
-	BlockType.RedStainedGlass,
-	BlockType.BlackStainedGlass,
-	BlockType.TintedGlass,
-	BlockType.Barrier,
-] as const;
-
-const Signs = [
-	BlockType.OakSign,
-	BlockType.SpruceSign,
-	BlockType.BirchSign,
-	BlockType.AcaciaSign,
-	BlockType.JungleSign,
-	BlockType.DarkOakSign,
-	BlockType.PaleOakSign,
-	BlockType.CrimsonSign,
-	BlockType.WarpedSign,
-	BlockType.MangroveSign,
-	BlockType.BambooSign,
-	BlockType.CherrySign,
-	BlockType.OakWallSign,
-	BlockType.SpruceWallSign,
-	BlockType.BirchWallSign,
-	BlockType.AcaciaWallSign,
-	BlockType.JungleWallSign,
-	BlockType.DarkOakWallSign,
-	BlockType.PaleOakWallSign,
-	BlockType.CrimsonWallSign,
-	BlockType.WarpedWallSign,
-	BlockType.MangroveWallSign,
-	BlockType.BambooWallSign,
-	BlockType.CherryWallSign,
-] as const;
-
-const WallSigns = [
-	BlockType.OakWallSign,
-	BlockType.SpruceWallSign,
-	BlockType.BirchWallSign,
-	BlockType.AcaciaWallSign,
-	BlockType.JungleWallSign,
-	BlockType.DarkOakWallSign,
-	BlockType.PaleOakWallSign,
-	BlockType.CrimsonWallSign,
-	BlockType.WarpedWallSign,
-	BlockType.MangroveWallSign,
-	BlockType.BambooWallSign,
-	BlockType.CherryWallSign,
+const Air = [
+	BlockType.Air,
+	BlockType.VoidAir,
+	BlockType.CaveAir,
 ] as const;
 
 const AllHangingSigns = [
@@ -1099,21 +28,6 @@ const AllHangingSigns = [
 	BlockType.WarpedHangingSign,
 	BlockType.MangroveHangingSign,
 	BlockType.BambooHangingSign,
-	BlockType.OakWallHangingSign,
-	BlockType.SpruceWallHangingSign,
-	BlockType.BirchWallHangingSign,
-	BlockType.AcaciaWallHangingSign,
-	BlockType.CherryWallHangingSign,
-	BlockType.JungleWallHangingSign,
-	BlockType.DarkOakWallHangingSign,
-	BlockType.PaleOakWallHangingSign,
-	BlockType.CrimsonWallHangingSign,
-	BlockType.WarpedWallHangingSign,
-	BlockType.MangroveWallHangingSign,
-	BlockType.BambooWallHangingSign,
-] as const;
-
-const WallHangingSigns = [
 	BlockType.OakWallHangingSign,
 	BlockType.SpruceWallHangingSign,
 	BlockType.BirchWallHangingSign,
@@ -1179,396 +93,51 @@ const AllSigns = [
 	BlockType.BambooWallHangingSign,
 ] as const;
 
-const DragonImmune = [
-	BlockType.Barrier,
-	BlockType.Bedrock,
-	BlockType.EndPortal,
-	BlockType.EndPortalFrame,
-	BlockType.EndGateway,
-	BlockType.CommandBlock,
-	BlockType.RepeatingCommandBlock,
-	BlockType.ChainCommandBlock,
-	BlockType.StructureBlock,
-	BlockType.Jigsaw,
-	BlockType.MovingPiston,
-	BlockType.Obsidian,
-	BlockType.CryingObsidian,
-	BlockType.EndStone,
-	BlockType.IronBars,
-	BlockType.RespawnAnchor,
-	BlockType.ReinforcedDeepslate,
-	BlockType.TestBlock,
-	BlockType.TestInstanceBlock,
-] as const;
-
-const DragonTransparent = [
-	BlockType.Light,
-	BlockType.Fire,
-	BlockType.SoulFire,
-] as const;
-
-const WitherImmune = [
-	BlockType.Barrier,
-	BlockType.Bedrock,
-	BlockType.EndPortal,
-	BlockType.EndPortalFrame,
-	BlockType.EndGateway,
-	BlockType.CommandBlock,
-	BlockType.RepeatingCommandBlock,
-	BlockType.ChainCommandBlock,
-	BlockType.StructureBlock,
-	BlockType.Jigsaw,
-	BlockType.MovingPiston,
-	BlockType.Light,
-	BlockType.ReinforcedDeepslate,
-	BlockType.TestBlock,
-	BlockType.TestInstanceBlock,
-] as const;
-
-const WitherSummonBaseBlocks = [
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-] as const;
-
-const Beehives = [
-	BlockType.BeeNest,
-	BlockType.Beehive,
-] as const;
-
-const Crops = [
-	BlockType.Beetroots,
-	BlockType.Carrots,
-	BlockType.Potatoes,
-	BlockType.Wheat,
-	BlockType.MelonStem,
-	BlockType.PumpkinStem,
-	BlockType.TorchflowerCrop,
-	BlockType.PitcherCrop,
-] as const;
-
-const BeeGrowables = [
-	BlockType.SweetBerryBush,
-	BlockType.CaveVines,
-	BlockType.CaveVinesPlant,
-	BlockType.Beetroots,
-	BlockType.Carrots,
-	BlockType.Potatoes,
-	BlockType.Wheat,
-	BlockType.MelonStem,
-	BlockType.PumpkinStem,
-	BlockType.TorchflowerCrop,
-	BlockType.PitcherCrop,
-] as const;
-
-const Portals = [
-	BlockType.NetherPortal,
-	BlockType.EndPortal,
-	BlockType.EndGateway,
-] as const;
-
-const Fire = [
-	BlockType.Fire,
-	BlockType.SoulFire,
-] as const;
-
-const Nylium = [
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-] as const;
-
-const BeaconBaseBlocks = [
-	BlockType.NetheriteBlock,
-	BlockType.EmeraldBlock,
-	BlockType.DiamondBlock,
-	BlockType.GoldBlock,
-	BlockType.IronBlock,
-] as const;
-
-const SoulSpeedBlocks = [
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-] as const;
-
-const WallPostOverride = [
-	BlockType.Torch,
-	BlockType.SoulTorch,
-	BlockType.RedstoneTorch,
-	BlockType.CopperTorch,
-	BlockType.Tripwire,
-	BlockType.CactusFlower,
-	BlockType.WhiteBanner,
-	BlockType.OrangeBanner,
-	BlockType.MagentaBanner,
-	BlockType.LightBlueBanner,
-	BlockType.YellowBanner,
-	BlockType.LimeBanner,
-	BlockType.PinkBanner,
-	BlockType.GrayBanner,
-	BlockType.LightGrayBanner,
-	BlockType.CyanBanner,
-	BlockType.PurpleBanner,
-	BlockType.BlueBanner,
-	BlockType.BrownBanner,
-	BlockType.GreenBanner,
-	BlockType.RedBanner,
-	BlockType.BlackBanner,
-	BlockType.WhiteWallBanner,
-	BlockType.OrangeWallBanner,
-	BlockType.MagentaWallBanner,
-	BlockType.LightBlueWallBanner,
-	BlockType.YellowWallBanner,
-	BlockType.LimeWallBanner,
-	BlockType.PinkWallBanner,
-	BlockType.GrayWallBanner,
-	BlockType.LightGrayWallBanner,
-	BlockType.CyanWallBanner,
-	BlockType.PurpleWallBanner,
-	BlockType.BlueWallBanner,
-	BlockType.BrownWallBanner,
-	BlockType.GreenWallBanner,
-	BlockType.RedWallBanner,
-	BlockType.BlackWallBanner,
-	BlockType.LightWeightedPressurePlate,
-	BlockType.HeavyWeightedPressurePlate,
-	BlockType.OakSign,
-	BlockType.SpruceSign,
-	BlockType.BirchSign,
-	BlockType.AcaciaSign,
-	BlockType.JungleSign,
-	BlockType.DarkOakSign,
-	BlockType.PaleOakSign,
-	BlockType.CrimsonSign,
-	BlockType.WarpedSign,
-	BlockType.MangroveSign,
-	BlockType.BambooSign,
-	BlockType.CherrySign,
-	BlockType.OakWallSign,
-	BlockType.SpruceWallSign,
-	BlockType.BirchWallSign,
-	BlockType.AcaciaWallSign,
-	BlockType.JungleWallSign,
-	BlockType.DarkOakWallSign,
-	BlockType.PaleOakWallSign,
-	BlockType.CrimsonWallSign,
-	BlockType.WarpedWallSign,
-	BlockType.MangroveWallSign,
-	BlockType.BambooWallSign,
-	BlockType.CherryWallSign,
-	BlockType.OakPressurePlate,
-	BlockType.SprucePressurePlate,
-	BlockType.BirchPressurePlate,
-	BlockType.JunglePressurePlate,
-	BlockType.AcaciaPressurePlate,
-	BlockType.DarkOakPressurePlate,
-	BlockType.PaleOakPressurePlate,
-	BlockType.CrimsonPressurePlate,
-	BlockType.WarpedPressurePlate,
-	BlockType.MangrovePressurePlate,
-	BlockType.BambooPressurePlate,
-	BlockType.CherryPressurePlate,
-	BlockType.StonePressurePlate,
-	BlockType.PolishedBlackstonePressurePlate,
-] as const;
-
-const Climbable = [
-	BlockType.Ladder,
-	BlockType.Vine,
-	BlockType.Scaffolding,
-	BlockType.WeepingVines,
-	BlockType.WeepingVinesPlant,
-	BlockType.TwistingVines,
-	BlockType.TwistingVinesPlant,
-	BlockType.CaveVines,
-	BlockType.CaveVinesPlant,
-] as const;
-
-const FallDamageResetting = [
-	BlockType.SweetBerryBush,
-	BlockType.Cobweb,
-	BlockType.Ladder,
-	BlockType.Vine,
-	BlockType.Scaffolding,
-	BlockType.WeepingVines,
-	BlockType.WeepingVinesPlant,
-	BlockType.TwistingVines,
-	BlockType.TwistingVinesPlant,
-	BlockType.CaveVines,
-	BlockType.CaveVinesPlant,
-] as const;
-
-const PiglinRepellents = [
-	BlockType.SoulFire,
-	BlockType.SoulTorch,
-	BlockType.SoulLantern,
-	BlockType.SoulWallTorch,
-	BlockType.SoulCampfire,
-] as const;
-
-const HoglinRepellents = [
-	BlockType.WarpedFungus,
-	BlockType.PottedWarpedFungus,
-	BlockType.NetherPortal,
-	BlockType.RespawnAnchor,
-] as const;
-
-const StriderWarmBlocks = [
-	BlockType.Lava,
-] as const;
-
-const Campfires = [
-	BlockType.Campfire,
-	BlockType.SoulCampfire,
-] as const;
-
-const GuardedByPiglins = [
-	BlockType.GoldBlock,
-	BlockType.Barrel,
-	BlockType.Chest,
-	BlockType.EnderChest,
-	BlockType.GildedBlackstone,
-	BlockType.TrappedChest,
-	BlockType.RawGoldBlock,
-	BlockType.CopperChest,
-	BlockType.ExposedCopperChest,
-	BlockType.WeatheredCopperChest,
-	BlockType.OxidizedCopperChest,
-	BlockType.WaxedCopperChest,
-	BlockType.WaxedExposedCopperChest,
-	BlockType.WaxedWeatheredCopperChest,
-	BlockType.WaxedOxidizedCopperChest,
-	BlockType.ShulkerBox,
-	BlockType.BlackShulkerBox,
-	BlockType.BlueShulkerBox,
-	BlockType.BrownShulkerBox,
-	BlockType.CyanShulkerBox,
-	BlockType.GrayShulkerBox,
-	BlockType.GreenShulkerBox,
-	BlockType.LightBlueShulkerBox,
-	BlockType.LightGrayShulkerBox,
-	BlockType.LimeShulkerBox,
-	BlockType.MagentaShulkerBox,
-	BlockType.OrangeShulkerBox,
-	BlockType.PinkShulkerBox,
-	BlockType.PurpleShulkerBox,
-	BlockType.RedShulkerBox,
-	BlockType.WhiteShulkerBox,
-	BlockType.YellowShulkerBox,
-	BlockType.GoldOre,
-	BlockType.NetherGoldOre,
-	BlockType.DeepslateGoldOre,
-] as const;
-
-const PreventMobSpawningInside = [
-	BlockType.Rail,
-	BlockType.PoweredRail,
-	BlockType.DetectorRail,
-	BlockType.ActivatorRail,
-] as const;
-
-const UnstableBottomCenter = [
-	BlockType.AcaciaFenceGate,
-	BlockType.BirchFenceGate,
-	BlockType.DarkOakFenceGate,
-	BlockType.PaleOakFenceGate,
-	BlockType.JungleFenceGate,
-	BlockType.OakFenceGate,
-	BlockType.SpruceFenceGate,
-	BlockType.CrimsonFenceGate,
-	BlockType.WarpedFenceGate,
-	BlockType.MangroveFenceGate,
-	BlockType.BambooFenceGate,
-	BlockType.CherryFenceGate,
-] as const;
-
-const EdibleForSheep = [
-	BlockType.ShortGrass,
-	BlockType.ShortDryGrass,
-	BlockType.TallDryGrass,
-	BlockType.Fern,
-] as const;
-
-const CanGlideThrough = [
-	BlockType.Vine,
-	BlockType.TwistingVines,
-	BlockType.TwistingVinesPlant,
-	BlockType.WeepingVines,
-	BlockType.WeepingVinesPlant,
-	BlockType.CaveVinesPlant,
-	BlockType.CaveVines,
-] as const;
-
-const InfiniburnOverworld = [
-	BlockType.Netherrack,
-	BlockType.MagmaBlock,
-] as const;
-
-const InfiniburnNether = [
-	BlockType.Netherrack,
-	BlockType.MagmaBlock,
-] as const;
-
-const InfiniburnEnd = [
-	BlockType.Bedrock,
-	BlockType.Netherrack,
-	BlockType.MagmaBlock,
-] as const;
-
-const StoneOreReplaceables = [
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-] as const;
-
-const DeepslateOreReplaceables = [
+const AncientCityReplaceable = [
 	BlockType.Deepslate,
-	BlockType.Tuff,
+	BlockType.DeepslateBricks,
+	BlockType.DeepslateTiles,
+	BlockType.DeepslateBrickSlab,
+	BlockType.DeepslateTileSlab,
+	BlockType.DeepslateBrickStairs,
+	BlockType.DeepslateTileWall,
+	BlockType.DeepslateBrickWall,
+	BlockType.CobbledDeepslate,
+	BlockType.CrackedDeepslateBricks,
+	BlockType.CrackedDeepslateTiles,
+	BlockType.GrayWool,
 ] as const;
 
-const SubstrateOverworld = [
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
+const AnimalsSpawnableOn = [
 	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
 ] as const;
 
-const BaseStoneOverworld = [
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
+const Anvil = [
+	BlockType.Anvil,
+	BlockType.ChippedAnvil,
+	BlockType.DamagedAnvil,
 ] as const;
 
-const BaseStoneNether = [
-	BlockType.Netherrack,
-	BlockType.Basalt,
-	BlockType.Blackstone,
+const ArmadilloSpawnableOn = [
+	BlockType.RedSand,
+	BlockType.CoarseDirt,
+	BlockType.GrassBlock,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.LightGrayTerracotta,
 ] as const;
 
-const OverworldCarverReplaceables = [
-	BlockType.Water,
-	BlockType.Gravel,
-	BlockType.SuspiciousGravel,
-	BlockType.Sandstone,
-	BlockType.RedSandstone,
-	BlockType.Calcite,
-	BlockType.PackedIce,
-	BlockType.RawIronBlock,
-	BlockType.RawCopperBlock,
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
+const AxolotlsSpawnableOn = [
+	BlockType.Clay,
+] as const;
+
+const AzaleaGrowsOn = [
+	BlockType.SnowBlock,
+	BlockType.PowderSnow,
 	BlockType.Sand,
 	BlockType.RedSand,
 	BlockType.SuspiciousSand,
@@ -1589,206 +158,6 @@ const OverworldCarverReplaceables = [
 	BlockType.GreenTerracotta,
 	BlockType.RedTerracotta,
 	BlockType.BlackTerracotta,
-	BlockType.IronOre,
-	BlockType.DeepslateIronOre,
-	BlockType.CopperOre,
-	BlockType.DeepslateCopperOre,
-	BlockType.Snow,
-	BlockType.SnowBlock,
-	BlockType.PowderSnow,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const NetherCarverReplaceables = [
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-	BlockType.Netherrack,
-	BlockType.Basalt,
-	BlockType.Blackstone,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.NetherWartBlock,
-	BlockType.WarpedWartBlock,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const BeneathTreePodzolReplaceable = [
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const BeneathBambooPodzolReplaceable = [
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const CannotReplaceBelowTreeTrunk = [
-	BlockType.Podzol,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-] as const;
-
-const CandleCakes = [
-	BlockType.CandleCake,
-	BlockType.WhiteCandleCake,
-	BlockType.OrangeCandleCake,
-	BlockType.MagentaCandleCake,
-	BlockType.LightBlueCandleCake,
-	BlockType.YellowCandleCake,
-	BlockType.LimeCandleCake,
-	BlockType.PinkCandleCake,
-	BlockType.GrayCandleCake,
-	BlockType.LightGrayCandleCake,
-	BlockType.CyanCandleCake,
-	BlockType.PurpleCandleCake,
-	BlockType.BlueCandleCake,
-	BlockType.BrownCandleCake,
-	BlockType.GreenCandleCake,
-	BlockType.RedCandleCake,
-	BlockType.BlackCandleCake,
-] as const;
-
-const CrystalSoundBlocks = [
-	BlockType.AmethystBlock,
-	BlockType.BuddingAmethyst,
-] as const;
-
-const Cauldrons = [
-	BlockType.Cauldron,
-	BlockType.WaterCauldron,
-	BlockType.LavaCauldron,
-	BlockType.PowderSnowCauldron,
-] as const;
-
-const InsideStepSoundBlocks = [
-	BlockType.PowderSnow,
-	BlockType.SculkVein,
-	BlockType.GlowLichen,
-	BlockType.LilyPad,
-	BlockType.SmallAmethystBud,
-	BlockType.PinkPetals,
-	BlockType.Wildflowers,
-	BlockType.LeafLitter,
-] as const;
-
-const CombinationStepSoundBlocks = [
-	BlockType.MossCarpet,
-	BlockType.PaleMossCarpet,
-	BlockType.Snow,
-	BlockType.NetherSprouts,
-	BlockType.WarpedRoots,
-	BlockType.CrimsonRoots,
-	BlockType.ResinClump,
-	BlockType.WhiteCarpet,
-	BlockType.OrangeCarpet,
-	BlockType.MagentaCarpet,
-	BlockType.LightBlueCarpet,
-	BlockType.YellowCarpet,
-	BlockType.LimeCarpet,
-	BlockType.PinkCarpet,
-	BlockType.GrayCarpet,
-	BlockType.LightGrayCarpet,
-	BlockType.CyanCarpet,
-	BlockType.PurpleCarpet,
-	BlockType.BlueCarpet,
-	BlockType.BrownCarpet,
-	BlockType.GreenCarpet,
-	BlockType.RedCarpet,
-	BlockType.BlackCarpet,
-] as const;
-
-const DripstoneReplaceableBlocks = [
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-] as const;
-
-const CaveVines = [
-	BlockType.CaveVinesPlant,
-	BlockType.CaveVines,
-] as const;
-
-const MossReplaceable = [
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-	BlockType.CaveVinesPlant,
-	BlockType.CaveVines,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const LushGroundReplaceable = [
-	BlockType.Clay,
-	BlockType.Gravel,
-	BlockType.Sand,
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-	BlockType.CaveVinesPlant,
-	BlockType.CaveVines,
 	BlockType.Dirt,
 	BlockType.CoarseDirt,
 	BlockType.RootedDirt,
@@ -1843,9 +212,171 @@ const AzaleaRootReplaceable = [
 	BlockType.Mycelium,
 ] as const;
 
-const IceSpikeReplaceable = [
-	BlockType.SnowBlock,
-	BlockType.Ice,
+const BadlandsTerracotta = [
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.LightGrayTerracotta,
+] as const;
+
+const BambooBlocks = [
+	BlockType.BambooBlock,
+	BlockType.StrippedBambooBlock,
+] as const;
+
+const Banners = [
+	BlockType.WhiteBanner,
+	BlockType.OrangeBanner,
+	BlockType.MagentaBanner,
+	BlockType.LightBlueBanner,
+	BlockType.YellowBanner,
+	BlockType.LimeBanner,
+	BlockType.PinkBanner,
+	BlockType.GrayBanner,
+	BlockType.LightGrayBanner,
+	BlockType.CyanBanner,
+	BlockType.PurpleBanner,
+	BlockType.BlueBanner,
+	BlockType.BrownBanner,
+	BlockType.GreenBanner,
+	BlockType.RedBanner,
+	BlockType.BlackBanner,
+	BlockType.WhiteWallBanner,
+	BlockType.OrangeWallBanner,
+	BlockType.MagentaWallBanner,
+	BlockType.LightBlueWallBanner,
+	BlockType.YellowWallBanner,
+	BlockType.LimeWallBanner,
+	BlockType.PinkWallBanner,
+	BlockType.GrayWallBanner,
+	BlockType.LightGrayWallBanner,
+	BlockType.CyanWallBanner,
+	BlockType.PurpleWallBanner,
+	BlockType.BlueWallBanner,
+	BlockType.BrownWallBanner,
+	BlockType.GreenWallBanner,
+	BlockType.RedWallBanner,
+	BlockType.BlackWallBanner,
+] as const;
+
+const Bars = [
+	BlockType.IronBars,
+	BlockType.CopperBars,
+	BlockType.WaxedCopperBars,
+	BlockType.ExposedCopperBars,
+	BlockType.WaxedExposedCopperBars,
+	BlockType.WeatheredCopperBars,
+	BlockType.WaxedWeatheredCopperBars,
+	BlockType.OxidizedCopperBars,
+	BlockType.WaxedOxidizedCopperBars,
+] as const;
+
+const BaseStoneNether = [
+	BlockType.Netherrack,
+	BlockType.Basalt,
+	BlockType.Blackstone,
+] as const;
+
+const BaseStoneOverworld = [
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+] as const;
+
+const BatsSpawnableOn = [
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+] as const;
+
+const BeaconBaseBlocks = [
+	BlockType.NetheriteBlock,
+	BlockType.EmeraldBlock,
+	BlockType.DiamondBlock,
+	BlockType.GoldBlock,
+	BlockType.IronBlock,
+] as const;
+
+const Beds = [
+	BlockType.RedBed,
+	BlockType.BlackBed,
+	BlockType.BlueBed,
+	BlockType.BrownBed,
+	BlockType.CyanBed,
+	BlockType.GrayBed,
+	BlockType.GreenBed,
+	BlockType.LightBlueBed,
+	BlockType.LightGrayBed,
+	BlockType.LimeBed,
+	BlockType.MagentaBed,
+	BlockType.OrangeBed,
+	BlockType.PinkBed,
+	BlockType.PurpleBed,
+	BlockType.WhiteBed,
+	BlockType.YellowBed,
+] as const;
+
+const BeeAttractive = [
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.Sunflower,
+	BlockType.Lilac,
+	BlockType.Peony,
+	BlockType.RoseBush,
+	BlockType.PitcherPlant,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.FloweringAzalea,
+	BlockType.MangrovePropagule,
+	BlockType.CherryLeaves,
+	BlockType.PinkPetals,
+	BlockType.Wildflowers,
+	BlockType.ChorusFlower,
+	BlockType.SporeBlossom,
+	BlockType.CactusFlower,
+] as const;
+
+const BeeGrowables = [
+	BlockType.SweetBerryBush,
+	BlockType.CaveVines,
+	BlockType.CaveVinesPlant,
+	BlockType.Beetroots,
+	BlockType.Carrots,
+	BlockType.Potatoes,
+	BlockType.Wheat,
+	BlockType.MelonStem,
+	BlockType.PumpkinStem,
+	BlockType.TorchflowerCrop,
+	BlockType.PitcherCrop,
+] as const;
+
+const Beehives = [
+	BlockType.BeeNest,
+	BlockType.Beehive,
+] as const;
+
+const BeneathBambooPodzolReplaceable = [
 	BlockType.Dirt,
 	BlockType.CoarseDirt,
 	BlockType.RootedDirt,
@@ -1856,6 +387,784 @@ const IceSpikeReplaceable = [
 	BlockType.GrassBlock,
 	BlockType.Podzol,
 	BlockType.Mycelium,
+] as const;
+
+const BeneathTreePodzolReplaceable = [
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const BirchLogs = [
+	BlockType.BirchLog,
+	BlockType.BirchWood,
+	BlockType.StrippedBirchLog,
+	BlockType.StrippedBirchWood,
+] as const;
+
+const BlocksWindChargeExplosions = [
+	BlockType.Barrier,
+	BlockType.Bedrock,
+] as const;
+
+const Buttons = [
+	BlockType.OakButton,
+	BlockType.SpruceButton,
+	BlockType.BirchButton,
+	BlockType.JungleButton,
+	BlockType.AcaciaButton,
+	BlockType.DarkOakButton,
+	BlockType.PaleOakButton,
+	BlockType.CrimsonButton,
+	BlockType.WarpedButton,
+	BlockType.MangroveButton,
+	BlockType.BambooButton,
+	BlockType.CherryButton,
+	BlockType.StoneButton,
+	BlockType.PolishedBlackstoneButton,
+] as const;
+
+const CamelSandStepSoundBlocks = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+	BlockType.WhiteConcretePowder,
+	BlockType.OrangeConcretePowder,
+	BlockType.MagentaConcretePowder,
+	BlockType.LightBlueConcretePowder,
+	BlockType.YellowConcretePowder,
+	BlockType.LimeConcretePowder,
+	BlockType.PinkConcretePowder,
+	BlockType.GrayConcretePowder,
+	BlockType.LightGrayConcretePowder,
+	BlockType.CyanConcretePowder,
+	BlockType.PurpleConcretePowder,
+	BlockType.BlueConcretePowder,
+	BlockType.BrownConcretePowder,
+	BlockType.GreenConcretePowder,
+	BlockType.RedConcretePowder,
+	BlockType.BlackConcretePowder,
+] as const;
+
+const CamelsSpawnableOn = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+] as const;
+
+const Campfires = [
+	BlockType.Campfire,
+	BlockType.SoulCampfire,
+] as const;
+
+const CanGlideThrough = [
+	BlockType.Vine,
+	BlockType.TwistingVines,
+	BlockType.TwistingVinesPlant,
+	BlockType.WeepingVines,
+	BlockType.WeepingVinesPlant,
+	BlockType.CaveVinesPlant,
+	BlockType.CaveVines,
+] as const;
+
+const CandleCakes = [
+	BlockType.CandleCake,
+	BlockType.WhiteCandleCake,
+	BlockType.OrangeCandleCake,
+	BlockType.MagentaCandleCake,
+	BlockType.LightBlueCandleCake,
+	BlockType.YellowCandleCake,
+	BlockType.LimeCandleCake,
+	BlockType.PinkCandleCake,
+	BlockType.GrayCandleCake,
+	BlockType.LightGrayCandleCake,
+	BlockType.CyanCandleCake,
+	BlockType.PurpleCandleCake,
+	BlockType.BlueCandleCake,
+	BlockType.BrownCandleCake,
+	BlockType.GreenCandleCake,
+	BlockType.RedCandleCake,
+	BlockType.BlackCandleCake,
+] as const;
+
+const Candles = [
+	BlockType.Candle,
+	BlockType.WhiteCandle,
+	BlockType.OrangeCandle,
+	BlockType.MagentaCandle,
+	BlockType.LightBlueCandle,
+	BlockType.YellowCandle,
+	BlockType.LimeCandle,
+	BlockType.PinkCandle,
+	BlockType.GrayCandle,
+	BlockType.LightGrayCandle,
+	BlockType.CyanCandle,
+	BlockType.PurpleCandle,
+	BlockType.BlueCandle,
+	BlockType.BrownCandle,
+	BlockType.GreenCandle,
+	BlockType.RedCandle,
+	BlockType.BlackCandle,
+] as const;
+
+const CannotReplaceBelowTreeTrunk = [
+	BlockType.Podzol,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+] as const;
+
+const CannotSupportKelp = [
+	BlockType.MagmaBlock,
+] as const;
+
+const CannotSupportSeagrass = [
+	BlockType.MagmaBlock,
+] as const;
+
+const CannotSupportSnowLayer = [
+	BlockType.Ice,
+	BlockType.PackedIce,
+	BlockType.Barrier,
+] as const;
+
+const Cauldrons = [
+	BlockType.Cauldron,
+	BlockType.WaterCauldron,
+	BlockType.LavaCauldron,
+	BlockType.PowderSnowCauldron,
+] as const;
+
+const CaveVines = [
+	BlockType.CaveVinesPlant,
+	BlockType.CaveVines,
+] as const;
+
+const CeilingHangingSigns = [
+	BlockType.OakHangingSign,
+	BlockType.SpruceHangingSign,
+	BlockType.BirchHangingSign,
+	BlockType.AcaciaHangingSign,
+	BlockType.CherryHangingSign,
+	BlockType.JungleHangingSign,
+	BlockType.DarkOakHangingSign,
+	BlockType.PaleOakHangingSign,
+	BlockType.CrimsonHangingSign,
+	BlockType.WarpedHangingSign,
+	BlockType.MangroveHangingSign,
+	BlockType.BambooHangingSign,
+] as const;
+
+const Chains = [
+	BlockType.IronChain,
+	BlockType.CopperChain,
+	BlockType.WaxedCopperChain,
+	BlockType.ExposedCopperChain,
+	BlockType.WaxedExposedCopperChain,
+	BlockType.WeatheredCopperChain,
+	BlockType.WaxedWeatheredCopperChain,
+	BlockType.OxidizedCopperChain,
+	BlockType.WaxedOxidizedCopperChain,
+] as const;
+
+const CherryLogs = [
+	BlockType.CherryLog,
+	BlockType.CherryWood,
+	BlockType.StrippedCherryLog,
+	BlockType.StrippedCherryWood,
+] as const;
+
+const Climbable = [
+	BlockType.Ladder,
+	BlockType.Vine,
+	BlockType.Scaffolding,
+	BlockType.WeepingVines,
+	BlockType.WeepingVinesPlant,
+	BlockType.TwistingVines,
+	BlockType.TwistingVinesPlant,
+	BlockType.CaveVines,
+	BlockType.CaveVinesPlant,
+] as const;
+
+const CoalOres = [
+	BlockType.CoalOre,
+	BlockType.DeepslateCoalOre,
+] as const;
+
+const CombinationStepSoundBlocks = [
+	BlockType.MossCarpet,
+	BlockType.PaleMossCarpet,
+	BlockType.Snow,
+	BlockType.NetherSprouts,
+	BlockType.WarpedRoots,
+	BlockType.CrimsonRoots,
+	BlockType.ResinClump,
+	BlockType.WhiteCarpet,
+	BlockType.OrangeCarpet,
+	BlockType.MagentaCarpet,
+	BlockType.LightBlueCarpet,
+	BlockType.YellowCarpet,
+	BlockType.LimeCarpet,
+	BlockType.PinkCarpet,
+	BlockType.GrayCarpet,
+	BlockType.LightGrayCarpet,
+	BlockType.CyanCarpet,
+	BlockType.PurpleCarpet,
+	BlockType.BlueCarpet,
+	BlockType.BrownCarpet,
+	BlockType.GreenCarpet,
+	BlockType.RedCarpet,
+	BlockType.BlackCarpet,
+] as const;
+
+const CompletesFindTreeTutorial = [
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
+	BlockType.NetherWartBlock,
+	BlockType.WarpedWartBlock,
+	BlockType.CrimsonStem,
+	BlockType.StrippedCrimsonStem,
+	BlockType.CrimsonHyphae,
+	BlockType.StrippedCrimsonHyphae,
+	BlockType.WarpedStem,
+	BlockType.StrippedWarpedStem,
+	BlockType.WarpedHyphae,
+	BlockType.StrippedWarpedHyphae,
+	BlockType.DarkOakLog,
+	BlockType.DarkOakWood,
+	BlockType.StrippedDarkOakLog,
+	BlockType.StrippedDarkOakWood,
+	BlockType.PaleOakLog,
+	BlockType.PaleOakWood,
+	BlockType.StrippedPaleOakLog,
+	BlockType.StrippedPaleOakWood,
+	BlockType.OakLog,
+	BlockType.OakWood,
+	BlockType.StrippedOakLog,
+	BlockType.StrippedOakWood,
+	BlockType.AcaciaLog,
+	BlockType.AcaciaWood,
+	BlockType.StrippedAcaciaLog,
+	BlockType.StrippedAcaciaWood,
+	BlockType.BirchLog,
+	BlockType.BirchWood,
+	BlockType.StrippedBirchLog,
+	BlockType.StrippedBirchWood,
+	BlockType.JungleLog,
+	BlockType.JungleWood,
+	BlockType.StrippedJungleLog,
+	BlockType.StrippedJungleWood,
+	BlockType.SpruceLog,
+	BlockType.SpruceWood,
+	BlockType.StrippedSpruceLog,
+	BlockType.StrippedSpruceWood,
+	BlockType.MangroveLog,
+	BlockType.MangroveWood,
+	BlockType.StrippedMangroveLog,
+	BlockType.StrippedMangroveWood,
+	BlockType.CherryLog,
+	BlockType.CherryWood,
+	BlockType.StrippedCherryLog,
+	BlockType.StrippedCherryWood,
+] as const;
+
+const ConcretePowder = [
+	BlockType.WhiteConcretePowder,
+	BlockType.OrangeConcretePowder,
+	BlockType.MagentaConcretePowder,
+	BlockType.LightBlueConcretePowder,
+	BlockType.YellowConcretePowder,
+	BlockType.LimeConcretePowder,
+	BlockType.PinkConcretePowder,
+	BlockType.GrayConcretePowder,
+	BlockType.LightGrayConcretePowder,
+	BlockType.CyanConcretePowder,
+	BlockType.PurpleConcretePowder,
+	BlockType.BlueConcretePowder,
+	BlockType.BrownConcretePowder,
+	BlockType.GreenConcretePowder,
+	BlockType.RedConcretePowder,
+	BlockType.BlackConcretePowder,
+] as const;
+
+const ConvertableToMud = [
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+] as const;
+
+const Copper = [
+	BlockType.CopperBlock,
+	BlockType.ExposedCopper,
+	BlockType.WeatheredCopper,
+	BlockType.OxidizedCopper,
+	BlockType.WaxedCopperBlock,
+	BlockType.WaxedExposedCopper,
+	BlockType.WaxedWeatheredCopper,
+	BlockType.WaxedOxidizedCopper,
+] as const;
+
+const CopperChests = [
+	BlockType.CopperChest,
+	BlockType.ExposedCopperChest,
+	BlockType.WeatheredCopperChest,
+	BlockType.OxidizedCopperChest,
+	BlockType.WaxedCopperChest,
+	BlockType.WaxedExposedCopperChest,
+	BlockType.WaxedWeatheredCopperChest,
+	BlockType.WaxedOxidizedCopperChest,
+] as const;
+
+const CopperGolemStatues = [
+	BlockType.CopperGolemStatue,
+	BlockType.ExposedCopperGolemStatue,
+	BlockType.WeatheredCopperGolemStatue,
+	BlockType.OxidizedCopperGolemStatue,
+	BlockType.WaxedCopperGolemStatue,
+	BlockType.WaxedExposedCopperGolemStatue,
+	BlockType.WaxedWeatheredCopperGolemStatue,
+	BlockType.WaxedOxidizedCopperGolemStatue,
+] as const;
+
+const CopperOres = [
+	BlockType.CopperOre,
+	BlockType.DeepslateCopperOre,
+] as const;
+
+const CoralBlocks = [
+	BlockType.TubeCoralBlock,
+	BlockType.BrainCoralBlock,
+	BlockType.BubbleCoralBlock,
+	BlockType.FireCoralBlock,
+	BlockType.HornCoralBlock,
+] as const;
+
+const CoralPlants = [
+	BlockType.TubeCoral,
+	BlockType.BrainCoral,
+	BlockType.BubbleCoral,
+	BlockType.FireCoral,
+	BlockType.HornCoral,
+] as const;
+
+const Corals = [
+	BlockType.TubeCoralFan,
+	BlockType.BrainCoralFan,
+	BlockType.BubbleCoralFan,
+	BlockType.FireCoralFan,
+	BlockType.HornCoralFan,
+	BlockType.TubeCoral,
+	BlockType.BrainCoral,
+	BlockType.BubbleCoral,
+	BlockType.FireCoral,
+	BlockType.HornCoral,
+] as const;
+
+const CrimsonStems = [
+	BlockType.CrimsonStem,
+	BlockType.StrippedCrimsonStem,
+	BlockType.CrimsonHyphae,
+	BlockType.StrippedCrimsonHyphae,
+] as const;
+
+const Crops = [
+	BlockType.Beetroots,
+	BlockType.Carrots,
+	BlockType.Potatoes,
+	BlockType.Wheat,
+	BlockType.MelonStem,
+	BlockType.PumpkinStem,
+	BlockType.TorchflowerCrop,
+	BlockType.PitcherCrop,
+] as const;
+
+const CrystalSoundBlocks = [
+	BlockType.AmethystBlock,
+	BlockType.BuddingAmethyst,
+] as const;
+
+const DampensVibrations = [
+	BlockType.WhiteWool,
+	BlockType.OrangeWool,
+	BlockType.MagentaWool,
+	BlockType.LightBlueWool,
+	BlockType.YellowWool,
+	BlockType.LimeWool,
+	BlockType.PinkWool,
+	BlockType.GrayWool,
+	BlockType.LightGrayWool,
+	BlockType.CyanWool,
+	BlockType.PurpleWool,
+	BlockType.BlueWool,
+	BlockType.BrownWool,
+	BlockType.GreenWool,
+	BlockType.RedWool,
+	BlockType.BlackWool,
+	BlockType.WhiteCarpet,
+	BlockType.OrangeCarpet,
+	BlockType.MagentaCarpet,
+	BlockType.LightBlueCarpet,
+	BlockType.YellowCarpet,
+	BlockType.LimeCarpet,
+	BlockType.PinkCarpet,
+	BlockType.GrayCarpet,
+	BlockType.LightGrayCarpet,
+	BlockType.CyanCarpet,
+	BlockType.PurpleCarpet,
+	BlockType.BlueCarpet,
+	BlockType.BrownCarpet,
+	BlockType.GreenCarpet,
+	BlockType.RedCarpet,
+	BlockType.BlackCarpet,
+] as const;
+
+const DarkOakLogs = [
+	BlockType.DarkOakLog,
+	BlockType.DarkOakWood,
+	BlockType.StrippedDarkOakLog,
+	BlockType.StrippedDarkOakWood,
+] as const;
+
+const DeepslateOreReplaceables = [
+	BlockType.Deepslate,
+	BlockType.Tuff,
+] as const;
+
+const DiamondOres = [
+	BlockType.DiamondOre,
+	BlockType.DeepslateDiamondOre,
+] as const;
+
+const Dirt = [
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+] as const;
+
+const DoesNotBlockHoppers = [
+	BlockType.BeeNest,
+	BlockType.Beehive,
+] as const;
+
+const Doors = [
+	BlockType.CopperDoor,
+	BlockType.ExposedCopperDoor,
+	BlockType.WeatheredCopperDoor,
+	BlockType.OxidizedCopperDoor,
+	BlockType.WaxedCopperDoor,
+	BlockType.WaxedExposedCopperDoor,
+	BlockType.WaxedWeatheredCopperDoor,
+	BlockType.WaxedOxidizedCopperDoor,
+	BlockType.IronDoor,
+	BlockType.OakDoor,
+	BlockType.SpruceDoor,
+	BlockType.BirchDoor,
+	BlockType.JungleDoor,
+	BlockType.AcaciaDoor,
+	BlockType.DarkOakDoor,
+	BlockType.PaleOakDoor,
+	BlockType.CrimsonDoor,
+	BlockType.WarpedDoor,
+	BlockType.MangroveDoor,
+	BlockType.BambooDoor,
+	BlockType.CherryDoor,
+] as const;
+
+const DragonImmune = [
+	BlockType.Barrier,
+	BlockType.Bedrock,
+	BlockType.EndPortal,
+	BlockType.EndPortalFrame,
+	BlockType.EndGateway,
+	BlockType.CommandBlock,
+	BlockType.RepeatingCommandBlock,
+	BlockType.ChainCommandBlock,
+	BlockType.StructureBlock,
+	BlockType.Jigsaw,
+	BlockType.MovingPiston,
+	BlockType.Obsidian,
+	BlockType.CryingObsidian,
+	BlockType.EndStone,
+	BlockType.IronBars,
+	BlockType.RespawnAnchor,
+	BlockType.ReinforcedDeepslate,
+	BlockType.TestBlock,
+	BlockType.TestInstanceBlock,
+] as const;
+
+const DragonTransparent = [
+	BlockType.Light,
+	BlockType.Fire,
+	BlockType.SoulFire,
+] as const;
+
+const DripstoneReplaceableBlocks = [
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+] as const;
+
+const EdibleForSheep = [
+	BlockType.ShortGrass,
+	BlockType.ShortDryGrass,
+	BlockType.TallDryGrass,
+	BlockType.Fern,
+] as const;
+
+const EmeraldOres = [
+	BlockType.EmeraldOre,
+	BlockType.DeepslateEmeraldOre,
+] as const;
+
+const EnablesBubbleColumnDragDown = [
+	BlockType.MagmaBlock,
+] as const;
+
+const EnablesBubbleColumnPushUp = [
+	BlockType.SoulSand,
+] as const;
+
+const EnchantmentPowerProvider = [
+	BlockType.Bookshelf,
+] as const;
+
+const EnchantmentPowerTransmitter = [
+	BlockType.Air,
+	BlockType.Water,
+	BlockType.Lava,
+	BlockType.ShortGrass,
+	BlockType.Fern,
+	BlockType.DeadBush,
+	BlockType.Bush,
+	BlockType.ShortDryGrass,
+	BlockType.TallDryGrass,
+	BlockType.Seagrass,
+	BlockType.TallSeagrass,
+	BlockType.Fire,
+	BlockType.SoulFire,
+	BlockType.Snow,
+	BlockType.Vine,
+	BlockType.GlowLichen,
+	BlockType.ResinClump,
+	BlockType.Light,
+	BlockType.TallGrass,
+	BlockType.LargeFern,
+	BlockType.StructureVoid,
+	BlockType.VoidAir,
+	BlockType.CaveAir,
+	BlockType.BubbleColumn,
+	BlockType.WarpedRoots,
+	BlockType.NetherSprouts,
+	BlockType.CrimsonRoots,
+	BlockType.LeafLitter,
+	BlockType.HangingRoots,
+] as const;
+
+const EndermanHoldable = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.Gravel,
+	BlockType.BrownMushroom,
+	BlockType.RedMushroom,
+	BlockType.Tnt,
+	BlockType.Cactus,
+	BlockType.Clay,
+	BlockType.Pumpkin,
+	BlockType.CarvedPumpkin,
+	BlockType.Melon,
+	BlockType.CrimsonFungus,
+	BlockType.CrimsonNylium,
+	BlockType.CrimsonRoots,
+	BlockType.WarpedFungus,
+	BlockType.WarpedNylium,
+	BlockType.WarpedRoots,
+	BlockType.CactusFlower,
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.ClosedEyeblossom,
+	BlockType.GoldenDandelion,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const FallDamageResetting = [
+	BlockType.SweetBerryBush,
+	BlockType.Cobweb,
+	BlockType.Ladder,
+	BlockType.Vine,
+	BlockType.Scaffolding,
+	BlockType.WeepingVines,
+	BlockType.WeepingVinesPlant,
+	BlockType.TwistingVines,
+	BlockType.TwistingVinesPlant,
+	BlockType.CaveVines,
+	BlockType.CaveVinesPlant,
+] as const;
+
+const FeaturesCannotReplace = [
+	BlockType.Bedrock,
+	BlockType.Spawner,
+	BlockType.Chest,
+	BlockType.EndPortalFrame,
+	BlockType.ReinforcedDeepslate,
+	BlockType.TrialSpawner,
+	BlockType.Vault,
+] as const;
+
+const FenceGates = [
+	BlockType.AcaciaFenceGate,
+	BlockType.BirchFenceGate,
+	BlockType.DarkOakFenceGate,
+	BlockType.PaleOakFenceGate,
+	BlockType.JungleFenceGate,
+	BlockType.OakFenceGate,
+	BlockType.SpruceFenceGate,
+	BlockType.CrimsonFenceGate,
+	BlockType.WarpedFenceGate,
+	BlockType.MangroveFenceGate,
+	BlockType.BambooFenceGate,
+	BlockType.CherryFenceGate,
+] as const;
+
+const Fences = [
+	BlockType.NetherBrickFence,
+	BlockType.OakFence,
+	BlockType.AcaciaFence,
+	BlockType.DarkOakFence,
+	BlockType.PaleOakFence,
+	BlockType.SpruceFence,
+	BlockType.BirchFence,
+	BlockType.JungleFence,
+	BlockType.CrimsonFence,
+	BlockType.WarpedFence,
+	BlockType.MangroveFence,
+	BlockType.BambooFence,
+	BlockType.CherryFence,
+] as const;
+
+const Fire = [
+	BlockType.Fire,
+	BlockType.SoulFire,
+] as const;
+
+const FlowerPots = [
+	BlockType.FlowerPot,
+	BlockType.PottedOpenEyeblossom,
+	BlockType.PottedClosedEyeblossom,
+	BlockType.PottedPoppy,
+	BlockType.PottedBlueOrchid,
+	BlockType.PottedAllium,
+	BlockType.PottedAzureBluet,
+	BlockType.PottedRedTulip,
+	BlockType.PottedOrangeTulip,
+	BlockType.PottedWhiteTulip,
+	BlockType.PottedPinkTulip,
+	BlockType.PottedOxeyeDaisy,
+	BlockType.PottedDandelion,
+	BlockType.PottedOakSapling,
+	BlockType.PottedSpruceSapling,
+	BlockType.PottedBirchSapling,
+	BlockType.PottedJungleSapling,
+	BlockType.PottedAcaciaSapling,
+	BlockType.PottedDarkOakSapling,
+	BlockType.PottedPaleOakSapling,
+	BlockType.PottedRedMushroom,
+	BlockType.PottedBrownMushroom,
+	BlockType.PottedDeadBush,
+	BlockType.PottedFern,
+	BlockType.PottedCactus,
+	BlockType.PottedCornflower,
+	BlockType.PottedLilyOfTheValley,
+	BlockType.PottedWitherRose,
+	BlockType.PottedBamboo,
+	BlockType.PottedCrimsonFungus,
+	BlockType.PottedWarpedFungus,
+	BlockType.PottedCrimsonRoots,
+	BlockType.PottedWarpedRoots,
+	BlockType.PottedAzaleaBush,
+	BlockType.PottedFloweringAzaleaBush,
+	BlockType.PottedMangrovePropagule,
+	BlockType.PottedCherrySapling,
+	BlockType.PottedTorchflower,
+	BlockType.PottedGoldenDandelion,
+] as const;
+
+const Flowers = [
+	BlockType.Sunflower,
+	BlockType.Lilac,
+	BlockType.Peony,
+	BlockType.RoseBush,
+	BlockType.PitcherPlant,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.FloweringAzalea,
+	BlockType.MangrovePropagule,
+	BlockType.CherryLeaves,
+	BlockType.PinkPetals,
+	BlockType.Wildflowers,
+	BlockType.ChorusFlower,
+	BlockType.SporeBlossom,
+	BlockType.CactusFlower,
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.ClosedEyeblossom,
+	BlockType.GoldenDandelion,
 ] as const;
 
 const ForestRockCanPlaceOn = [
@@ -1875,6 +1184,114 @@ const ForestRockCanPlaceOn = [
 	BlockType.GrassBlock,
 	BlockType.Podzol,
 	BlockType.Mycelium,
+] as const;
+
+const FoxesSpawnableOn = [
+	BlockType.GrassBlock,
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.Podzol,
+	BlockType.CoarseDirt,
+] as const;
+
+const FrogPreferJumpTo = [
+	BlockType.LilyPad,
+	BlockType.BigDripleaf,
+] as const;
+
+const FrogsSpawnableOn = [
+	BlockType.GrassBlock,
+	BlockType.Mud,
+	BlockType.MangroveRoots,
+	BlockType.MuddyMangroveRoots,
+] as const;
+
+const GeodeInvalidBlocks = [
+	BlockType.Bedrock,
+	BlockType.Water,
+	BlockType.Lava,
+	BlockType.Ice,
+	BlockType.PackedIce,
+	BlockType.BlueIce,
+] as const;
+
+const GoatsSpawnableOn = [
+	BlockType.Stone,
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.PackedIce,
+	BlockType.Gravel,
+	BlockType.GrassBlock,
+] as const;
+
+const GoldOres = [
+	BlockType.GoldOre,
+	BlockType.NetherGoldOre,
+	BlockType.DeepslateGoldOre,
+] as const;
+
+const GrassBlocks = [
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const GrowsCrops = [
+	BlockType.Farmland,
+] as const;
+
+const GuardedByPiglins = [
+	BlockType.GoldBlock,
+	BlockType.Barrel,
+	BlockType.Chest,
+	BlockType.EnderChest,
+	BlockType.GildedBlackstone,
+	BlockType.TrappedChest,
+	BlockType.RawGoldBlock,
+	BlockType.CopperChest,
+	BlockType.ExposedCopperChest,
+	BlockType.WeatheredCopperChest,
+	BlockType.OxidizedCopperChest,
+	BlockType.WaxedCopperChest,
+	BlockType.WaxedExposedCopperChest,
+	BlockType.WaxedWeatheredCopperChest,
+	BlockType.WaxedOxidizedCopperChest,
+	BlockType.ShulkerBox,
+	BlockType.BlackShulkerBox,
+	BlockType.BlueShulkerBox,
+	BlockType.BrownShulkerBox,
+	BlockType.CyanShulkerBox,
+	BlockType.GrayShulkerBox,
+	BlockType.GreenShulkerBox,
+	BlockType.LightBlueShulkerBox,
+	BlockType.LightGrayShulkerBox,
+	BlockType.LimeShulkerBox,
+	BlockType.MagentaShulkerBox,
+	BlockType.OrangeShulkerBox,
+	BlockType.PinkShulkerBox,
+	BlockType.PurpleShulkerBox,
+	BlockType.RedShulkerBox,
+	BlockType.WhiteShulkerBox,
+	BlockType.YellowShulkerBox,
+	BlockType.GoldOre,
+	BlockType.NetherGoldOre,
+	BlockType.DeepslateGoldOre,
+] as const;
+
+const HappyGhastAvoids = [
+	BlockType.SweetBerryBush,
+	BlockType.Cactus,
+	BlockType.WitherRose,
+	BlockType.MagmaBlock,
+	BlockType.Fire,
+	BlockType.PointedDripstone,
+] as const;
+
+const HoglinRepellents = [
+	BlockType.WarpedFungus,
+	BlockType.PottedWarpedFungus,
+	BlockType.NetherPortal,
+	BlockType.RespawnAnchor,
 ] as const;
 
 const HugeBrownMushroomCanPlaceOn = [
@@ -1911,207 +1328,48 @@ const HugeRedMushroomCanPlaceOn = [
 	BlockType.Mycelium,
 ] as const;
 
-const Snow = [
-	BlockType.Snow,
+const Ice = [
+	BlockType.Ice,
+	BlockType.PackedIce,
+	BlockType.BlueIce,
+	BlockType.FrostedIce,
+] as const;
+
+const IceSpikeReplaceable = [
 	BlockType.SnowBlock,
-	BlockType.PowderSnow,
+	BlockType.Ice,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
 ] as const;
 
-const OccludesVibrationSignals = [
-	BlockType.WhiteWool,
-	BlockType.OrangeWool,
-	BlockType.MagentaWool,
-	BlockType.LightBlueWool,
-	BlockType.YellowWool,
-	BlockType.LimeWool,
-	BlockType.PinkWool,
-	BlockType.GrayWool,
-	BlockType.LightGrayWool,
-	BlockType.CyanWool,
-	BlockType.PurpleWool,
-	BlockType.BlueWool,
-	BlockType.BrownWool,
-	BlockType.GreenWool,
-	BlockType.RedWool,
-	BlockType.BlackWool,
-] as const;
-
-const SwordEfficient = [
-	BlockType.Vine,
-	BlockType.GlowLichen,
-	BlockType.Pumpkin,
-	BlockType.CarvedPumpkin,
-	BlockType.JackOLantern,
-	BlockType.Melon,
-	BlockType.Cocoa,
-	BlockType.BigDripleaf,
-	BlockType.BigDripleafStem,
-	BlockType.ChorusPlant,
-	BlockType.ChorusFlower,
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
-] as const;
-
-const SwordInstantlyMines = [
-	BlockType.Bamboo,
-	BlockType.BambooSapling,
-] as const;
-
-const NeedsDiamondTool = [
-	BlockType.Obsidian,
-	BlockType.CryingObsidian,
-	BlockType.NetheriteBlock,
-	BlockType.RespawnAnchor,
-	BlockType.AncientDebris,
-] as const;
-
-const NeedsIronTool = [
-	BlockType.DiamondBlock,
-	BlockType.DiamondOre,
-	BlockType.DeepslateDiamondOre,
-	BlockType.EmeraldOre,
-	BlockType.DeepslateEmeraldOre,
-	BlockType.EmeraldBlock,
-	BlockType.GoldBlock,
-	BlockType.RawGoldBlock,
-	BlockType.GoldOre,
-	BlockType.DeepslateGoldOre,
-	BlockType.RedstoneOre,
-	BlockType.DeepslateRedstoneOre,
-] as const;
-
-const IncorrectForNetheriteTool = [
-] as const;
-
-const NeedsStoneTool = [
-	BlockType.IronBlock,
-	BlockType.RawIronBlock,
-	BlockType.IronOre,
-	BlockType.DeepslateIronOre,
-	BlockType.LapisBlock,
-	BlockType.LapisOre,
-	BlockType.DeepslateLapisOre,
-	BlockType.CopperBlock,
-	BlockType.RawCopperBlock,
-	BlockType.CopperOre,
-	BlockType.DeepslateCopperOre,
-	BlockType.CutCopperSlab,
-	BlockType.CutCopperStairs,
-	BlockType.CutCopper,
-	BlockType.WeatheredCopper,
-	BlockType.WeatheredCutCopperSlab,
-	BlockType.WeatheredCutCopperStairs,
-	BlockType.WeatheredCutCopper,
-	BlockType.OxidizedCopper,
-	BlockType.OxidizedCutCopperSlab,
-	BlockType.OxidizedCutCopperStairs,
-	BlockType.OxidizedCutCopper,
-	BlockType.ExposedCopper,
-	BlockType.ExposedCutCopperSlab,
-	BlockType.ExposedCutCopperStairs,
-	BlockType.ExposedCutCopper,
-	BlockType.WaxedCopperBlock,
-	BlockType.WaxedCutCopperSlab,
-	BlockType.WaxedCutCopperStairs,
-	BlockType.WaxedCutCopper,
-	BlockType.WaxedWeatheredCopper,
-	BlockType.WaxedWeatheredCutCopperSlab,
-	BlockType.WaxedWeatheredCutCopperStairs,
-	BlockType.WaxedWeatheredCutCopper,
-	BlockType.WaxedExposedCopper,
-	BlockType.WaxedExposedCutCopperSlab,
-	BlockType.WaxedExposedCutCopperStairs,
-	BlockType.WaxedExposedCutCopper,
-	BlockType.WaxedOxidizedCopper,
-	BlockType.WaxedOxidizedCutCopperSlab,
-	BlockType.WaxedOxidizedCutCopperStairs,
-	BlockType.WaxedOxidizedCutCopper,
-	BlockType.Crafter,
-	BlockType.ChiseledCopper,
-	BlockType.ExposedChiseledCopper,
-	BlockType.WeatheredChiseledCopper,
-	BlockType.OxidizedChiseledCopper,
-	BlockType.WaxedChiseledCopper,
-	BlockType.WaxedExposedChiseledCopper,
-	BlockType.WaxedWeatheredChiseledCopper,
-	BlockType.WaxedOxidizedChiseledCopper,
-	BlockType.CopperGrate,
-	BlockType.ExposedCopperGrate,
-	BlockType.WeatheredCopperGrate,
-	BlockType.OxidizedCopperGrate,
-	BlockType.WaxedCopperGrate,
-	BlockType.WaxedExposedCopperGrate,
-	BlockType.WaxedWeatheredCopperGrate,
-	BlockType.WaxedOxidizedCopperGrate,
-	BlockType.CopperBulb,
-	BlockType.ExposedCopperBulb,
-	BlockType.WeatheredCopperBulb,
-	BlockType.OxidizedCopperBulb,
-	BlockType.WaxedCopperBulb,
-	BlockType.WaxedExposedCopperBulb,
-	BlockType.WaxedWeatheredCopperBulb,
-	BlockType.WaxedOxidizedCopperBulb,
-	BlockType.CopperTrapdoor,
-	BlockType.ExposedCopperTrapdoor,
-	BlockType.WeatheredCopperTrapdoor,
-	BlockType.OxidizedCopperTrapdoor,
-	BlockType.WaxedCopperTrapdoor,
-	BlockType.WaxedExposedCopperTrapdoor,
-	BlockType.WaxedWeatheredCopperTrapdoor,
-	BlockType.WaxedOxidizedCopperTrapdoor,
-	BlockType.CopperChest,
-	BlockType.ExposedCopperChest,
-	BlockType.WeatheredCopperChest,
-	BlockType.OxidizedCopperChest,
-	BlockType.WaxedCopperChest,
-	BlockType.WaxedExposedCopperChest,
-	BlockType.WaxedWeatheredCopperChest,
-	BlockType.WaxedOxidizedCopperChest,
-	BlockType.LightningRod,
-	BlockType.ExposedLightningRod,
-	BlockType.WeatheredLightningRod,
-	BlockType.OxidizedLightningRod,
-	BlockType.WaxedLightningRod,
-	BlockType.WaxedExposedLightningRod,
-	BlockType.WaxedWeatheredLightningRod,
-	BlockType.WaxedOxidizedLightningRod,
-] as const;
-
-const IncorrectForIronTool = [
-	BlockType.Obsidian,
-	BlockType.CryingObsidian,
-	BlockType.NetheriteBlock,
-	BlockType.RespawnAnchor,
-	BlockType.AncientDebris,
-] as const;
-
-const IncorrectForStoneTool = [
-	BlockType.Obsidian,
-	BlockType.CryingObsidian,
-	BlockType.NetheriteBlock,
-	BlockType.RespawnAnchor,
-	BlockType.AncientDebris,
-	BlockType.DiamondBlock,
-	BlockType.DiamondOre,
-	BlockType.DeepslateDiamondOre,
-	BlockType.EmeraldOre,
-	BlockType.DeepslateEmeraldOre,
-	BlockType.EmeraldBlock,
-	BlockType.GoldBlock,
-	BlockType.RawGoldBlock,
-	BlockType.GoldOre,
-	BlockType.DeepslateGoldOre,
-	BlockType.RedstoneOre,
-	BlockType.DeepslateRedstoneOre,
+const Impermeable = [
+	BlockType.Glass,
+	BlockType.WhiteStainedGlass,
+	BlockType.OrangeStainedGlass,
+	BlockType.MagentaStainedGlass,
+	BlockType.LightBlueStainedGlass,
+	BlockType.YellowStainedGlass,
+	BlockType.LimeStainedGlass,
+	BlockType.PinkStainedGlass,
+	BlockType.GrayStainedGlass,
+	BlockType.LightGrayStainedGlass,
+	BlockType.CyanStainedGlass,
+	BlockType.PurpleStainedGlass,
+	BlockType.BlueStainedGlass,
+	BlockType.BrownStainedGlass,
+	BlockType.GreenStainedGlass,
+	BlockType.RedStainedGlass,
+	BlockType.BlackStainedGlass,
+	BlockType.TintedGlass,
+	BlockType.Barrier,
 ] as const;
 
 const IncorrectForCopperTool = [
@@ -2132,6 +1390,9 @@ const IncorrectForCopperTool = [
 	BlockType.DeepslateGoldOre,
 	BlockType.RedstoneOre,
 	BlockType.DeepslateRedstoneOre,
+] as const;
+
+const IncorrectForDiamondTool = [
 ] as const;
 
 const IncorrectForGoldTool = [
@@ -2245,6 +1506,37 @@ const IncorrectForGoldTool = [
 	BlockType.WaxedOxidizedLightningRod,
 ] as const;
 
+const IncorrectForIronTool = [
+	BlockType.Obsidian,
+	BlockType.CryingObsidian,
+	BlockType.NetheriteBlock,
+	BlockType.RespawnAnchor,
+	BlockType.AncientDebris,
+] as const;
+
+const IncorrectForNetheriteTool = [
+] as const;
+
+const IncorrectForStoneTool = [
+	BlockType.Obsidian,
+	BlockType.CryingObsidian,
+	BlockType.NetheriteBlock,
+	BlockType.RespawnAnchor,
+	BlockType.AncientDebris,
+	BlockType.DiamondBlock,
+	BlockType.DiamondOre,
+	BlockType.DeepslateDiamondOre,
+	BlockType.EmeraldOre,
+	BlockType.DeepslateEmeraldOre,
+	BlockType.EmeraldBlock,
+	BlockType.GoldBlock,
+	BlockType.RawGoldBlock,
+	BlockType.GoldOre,
+	BlockType.DeepslateGoldOre,
+	BlockType.RedstoneOre,
+	BlockType.DeepslateRedstoneOre,
+] as const;
+
 const IncorrectForWoodenTool = [
 	BlockType.Obsidian,
 	BlockType.CryingObsidian,
@@ -2356,11 +1648,66 @@ const IncorrectForWoodenTool = [
 	BlockType.WaxedOxidizedLightningRod,
 ] as const;
 
-const DarkOakLogs = [
-	BlockType.DarkOakLog,
-	BlockType.DarkOakWood,
-	BlockType.StrippedDarkOakLog,
-	BlockType.StrippedDarkOakWood,
+const InfiniburnEnd = [
+	BlockType.Bedrock,
+	BlockType.Netherrack,
+	BlockType.MagmaBlock,
+] as const;
+
+const InfiniburnNether = [
+	BlockType.Netherrack,
+	BlockType.MagmaBlock,
+] as const;
+
+const InfiniburnOverworld = [
+	BlockType.Netherrack,
+	BlockType.MagmaBlock,
+] as const;
+
+const InsideStepSoundBlocks = [
+	BlockType.PowderSnow,
+	BlockType.SculkVein,
+	BlockType.GlowLichen,
+	BlockType.LilyPad,
+	BlockType.SmallAmethystBud,
+	BlockType.PinkPetals,
+	BlockType.Wildflowers,
+	BlockType.LeafLitter,
+] as const;
+
+const InvalidSpawnInside = [
+	BlockType.EndPortal,
+	BlockType.EndGateway,
+] as const;
+
+const IronOres = [
+	BlockType.IronOre,
+	BlockType.DeepslateIronOre,
+] as const;
+
+const JungleLogs = [
+	BlockType.JungleLog,
+	BlockType.JungleWood,
+	BlockType.StrippedJungleLog,
+	BlockType.StrippedJungleWood,
+] as const;
+
+const Lanterns = [
+	BlockType.Lantern,
+	BlockType.SoulLantern,
+	BlockType.CopperLantern,
+	BlockType.WaxedCopperLantern,
+	BlockType.ExposedCopperLantern,
+	BlockType.WaxedExposedCopperLantern,
+	BlockType.WeatheredCopperLantern,
+	BlockType.WaxedWeatheredCopperLantern,
+	BlockType.OxidizedCopperLantern,
+	BlockType.WaxedOxidizedCopperLantern,
+] as const;
+
+const LapisOres = [
+	BlockType.LapisOre,
+	BlockType.DeepslateLapisOre,
 ] as const;
 
 const LavaPoolStoneCannotReplace = [
@@ -2428,52 +1775,7 @@ const LavaPoolStoneCannotReplace = [
 	BlockType.StrippedCherryWood,
 ] as const;
 
-const GeodeInvalidBlocks = [
-	BlockType.Bedrock,
-	BlockType.Water,
-	BlockType.Lava,
-	BlockType.Ice,
-	BlockType.PackedIce,
-	BlockType.BlueIce,
-] as const;
-
-const AnimalsSpawnableOn = [
-	BlockType.GrassBlock,
-] as const;
-
-const ArmadilloSpawnableOn = [
-	BlockType.RedSand,
-	BlockType.CoarseDirt,
-	BlockType.GrassBlock,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.LightGrayTerracotta,
-] as const;
-
-const AxolotlsSpawnableOn = [
-	BlockType.Clay,
-] as const;
-
-const GoatsSpawnableOn = [
-	BlockType.Stone,
-	BlockType.Snow,
-	BlockType.SnowBlock,
-	BlockType.PackedIce,
-	BlockType.Gravel,
-	BlockType.GrassBlock,
-] as const;
-
-const MooshroomsSpawnableOn = [
-	BlockType.Mycelium,
-] as const;
-
-const ParrotsSpawnableOn = [
-	BlockType.GrassBlock,
-	BlockType.Air,
+const Leaves = [
 	BlockType.JungleLeaves,
 	BlockType.OakLeaves,
 	BlockType.SpruceLeaves,
@@ -2485,6 +1787,20 @@ const ParrotsSpawnableOn = [
 	BlockType.FloweringAzaleaLeaves,
 	BlockType.MangroveLeaves,
 	BlockType.CherryLeaves,
+] as const;
+
+const LightningRods = [
+	BlockType.LightningRod,
+	BlockType.ExposedLightningRod,
+	BlockType.WeatheredLightningRod,
+	BlockType.OxidizedLightningRod,
+	BlockType.WaxedLightningRod,
+	BlockType.WaxedExposedLightningRod,
+	BlockType.WaxedWeatheredLightningRod,
+	BlockType.WaxedOxidizedLightningRod,
+] as const;
+
+const Logs = [
 	BlockType.CrimsonStem,
 	BlockType.StrippedCrimsonStem,
 	BlockType.CrimsonHyphae,
@@ -2529,1183 +1845,6 @@ const ParrotsSpawnableOn = [
 	BlockType.CherryWood,
 	BlockType.StrippedCherryLog,
 	BlockType.StrippedCherryWood,
-] as const;
-
-const PolarBearsSpawnableOnAlternate = [
-	BlockType.Ice,
-] as const;
-
-const RabbitsSpawnableOn = [
-	BlockType.GrassBlock,
-	BlockType.Snow,
-	BlockType.SnowBlock,
-	BlockType.Sand,
-] as const;
-
-const FoxesSpawnableOn = [
-	BlockType.GrassBlock,
-	BlockType.Snow,
-	BlockType.SnowBlock,
-	BlockType.Podzol,
-	BlockType.CoarseDirt,
-] as const;
-
-const WolvesSpawnableOn = [
-	BlockType.GrassBlock,
-	BlockType.Snow,
-	BlockType.SnowBlock,
-	BlockType.CoarseDirt,
-	BlockType.Podzol,
-] as const;
-
-const FrogsSpawnableOn = [
-	BlockType.GrassBlock,
-	BlockType.Mud,
-	BlockType.MangroveRoots,
-	BlockType.MuddyMangroveRoots,
-] as const;
-
-const BatsSpawnableOn = [
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-] as const;
-
-const CamelsSpawnableOn = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-] as const;
-
-const BadlandsTerracotta = [
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.LightGrayTerracotta,
-] as const;
-
-const ConcretePowder = [
-	BlockType.WhiteConcretePowder,
-	BlockType.OrangeConcretePowder,
-	BlockType.MagentaConcretePowder,
-	BlockType.LightBlueConcretePowder,
-	BlockType.YellowConcretePowder,
-	BlockType.LimeConcretePowder,
-	BlockType.PinkConcretePowder,
-	BlockType.GrayConcretePowder,
-	BlockType.LightGrayConcretePowder,
-	BlockType.CyanConcretePowder,
-	BlockType.PurpleConcretePowder,
-	BlockType.BlueConcretePowder,
-	BlockType.BrownConcretePowder,
-	BlockType.GreenConcretePowder,
-	BlockType.RedConcretePowder,
-	BlockType.BlackConcretePowder,
-] as const;
-
-const AzaleaGrowsOn = [
-	BlockType.SnowBlock,
-	BlockType.PowderSnow,
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const FrogPreferJumpTo = [
-	BlockType.LilyPad,
-	BlockType.BigDripleaf,
-] as const;
-
-const SculkReplaceableWorldGen = [
-	BlockType.DeepslateBricks,
-	BlockType.DeepslateTiles,
-	BlockType.CobbledDeepslate,
-	BlockType.CrackedDeepslateBricks,
-	BlockType.CrackedDeepslateTiles,
-	BlockType.PolishedDeepslate,
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.Gravel,
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-	BlockType.Calcite,
-	BlockType.SmoothBasalt,
-	BlockType.Clay,
-	BlockType.DripstoneBlock,
-	BlockType.EndStone,
-	BlockType.RedSandstone,
-	BlockType.Sandstone,
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Netherrack,
-	BlockType.Basalt,
-	BlockType.Blackstone,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SculkReplaceable = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.Gravel,
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-	BlockType.Calcite,
-	BlockType.SmoothBasalt,
-	BlockType.Clay,
-	BlockType.DripstoneBlock,
-	BlockType.EndStone,
-	BlockType.RedSandstone,
-	BlockType.Sandstone,
-	BlockType.Stone,
-	BlockType.Granite,
-	BlockType.Diorite,
-	BlockType.Andesite,
-	BlockType.Tuff,
-	BlockType.Deepslate,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Netherrack,
-	BlockType.Basalt,
-	BlockType.Blackstone,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const VibrationResonators = [
-	BlockType.AmethystBlock,
-] as const;
-
-const ConvertableToMud = [
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-] as const;
-
-const AncientCityReplaceable = [
-	BlockType.Deepslate,
-	BlockType.DeepslateBricks,
-	BlockType.DeepslateTiles,
-	BlockType.DeepslateBrickSlab,
-	BlockType.DeepslateTileSlab,
-	BlockType.DeepslateBrickStairs,
-	BlockType.DeepslateTileWall,
-	BlockType.DeepslateBrickWall,
-	BlockType.CobbledDeepslate,
-	BlockType.CrackedDeepslateBricks,
-	BlockType.CrackedDeepslateTiles,
-	BlockType.GrayWool,
-] as const;
-
-const MangroveLogsCanGrowThrough = [
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MangroveRoots,
-	BlockType.MangroveLeaves,
-	BlockType.MangroveLog,
-	BlockType.MangrovePropagule,
-	BlockType.MossCarpet,
-	BlockType.Vine,
-] as const;
-
-const MangroveRootsCanGrowThrough = [
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MangroveRoots,
-	BlockType.MossCarpet,
-	BlockType.Vine,
-	BlockType.MangrovePropagule,
-	BlockType.Snow,
-] as const;
-
-const ReplaceableByTrees = [
-	BlockType.PaleMossCarpet,
-	BlockType.ShortGrass,
-	BlockType.Fern,
-	BlockType.DeadBush,
-	BlockType.Vine,
-	BlockType.GlowLichen,
-	BlockType.Sunflower,
-	BlockType.Lilac,
-	BlockType.RoseBush,
-	BlockType.Peony,
-	BlockType.TallGrass,
-	BlockType.LargeFern,
-	BlockType.HangingRoots,
-	BlockType.PitcherPlant,
-	BlockType.Water,
-	BlockType.Seagrass,
-	BlockType.TallSeagrass,
-	BlockType.Bush,
-	BlockType.FireflyBush,
-	BlockType.WarpedRoots,
-	BlockType.NetherSprouts,
-	BlockType.CrimsonRoots,
-	BlockType.LeafLitter,
-	BlockType.ShortDryGrass,
-	BlockType.TallDryGrass,
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.ClosedEyeblossom,
-	BlockType.GoldenDandelion,
-] as const;
-
-const EnablesBubbleColumnDragDown = [
-	BlockType.MagmaBlock,
-] as const;
-
-const ReplaceableByMushrooms = [
-	BlockType.PaleMossCarpet,
-	BlockType.ShortGrass,
-	BlockType.Fern,
-	BlockType.DeadBush,
-	BlockType.Vine,
-	BlockType.GlowLichen,
-	BlockType.Sunflower,
-	BlockType.Lilac,
-	BlockType.RoseBush,
-	BlockType.Peony,
-	BlockType.TallGrass,
-	BlockType.LargeFern,
-	BlockType.HangingRoots,
-	BlockType.PitcherPlant,
-	BlockType.Water,
-	BlockType.Seagrass,
-	BlockType.TallSeagrass,
-	BlockType.BrownMushroom,
-	BlockType.RedMushroom,
-	BlockType.BrownMushroomBlock,
-	BlockType.RedMushroomBlock,
-	BlockType.WarpedRoots,
-	BlockType.NetherSprouts,
-	BlockType.CrimsonRoots,
-	BlockType.LeafLitter,
-	BlockType.ShortDryGrass,
-	BlockType.TallDryGrass,
-	BlockType.Bush,
-	BlockType.FireflyBush,
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
-	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
-	BlockType.Dandelion,
-	BlockType.OpenEyeblossom,
-	BlockType.Poppy,
-	BlockType.BlueOrchid,
-	BlockType.Allium,
-	BlockType.AzureBluet,
-	BlockType.RedTulip,
-	BlockType.OrangeTulip,
-	BlockType.WhiteTulip,
-	BlockType.PinkTulip,
-	BlockType.OxeyeDaisy,
-	BlockType.Cornflower,
-	BlockType.LilyOfTheValley,
-	BlockType.WitherRose,
-	BlockType.Torchflower,
-	BlockType.ClosedEyeblossom,
-	BlockType.GoldenDandelion,
-] as const;
-
-const EnablesBubbleColumnPushUp = [
-	BlockType.SoulSand,
-] as const;
-
-const PreventsNearbyLeafDecay = [
-	BlockType.CrimsonStem,
-	BlockType.StrippedCrimsonStem,
-	BlockType.CrimsonHyphae,
-	BlockType.StrippedCrimsonHyphae,
-	BlockType.WarpedStem,
-	BlockType.StrippedWarpedStem,
-	BlockType.WarpedHyphae,
-	BlockType.StrippedWarpedHyphae,
-	BlockType.DarkOakLog,
-	BlockType.DarkOakWood,
-	BlockType.StrippedDarkOakLog,
-	BlockType.StrippedDarkOakWood,
-	BlockType.PaleOakLog,
-	BlockType.PaleOakWood,
-	BlockType.StrippedPaleOakLog,
-	BlockType.StrippedPaleOakWood,
-	BlockType.OakLog,
-	BlockType.OakWood,
-	BlockType.StrippedOakLog,
-	BlockType.StrippedOakWood,
-	BlockType.AcaciaLog,
-	BlockType.AcaciaWood,
-	BlockType.StrippedAcaciaLog,
-	BlockType.StrippedAcaciaWood,
-	BlockType.BirchLog,
-	BlockType.BirchWood,
-	BlockType.StrippedBirchLog,
-	BlockType.StrippedBirchWood,
-	BlockType.JungleLog,
-	BlockType.JungleWood,
-	BlockType.StrippedJungleLog,
-	BlockType.StrippedJungleWood,
-	BlockType.SpruceLog,
-	BlockType.SpruceWood,
-	BlockType.StrippedSpruceLog,
-	BlockType.StrippedSpruceWood,
-	BlockType.MangroveLog,
-	BlockType.MangroveWood,
-	BlockType.StrippedMangroveLog,
-	BlockType.StrippedMangroveWood,
-	BlockType.CherryLog,
-	BlockType.CherryWood,
-	BlockType.StrippedCherryLog,
-	BlockType.StrippedCherryWood,
-] as const;
-
-const SupportsVegetation = [
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsDryVegetation = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsCrops = [
-	BlockType.Farmland,
-] as const;
-
-const SupportsStemCrops = [
-	BlockType.Farmland,
-] as const;
-
-const SupportsStemFruit = [
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsPumpkinStem = [
-	BlockType.Farmland,
-] as const;
-
-const SupportsMelonStem = [
-	BlockType.Farmland,
-] as const;
-
-const SupportsPumpkinStemFruit = [
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsMelonStemFruit = [
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsSugarCane = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsSugarCaneAdjacently = [
-	BlockType.FrostedIce,
-] as const;
-
-const SupportsBamboo = [
-	BlockType.Bamboo,
-	BlockType.BambooSapling,
-	BlockType.Gravel,
-	BlockType.SuspiciousGravel,
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsSmallDripleaf = [
-	BlockType.Clay,
-	BlockType.MossBlock,
-] as const;
-
-const SupportsBigDripleaf = [
-	BlockType.Dirt,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.CoarseDirt,
-	BlockType.Mycelium,
-	BlockType.RootedDirt,
-	BlockType.MossBlock,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.Farmland,
-	BlockType.Clay,
-	BlockType.MossBlock,
-] as const;
-
-const TriggersAmbientDriedGhastBlockSounds = [
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-] as const;
-
-const SupportsCactus = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-] as const;
-
-const Air = [
-	BlockType.Air,
-	BlockType.VoidAir,
-	BlockType.CaveAir,
-] as const;
-
-const SupportsChorusPlant = [
-	BlockType.EndStone,
-] as const;
-
-const PaleOakLogs = [
-	BlockType.PaleOakLog,
-	BlockType.PaleOakWood,
-	BlockType.StrippedPaleOakLog,
-	BlockType.StrippedPaleOakWood,
-] as const;
-
-const SupportsChorusFlower = [
-	BlockType.EndStone,
-] as const;
-
-const BirchLogs = [
-	BlockType.BirchLog,
-	BlockType.BirchWood,
-	BlockType.StrippedBirchLog,
-	BlockType.StrippedBirchWood,
-] as const;
-
-const SupportsNetherSprouts = [
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const StonePressurePlates = [
-	BlockType.StonePressurePlate,
-	BlockType.PolishedBlackstonePressurePlate,
-] as const;
-
-const SupportsAzalea = [
-	BlockType.Clay,
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const PressurePlates = [
-	BlockType.LightWeightedPressurePlate,
-	BlockType.HeavyWeightedPressurePlate,
-	BlockType.OakPressurePlate,
-	BlockType.SprucePressurePlate,
-	BlockType.BirchPressurePlate,
-	BlockType.JunglePressurePlate,
-	BlockType.AcaciaPressurePlate,
-	BlockType.DarkOakPressurePlate,
-	BlockType.PaleOakPressurePlate,
-	BlockType.CrimsonPressurePlate,
-	BlockType.WarpedPressurePlate,
-	BlockType.MangrovePressurePlate,
-	BlockType.BambooPressurePlate,
-	BlockType.CherryPressurePlate,
-	BlockType.StonePressurePlate,
-	BlockType.PolishedBlackstonePressurePlate,
-] as const;
-
-const SupportsWarpedFungus = [
-	BlockType.Mycelium,
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const CoralPlants = [
-	BlockType.TubeCoral,
-	BlockType.BrainCoral,
-	BlockType.BubbleCoral,
-	BlockType.FireCoral,
-	BlockType.HornCoral,
-] as const;
-
-const IncorrectForDiamondTool = [
-] as const;
-
-const SupportsCrimsonFungus = [
-	BlockType.Mycelium,
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const SupportsMangrovePropagule = [
-	BlockType.Clay,
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const FeaturesCannotReplace = [
-	BlockType.Bedrock,
-	BlockType.Spawner,
-	BlockType.Chest,
-	BlockType.EndPortalFrame,
-	BlockType.ReinforcedDeepslate,
-	BlockType.TrialSpawner,
-	BlockType.Vault,
-] as const;
-
-const SupportsHangingMangrovePropagule = [
-	BlockType.MangroveLeaves,
-] as const;
-
-const StoneButtons = [
-	BlockType.StoneButton,
-	BlockType.PolishedBlackstoneButton,
-] as const;
-
-const SupportsNetherWart = [
-	BlockType.SoulSand,
-] as const;
-
-const Planks = [
-	BlockType.OakPlanks,
-	BlockType.SprucePlanks,
-	BlockType.BirchPlanks,
-	BlockType.JunglePlanks,
-	BlockType.AcaciaPlanks,
-	BlockType.DarkOakPlanks,
-	BlockType.PaleOakPlanks,
-	BlockType.CrimsonPlanks,
-	BlockType.WarpedPlanks,
-	BlockType.MangrovePlanks,
-	BlockType.BambooPlanks,
-	BlockType.CherryPlanks,
-] as const;
-
-const SupportsWarpedRoots = [
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const WoodenSlabs = [
-	BlockType.OakSlab,
-	BlockType.SpruceSlab,
-	BlockType.BirchSlab,
-	BlockType.JungleSlab,
-	BlockType.AcaciaSlab,
-	BlockType.DarkOakSlab,
-	BlockType.PaleOakSlab,
-	BlockType.CrimsonSlab,
-	BlockType.WarpedSlab,
-	BlockType.MangroveSlab,
-	BlockType.BambooSlab,
-	BlockType.CherrySlab,
-] as const;
-
-const SupportsCrimsonRoots = [
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const Wool = [
-	BlockType.WhiteWool,
-	BlockType.OrangeWool,
-	BlockType.MagentaWool,
-	BlockType.LightBlueWool,
-	BlockType.YellowWool,
-	BlockType.LimeWool,
-	BlockType.PinkWool,
-	BlockType.GrayWool,
-	BlockType.LightGrayWool,
-	BlockType.CyanWool,
-	BlockType.PurpleWool,
-	BlockType.BlueWool,
-	BlockType.BrownWool,
-	BlockType.GreenWool,
-	BlockType.RedWool,
-	BlockType.BlackWool,
-] as const;
-
-const SupportsWitherRose = [
-	BlockType.Netherrack,
-	BlockType.SoulSand,
-	BlockType.SoulSoil,
-	BlockType.Farmland,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Mycelium,
-] as const;
-
-const Buttons = [
-	BlockType.OakButton,
-	BlockType.SpruceButton,
-	BlockType.BirchButton,
-	BlockType.JungleButton,
-	BlockType.AcaciaButton,
-	BlockType.DarkOakButton,
-	BlockType.PaleOakButton,
-	BlockType.CrimsonButton,
-	BlockType.WarpedButton,
-	BlockType.MangroveButton,
-	BlockType.BambooButton,
-	BlockType.CherryButton,
-	BlockType.StoneButton,
-	BlockType.PolishedBlackstoneButton,
-] as const;
-
-const SupportsCocoa = [
-	BlockType.JungleLog,
-	BlockType.JungleWood,
-	BlockType.StrippedJungleLog,
-	BlockType.StrippedJungleWood,
-] as const;
-
-const Saplings = [
-	BlockType.OakSapling,
-	BlockType.SpruceSapling,
-	BlockType.BirchSapling,
-	BlockType.JungleSapling,
-	BlockType.AcaciaSapling,
-	BlockType.DarkOakSapling,
-	BlockType.PaleOakSapling,
-	BlockType.Azalea,
-	BlockType.FloweringAzalea,
-	BlockType.MangrovePropagule,
-	BlockType.CherrySapling,
-] as const;
-
-const StoneBricks = [
-	BlockType.StoneBricks,
-	BlockType.MossyStoneBricks,
-	BlockType.CrackedStoneBricks,
-	BlockType.ChiseledStoneBricks,
-] as const;
-
-const SupportsLilyPad = [
-	BlockType.Ice,
-	BlockType.FrostedIce,
-] as const;
-
-const WoodenButtons = [
-	BlockType.OakButton,
-	BlockType.SpruceButton,
-	BlockType.BirchButton,
-	BlockType.JungleButton,
-	BlockType.AcaciaButton,
-	BlockType.DarkOakButton,
-	BlockType.PaleOakButton,
-	BlockType.CrimsonButton,
-	BlockType.WarpedButton,
-	BlockType.MangroveButton,
-	BlockType.BambooButton,
-	BlockType.CherryButton,
-] as const;
-
-const SupportsFrogspawn = [
-] as const;
-
-const WoolCarpets = [
-	BlockType.WhiteCarpet,
-	BlockType.OrangeCarpet,
-	BlockType.MagentaCarpet,
-	BlockType.LightBlueCarpet,
-	BlockType.YellowCarpet,
-	BlockType.LimeCarpet,
-	BlockType.PinkCarpet,
-	BlockType.GrayCarpet,
-	BlockType.LightGrayCarpet,
-	BlockType.CyanCarpet,
-	BlockType.PurpleCarpet,
-	BlockType.BlueCarpet,
-	BlockType.BrownCarpet,
-	BlockType.GreenCarpet,
-	BlockType.RedCarpet,
-	BlockType.BlackCarpet,
-] as const;
-
-const SupportOverrideCactusFlower = [
-	BlockType.Cactus,
-	BlockType.Farmland,
-] as const;
-
-const WoodenDoors = [
-	BlockType.OakDoor,
-	BlockType.SpruceDoor,
-	BlockType.BirchDoor,
-	BlockType.JungleDoor,
-	BlockType.AcaciaDoor,
-	BlockType.DarkOakDoor,
-	BlockType.PaleOakDoor,
-	BlockType.CrimsonDoor,
-	BlockType.WarpedDoor,
-	BlockType.MangroveDoor,
-	BlockType.BambooDoor,
-	BlockType.CherryDoor,
-] as const;
-
-const SupportOverrideSnowLayer = [
-	BlockType.HoneyBlock,
-	BlockType.SoulSand,
-	BlockType.Mud,
-] as const;
-
-const WoodenStairs = [
-	BlockType.OakStairs,
-	BlockType.SpruceStairs,
-	BlockType.BirchStairs,
-	BlockType.JungleStairs,
-	BlockType.AcaciaStairs,
-	BlockType.DarkOakStairs,
-	BlockType.PaleOakStairs,
-	BlockType.CrimsonStairs,
-	BlockType.WarpedStairs,
-	BlockType.MangroveStairs,
-	BlockType.BambooStairs,
-	BlockType.CherryStairs,
-] as const;
-
-const CannotSupportSeagrass = [
-	BlockType.MagmaBlock,
-] as const;
-
-const AcaciaLogs = [
-	BlockType.AcaciaLog,
-	BlockType.AcaciaWood,
-	BlockType.StrippedAcaciaLog,
-	BlockType.StrippedAcaciaWood,
-] as const;
-
-const CannotSupportKelp = [
-	BlockType.MagmaBlock,
-] as const;
-
-const WoodenFences = [
-	BlockType.OakFence,
-	BlockType.AcaciaFence,
-	BlockType.DarkOakFence,
-	BlockType.PaleOakFence,
-	BlockType.SpruceFence,
-	BlockType.BirchFence,
-	BlockType.JungleFence,
-	BlockType.CrimsonFence,
-	BlockType.WarpedFence,
-	BlockType.MangroveFence,
-	BlockType.BambooFence,
-	BlockType.CherryFence,
-] as const;
-
-const CannotSupportSnowLayer = [
-	BlockType.Ice,
-	BlockType.PackedIce,
-	BlockType.Barrier,
-] as const;
-
-const SpruceLogs = [
-	BlockType.SpruceLog,
-	BlockType.SpruceWood,
-	BlockType.StrippedSpruceLog,
-	BlockType.StrippedSpruceWood,
-] as const;
-
-const OverridesMushroomLightRequirement = [
-	BlockType.Mycelium,
-	BlockType.Podzol,
-	BlockType.CrimsonNylium,
-	BlockType.WarpedNylium,
-] as const;
-
-const MangroveLogs = [
-	BlockType.MangroveLog,
-	BlockType.MangroveWood,
-	BlockType.StrippedMangroveLog,
-	BlockType.StrippedMangroveWood,
-] as const;
-
-const GrowsCrops = [
-	BlockType.Farmland,
-] as const;
-
-const FenceGates = [
-	BlockType.AcaciaFenceGate,
-	BlockType.BirchFenceGate,
-	BlockType.DarkOakFenceGate,
-	BlockType.PaleOakFenceGate,
-	BlockType.JungleFenceGate,
-	BlockType.OakFenceGate,
-	BlockType.SpruceFenceGate,
-	BlockType.CrimsonFenceGate,
-	BlockType.WarpedFenceGate,
-	BlockType.MangroveFenceGate,
-	BlockType.BambooFenceGate,
-	BlockType.CherryFenceGate,
-] as const;
-
-const SnapsGoatHorn = [
-	BlockType.Stone,
-	BlockType.PackedIce,
-	BlockType.IronOre,
-	BlockType.CoalOre,
-	BlockType.CopperOre,
-	BlockType.EmeraldOre,
-	BlockType.AcaciaLog,
-	BlockType.BirchLog,
-	BlockType.OakLog,
-	BlockType.JungleLog,
-	BlockType.SpruceLog,
-	BlockType.DarkOakLog,
-	BlockType.PaleOakLog,
-	BlockType.MangroveLog,
-	BlockType.CherryLog,
-] as const;
-
-const InvalidSpawnInside = [
-	BlockType.EndPortal,
-	BlockType.EndGateway,
-] as const;
-
-const JungleLogs = [
-	BlockType.JungleLog,
-	BlockType.JungleWood,
-	BlockType.StrippedJungleLog,
-	BlockType.StrippedJungleWood,
-] as const;
-
-const TrailRuinsReplaceable = [
-	BlockType.Gravel,
-] as const;
-
-const CherryLogs = [
-	BlockType.CherryLog,
-	BlockType.CherryWood,
-	BlockType.StrippedCherryLog,
-	BlockType.StrippedCherryWood,
-] as const;
-
-const SnifferDiggableBlock = [
-	BlockType.GrassBlock,
-	BlockType.Podzol,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.RootedDirt,
-	BlockType.Mud,
-	BlockType.MuddyMangroveRoots,
-	BlockType.MossBlock,
-	BlockType.PaleMossBlock,
-] as const;
-
-const CrimsonStems = [
-	BlockType.CrimsonStem,
-	BlockType.StrippedCrimsonStem,
-	BlockType.CrimsonHyphae,
-	BlockType.StrippedCrimsonHyphae,
-] as const;
-
-const WartBlocks = [
-	BlockType.NetherWartBlock,
-	BlockType.WarpedWartBlock,
-] as const;
-
-const SnifferEggHatchBoost = [
-	BlockType.MossBlock,
-] as const;
-
-const WarpedStems = [
-	BlockType.WarpedStem,
-	BlockType.StrippedWarpedStem,
-	BlockType.WarpedHyphae,
-	BlockType.StrippedWarpedHyphae,
-] as const;
-
-const EnchantmentPowerProvider = [
-	BlockType.Bookshelf,
 ] as const;
 
 const LogsThatBurn = [
@@ -3747,68 +1886,28 @@ const LogsThatBurn = [
 	BlockType.StrippedCherryWood,
 ] as const;
 
-const Replaceable = [
-	BlockType.Air,
-	BlockType.Water,
-	BlockType.Lava,
-	BlockType.ShortGrass,
-	BlockType.Fern,
-	BlockType.DeadBush,
-	BlockType.Bush,
-	BlockType.ShortDryGrass,
-	BlockType.TallDryGrass,
-	BlockType.Seagrass,
-	BlockType.TallSeagrass,
-	BlockType.Fire,
-	BlockType.SoulFire,
-	BlockType.Snow,
-	BlockType.Vine,
-	BlockType.GlowLichen,
-	BlockType.ResinClump,
-	BlockType.Light,
-	BlockType.TallGrass,
-	BlockType.LargeFern,
-	BlockType.StructureVoid,
-	BlockType.VoidAir,
-	BlockType.CaveAir,
-	BlockType.BubbleColumn,
-	BlockType.WarpedRoots,
-	BlockType.NetherSprouts,
-	BlockType.CrimsonRoots,
-	BlockType.LeafLitter,
-	BlockType.HangingRoots,
-] as const;
-
-const EnchantmentPowerTransmitter = [
-	BlockType.Air,
-	BlockType.Water,
-	BlockType.Lava,
-	BlockType.ShortGrass,
-	BlockType.Fern,
-	BlockType.DeadBush,
-	BlockType.Bush,
-	BlockType.ShortDryGrass,
-	BlockType.TallDryGrass,
-	BlockType.Seagrass,
-	BlockType.TallSeagrass,
-	BlockType.Fire,
-	BlockType.SoulFire,
-	BlockType.Snow,
-	BlockType.Vine,
-	BlockType.GlowLichen,
-	BlockType.ResinClump,
-	BlockType.Light,
-	BlockType.TallGrass,
-	BlockType.LargeFern,
-	BlockType.StructureVoid,
-	BlockType.VoidAir,
-	BlockType.CaveAir,
-	BlockType.BubbleColumn,
-	BlockType.WarpedRoots,
-	BlockType.NetherSprouts,
-	BlockType.CrimsonRoots,
-	BlockType.LeafLitter,
-	BlockType.HangingRoots,
+const LushGroundReplaceable = [
+	BlockType.Clay,
+	BlockType.Gravel,
+	BlockType.Sand,
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.CaveVinesPlant,
+	BlockType.CaveVines,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
 ] as const;
 
 const MaintainsFarmland = [
@@ -3838,104 +1937,32 @@ const MaintainsFarmland = [
 	BlockType.CherryFenceGate,
 ] as const;
 
-const CamelSandStepSoundBlocks = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SuspiciousSand,
-	BlockType.WhiteConcretePowder,
-	BlockType.OrangeConcretePowder,
-	BlockType.MagentaConcretePowder,
-	BlockType.LightBlueConcretePowder,
-	BlockType.YellowConcretePowder,
-	BlockType.LimeConcretePowder,
-	BlockType.PinkConcretePowder,
-	BlockType.GrayConcretePowder,
-	BlockType.LightGrayConcretePowder,
-	BlockType.CyanConcretePowder,
-	BlockType.PurpleConcretePowder,
-	BlockType.BlueConcretePowder,
-	BlockType.BrownConcretePowder,
-	BlockType.GreenConcretePowder,
-	BlockType.RedConcretePowder,
-	BlockType.BlackConcretePowder,
+const MangroveLogs = [
+	BlockType.MangroveLog,
+	BlockType.MangroveWood,
+	BlockType.StrippedMangroveLog,
+	BlockType.StrippedMangroveWood,
 ] as const;
 
-const HappyGhastAvoids = [
-	BlockType.SweetBerryBush,
-	BlockType.Cactus,
-	BlockType.WitherRose,
-	BlockType.MagmaBlock,
-	BlockType.Fire,
-	BlockType.PointedDripstone,
-] as const;
-
-const DoesNotBlockHoppers = [
-	BlockType.BeeNest,
-	BlockType.Beehive,
-] as const;
-
-const BlocksWindChargeExplosions = [
-	BlockType.Barrier,
-	BlockType.Bedrock,
-] as const;
-
-const TriggersAmbientDesertSandBlockSounds = [
-	BlockType.Sand,
-	BlockType.RedSand,
-] as const;
-
-const TriggersAmbientDesertDryVegetationBlockSounds = [
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.Terracotta,
-	BlockType.WhiteTerracotta,
-	BlockType.OrangeTerracotta,
-	BlockType.MagentaTerracotta,
-	BlockType.LightBlueTerracotta,
-	BlockType.YellowTerracotta,
-	BlockType.LimeTerracotta,
-	BlockType.PinkTerracotta,
-	BlockType.GrayTerracotta,
-	BlockType.LightGrayTerracotta,
-	BlockType.CyanTerracotta,
-	BlockType.PurpleTerracotta,
-	BlockType.BlueTerracotta,
-	BlockType.BrownTerracotta,
-	BlockType.GreenTerracotta,
-	BlockType.RedTerracotta,
-	BlockType.BlackTerracotta,
-] as const;
-
-const MineableHoe = [
-	BlockType.NetherWartBlock,
-	BlockType.WarpedWartBlock,
-	BlockType.HayBlock,
-	BlockType.DriedKelpBlock,
-	BlockType.Target,
-	BlockType.Shroomlight,
-	BlockType.Sponge,
-	BlockType.WetSponge,
-	BlockType.SculkSensor,
-	BlockType.CalibratedSculkSensor,
-	BlockType.MossBlock,
-	BlockType.MossCarpet,
-	BlockType.PaleMossBlock,
-	BlockType.PaleMossCarpet,
-	BlockType.Sculk,
-	BlockType.SculkCatalyst,
-	BlockType.SculkVein,
-	BlockType.SculkShrieker,
-	BlockType.JungleLeaves,
-	BlockType.OakLeaves,
-	BlockType.SpruceLeaves,
-	BlockType.PaleOakLeaves,
-	BlockType.DarkOakLeaves,
-	BlockType.AcaciaLeaves,
-	BlockType.BirchLeaves,
-	BlockType.AzaleaLeaves,
-	BlockType.FloweringAzaleaLeaves,
+const MangroveLogsCanGrowThrough = [
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MangroveRoots,
 	BlockType.MangroveLeaves,
-	BlockType.CherryLeaves,
+	BlockType.MangroveLog,
+	BlockType.MangrovePropagule,
+	BlockType.MossCarpet,
+	BlockType.Vine,
+] as const;
+
+const MangroveRootsCanGrowThrough = [
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MangroveRoots,
+	BlockType.MossCarpet,
+	BlockType.Vine,
+	BlockType.MangrovePropagule,
+	BlockType.Snow,
 ] as const;
 
 const MineableAxe = [
@@ -4227,43 +2254,36 @@ const MineableAxe = [
 	BlockType.StrippedCherryWood,
 ] as const;
 
-const MineableShovel = [
-	BlockType.Clay,
-	BlockType.Dirt,
-	BlockType.CoarseDirt,
-	BlockType.Podzol,
-	BlockType.Farmland,
-	BlockType.GrassBlock,
-	BlockType.Gravel,
-	BlockType.Mycelium,
-	BlockType.Sand,
-	BlockType.RedSand,
-	BlockType.SnowBlock,
-	BlockType.Snow,
-	BlockType.SoulSand,
-	BlockType.DirtPath,
-	BlockType.SoulSoil,
-	BlockType.RootedDirt,
-	BlockType.MuddyMangroveRoots,
-	BlockType.Mud,
-	BlockType.SuspiciousSand,
-	BlockType.SuspiciousGravel,
-	BlockType.WhiteConcretePowder,
-	BlockType.OrangeConcretePowder,
-	BlockType.MagentaConcretePowder,
-	BlockType.LightBlueConcretePowder,
-	BlockType.YellowConcretePowder,
-	BlockType.LimeConcretePowder,
-	BlockType.PinkConcretePowder,
-	BlockType.GrayConcretePowder,
-	BlockType.LightGrayConcretePowder,
-	BlockType.CyanConcretePowder,
-	BlockType.PurpleConcretePowder,
-	BlockType.BlueConcretePowder,
-	BlockType.BrownConcretePowder,
-	BlockType.GreenConcretePowder,
-	BlockType.RedConcretePowder,
-	BlockType.BlackConcretePowder,
+const MineableHoe = [
+	BlockType.NetherWartBlock,
+	BlockType.WarpedWartBlock,
+	BlockType.HayBlock,
+	BlockType.DriedKelpBlock,
+	BlockType.Target,
+	BlockType.Shroomlight,
+	BlockType.Sponge,
+	BlockType.WetSponge,
+	BlockType.SculkSensor,
+	BlockType.CalibratedSculkSensor,
+	BlockType.MossBlock,
+	BlockType.MossCarpet,
+	BlockType.PaleMossBlock,
+	BlockType.PaleMossCarpet,
+	BlockType.Sculk,
+	BlockType.SculkCatalyst,
+	BlockType.SculkVein,
+	BlockType.SculkShrieker,
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
 ] as const;
 
 const MineablePickaxe = [
@@ -4755,4 +2775,1984 @@ const MineablePickaxe = [
 	BlockType.WaxedOxidizedCopperBars,
 ] as const;
 
-export { Logs, Sand, SmeltsToGlass, WoodenPressurePlates, Slabs, Anvil, Walls, Rails, Stairs, WoodenTrapdoors, Leaves, Trapdoors, SmallFlowers, Flowers, Beds, Fences, SoulFireBaseBlocks, Candles, DampensVibrations, GoldOres, IronOres, DiamondOres, RedstoneOres, LapisOres, CoalOres, EmeraldOres, CopperOres, Dirt, Mud, MossBlocks, GrassBlocks, Terracotta, CompletesFindTreeTutorial, ShulkerBoxes, CopperChests, LightningRods, CopperGolemStatues, Copper, Chains, WoodenShelves, Lanterns, Bars, StandingSigns, CeilingHangingSigns, MobInteractableDoors, BeeAttractive, OverworldNaturalLogs, EndermanHoldable, FlowerPots, Banners, Corals, Doors, WallCorals, CoralBlocks, BambooBlocks, OakLogs, ValidSpawn, Ice, UnderwaterBonemeals, Impermeable, Signs, WallSigns, AllHangingSigns, WallHangingSigns, AllSigns, DragonImmune, DragonTransparent, WitherImmune, WitherSummonBaseBlocks, Beehives, Crops, BeeGrowables, Portals, Fire, Nylium, BeaconBaseBlocks, SoulSpeedBlocks, WallPostOverride, Climbable, FallDamageResetting, PiglinRepellents, HoglinRepellents, StriderWarmBlocks, Campfires, GuardedByPiglins, PreventMobSpawningInside, UnstableBottomCenter, EdibleForSheep, CanGlideThrough, InfiniburnOverworld, InfiniburnNether, InfiniburnEnd, StoneOreReplaceables, DeepslateOreReplaceables, SubstrateOverworld, BaseStoneOverworld, BaseStoneNether, OverworldCarverReplaceables, NetherCarverReplaceables, BeneathTreePodzolReplaceable, BeneathBambooPodzolReplaceable, CannotReplaceBelowTreeTrunk, CandleCakes, CrystalSoundBlocks, Cauldrons, InsideStepSoundBlocks, CombinationStepSoundBlocks, DripstoneReplaceableBlocks, CaveVines, MossReplaceable, LushGroundReplaceable, AzaleaRootReplaceable, IceSpikeReplaceable, ForestRockCanPlaceOn, HugeBrownMushroomCanPlaceOn, HugeRedMushroomCanPlaceOn, Snow, OccludesVibrationSignals, SwordEfficient, SwordInstantlyMines, NeedsDiamondTool, NeedsIronTool, IncorrectForNetheriteTool, NeedsStoneTool, IncorrectForIronTool, IncorrectForStoneTool, IncorrectForCopperTool, IncorrectForGoldTool, IncorrectForWoodenTool, DarkOakLogs, LavaPoolStoneCannotReplace, GeodeInvalidBlocks, AnimalsSpawnableOn, ArmadilloSpawnableOn, AxolotlsSpawnableOn, GoatsSpawnableOn, MooshroomsSpawnableOn, ParrotsSpawnableOn, PolarBearsSpawnableOnAlternate, RabbitsSpawnableOn, FoxesSpawnableOn, WolvesSpawnableOn, FrogsSpawnableOn, BatsSpawnableOn, CamelsSpawnableOn, BadlandsTerracotta, ConcretePowder, AzaleaGrowsOn, FrogPreferJumpTo, SculkReplaceableWorldGen, SculkReplaceable, VibrationResonators, ConvertableToMud, AncientCityReplaceable, MangroveLogsCanGrowThrough, MangroveRootsCanGrowThrough, ReplaceableByTrees, EnablesBubbleColumnDragDown, ReplaceableByMushrooms, EnablesBubbleColumnPushUp, PreventsNearbyLeafDecay, SupportsVegetation, SupportsDryVegetation, SupportsCrops, SupportsStemCrops, SupportsStemFruit, SupportsPumpkinStem, SupportsMelonStem, SupportsPumpkinStemFruit, SupportsMelonStemFruit, SupportsSugarCane, SupportsSugarCaneAdjacently, SupportsBamboo, SupportsSmallDripleaf, SupportsBigDripleaf, TriggersAmbientDriedGhastBlockSounds, SupportsCactus, Air, SupportsChorusPlant, PaleOakLogs, SupportsChorusFlower, BirchLogs, SupportsNetherSprouts, StonePressurePlates, SupportsAzalea, PressurePlates, SupportsWarpedFungus, CoralPlants, IncorrectForDiamondTool, SupportsCrimsonFungus, SupportsMangrovePropagule, FeaturesCannotReplace, SupportsHangingMangrovePropagule, StoneButtons, SupportsNetherWart, Planks, SupportsWarpedRoots, WoodenSlabs, SupportsCrimsonRoots, Wool, SupportsWitherRose, Buttons, SupportsCocoa, Saplings, StoneBricks, SupportsLilyPad, WoodenButtons, SupportsFrogspawn, WoolCarpets, SupportOverrideCactusFlower, WoodenDoors, SupportOverrideSnowLayer, WoodenStairs, CannotSupportSeagrass, AcaciaLogs, CannotSupportKelp, WoodenFences, CannotSupportSnowLayer, SpruceLogs, OverridesMushroomLightRequirement, MangroveLogs, GrowsCrops, FenceGates, SnapsGoatHorn, InvalidSpawnInside, JungleLogs, TrailRuinsReplaceable, CherryLogs, SnifferDiggableBlock, CrimsonStems, WartBlocks, SnifferEggHatchBoost, WarpedStems, EnchantmentPowerProvider, LogsThatBurn, Replaceable, EnchantmentPowerTransmitter, MaintainsFarmland, CamelSandStepSoundBlocks, HappyGhastAvoids, DoesNotBlockHoppers, BlocksWindChargeExplosions, TriggersAmbientDesertSandBlockSounds, TriggersAmbientDesertDryVegetationBlockSounds, MineableHoe, MineableAxe, MineableShovel, MineablePickaxe };
+const MineableShovel = [
+	BlockType.Clay,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.Podzol,
+	BlockType.Farmland,
+	BlockType.GrassBlock,
+	BlockType.Gravel,
+	BlockType.Mycelium,
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SnowBlock,
+	BlockType.Snow,
+	BlockType.SoulSand,
+	BlockType.DirtPath,
+	BlockType.SoulSoil,
+	BlockType.RootedDirt,
+	BlockType.MuddyMangroveRoots,
+	BlockType.Mud,
+	BlockType.SuspiciousSand,
+	BlockType.SuspiciousGravel,
+	BlockType.WhiteConcretePowder,
+	BlockType.OrangeConcretePowder,
+	BlockType.MagentaConcretePowder,
+	BlockType.LightBlueConcretePowder,
+	BlockType.YellowConcretePowder,
+	BlockType.LimeConcretePowder,
+	BlockType.PinkConcretePowder,
+	BlockType.GrayConcretePowder,
+	BlockType.LightGrayConcretePowder,
+	BlockType.CyanConcretePowder,
+	BlockType.PurpleConcretePowder,
+	BlockType.BlueConcretePowder,
+	BlockType.BrownConcretePowder,
+	BlockType.GreenConcretePowder,
+	BlockType.RedConcretePowder,
+	BlockType.BlackConcretePowder,
+] as const;
+
+const MobInteractableDoors = [
+	BlockType.CopperDoor,
+	BlockType.ExposedCopperDoor,
+	BlockType.WeatheredCopperDoor,
+	BlockType.OxidizedCopperDoor,
+	BlockType.WaxedCopperDoor,
+	BlockType.WaxedExposedCopperDoor,
+	BlockType.WaxedWeatheredCopperDoor,
+	BlockType.WaxedOxidizedCopperDoor,
+	BlockType.OakDoor,
+	BlockType.SpruceDoor,
+	BlockType.BirchDoor,
+	BlockType.JungleDoor,
+	BlockType.AcaciaDoor,
+	BlockType.DarkOakDoor,
+	BlockType.PaleOakDoor,
+	BlockType.CrimsonDoor,
+	BlockType.WarpedDoor,
+	BlockType.MangroveDoor,
+	BlockType.BambooDoor,
+	BlockType.CherryDoor,
+] as const;
+
+const MooshroomsSpawnableOn = [
+	BlockType.Mycelium,
+] as const;
+
+const MossBlocks = [
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+] as const;
+
+const MossReplaceable = [
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.CaveVinesPlant,
+	BlockType.CaveVines,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const Mud = [
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+] as const;
+
+const NeedsDiamondTool = [
+	BlockType.Obsidian,
+	BlockType.CryingObsidian,
+	BlockType.NetheriteBlock,
+	BlockType.RespawnAnchor,
+	BlockType.AncientDebris,
+] as const;
+
+const NeedsIronTool = [
+	BlockType.DiamondBlock,
+	BlockType.DiamondOre,
+	BlockType.DeepslateDiamondOre,
+	BlockType.EmeraldOre,
+	BlockType.DeepslateEmeraldOre,
+	BlockType.EmeraldBlock,
+	BlockType.GoldBlock,
+	BlockType.RawGoldBlock,
+	BlockType.GoldOre,
+	BlockType.DeepslateGoldOre,
+	BlockType.RedstoneOre,
+	BlockType.DeepslateRedstoneOre,
+] as const;
+
+const NeedsStoneTool = [
+	BlockType.IronBlock,
+	BlockType.RawIronBlock,
+	BlockType.IronOre,
+	BlockType.DeepslateIronOre,
+	BlockType.LapisBlock,
+	BlockType.LapisOre,
+	BlockType.DeepslateLapisOre,
+	BlockType.CopperBlock,
+	BlockType.RawCopperBlock,
+	BlockType.CopperOre,
+	BlockType.DeepslateCopperOre,
+	BlockType.CutCopperSlab,
+	BlockType.CutCopperStairs,
+	BlockType.CutCopper,
+	BlockType.WeatheredCopper,
+	BlockType.WeatheredCutCopperSlab,
+	BlockType.WeatheredCutCopperStairs,
+	BlockType.WeatheredCutCopper,
+	BlockType.OxidizedCopper,
+	BlockType.OxidizedCutCopperSlab,
+	BlockType.OxidizedCutCopperStairs,
+	BlockType.OxidizedCutCopper,
+	BlockType.ExposedCopper,
+	BlockType.ExposedCutCopperSlab,
+	BlockType.ExposedCutCopperStairs,
+	BlockType.ExposedCutCopper,
+	BlockType.WaxedCopperBlock,
+	BlockType.WaxedCutCopperSlab,
+	BlockType.WaxedCutCopperStairs,
+	BlockType.WaxedCutCopper,
+	BlockType.WaxedWeatheredCopper,
+	BlockType.WaxedWeatheredCutCopperSlab,
+	BlockType.WaxedWeatheredCutCopperStairs,
+	BlockType.WaxedWeatheredCutCopper,
+	BlockType.WaxedExposedCopper,
+	BlockType.WaxedExposedCutCopperSlab,
+	BlockType.WaxedExposedCutCopperStairs,
+	BlockType.WaxedExposedCutCopper,
+	BlockType.WaxedOxidizedCopper,
+	BlockType.WaxedOxidizedCutCopperSlab,
+	BlockType.WaxedOxidizedCutCopperStairs,
+	BlockType.WaxedOxidizedCutCopper,
+	BlockType.Crafter,
+	BlockType.ChiseledCopper,
+	BlockType.ExposedChiseledCopper,
+	BlockType.WeatheredChiseledCopper,
+	BlockType.OxidizedChiseledCopper,
+	BlockType.WaxedChiseledCopper,
+	BlockType.WaxedExposedChiseledCopper,
+	BlockType.WaxedWeatheredChiseledCopper,
+	BlockType.WaxedOxidizedChiseledCopper,
+	BlockType.CopperGrate,
+	BlockType.ExposedCopperGrate,
+	BlockType.WeatheredCopperGrate,
+	BlockType.OxidizedCopperGrate,
+	BlockType.WaxedCopperGrate,
+	BlockType.WaxedExposedCopperGrate,
+	BlockType.WaxedWeatheredCopperGrate,
+	BlockType.WaxedOxidizedCopperGrate,
+	BlockType.CopperBulb,
+	BlockType.ExposedCopperBulb,
+	BlockType.WeatheredCopperBulb,
+	BlockType.OxidizedCopperBulb,
+	BlockType.WaxedCopperBulb,
+	BlockType.WaxedExposedCopperBulb,
+	BlockType.WaxedWeatheredCopperBulb,
+	BlockType.WaxedOxidizedCopperBulb,
+	BlockType.CopperTrapdoor,
+	BlockType.ExposedCopperTrapdoor,
+	BlockType.WeatheredCopperTrapdoor,
+	BlockType.OxidizedCopperTrapdoor,
+	BlockType.WaxedCopperTrapdoor,
+	BlockType.WaxedExposedCopperTrapdoor,
+	BlockType.WaxedWeatheredCopperTrapdoor,
+	BlockType.WaxedOxidizedCopperTrapdoor,
+	BlockType.CopperChest,
+	BlockType.ExposedCopperChest,
+	BlockType.WeatheredCopperChest,
+	BlockType.OxidizedCopperChest,
+	BlockType.WaxedCopperChest,
+	BlockType.WaxedExposedCopperChest,
+	BlockType.WaxedWeatheredCopperChest,
+	BlockType.WaxedOxidizedCopperChest,
+	BlockType.LightningRod,
+	BlockType.ExposedLightningRod,
+	BlockType.WeatheredLightningRod,
+	BlockType.OxidizedLightningRod,
+	BlockType.WaxedLightningRod,
+	BlockType.WaxedExposedLightningRod,
+	BlockType.WaxedWeatheredLightningRod,
+	BlockType.WaxedOxidizedLightningRod,
+] as const;
+
+const NetherCarverReplaceables = [
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.Netherrack,
+	BlockType.Basalt,
+	BlockType.Blackstone,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.NetherWartBlock,
+	BlockType.WarpedWartBlock,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const Nylium = [
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+] as const;
+
+const OakLogs = [
+	BlockType.OakLog,
+	BlockType.OakWood,
+	BlockType.StrippedOakLog,
+	BlockType.StrippedOakWood,
+] as const;
+
+const OccludesVibrationSignals = [
+	BlockType.WhiteWool,
+	BlockType.OrangeWool,
+	BlockType.MagentaWool,
+	BlockType.LightBlueWool,
+	BlockType.YellowWool,
+	BlockType.LimeWool,
+	BlockType.PinkWool,
+	BlockType.GrayWool,
+	BlockType.LightGrayWool,
+	BlockType.CyanWool,
+	BlockType.PurpleWool,
+	BlockType.BlueWool,
+	BlockType.BrownWool,
+	BlockType.GreenWool,
+	BlockType.RedWool,
+	BlockType.BlackWool,
+] as const;
+
+const OverridesMushroomLightRequirement = [
+	BlockType.Mycelium,
+	BlockType.Podzol,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+] as const;
+
+const OverworldCarverReplaceables = [
+	BlockType.Water,
+	BlockType.Gravel,
+	BlockType.SuspiciousGravel,
+	BlockType.Sandstone,
+	BlockType.RedSandstone,
+	BlockType.Calcite,
+	BlockType.PackedIce,
+	BlockType.RawIronBlock,
+	BlockType.RawCopperBlock,
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+	BlockType.IronOre,
+	BlockType.DeepslateIronOre,
+	BlockType.CopperOre,
+	BlockType.DeepslateCopperOre,
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.PowderSnow,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const OverworldNaturalLogs = [
+	BlockType.AcaciaLog,
+	BlockType.BirchLog,
+	BlockType.OakLog,
+	BlockType.JungleLog,
+	BlockType.SpruceLog,
+	BlockType.DarkOakLog,
+	BlockType.PaleOakLog,
+	BlockType.MangroveLog,
+	BlockType.CherryLog,
+] as const;
+
+const PaleOakLogs = [
+	BlockType.PaleOakLog,
+	BlockType.PaleOakWood,
+	BlockType.StrippedPaleOakLog,
+	BlockType.StrippedPaleOakWood,
+] as const;
+
+const ParrotsSpawnableOn = [
+	BlockType.GrassBlock,
+	BlockType.Air,
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
+	BlockType.CrimsonStem,
+	BlockType.StrippedCrimsonStem,
+	BlockType.CrimsonHyphae,
+	BlockType.StrippedCrimsonHyphae,
+	BlockType.WarpedStem,
+	BlockType.StrippedWarpedStem,
+	BlockType.WarpedHyphae,
+	BlockType.StrippedWarpedHyphae,
+	BlockType.DarkOakLog,
+	BlockType.DarkOakWood,
+	BlockType.StrippedDarkOakLog,
+	BlockType.StrippedDarkOakWood,
+	BlockType.PaleOakLog,
+	BlockType.PaleOakWood,
+	BlockType.StrippedPaleOakLog,
+	BlockType.StrippedPaleOakWood,
+	BlockType.OakLog,
+	BlockType.OakWood,
+	BlockType.StrippedOakLog,
+	BlockType.StrippedOakWood,
+	BlockType.AcaciaLog,
+	BlockType.AcaciaWood,
+	BlockType.StrippedAcaciaLog,
+	BlockType.StrippedAcaciaWood,
+	BlockType.BirchLog,
+	BlockType.BirchWood,
+	BlockType.StrippedBirchLog,
+	BlockType.StrippedBirchWood,
+	BlockType.JungleLog,
+	BlockType.JungleWood,
+	BlockType.StrippedJungleLog,
+	BlockType.StrippedJungleWood,
+	BlockType.SpruceLog,
+	BlockType.SpruceWood,
+	BlockType.StrippedSpruceLog,
+	BlockType.StrippedSpruceWood,
+	BlockType.MangroveLog,
+	BlockType.MangroveWood,
+	BlockType.StrippedMangroveLog,
+	BlockType.StrippedMangroveWood,
+	BlockType.CherryLog,
+	BlockType.CherryWood,
+	BlockType.StrippedCherryLog,
+	BlockType.StrippedCherryWood,
+] as const;
+
+const PiglinRepellents = [
+	BlockType.SoulFire,
+	BlockType.SoulTorch,
+	BlockType.SoulLantern,
+	BlockType.SoulWallTorch,
+	BlockType.SoulCampfire,
+] as const;
+
+const Planks = [
+	BlockType.OakPlanks,
+	BlockType.SprucePlanks,
+	BlockType.BirchPlanks,
+	BlockType.JunglePlanks,
+	BlockType.AcaciaPlanks,
+	BlockType.DarkOakPlanks,
+	BlockType.PaleOakPlanks,
+	BlockType.CrimsonPlanks,
+	BlockType.WarpedPlanks,
+	BlockType.MangrovePlanks,
+	BlockType.BambooPlanks,
+	BlockType.CherryPlanks,
+] as const;
+
+const PolarBearsSpawnableOnAlternate = [
+	BlockType.Ice,
+] as const;
+
+const Portals = [
+	BlockType.NetherPortal,
+	BlockType.EndPortal,
+	BlockType.EndGateway,
+] as const;
+
+const PressurePlates = [
+	BlockType.LightWeightedPressurePlate,
+	BlockType.HeavyWeightedPressurePlate,
+	BlockType.OakPressurePlate,
+	BlockType.SprucePressurePlate,
+	BlockType.BirchPressurePlate,
+	BlockType.JunglePressurePlate,
+	BlockType.AcaciaPressurePlate,
+	BlockType.DarkOakPressurePlate,
+	BlockType.PaleOakPressurePlate,
+	BlockType.CrimsonPressurePlate,
+	BlockType.WarpedPressurePlate,
+	BlockType.MangrovePressurePlate,
+	BlockType.BambooPressurePlate,
+	BlockType.CherryPressurePlate,
+	BlockType.StonePressurePlate,
+	BlockType.PolishedBlackstonePressurePlate,
+] as const;
+
+const PreventMobSpawningInside = [
+	BlockType.Rail,
+	BlockType.PoweredRail,
+	BlockType.DetectorRail,
+	BlockType.ActivatorRail,
+] as const;
+
+const PreventsNearbyLeafDecay = [
+	BlockType.CrimsonStem,
+	BlockType.StrippedCrimsonStem,
+	BlockType.CrimsonHyphae,
+	BlockType.StrippedCrimsonHyphae,
+	BlockType.WarpedStem,
+	BlockType.StrippedWarpedStem,
+	BlockType.WarpedHyphae,
+	BlockType.StrippedWarpedHyphae,
+	BlockType.DarkOakLog,
+	BlockType.DarkOakWood,
+	BlockType.StrippedDarkOakLog,
+	BlockType.StrippedDarkOakWood,
+	BlockType.PaleOakLog,
+	BlockType.PaleOakWood,
+	BlockType.StrippedPaleOakLog,
+	BlockType.StrippedPaleOakWood,
+	BlockType.OakLog,
+	BlockType.OakWood,
+	BlockType.StrippedOakLog,
+	BlockType.StrippedOakWood,
+	BlockType.AcaciaLog,
+	BlockType.AcaciaWood,
+	BlockType.StrippedAcaciaLog,
+	BlockType.StrippedAcaciaWood,
+	BlockType.BirchLog,
+	BlockType.BirchWood,
+	BlockType.StrippedBirchLog,
+	BlockType.StrippedBirchWood,
+	BlockType.JungleLog,
+	BlockType.JungleWood,
+	BlockType.StrippedJungleLog,
+	BlockType.StrippedJungleWood,
+	BlockType.SpruceLog,
+	BlockType.SpruceWood,
+	BlockType.StrippedSpruceLog,
+	BlockType.StrippedSpruceWood,
+	BlockType.MangroveLog,
+	BlockType.MangroveWood,
+	BlockType.StrippedMangroveLog,
+	BlockType.StrippedMangroveWood,
+	BlockType.CherryLog,
+	BlockType.CherryWood,
+	BlockType.StrippedCherryLog,
+	BlockType.StrippedCherryWood,
+] as const;
+
+const RabbitsSpawnableOn = [
+	BlockType.GrassBlock,
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.Sand,
+] as const;
+
+const Rails = [
+	BlockType.Rail,
+	BlockType.PoweredRail,
+	BlockType.DetectorRail,
+	BlockType.ActivatorRail,
+] as const;
+
+const RedstoneOres = [
+	BlockType.RedstoneOre,
+	BlockType.DeepslateRedstoneOre,
+] as const;
+
+const Replaceable = [
+	BlockType.Air,
+	BlockType.Water,
+	BlockType.Lava,
+	BlockType.ShortGrass,
+	BlockType.Fern,
+	BlockType.DeadBush,
+	BlockType.Bush,
+	BlockType.ShortDryGrass,
+	BlockType.TallDryGrass,
+	BlockType.Seagrass,
+	BlockType.TallSeagrass,
+	BlockType.Fire,
+	BlockType.SoulFire,
+	BlockType.Snow,
+	BlockType.Vine,
+	BlockType.GlowLichen,
+	BlockType.ResinClump,
+	BlockType.Light,
+	BlockType.TallGrass,
+	BlockType.LargeFern,
+	BlockType.StructureVoid,
+	BlockType.VoidAir,
+	BlockType.CaveAir,
+	BlockType.BubbleColumn,
+	BlockType.WarpedRoots,
+	BlockType.NetherSprouts,
+	BlockType.CrimsonRoots,
+	BlockType.LeafLitter,
+	BlockType.HangingRoots,
+] as const;
+
+const ReplaceableByMushrooms = [
+	BlockType.PaleMossCarpet,
+	BlockType.ShortGrass,
+	BlockType.Fern,
+	BlockType.DeadBush,
+	BlockType.Vine,
+	BlockType.GlowLichen,
+	BlockType.Sunflower,
+	BlockType.Lilac,
+	BlockType.RoseBush,
+	BlockType.Peony,
+	BlockType.TallGrass,
+	BlockType.LargeFern,
+	BlockType.HangingRoots,
+	BlockType.PitcherPlant,
+	BlockType.Water,
+	BlockType.Seagrass,
+	BlockType.TallSeagrass,
+	BlockType.BrownMushroom,
+	BlockType.RedMushroom,
+	BlockType.BrownMushroomBlock,
+	BlockType.RedMushroomBlock,
+	BlockType.WarpedRoots,
+	BlockType.NetherSprouts,
+	BlockType.CrimsonRoots,
+	BlockType.LeafLitter,
+	BlockType.ShortDryGrass,
+	BlockType.TallDryGrass,
+	BlockType.Bush,
+	BlockType.FireflyBush,
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.ClosedEyeblossom,
+	BlockType.GoldenDandelion,
+] as const;
+
+const ReplaceableByTrees = [
+	BlockType.PaleMossCarpet,
+	BlockType.ShortGrass,
+	BlockType.Fern,
+	BlockType.DeadBush,
+	BlockType.Vine,
+	BlockType.GlowLichen,
+	BlockType.Sunflower,
+	BlockType.Lilac,
+	BlockType.RoseBush,
+	BlockType.Peony,
+	BlockType.TallGrass,
+	BlockType.LargeFern,
+	BlockType.HangingRoots,
+	BlockType.PitcherPlant,
+	BlockType.Water,
+	BlockType.Seagrass,
+	BlockType.TallSeagrass,
+	BlockType.Bush,
+	BlockType.FireflyBush,
+	BlockType.WarpedRoots,
+	BlockType.NetherSprouts,
+	BlockType.CrimsonRoots,
+	BlockType.LeafLitter,
+	BlockType.ShortDryGrass,
+	BlockType.TallDryGrass,
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.ClosedEyeblossom,
+	BlockType.GoldenDandelion,
+] as const;
+
+const Sand = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+] as const;
+
+const Saplings = [
+	BlockType.OakSapling,
+	BlockType.SpruceSapling,
+	BlockType.BirchSapling,
+	BlockType.JungleSapling,
+	BlockType.AcaciaSapling,
+	BlockType.DarkOakSapling,
+	BlockType.PaleOakSapling,
+	BlockType.Azalea,
+	BlockType.FloweringAzalea,
+	BlockType.MangrovePropagule,
+	BlockType.CherrySapling,
+] as const;
+
+const SculkReplaceable = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.Gravel,
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+	BlockType.Calcite,
+	BlockType.SmoothBasalt,
+	BlockType.Clay,
+	BlockType.DripstoneBlock,
+	BlockType.EndStone,
+	BlockType.RedSandstone,
+	BlockType.Sandstone,
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Netherrack,
+	BlockType.Basalt,
+	BlockType.Blackstone,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SculkReplaceableWorldGen = [
+	BlockType.DeepslateBricks,
+	BlockType.DeepslateTiles,
+	BlockType.CobbledDeepslate,
+	BlockType.CrackedDeepslateBricks,
+	BlockType.CrackedDeepslateTiles,
+	BlockType.PolishedDeepslate,
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.Gravel,
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+	BlockType.Calcite,
+	BlockType.SmoothBasalt,
+	BlockType.Clay,
+	BlockType.DripstoneBlock,
+	BlockType.EndStone,
+	BlockType.RedSandstone,
+	BlockType.Sandstone,
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+	BlockType.Tuff,
+	BlockType.Deepslate,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Netherrack,
+	BlockType.Basalt,
+	BlockType.Blackstone,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const ShulkerBoxes = [
+	BlockType.ShulkerBox,
+	BlockType.BlackShulkerBox,
+	BlockType.BlueShulkerBox,
+	BlockType.BrownShulkerBox,
+	BlockType.CyanShulkerBox,
+	BlockType.GrayShulkerBox,
+	BlockType.GreenShulkerBox,
+	BlockType.LightBlueShulkerBox,
+	BlockType.LightGrayShulkerBox,
+	BlockType.LimeShulkerBox,
+	BlockType.MagentaShulkerBox,
+	BlockType.OrangeShulkerBox,
+	BlockType.PinkShulkerBox,
+	BlockType.PurpleShulkerBox,
+	BlockType.RedShulkerBox,
+	BlockType.WhiteShulkerBox,
+	BlockType.YellowShulkerBox,
+] as const;
+
+const Signs = [
+	BlockType.OakSign,
+	BlockType.SpruceSign,
+	BlockType.BirchSign,
+	BlockType.AcaciaSign,
+	BlockType.JungleSign,
+	BlockType.DarkOakSign,
+	BlockType.PaleOakSign,
+	BlockType.CrimsonSign,
+	BlockType.WarpedSign,
+	BlockType.MangroveSign,
+	BlockType.BambooSign,
+	BlockType.CherrySign,
+	BlockType.OakWallSign,
+	BlockType.SpruceWallSign,
+	BlockType.BirchWallSign,
+	BlockType.AcaciaWallSign,
+	BlockType.JungleWallSign,
+	BlockType.DarkOakWallSign,
+	BlockType.PaleOakWallSign,
+	BlockType.CrimsonWallSign,
+	BlockType.WarpedWallSign,
+	BlockType.MangroveWallSign,
+	BlockType.BambooWallSign,
+	BlockType.CherryWallSign,
+] as const;
+
+const Slabs = [
+	BlockType.BambooMosaicSlab,
+	BlockType.StoneSlab,
+	BlockType.SmoothStoneSlab,
+	BlockType.StoneBrickSlab,
+	BlockType.SandstoneSlab,
+	BlockType.PurpurSlab,
+	BlockType.QuartzSlab,
+	BlockType.RedSandstoneSlab,
+	BlockType.BrickSlab,
+	BlockType.CobblestoneSlab,
+	BlockType.NetherBrickSlab,
+	BlockType.PetrifiedOakSlab,
+	BlockType.PrismarineSlab,
+	BlockType.PrismarineBrickSlab,
+	BlockType.DarkPrismarineSlab,
+	BlockType.PolishedGraniteSlab,
+	BlockType.SmoothRedSandstoneSlab,
+	BlockType.MossyStoneBrickSlab,
+	BlockType.PolishedDioriteSlab,
+	BlockType.MossyCobblestoneSlab,
+	BlockType.EndStoneBrickSlab,
+	BlockType.SmoothSandstoneSlab,
+	BlockType.SmoothQuartzSlab,
+	BlockType.GraniteSlab,
+	BlockType.AndesiteSlab,
+	BlockType.RedNetherBrickSlab,
+	BlockType.PolishedAndesiteSlab,
+	BlockType.DioriteSlab,
+	BlockType.CutSandstoneSlab,
+	BlockType.CutRedSandstoneSlab,
+	BlockType.BlackstoneSlab,
+	BlockType.PolishedBlackstoneBrickSlab,
+	BlockType.PolishedBlackstoneSlab,
+	BlockType.CobbledDeepslateSlab,
+	BlockType.PolishedDeepslateSlab,
+	BlockType.DeepslateTileSlab,
+	BlockType.DeepslateBrickSlab,
+	BlockType.WaxedWeatheredCutCopperSlab,
+	BlockType.WaxedExposedCutCopperSlab,
+	BlockType.WaxedCutCopperSlab,
+	BlockType.OxidizedCutCopperSlab,
+	BlockType.WeatheredCutCopperSlab,
+	BlockType.ExposedCutCopperSlab,
+	BlockType.CutCopperSlab,
+	BlockType.WaxedOxidizedCutCopperSlab,
+	BlockType.MudBrickSlab,
+	BlockType.TuffSlab,
+	BlockType.PolishedTuffSlab,
+	BlockType.TuffBrickSlab,
+	BlockType.ResinBrickSlab,
+	BlockType.OakSlab,
+	BlockType.SpruceSlab,
+	BlockType.BirchSlab,
+	BlockType.JungleSlab,
+	BlockType.AcaciaSlab,
+	BlockType.DarkOakSlab,
+	BlockType.PaleOakSlab,
+	BlockType.CrimsonSlab,
+	BlockType.WarpedSlab,
+	BlockType.MangroveSlab,
+	BlockType.BambooSlab,
+	BlockType.CherrySlab,
+] as const;
+
+const SmallFlowers = [
+	BlockType.Dandelion,
+	BlockType.OpenEyeblossom,
+	BlockType.Poppy,
+	BlockType.BlueOrchid,
+	BlockType.Allium,
+	BlockType.AzureBluet,
+	BlockType.RedTulip,
+	BlockType.OrangeTulip,
+	BlockType.WhiteTulip,
+	BlockType.PinkTulip,
+	BlockType.OxeyeDaisy,
+	BlockType.Cornflower,
+	BlockType.LilyOfTheValley,
+	BlockType.WitherRose,
+	BlockType.Torchflower,
+	BlockType.ClosedEyeblossom,
+	BlockType.GoldenDandelion,
+] as const;
+
+const SmeltsToGlass = [
+	BlockType.Sand,
+	BlockType.RedSand,
+] as const;
+
+const SnapsGoatHorn = [
+	BlockType.Stone,
+	BlockType.PackedIce,
+	BlockType.IronOre,
+	BlockType.CoalOre,
+	BlockType.CopperOre,
+	BlockType.EmeraldOre,
+	BlockType.AcaciaLog,
+	BlockType.BirchLog,
+	BlockType.OakLog,
+	BlockType.JungleLog,
+	BlockType.SpruceLog,
+	BlockType.DarkOakLog,
+	BlockType.PaleOakLog,
+	BlockType.MangroveLog,
+	BlockType.CherryLog,
+] as const;
+
+const SnifferDiggableBlock = [
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+] as const;
+
+const SnifferEggHatchBoost = [
+	BlockType.MossBlock,
+] as const;
+
+const Snow = [
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.PowderSnow,
+] as const;
+
+const SoulFireBaseBlocks = [
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+] as const;
+
+const SoulSpeedBlocks = [
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+] as const;
+
+const SpruceLogs = [
+	BlockType.SpruceLog,
+	BlockType.SpruceWood,
+	BlockType.StrippedSpruceLog,
+	BlockType.StrippedSpruceWood,
+] as const;
+
+const Stairs = [
+	BlockType.BambooMosaicStairs,
+	BlockType.CobblestoneStairs,
+	BlockType.SandstoneStairs,
+	BlockType.NetherBrickStairs,
+	BlockType.StoneBrickStairs,
+	BlockType.BrickStairs,
+	BlockType.PurpurStairs,
+	BlockType.QuartzStairs,
+	BlockType.RedSandstoneStairs,
+	BlockType.PrismarineBrickStairs,
+	BlockType.PrismarineStairs,
+	BlockType.DarkPrismarineStairs,
+	BlockType.PolishedGraniteStairs,
+	BlockType.SmoothRedSandstoneStairs,
+	BlockType.MossyStoneBrickStairs,
+	BlockType.PolishedDioriteStairs,
+	BlockType.MossyCobblestoneStairs,
+	BlockType.EndStoneBrickStairs,
+	BlockType.StoneStairs,
+	BlockType.SmoothSandstoneStairs,
+	BlockType.SmoothQuartzStairs,
+	BlockType.GraniteStairs,
+	BlockType.AndesiteStairs,
+	BlockType.RedNetherBrickStairs,
+	BlockType.PolishedAndesiteStairs,
+	BlockType.DioriteStairs,
+	BlockType.BlackstoneStairs,
+	BlockType.PolishedBlackstoneBrickStairs,
+	BlockType.PolishedBlackstoneStairs,
+	BlockType.CobbledDeepslateStairs,
+	BlockType.PolishedDeepslateStairs,
+	BlockType.DeepslateTileStairs,
+	BlockType.DeepslateBrickStairs,
+	BlockType.OxidizedCutCopperStairs,
+	BlockType.WeatheredCutCopperStairs,
+	BlockType.ExposedCutCopperStairs,
+	BlockType.CutCopperStairs,
+	BlockType.WaxedWeatheredCutCopperStairs,
+	BlockType.WaxedExposedCutCopperStairs,
+	BlockType.WaxedCutCopperStairs,
+	BlockType.WaxedOxidizedCutCopperStairs,
+	BlockType.MudBrickStairs,
+	BlockType.TuffStairs,
+	BlockType.PolishedTuffStairs,
+	BlockType.TuffBrickStairs,
+	BlockType.ResinBrickStairs,
+	BlockType.OakStairs,
+	BlockType.SpruceStairs,
+	BlockType.BirchStairs,
+	BlockType.JungleStairs,
+	BlockType.AcaciaStairs,
+	BlockType.DarkOakStairs,
+	BlockType.PaleOakStairs,
+	BlockType.CrimsonStairs,
+	BlockType.WarpedStairs,
+	BlockType.MangroveStairs,
+	BlockType.BambooStairs,
+	BlockType.CherryStairs,
+] as const;
+
+const StandingSigns = [
+	BlockType.OakSign,
+	BlockType.SpruceSign,
+	BlockType.BirchSign,
+	BlockType.AcaciaSign,
+	BlockType.JungleSign,
+	BlockType.DarkOakSign,
+	BlockType.PaleOakSign,
+	BlockType.CrimsonSign,
+	BlockType.WarpedSign,
+	BlockType.MangroveSign,
+	BlockType.BambooSign,
+	BlockType.CherrySign,
+] as const;
+
+const StoneBricks = [
+	BlockType.StoneBricks,
+	BlockType.MossyStoneBricks,
+	BlockType.CrackedStoneBricks,
+	BlockType.ChiseledStoneBricks,
+] as const;
+
+const StoneButtons = [
+	BlockType.StoneButton,
+	BlockType.PolishedBlackstoneButton,
+] as const;
+
+const StoneOreReplaceables = [
+	BlockType.Stone,
+	BlockType.Granite,
+	BlockType.Diorite,
+	BlockType.Andesite,
+] as const;
+
+const StonePressurePlates = [
+	BlockType.StonePressurePlate,
+	BlockType.PolishedBlackstonePressurePlate,
+] as const;
+
+const StriderWarmBlocks = [
+	BlockType.Lava,
+] as const;
+
+const SubstrateOverworld = [
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportOverrideCactusFlower = [
+	BlockType.Cactus,
+	BlockType.Farmland,
+] as const;
+
+const SupportOverrideSnowLayer = [
+	BlockType.HoneyBlock,
+	BlockType.SoulSand,
+	BlockType.Mud,
+] as const;
+
+const SupportsAzalea = [
+	BlockType.Clay,
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsBamboo = [
+	BlockType.Bamboo,
+	BlockType.BambooSapling,
+	BlockType.Gravel,
+	BlockType.SuspiciousGravel,
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsBigDripleaf = [
+	BlockType.Dirt,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.CoarseDirt,
+	BlockType.Mycelium,
+	BlockType.RootedDirt,
+	BlockType.MossBlock,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.Farmland,
+	BlockType.Clay,
+	BlockType.MossBlock,
+] as const;
+
+const SupportsCactus = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+] as const;
+
+const SupportsChorusFlower = [
+	BlockType.EndStone,
+] as const;
+
+const SupportsChorusPlant = [
+	BlockType.EndStone,
+] as const;
+
+const SupportsCocoa = [
+	BlockType.JungleLog,
+	BlockType.JungleWood,
+	BlockType.StrippedJungleLog,
+	BlockType.StrippedJungleWood,
+] as const;
+
+const SupportsCrimsonFungus = [
+	BlockType.Mycelium,
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsCrimsonRoots = [
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsCrops = [
+	BlockType.Farmland,
+] as const;
+
+const SupportsDryVegetation = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsFrogspawn = [
+] as const;
+
+const SupportsHangingMangrovePropagule = [
+	BlockType.MangroveLeaves,
+] as const;
+
+const SupportsLilyPad = [
+	BlockType.Ice,
+	BlockType.FrostedIce,
+] as const;
+
+const SupportsMangrovePropagule = [
+	BlockType.Clay,
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsMelonStem = [
+	BlockType.Farmland,
+] as const;
+
+const SupportsMelonStemFruit = [
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsNetherSprouts = [
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsNetherWart = [
+	BlockType.SoulSand,
+] as const;
+
+const SupportsPumpkinStem = [
+	BlockType.Farmland,
+] as const;
+
+const SupportsPumpkinStemFruit = [
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsSmallDripleaf = [
+	BlockType.Clay,
+	BlockType.MossBlock,
+] as const;
+
+const SupportsStemCrops = [
+	BlockType.Farmland,
+] as const;
+
+const SupportsStemFruit = [
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsSugarCane = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.SuspiciousSand,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsSugarCaneAdjacently = [
+	BlockType.FrostedIce,
+] as const;
+
+const SupportsVegetation = [
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsWarpedFungus = [
+	BlockType.Mycelium,
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsWarpedRoots = [
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.CrimsonNylium,
+	BlockType.WarpedNylium,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SupportsWitherRose = [
+	BlockType.Netherrack,
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+	BlockType.Farmland,
+	BlockType.Dirt,
+	BlockType.CoarseDirt,
+	BlockType.RootedDirt,
+	BlockType.Mud,
+	BlockType.MuddyMangroveRoots,
+	BlockType.MossBlock,
+	BlockType.PaleMossBlock,
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+	BlockType.Mycelium,
+] as const;
+
+const SwordEfficient = [
+	BlockType.Vine,
+	BlockType.GlowLichen,
+	BlockType.Pumpkin,
+	BlockType.CarvedPumpkin,
+	BlockType.JackOLantern,
+	BlockType.Melon,
+	BlockType.Cocoa,
+	BlockType.BigDripleaf,
+	BlockType.BigDripleafStem,
+	BlockType.ChorusPlant,
+	BlockType.ChorusFlower,
+	BlockType.JungleLeaves,
+	BlockType.OakLeaves,
+	BlockType.SpruceLeaves,
+	BlockType.PaleOakLeaves,
+	BlockType.DarkOakLeaves,
+	BlockType.AcaciaLeaves,
+	BlockType.BirchLeaves,
+	BlockType.AzaleaLeaves,
+	BlockType.FloweringAzaleaLeaves,
+	BlockType.MangroveLeaves,
+	BlockType.CherryLeaves,
+] as const;
+
+const SwordInstantlyMines = [
+	BlockType.Bamboo,
+	BlockType.BambooSapling,
+] as const;
+
+const Terracotta = [
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+] as const;
+
+const TrailRuinsReplaceable = [
+	BlockType.Gravel,
+] as const;
+
+const Trapdoors = [
+	BlockType.IronTrapdoor,
+	BlockType.CopperTrapdoor,
+	BlockType.ExposedCopperTrapdoor,
+	BlockType.WeatheredCopperTrapdoor,
+	BlockType.OxidizedCopperTrapdoor,
+	BlockType.WaxedCopperTrapdoor,
+	BlockType.WaxedExposedCopperTrapdoor,
+	BlockType.WaxedWeatheredCopperTrapdoor,
+	BlockType.WaxedOxidizedCopperTrapdoor,
+	BlockType.AcaciaTrapdoor,
+	BlockType.BirchTrapdoor,
+	BlockType.DarkOakTrapdoor,
+	BlockType.PaleOakTrapdoor,
+	BlockType.JungleTrapdoor,
+	BlockType.OakTrapdoor,
+	BlockType.SpruceTrapdoor,
+	BlockType.CrimsonTrapdoor,
+	BlockType.WarpedTrapdoor,
+	BlockType.MangroveTrapdoor,
+	BlockType.BambooTrapdoor,
+	BlockType.CherryTrapdoor,
+] as const;
+
+const TriggersAmbientDesertDryVegetationBlockSounds = [
+	BlockType.Sand,
+	BlockType.RedSand,
+	BlockType.Terracotta,
+	BlockType.WhiteTerracotta,
+	BlockType.OrangeTerracotta,
+	BlockType.MagentaTerracotta,
+	BlockType.LightBlueTerracotta,
+	BlockType.YellowTerracotta,
+	BlockType.LimeTerracotta,
+	BlockType.PinkTerracotta,
+	BlockType.GrayTerracotta,
+	BlockType.LightGrayTerracotta,
+	BlockType.CyanTerracotta,
+	BlockType.PurpleTerracotta,
+	BlockType.BlueTerracotta,
+	BlockType.BrownTerracotta,
+	BlockType.GreenTerracotta,
+	BlockType.RedTerracotta,
+	BlockType.BlackTerracotta,
+] as const;
+
+const TriggersAmbientDesertSandBlockSounds = [
+	BlockType.Sand,
+	BlockType.RedSand,
+] as const;
+
+const TriggersAmbientDriedGhastBlockSounds = [
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+] as const;
+
+const UnderwaterBonemeals = [
+	BlockType.Seagrass,
+	BlockType.TubeCoralFan,
+	BlockType.BrainCoralFan,
+	BlockType.BubbleCoralFan,
+	BlockType.FireCoralFan,
+	BlockType.HornCoralFan,
+	BlockType.TubeCoralWallFan,
+	BlockType.BrainCoralWallFan,
+	BlockType.BubbleCoralWallFan,
+	BlockType.FireCoralWallFan,
+	BlockType.HornCoralWallFan,
+	BlockType.TubeCoral,
+	BlockType.BrainCoral,
+	BlockType.BubbleCoral,
+	BlockType.FireCoral,
+	BlockType.HornCoral,
+] as const;
+
+const UnstableBottomCenter = [
+	BlockType.AcaciaFenceGate,
+	BlockType.BirchFenceGate,
+	BlockType.DarkOakFenceGate,
+	BlockType.PaleOakFenceGate,
+	BlockType.JungleFenceGate,
+	BlockType.OakFenceGate,
+	BlockType.SpruceFenceGate,
+	BlockType.CrimsonFenceGate,
+	BlockType.WarpedFenceGate,
+	BlockType.MangroveFenceGate,
+	BlockType.BambooFenceGate,
+	BlockType.CherryFenceGate,
+] as const;
+
+const ValidSpawn = [
+	BlockType.GrassBlock,
+	BlockType.Podzol,
+] as const;
+
+const VibrationResonators = [
+	BlockType.AmethystBlock,
+] as const;
+
+const WallCorals = [
+	BlockType.TubeCoralWallFan,
+	BlockType.BrainCoralWallFan,
+	BlockType.BubbleCoralWallFan,
+	BlockType.FireCoralWallFan,
+	BlockType.HornCoralWallFan,
+] as const;
+
+const WallHangingSigns = [
+	BlockType.OakWallHangingSign,
+	BlockType.SpruceWallHangingSign,
+	BlockType.BirchWallHangingSign,
+	BlockType.AcaciaWallHangingSign,
+	BlockType.CherryWallHangingSign,
+	BlockType.JungleWallHangingSign,
+	BlockType.DarkOakWallHangingSign,
+	BlockType.PaleOakWallHangingSign,
+	BlockType.CrimsonWallHangingSign,
+	BlockType.WarpedWallHangingSign,
+	BlockType.MangroveWallHangingSign,
+	BlockType.BambooWallHangingSign,
+] as const;
+
+const WallPostOverride = [
+	BlockType.Torch,
+	BlockType.SoulTorch,
+	BlockType.RedstoneTorch,
+	BlockType.CopperTorch,
+	BlockType.Tripwire,
+	BlockType.CactusFlower,
+	BlockType.WhiteBanner,
+	BlockType.OrangeBanner,
+	BlockType.MagentaBanner,
+	BlockType.LightBlueBanner,
+	BlockType.YellowBanner,
+	BlockType.LimeBanner,
+	BlockType.PinkBanner,
+	BlockType.GrayBanner,
+	BlockType.LightGrayBanner,
+	BlockType.CyanBanner,
+	BlockType.PurpleBanner,
+	BlockType.BlueBanner,
+	BlockType.BrownBanner,
+	BlockType.GreenBanner,
+	BlockType.RedBanner,
+	BlockType.BlackBanner,
+	BlockType.WhiteWallBanner,
+	BlockType.OrangeWallBanner,
+	BlockType.MagentaWallBanner,
+	BlockType.LightBlueWallBanner,
+	BlockType.YellowWallBanner,
+	BlockType.LimeWallBanner,
+	BlockType.PinkWallBanner,
+	BlockType.GrayWallBanner,
+	BlockType.LightGrayWallBanner,
+	BlockType.CyanWallBanner,
+	BlockType.PurpleWallBanner,
+	BlockType.BlueWallBanner,
+	BlockType.BrownWallBanner,
+	BlockType.GreenWallBanner,
+	BlockType.RedWallBanner,
+	BlockType.BlackWallBanner,
+	BlockType.LightWeightedPressurePlate,
+	BlockType.HeavyWeightedPressurePlate,
+	BlockType.OakSign,
+	BlockType.SpruceSign,
+	BlockType.BirchSign,
+	BlockType.AcaciaSign,
+	BlockType.JungleSign,
+	BlockType.DarkOakSign,
+	BlockType.PaleOakSign,
+	BlockType.CrimsonSign,
+	BlockType.WarpedSign,
+	BlockType.MangroveSign,
+	BlockType.BambooSign,
+	BlockType.CherrySign,
+	BlockType.OakWallSign,
+	BlockType.SpruceWallSign,
+	BlockType.BirchWallSign,
+	BlockType.AcaciaWallSign,
+	BlockType.JungleWallSign,
+	BlockType.DarkOakWallSign,
+	BlockType.PaleOakWallSign,
+	BlockType.CrimsonWallSign,
+	BlockType.WarpedWallSign,
+	BlockType.MangroveWallSign,
+	BlockType.BambooWallSign,
+	BlockType.CherryWallSign,
+	BlockType.OakPressurePlate,
+	BlockType.SprucePressurePlate,
+	BlockType.BirchPressurePlate,
+	BlockType.JunglePressurePlate,
+	BlockType.AcaciaPressurePlate,
+	BlockType.DarkOakPressurePlate,
+	BlockType.PaleOakPressurePlate,
+	BlockType.CrimsonPressurePlate,
+	BlockType.WarpedPressurePlate,
+	BlockType.MangrovePressurePlate,
+	BlockType.BambooPressurePlate,
+	BlockType.CherryPressurePlate,
+	BlockType.StonePressurePlate,
+	BlockType.PolishedBlackstonePressurePlate,
+] as const;
+
+const WallSigns = [
+	BlockType.OakWallSign,
+	BlockType.SpruceWallSign,
+	BlockType.BirchWallSign,
+	BlockType.AcaciaWallSign,
+	BlockType.JungleWallSign,
+	BlockType.DarkOakWallSign,
+	BlockType.PaleOakWallSign,
+	BlockType.CrimsonWallSign,
+	BlockType.WarpedWallSign,
+	BlockType.MangroveWallSign,
+	BlockType.BambooWallSign,
+	BlockType.CherryWallSign,
+] as const;
+
+const Walls = [
+	BlockType.CobblestoneWall,
+	BlockType.MossyCobblestoneWall,
+	BlockType.BrickWall,
+	BlockType.PrismarineWall,
+	BlockType.RedSandstoneWall,
+	BlockType.MossyStoneBrickWall,
+	BlockType.GraniteWall,
+	BlockType.StoneBrickWall,
+	BlockType.NetherBrickWall,
+	BlockType.AndesiteWall,
+	BlockType.RedNetherBrickWall,
+	BlockType.SandstoneWall,
+	BlockType.EndStoneBrickWall,
+	BlockType.DioriteWall,
+	BlockType.BlackstoneWall,
+	BlockType.PolishedBlackstoneBrickWall,
+	BlockType.PolishedBlackstoneWall,
+	BlockType.CobbledDeepslateWall,
+	BlockType.PolishedDeepslateWall,
+	BlockType.DeepslateTileWall,
+	BlockType.DeepslateBrickWall,
+	BlockType.MudBrickWall,
+	BlockType.TuffWall,
+	BlockType.PolishedTuffWall,
+	BlockType.TuffBrickWall,
+	BlockType.ResinBrickWall,
+] as const;
+
+const WarpedStems = [
+	BlockType.WarpedStem,
+	BlockType.StrippedWarpedStem,
+	BlockType.WarpedHyphae,
+	BlockType.StrippedWarpedHyphae,
+] as const;
+
+const WartBlocks = [
+	BlockType.NetherWartBlock,
+	BlockType.WarpedWartBlock,
+] as const;
+
+const WitherImmune = [
+	BlockType.Barrier,
+	BlockType.Bedrock,
+	BlockType.EndPortal,
+	BlockType.EndPortalFrame,
+	BlockType.EndGateway,
+	BlockType.CommandBlock,
+	BlockType.RepeatingCommandBlock,
+	BlockType.ChainCommandBlock,
+	BlockType.StructureBlock,
+	BlockType.Jigsaw,
+	BlockType.MovingPiston,
+	BlockType.Light,
+	BlockType.ReinforcedDeepslate,
+	BlockType.TestBlock,
+	BlockType.TestInstanceBlock,
+] as const;
+
+const WitherSummonBaseBlocks = [
+	BlockType.SoulSand,
+	BlockType.SoulSoil,
+] as const;
+
+const WolvesSpawnableOn = [
+	BlockType.GrassBlock,
+	BlockType.Snow,
+	BlockType.SnowBlock,
+	BlockType.CoarseDirt,
+	BlockType.Podzol,
+] as const;
+
+const WoodenButtons = [
+	BlockType.OakButton,
+	BlockType.SpruceButton,
+	BlockType.BirchButton,
+	BlockType.JungleButton,
+	BlockType.AcaciaButton,
+	BlockType.DarkOakButton,
+	BlockType.PaleOakButton,
+	BlockType.CrimsonButton,
+	BlockType.WarpedButton,
+	BlockType.MangroveButton,
+	BlockType.BambooButton,
+	BlockType.CherryButton,
+] as const;
+
+const WoodenDoors = [
+	BlockType.OakDoor,
+	BlockType.SpruceDoor,
+	BlockType.BirchDoor,
+	BlockType.JungleDoor,
+	BlockType.AcaciaDoor,
+	BlockType.DarkOakDoor,
+	BlockType.PaleOakDoor,
+	BlockType.CrimsonDoor,
+	BlockType.WarpedDoor,
+	BlockType.MangroveDoor,
+	BlockType.BambooDoor,
+	BlockType.CherryDoor,
+] as const;
+
+const WoodenFences = [
+	BlockType.OakFence,
+	BlockType.AcaciaFence,
+	BlockType.DarkOakFence,
+	BlockType.PaleOakFence,
+	BlockType.SpruceFence,
+	BlockType.BirchFence,
+	BlockType.JungleFence,
+	BlockType.CrimsonFence,
+	BlockType.WarpedFence,
+	BlockType.MangroveFence,
+	BlockType.BambooFence,
+	BlockType.CherryFence,
+] as const;
+
+const WoodenPressurePlates = [
+	BlockType.OakPressurePlate,
+	BlockType.SprucePressurePlate,
+	BlockType.BirchPressurePlate,
+	BlockType.JunglePressurePlate,
+	BlockType.AcaciaPressurePlate,
+	BlockType.DarkOakPressurePlate,
+	BlockType.PaleOakPressurePlate,
+	BlockType.CrimsonPressurePlate,
+	BlockType.WarpedPressurePlate,
+	BlockType.MangrovePressurePlate,
+	BlockType.BambooPressurePlate,
+	BlockType.CherryPressurePlate,
+] as const;
+
+const WoodenShelves = [
+	BlockType.AcaciaShelf,
+	BlockType.BambooShelf,
+	BlockType.BirchShelf,
+	BlockType.CherryShelf,
+	BlockType.CrimsonShelf,
+	BlockType.DarkOakShelf,
+	BlockType.JungleShelf,
+	BlockType.MangroveShelf,
+	BlockType.OakShelf,
+	BlockType.PaleOakShelf,
+	BlockType.SpruceShelf,
+	BlockType.WarpedShelf,
+] as const;
+
+const WoodenSlabs = [
+	BlockType.OakSlab,
+	BlockType.SpruceSlab,
+	BlockType.BirchSlab,
+	BlockType.JungleSlab,
+	BlockType.AcaciaSlab,
+	BlockType.DarkOakSlab,
+	BlockType.PaleOakSlab,
+	BlockType.CrimsonSlab,
+	BlockType.WarpedSlab,
+	BlockType.MangroveSlab,
+	BlockType.BambooSlab,
+	BlockType.CherrySlab,
+] as const;
+
+const WoodenStairs = [
+	BlockType.OakStairs,
+	BlockType.SpruceStairs,
+	BlockType.BirchStairs,
+	BlockType.JungleStairs,
+	BlockType.AcaciaStairs,
+	BlockType.DarkOakStairs,
+	BlockType.PaleOakStairs,
+	BlockType.CrimsonStairs,
+	BlockType.WarpedStairs,
+	BlockType.MangroveStairs,
+	BlockType.BambooStairs,
+	BlockType.CherryStairs,
+] as const;
+
+const WoodenTrapdoors = [
+	BlockType.AcaciaTrapdoor,
+	BlockType.BirchTrapdoor,
+	BlockType.DarkOakTrapdoor,
+	BlockType.PaleOakTrapdoor,
+	BlockType.JungleTrapdoor,
+	BlockType.OakTrapdoor,
+	BlockType.SpruceTrapdoor,
+	BlockType.CrimsonTrapdoor,
+	BlockType.WarpedTrapdoor,
+	BlockType.MangroveTrapdoor,
+	BlockType.BambooTrapdoor,
+	BlockType.CherryTrapdoor,
+] as const;
+
+const Wool = [
+	BlockType.WhiteWool,
+	BlockType.OrangeWool,
+	BlockType.MagentaWool,
+	BlockType.LightBlueWool,
+	BlockType.YellowWool,
+	BlockType.LimeWool,
+	BlockType.PinkWool,
+	BlockType.GrayWool,
+	BlockType.LightGrayWool,
+	BlockType.CyanWool,
+	BlockType.PurpleWool,
+	BlockType.BlueWool,
+	BlockType.BrownWool,
+	BlockType.GreenWool,
+	BlockType.RedWool,
+	BlockType.BlackWool,
+] as const;
+
+const WoolCarpets = [
+	BlockType.WhiteCarpet,
+	BlockType.OrangeCarpet,
+	BlockType.MagentaCarpet,
+	BlockType.LightBlueCarpet,
+	BlockType.YellowCarpet,
+	BlockType.LimeCarpet,
+	BlockType.PinkCarpet,
+	BlockType.GrayCarpet,
+	BlockType.LightGrayCarpet,
+	BlockType.CyanCarpet,
+	BlockType.PurpleCarpet,
+	BlockType.BlueCarpet,
+	BlockType.BrownCarpet,
+	BlockType.GreenCarpet,
+	BlockType.RedCarpet,
+	BlockType.BlackCarpet,
+] as const;
+
+export { AcaciaLogs, Air, AllHangingSigns, AllSigns, AncientCityReplaceable, AnimalsSpawnableOn, Anvil, ArmadilloSpawnableOn, AxolotlsSpawnableOn, AzaleaGrowsOn, AzaleaRootReplaceable, BadlandsTerracotta, BambooBlocks, Banners, Bars, BaseStoneNether, BaseStoneOverworld, BatsSpawnableOn, BeaconBaseBlocks, Beds, BeeAttractive, BeeGrowables, Beehives, BeneathBambooPodzolReplaceable, BeneathTreePodzolReplaceable, BirchLogs, BlocksWindChargeExplosions, Buttons, CamelSandStepSoundBlocks, CamelsSpawnableOn, Campfires, CanGlideThrough, CandleCakes, Candles, CannotReplaceBelowTreeTrunk, CannotSupportKelp, CannotSupportSeagrass, CannotSupportSnowLayer, Cauldrons, CaveVines, CeilingHangingSigns, Chains, CherryLogs, Climbable, CoalOres, CombinationStepSoundBlocks, CompletesFindTreeTutorial, ConcretePowder, ConvertableToMud, Copper, CopperChests, CopperGolemStatues, CopperOres, CoralBlocks, CoralPlants, Corals, CrimsonStems, Crops, CrystalSoundBlocks, DampensVibrations, DarkOakLogs, DeepslateOreReplaceables, DiamondOres, Dirt, DoesNotBlockHoppers, Doors, DragonImmune, DragonTransparent, DripstoneReplaceableBlocks, EdibleForSheep, EmeraldOres, EnablesBubbleColumnDragDown, EnablesBubbleColumnPushUp, EnchantmentPowerProvider, EnchantmentPowerTransmitter, EndermanHoldable, FallDamageResetting, FeaturesCannotReplace, FenceGates, Fences, Fire, FlowerPots, Flowers, ForestRockCanPlaceOn, FoxesSpawnableOn, FrogPreferJumpTo, FrogsSpawnableOn, GeodeInvalidBlocks, GoatsSpawnableOn, GoldOres, GrassBlocks, GrowsCrops, GuardedByPiglins, HappyGhastAvoids, HoglinRepellents, HugeBrownMushroomCanPlaceOn, HugeRedMushroomCanPlaceOn, Ice, IceSpikeReplaceable, Impermeable, IncorrectForCopperTool, IncorrectForDiamondTool, IncorrectForGoldTool, IncorrectForIronTool, IncorrectForNetheriteTool, IncorrectForStoneTool, IncorrectForWoodenTool, InfiniburnEnd, InfiniburnNether, InfiniburnOverworld, InsideStepSoundBlocks, InvalidSpawnInside, IronOres, JungleLogs, Lanterns, LapisOres, LavaPoolStoneCannotReplace, Leaves, LightningRods, Logs, LogsThatBurn, LushGroundReplaceable, MaintainsFarmland, MangroveLogs, MangroveLogsCanGrowThrough, MangroveRootsCanGrowThrough, MineableAxe, MineableHoe, MineablePickaxe, MineableShovel, MobInteractableDoors, MooshroomsSpawnableOn, MossBlocks, MossReplaceable, Mud, NeedsDiamondTool, NeedsIronTool, NeedsStoneTool, NetherCarverReplaceables, Nylium, OakLogs, OccludesVibrationSignals, OverridesMushroomLightRequirement, OverworldCarverReplaceables, OverworldNaturalLogs, PaleOakLogs, ParrotsSpawnableOn, PiglinRepellents, Planks, PolarBearsSpawnableOnAlternate, Portals, PressurePlates, PreventMobSpawningInside, PreventsNearbyLeafDecay, RabbitsSpawnableOn, Rails, RedstoneOres, Replaceable, ReplaceableByMushrooms, ReplaceableByTrees, Sand, Saplings, SculkReplaceable, SculkReplaceableWorldGen, ShulkerBoxes, Signs, Slabs, SmallFlowers, SmeltsToGlass, SnapsGoatHorn, SnifferDiggableBlock, SnifferEggHatchBoost, Snow, SoulFireBaseBlocks, SoulSpeedBlocks, SpruceLogs, Stairs, StandingSigns, StoneBricks, StoneButtons, StoneOreReplaceables, StonePressurePlates, StriderWarmBlocks, SubstrateOverworld, SupportOverrideCactusFlower, SupportOverrideSnowLayer, SupportsAzalea, SupportsBamboo, SupportsBigDripleaf, SupportsCactus, SupportsChorusFlower, SupportsChorusPlant, SupportsCocoa, SupportsCrimsonFungus, SupportsCrimsonRoots, SupportsCrops, SupportsDryVegetation, SupportsFrogspawn, SupportsHangingMangrovePropagule, SupportsLilyPad, SupportsMangrovePropagule, SupportsMelonStem, SupportsMelonStemFruit, SupportsNetherSprouts, SupportsNetherWart, SupportsPumpkinStem, SupportsPumpkinStemFruit, SupportsSmallDripleaf, SupportsStemCrops, SupportsStemFruit, SupportsSugarCane, SupportsSugarCaneAdjacently, SupportsVegetation, SupportsWarpedFungus, SupportsWarpedRoots, SupportsWitherRose, SwordEfficient, SwordInstantlyMines, Terracotta, TrailRuinsReplaceable, Trapdoors, TriggersAmbientDesertDryVegetationBlockSounds, TriggersAmbientDesertSandBlockSounds, TriggersAmbientDriedGhastBlockSounds, UnderwaterBonemeals, UnstableBottomCenter, ValidSpawn, VibrationResonators, WallCorals, WallHangingSigns, WallPostOverride, WallSigns, Walls, WarpedStems, WartBlocks, WitherImmune, WitherSummonBaseBlocks, WolvesSpawnableOn, WoodenButtons, WoodenDoors, WoodenFences, WoodenPressurePlates, WoodenShelves, WoodenSlabs, WoodenStairs, WoodenTrapdoors, Wool, WoolCarpets };

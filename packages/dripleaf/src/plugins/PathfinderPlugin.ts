@@ -1,7 +1,7 @@
 import { BlockPos } from "@dripleaf/core"
 import { play } from "@dripleaf/protocol"
-import { feetBlockFromPosition } from "@dripleaf/pathfinder"
-import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/src/dripleaf.ts"
+import { Pathfinder, feetBlockFromPosition } from "@dripleaf/pathfinder"
+import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/dripleaf"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 

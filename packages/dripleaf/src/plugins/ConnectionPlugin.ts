@@ -1,8 +1,6 @@
 import { randomBytes, publicEncrypt, createPublicKey, constants, randomUUID } from "node:crypto"
 import type { UUID } from "node:crypto"
-import { State, ClientIntention } from "@dripleaf/protocol"
-import * as handshake from "@dripleaf/protocol"
-import * as login from "@dripleaf/protocol"
+import { State, ClientIntention, handshake, login } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 

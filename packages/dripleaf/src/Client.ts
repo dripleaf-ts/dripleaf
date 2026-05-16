@@ -1,6 +1,7 @@
 import { EventEmitter } from "node:events"
 import { connect as tcpConnect } from "node:net"
 import { resolveSrv } from "node:dns"
+import { Vec3 } from "vec3"
 import { Connection, State, InteractionHand, BlockFace, play } from "@dripleaf/protocol"
 import type { GameProfile } from "@dripleaf/core"
 import { BlockPos } from "@dripleaf/core"
@@ -267,7 +268,7 @@ export class Client {
       {
         blockPos: new BlockPos(x, y, z),
         direction: face,
-        location: { x: this.position.x, y: this.position.y, z: this.position.z } as { x: number; y: number; z: number },
+        location: new Vec3(this.position.x, this.position.y, this.position.z),
         inside: false,
         worldBorder: false,
       },

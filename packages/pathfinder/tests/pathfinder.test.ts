@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 import { BlockType } from "@dripleaf/registry"
-import type { BlockPos } from "@dripleaf/core"
+import { BlockPos } from "@dripleaf/core"
 import type { BlockLike, PhysicsWorld } from "@dripleaf/physics"
 import { findPath, blockPosGoal } from "../src/index"
 
@@ -17,7 +17,7 @@ const air: BlockLike = { type: BlockType.Air, properties: {} }
 
 describe("findPath", () => {
   test("finds path on flat ground", () => {
-    const blocks = new Map<string, BlockData>()
+    const blocks = new Map<string, BlockLike>()
     for (let x = 0; x < 5; x++) {
       for (let z = 0; z < 5; z++) {
         blocks.set(`${x},0,${z}`, stone)
@@ -26,9 +26,9 @@ describe("findPath", () => {
       }
     }
     const world = mockWorld(blocks)
-    const result = findPath({ x: 0, y: 1, z: 0 }, blockPosGoal({ x: 4, y: 1, z: 4 }), world)
+    const result = findPath(new BlockPos(0, 1, 0), blockPosGoal(new BlockPos(4, 1, 4)), world)
     expect(result.partial).toBe(false)
     expect(result.nodes.length).toBeGreaterThan(1)
-    expect(result.nodes[result.nodes.length - 1]).toEqual({ x: 4, y: 1, z: 4 })
+    expect(result.nodes[result.nodes.length - 1]).toEqual(new BlockPos(4, 1, 4))
   })
 })

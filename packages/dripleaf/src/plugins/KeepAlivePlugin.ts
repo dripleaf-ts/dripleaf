@@ -1,6 +1,4 @@
-import { State } from "@dripleaf/protocol"
-import * as configuration from "@dripleaf/protocol"
-import * as play from "@dripleaf/protocol"
+import { State, configuration, play } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 

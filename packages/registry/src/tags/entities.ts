@@ -2,54 +2,71 @@
 
 import { EntityType } from "../builtin";
 
-const Skeletons = [
-	EntityType.Skeleton,
-	EntityType.Stray,
-	EntityType.WitherSkeleton,
-	EntityType.SkeletonHorse,
-	EntityType.Bogged,
-	EntityType.Parched,
+const AcceptsIronGolemGift = [
+	EntityType.CopperGolem,
 ] as const;
 
-const Zombies = [
-	EntityType.ZombieHorse,
-	EntityType.CamelHusk,
-	EntityType.Zombie,
-	EntityType.ZombieVillager,
-	EntityType.ZombifiedPiglin,
-	EntityType.Zoglin,
-	EntityType.Drowned,
-	EntityType.Husk,
+const Aquatic = [
+	EntityType.Turtle,
+	EntityType.Axolotl,
+	EntityType.Guardian,
+	EntityType.ElderGuardian,
+	EntityType.Cod,
+	EntityType.Pufferfish,
+	EntityType.Salmon,
+	EntityType.TropicalFish,
+	EntityType.Dolphin,
+	EntityType.Squid,
+	EntityType.GlowSquid,
+	EntityType.Tadpole,
+	EntityType.Nautilus,
 	EntityType.ZombieNautilus,
 ] as const;
 
-const Raiders = [
-	EntityType.Evoker,
-	EntityType.Pillager,
-	EntityType.Ravager,
-	EntityType.Vindicator,
-	EntityType.Illusioner,
-	EntityType.Witch,
+const Arrows = [
+	EntityType.Arrow,
+	EntityType.SpectralArrow,
 ] as const;
 
-const Undead = [
-	EntityType.Wither,
-	EntityType.Phantom,
-	EntityType.Skeleton,
-	EntityType.Stray,
-	EntityType.WitherSkeleton,
-	EntityType.SkeletonHorse,
-	EntityType.Bogged,
-	EntityType.Parched,
-	EntityType.ZombieHorse,
-	EntityType.CamelHusk,
-	EntityType.Zombie,
-	EntityType.ZombieVillager,
-	EntityType.ZombifiedPiglin,
-	EntityType.Zoglin,
+const Arthropod = [
+	EntityType.Bee,
+	EntityType.Endermite,
+	EntityType.Silverfish,
+	EntityType.Spider,
+	EntityType.CaveSpider,
+] as const;
+
+const AxolotlAlwaysHostiles = [
 	EntityType.Drowned,
-	EntityType.Husk,
-	EntityType.ZombieNautilus,
+	EntityType.Guardian,
+	EntityType.ElderGuardian,
+] as const;
+
+const AxolotlHuntTargets = [
+	EntityType.TropicalFish,
+	EntityType.Pufferfish,
+	EntityType.Salmon,
+	EntityType.Cod,
+	EntityType.Squid,
+	EntityType.GlowSquid,
+	EntityType.Tadpole,
+] as const;
+
+const BeehiveInhabitors = [
+	EntityType.Bee,
+] as const;
+
+const Boat = [
+	EntityType.OakBoat,
+	EntityType.SpruceBoat,
+	EntityType.BirchBoat,
+	EntityType.JungleBoat,
+	EntityType.AcaciaBoat,
+	EntityType.CherryBoat,
+	EntityType.DarkOakBoat,
+	EntityType.PaleOakBoat,
+	EntityType.MangroveBoat,
+	EntityType.BambooRaft,
 ] as const;
 
 const BurnInDaylight = [
@@ -63,56 +80,6 @@ const BurnInDaylight = [
 	EntityType.Drowned,
 	EntityType.ZombieNautilus,
 	EntityType.Phantom,
-] as const;
-
-const BeehiveInhabitors = [
-	EntityType.Bee,
-] as const;
-
-const Arrows = [
-	EntityType.Arrow,
-	EntityType.SpectralArrow,
-] as const;
-
-const PowderSnowWalkableMobs = [
-	EntityType.Rabbit,
-	EntityType.Endermite,
-	EntityType.Silverfish,
-	EntityType.Fox,
-] as const;
-
-const ImpactProjectiles = [
-	EntityType.FireworkRocket,
-	EntityType.Snowball,
-	EntityType.Fireball,
-	EntityType.SmallFireball,
-	EntityType.Egg,
-	EntityType.Trident,
-	EntityType.DragonFireball,
-	EntityType.WitherSkull,
-	EntityType.WindCharge,
-	EntityType.BreezeWindCharge,
-	EntityType.Arrow,
-	EntityType.SpectralArrow,
-] as const;
-
-const AxolotlAlwaysHostiles = [
-	EntityType.Drowned,
-	EntityType.Guardian,
-	EntityType.ElderGuardian,
-] as const;
-
-const FreezeImmuneEntityTypes = [
-	EntityType.Stray,
-	EntityType.PolarBear,
-	EntityType.SnowGolem,
-	EntityType.Wither,
-] as const;
-
-const FreezeHurtsExtraTypes = [
-	EntityType.Strider,
-	EntityType.Blaze,
-	EntityType.MagmaCube,
 ] as const;
 
 const CanBreatheUnderWater = [
@@ -150,9 +117,92 @@ const CanBreatheUnderWater = [
 	EntityType.ZombieNautilus,
 ] as const;
 
-const FrogFood = [
-	EntityType.Slime,
-	EntityType.MagmaCube,
+const CanEquipHarness = [
+	EntityType.HappyGhast,
+] as const;
+
+const CanEquipSaddle = [
+	EntityType.Horse,
+	EntityType.SkeletonHorse,
+	EntityType.ZombieHorse,
+	EntityType.Donkey,
+	EntityType.Mule,
+	EntityType.Pig,
+	EntityType.Strider,
+	EntityType.Camel,
+	EntityType.CamelHusk,
+	EntityType.Nautilus,
+	EntityType.ZombieNautilus,
+] as const;
+
+const CanFloatWhileRidden = [
+	EntityType.Horse,
+	EntityType.ZombieHorse,
+	EntityType.Mule,
+	EntityType.Donkey,
+	EntityType.Camel,
+	EntityType.CamelHusk,
+] as const;
+
+const CanTurnInBoats = [
+	EntityType.Breeze,
+] as const;
+
+const CanWearHorseArmor = [
+	EntityType.Horse,
+	EntityType.ZombieHorse,
+] as const;
+
+const CanWearNautilusArmor = [
+	EntityType.Nautilus,
+	EntityType.ZombieNautilus,
+] as const;
+
+const CandidateForIronGolemGift = [
+	EntityType.Villager,
+	EntityType.CopperGolem,
+] as const;
+
+const CannotBeAgeLocked = [
+	EntityType.ZombieHorse,
+	EntityType.SkeletonHorse,
+	EntityType.Villager,
+] as const;
+
+const CannotBePushedOntoBoats = [
+	EntityType.Player,
+	EntityType.ElderGuardian,
+	EntityType.Cod,
+	EntityType.Pufferfish,
+	EntityType.Salmon,
+	EntityType.TropicalFish,
+	EntityType.Dolphin,
+	EntityType.Squid,
+	EntityType.GlowSquid,
+	EntityType.Tadpole,
+	EntityType.Creaking,
+	EntityType.Nautilus,
+	EntityType.ZombieNautilus,
+] as const;
+
+const DeflectsProjectiles = [
+	EntityType.Breeze,
+] as const;
+
+const DismountsUnderwater = [
+	EntityType.Camel,
+	EntityType.Chicken,
+	EntityType.Donkey,
+	EntityType.HappyGhast,
+	EntityType.Horse,
+	EntityType.Llama,
+	EntityType.Mule,
+	EntityType.Pig,
+	EntityType.Ravager,
+	EntityType.Spider,
+	EntityType.Strider,
+	EntityType.TraderLlama,
+	EntityType.ZombieHorse,
 ] as const;
 
 const FallDamageImmune = [
@@ -176,57 +226,50 @@ const FallDamageImmune = [
 	EntityType.Breeze,
 ] as const;
 
-const DismountsUnderwater = [
+const FollowableFriendlyMobs = [
+	EntityType.Armadillo,
+	EntityType.Bee,
 	EntityType.Camel,
+	EntityType.Cat,
 	EntityType.Chicken,
+	EntityType.Cow,
 	EntityType.Donkey,
+	EntityType.Fox,
+	EntityType.Goat,
 	EntityType.HappyGhast,
 	EntityType.Horse,
+	EntityType.SkeletonHorse,
 	EntityType.Llama,
 	EntityType.Mule,
+	EntityType.Ocelot,
+	EntityType.Panda,
+	EntityType.Parrot,
 	EntityType.Pig,
-	EntityType.Ravager,
-	EntityType.Spider,
+	EntityType.PolarBear,
+	EntityType.Rabbit,
+	EntityType.Sheep,
+	EntityType.Sniffer,
 	EntityType.Strider,
-	EntityType.TraderLlama,
-	EntityType.ZombieHorse,
+	EntityType.Villager,
+	EntityType.Wolf,
 ] as const;
 
-const NonControllingRider = [
-	EntityType.Slime,
+const FreezeHurtsExtraTypes = [
+	EntityType.Strider,
+	EntityType.Blaze,
 	EntityType.MagmaCube,
 ] as const;
 
-const Illager = [
-	EntityType.Evoker,
-	EntityType.Illusioner,
-	EntityType.Pillager,
-	EntityType.Vindicator,
+const FreezeImmuneEntityTypes = [
+	EntityType.Stray,
+	EntityType.PolarBear,
+	EntityType.SnowGolem,
+	EntityType.Wither,
 ] as const;
 
-const Aquatic = [
-	EntityType.Turtle,
-	EntityType.Axolotl,
-	EntityType.Guardian,
-	EntityType.ElderGuardian,
-	EntityType.Cod,
-	EntityType.Pufferfish,
-	EntityType.Salmon,
-	EntityType.TropicalFish,
-	EntityType.Dolphin,
-	EntityType.Squid,
-	EntityType.GlowSquid,
-	EntityType.Tadpole,
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const Arthropod = [
-	EntityType.Bee,
-	EntityType.Endermite,
-	EntityType.Silverfish,
-	EntityType.Spider,
-	EntityType.CaveSpider,
+const FrogFood = [
+	EntityType.Slime,
+	EntityType.MagmaCube,
 ] as const;
 
 const IgnoresPoisonAndRegen = [
@@ -249,7 +292,177 @@ const IgnoresPoisonAndRegen = [
 	EntityType.ZombieNautilus,
 ] as const;
 
+const Illager = [
+	EntityType.Evoker,
+	EntityType.Illusioner,
+	EntityType.Pillager,
+	EntityType.Vindicator,
+] as const;
+
+const IllagerFriends = [
+	EntityType.Evoker,
+	EntityType.Illusioner,
+	EntityType.Pillager,
+	EntityType.Vindicator,
+] as const;
+
+const ImmuneToInfested = [
+	EntityType.Silverfish,
+] as const;
+
+const ImmuneToOozing = [
+	EntityType.Slime,
+] as const;
+
+const ImpactProjectiles = [
+	EntityType.FireworkRocket,
+	EntityType.Snowball,
+	EntityType.Fireball,
+	EntityType.SmallFireball,
+	EntityType.Egg,
+	EntityType.Trident,
+	EntityType.DragonFireball,
+	EntityType.WitherSkull,
+	EntityType.WindCharge,
+	EntityType.BreezeWindCharge,
+	EntityType.Arrow,
+	EntityType.SpectralArrow,
+] as const;
+
 const InvertedHealingAndHarm = [
+	EntityType.Wither,
+	EntityType.Phantom,
+	EntityType.Skeleton,
+	EntityType.Stray,
+	EntityType.WitherSkeleton,
+	EntityType.SkeletonHorse,
+	EntityType.Bogged,
+	EntityType.Parched,
+	EntityType.ZombieHorse,
+	EntityType.CamelHusk,
+	EntityType.Zombie,
+	EntityType.ZombieVillager,
+	EntityType.ZombifiedPiglin,
+	EntityType.Zoglin,
+	EntityType.Drowned,
+	EntityType.Husk,
+	EntityType.ZombieNautilus,
+] as const;
+
+const NautilusHostiles = [
+	EntityType.Pufferfish,
+] as const;
+
+const NoAngerFromWindCharge = [
+	EntityType.Breeze,
+	EntityType.Skeleton,
+	EntityType.Bogged,
+	EntityType.Stray,
+	EntityType.Zombie,
+	EntityType.Husk,
+	EntityType.Spider,
+	EntityType.CaveSpider,
+	EntityType.Slime,
+] as const;
+
+const NonControllingRider = [
+	EntityType.Slime,
+	EntityType.MagmaCube,
+] as const;
+
+const NotScaryForPufferfish = [
+	EntityType.Turtle,
+	EntityType.Guardian,
+	EntityType.ElderGuardian,
+	EntityType.Cod,
+	EntityType.Pufferfish,
+	EntityType.Salmon,
+	EntityType.TropicalFish,
+	EntityType.Dolphin,
+	EntityType.Squid,
+	EntityType.GlowSquid,
+	EntityType.Tadpole,
+	EntityType.Nautilus,
+	EntityType.ZombieNautilus,
+] as const;
+
+const PowderSnowWalkableMobs = [
+	EntityType.Rabbit,
+	EntityType.Endermite,
+	EntityType.Silverfish,
+	EntityType.Fox,
+] as const;
+
+const Raiders = [
+	EntityType.Evoker,
+	EntityType.Pillager,
+	EntityType.Ravager,
+	EntityType.Vindicator,
+	EntityType.Illusioner,
+	EntityType.Witch,
+] as const;
+
+const RedirectableProjectile = [
+	EntityType.Fireball,
+	EntityType.WindCharge,
+	EntityType.BreezeWindCharge,
+] as const;
+
+const SensitiveToBaneOfArthropods = [
+	EntityType.Bee,
+	EntityType.Endermite,
+	EntityType.Silverfish,
+	EntityType.Spider,
+	EntityType.CaveSpider,
+] as const;
+
+const SensitiveToImpaling = [
+	EntityType.Turtle,
+	EntityType.Axolotl,
+	EntityType.Guardian,
+	EntityType.ElderGuardian,
+	EntityType.Cod,
+	EntityType.Pufferfish,
+	EntityType.Salmon,
+	EntityType.TropicalFish,
+	EntityType.Dolphin,
+	EntityType.Squid,
+	EntityType.GlowSquid,
+	EntityType.Tadpole,
+	EntityType.Nautilus,
+	EntityType.ZombieNautilus,
+] as const;
+
+const SensitiveToSmite = [
+	EntityType.Wither,
+	EntityType.Phantom,
+	EntityType.Skeleton,
+	EntityType.Stray,
+	EntityType.WitherSkeleton,
+	EntityType.SkeletonHorse,
+	EntityType.Bogged,
+	EntityType.Parched,
+	EntityType.ZombieHorse,
+	EntityType.CamelHusk,
+	EntityType.Zombie,
+	EntityType.ZombieVillager,
+	EntityType.ZombifiedPiglin,
+	EntityType.Zoglin,
+	EntityType.Drowned,
+	EntityType.Husk,
+	EntityType.ZombieNautilus,
+] as const;
+
+const Skeletons = [
+	EntityType.Skeleton,
+	EntityType.Stray,
+	EntityType.WitherSkeleton,
+	EntityType.SkeletonHorse,
+	EntityType.Bogged,
+	EntityType.Parched,
+] as const;
+
+const Undead = [
 	EntityType.Wither,
 	EntityType.Phantom,
 	EntityType.Skeleton,
@@ -289,63 +502,7 @@ const WitherFriends = [
 	EntityType.ZombieNautilus,
 ] as const;
 
-const IllagerFriends = [
-	EntityType.Evoker,
-	EntityType.Illusioner,
-	EntityType.Pillager,
-	EntityType.Vindicator,
-] as const;
-
-const NotScaryForPufferfish = [
-	EntityType.Turtle,
-	EntityType.Guardian,
-	EntityType.ElderGuardian,
-	EntityType.Cod,
-	EntityType.Pufferfish,
-	EntityType.Salmon,
-	EntityType.TropicalFish,
-	EntityType.Dolphin,
-	EntityType.Squid,
-	EntityType.GlowSquid,
-	EntityType.Tadpole,
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const SensitiveToImpaling = [
-	EntityType.Turtle,
-	EntityType.Axolotl,
-	EntityType.Guardian,
-	EntityType.ElderGuardian,
-	EntityType.Cod,
-	EntityType.Pufferfish,
-	EntityType.Salmon,
-	EntityType.TropicalFish,
-	EntityType.Dolphin,
-	EntityType.Squid,
-	EntityType.GlowSquid,
-	EntityType.Tadpole,
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const SensitiveToBaneOfArthropods = [
-	EntityType.Bee,
-	EntityType.Endermite,
-	EntityType.Silverfish,
-	EntityType.Spider,
-	EntityType.CaveSpider,
-] as const;
-
-const SensitiveToSmite = [
-	EntityType.Wither,
-	EntityType.Phantom,
-	EntityType.Skeleton,
-	EntityType.Stray,
-	EntityType.WitherSkeleton,
-	EntityType.SkeletonHorse,
-	EntityType.Bogged,
-	EntityType.Parched,
+const Zombies = [
 	EntityType.ZombieHorse,
 	EntityType.CamelHusk,
 	EntityType.Zombie,
@@ -357,161 +514,4 @@ const SensitiveToSmite = [
 	EntityType.ZombieNautilus,
 ] as const;
 
-const RedirectableProjectile = [
-	EntityType.Fireball,
-	EntityType.WindCharge,
-	EntityType.BreezeWindCharge,
-] as const;
-
-const DeflectsProjectiles = [
-	EntityType.Breeze,
-] as const;
-
-const CanTurnInBoats = [
-	EntityType.Breeze,
-] as const;
-
-const NoAngerFromWindCharge = [
-	EntityType.Breeze,
-	EntityType.Skeleton,
-	EntityType.Bogged,
-	EntityType.Stray,
-	EntityType.Zombie,
-	EntityType.Husk,
-	EntityType.Spider,
-	EntityType.CaveSpider,
-	EntityType.Slime,
-] as const;
-
-const ImmuneToInfested = [
-	EntityType.Silverfish,
-] as const;
-
-const ImmuneToOozing = [
-	EntityType.Slime,
-] as const;
-
-const Boat = [
-	EntityType.OakBoat,
-	EntityType.SpruceBoat,
-	EntityType.BirchBoat,
-	EntityType.JungleBoat,
-	EntityType.AcaciaBoat,
-	EntityType.CherryBoat,
-	EntityType.DarkOakBoat,
-	EntityType.PaleOakBoat,
-	EntityType.MangroveBoat,
-	EntityType.BambooRaft,
-] as const;
-
-const AxolotlHuntTargets = [
-	EntityType.TropicalFish,
-	EntityType.Pufferfish,
-	EntityType.Salmon,
-	EntityType.Cod,
-	EntityType.Squid,
-	EntityType.GlowSquid,
-	EntityType.Tadpole,
-] as const;
-
-const CanEquipSaddle = [
-	EntityType.Horse,
-	EntityType.SkeletonHorse,
-	EntityType.ZombieHorse,
-	EntityType.Donkey,
-	EntityType.Mule,
-	EntityType.Pig,
-	EntityType.Strider,
-	EntityType.Camel,
-	EntityType.CamelHusk,
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const CanEquipHarness = [
-	EntityType.HappyGhast,
-] as const;
-
-const CanWearHorseArmor = [
-	EntityType.Horse,
-	EntityType.ZombieHorse,
-] as const;
-
-const CanWearNautilusArmor = [
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const FollowableFriendlyMobs = [
-	EntityType.Armadillo,
-	EntityType.Bee,
-	EntityType.Camel,
-	EntityType.Cat,
-	EntityType.Chicken,
-	EntityType.Cow,
-	EntityType.Donkey,
-	EntityType.Fox,
-	EntityType.Goat,
-	EntityType.HappyGhast,
-	EntityType.Horse,
-	EntityType.SkeletonHorse,
-	EntityType.Llama,
-	EntityType.Mule,
-	EntityType.Ocelot,
-	EntityType.Panda,
-	EntityType.Parrot,
-	EntityType.Pig,
-	EntityType.PolarBear,
-	EntityType.Rabbit,
-	EntityType.Sheep,
-	EntityType.Sniffer,
-	EntityType.Strider,
-	EntityType.Villager,
-	EntityType.Wolf,
-] as const;
-
-const AcceptsIronGolemGift = [
-	EntityType.CopperGolem,
-] as const;
-
-const CannotBePushedOntoBoats = [
-	EntityType.Player,
-	EntityType.ElderGuardian,
-	EntityType.Cod,
-	EntityType.Pufferfish,
-	EntityType.Salmon,
-	EntityType.TropicalFish,
-	EntityType.Dolphin,
-	EntityType.Squid,
-	EntityType.GlowSquid,
-	EntityType.Tadpole,
-	EntityType.Creaking,
-	EntityType.Nautilus,
-	EntityType.ZombieNautilus,
-] as const;
-
-const CandidateForIronGolemGift = [
-	EntityType.Villager,
-	EntityType.CopperGolem,
-] as const;
-
-const NautilusHostiles = [
-	EntityType.Pufferfish,
-] as const;
-
-const CanFloatWhileRidden = [
-	EntityType.Horse,
-	EntityType.ZombieHorse,
-	EntityType.Mule,
-	EntityType.Donkey,
-	EntityType.Camel,
-	EntityType.CamelHusk,
-] as const;
-
-const CannotBeAgeLocked = [
-	EntityType.ZombieHorse,
-	EntityType.SkeletonHorse,
-	EntityType.Villager,
-] as const;
-
-export { Skeletons, Zombies, Raiders, Undead, BurnInDaylight, BeehiveInhabitors, Arrows, PowderSnowWalkableMobs, ImpactProjectiles, AxolotlAlwaysHostiles, FreezeImmuneEntityTypes, FreezeHurtsExtraTypes, CanBreatheUnderWater, FrogFood, FallDamageImmune, DismountsUnderwater, NonControllingRider, Illager, Aquatic, Arthropod, IgnoresPoisonAndRegen, InvertedHealingAndHarm, WitherFriends, IllagerFriends, NotScaryForPufferfish, SensitiveToImpaling, SensitiveToBaneOfArthropods, SensitiveToSmite, RedirectableProjectile, DeflectsProjectiles, CanTurnInBoats, NoAngerFromWindCharge, ImmuneToInfested, ImmuneToOozing, Boat, AxolotlHuntTargets, CanEquipSaddle, CanEquipHarness, CanWearHorseArmor, CanWearNautilusArmor, FollowableFriendlyMobs, AcceptsIronGolemGift, CannotBePushedOntoBoats, CandidateForIronGolemGift, NautilusHostiles, CanFloatWhileRidden, CannotBeAgeLocked };
+export { AcceptsIronGolemGift, Aquatic, Arrows, Arthropod, AxolotlAlwaysHostiles, AxolotlHuntTargets, BeehiveInhabitors, Boat, BurnInDaylight, CanBreatheUnderWater, CanEquipHarness, CanEquipSaddle, CanFloatWhileRidden, CanTurnInBoats, CanWearHorseArmor, CanWearNautilusArmor, CandidateForIronGolemGift, CannotBeAgeLocked, CannotBePushedOntoBoats, DeflectsProjectiles, DismountsUnderwater, FallDamageImmune, FollowableFriendlyMobs, FreezeHurtsExtraTypes, FreezeImmuneEntityTypes, FrogFood, IgnoresPoisonAndRegen, Illager, IllagerFriends, ImmuneToInfested, ImmuneToOozing, ImpactProjectiles, InvertedHealingAndHarm, NautilusHostiles, NoAngerFromWindCharge, NonControllingRider, NotScaryForPufferfish, PowderSnowWalkableMobs, Raiders, RedirectableProjectile, SensitiveToBaneOfArthropods, SensitiveToImpaling, SensitiveToSmite, Skeletons, Undead, WitherFriends, Zombies };

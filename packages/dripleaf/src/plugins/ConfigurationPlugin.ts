@@ -1,6 +1,4 @@
-import { State, ChatVisibility, HumanoidArm, ParticleStatus } from "@dripleaf/protocol"
-import * as configuration from "@dripleaf/protocol"
-import * as play from "@dripleaf/protocol"
+import { State, ChatVisibility, HumanoidArm, ParticleStatus, configuration, play } from "@dripleaf/protocol"
 import { chatComponentFromNbt } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"

@@ -25,6 +25,7 @@ const PACKETS_DIR_PATH = "packages/protocol/src/packets";
 const stateImports = [];
 const stateClientboundPackets = [];
 const stateServerboundPackets = [];
+const rootPacketExports = new Map<string, { state: string; fileStem: string; duplicate: boolean }>();
 
 for (const state in packetsReport) {
   const STATE_DIR_PATH = path.join(PACKETS_DIR_PATH, state);
@@ -81,6 +82,11 @@ for (const state in packetsReport) {
       }
 
       stateIndexOutput.push(`export * from './${fileStem}';`);
+      const existingRootExport = rootPacketExports.get(packetClassName);
+      if (existingRootExport)
+        existingRootExport.duplicate = true;
+      else
+        rootPacketExports.set(packetClassName, { state, fileStem, duplicate: false });
 
       if (side === "clientbound") {
         clientboundPacketNames.push(packetClassName);
@@ -103,6 +109,10 @@ const rootIndexOutput = [
   "import { State } from '../types';",
   "",
   ...stateImports,
+  "",
+  ...[...rootPacketExports]
+    .filter(([, entry]) => !entry.duplicate)
+    .map(([packetClassName, entry]) => `export { ${packetClassName} } from './${entry.state}/${entry.fileStem}';`),
   "",
   ...stateClientboundPackets,
   ...stateServerboundPackets,

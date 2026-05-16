@@ -1,4 +1,4 @@
-import * as play from "@dripleaf/protocol"
+import { play } from "@dripleaf/protocol"
 import { BlockPos } from "@dripleaf/core"
 import { applyLevelChunk } from "@dripleaf/world"
 import type { ClientContext } from "../context"

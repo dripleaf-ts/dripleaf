@@ -1,5 +1,5 @@
 import { BlockType } from "@dripleaf/registry"
-import type { BlockPos } from "@dripleaf/core"
+import { BlockPos } from "@dripleaf/core"
 
 export type BlockLike = {
   type: BlockType | string
@@ -48,11 +48,11 @@ export type PhysicsWorld = {
 
 export function isPassableAt(world: PhysicsWorld, pos: BlockPos): boolean {
   const feet = classifyBlock(world.getBlock(pos))
-  const head = classifyBlock(world.getBlock({ x: pos.x, y: pos.y + 1, z: pos.z }))
+  const head = classifyBlock(world.getBlock(new BlockPos(pos.x, pos.y + 1, pos.z)))
   return feet.passable && head.passable
 }
 
 export function isStandableAt(world: PhysicsWorld, pos: BlockPos): boolean {
-  const below = classifyBlock(world.getBlock({ x: pos.x, y: pos.y - 1, z: pos.z }))
+  const below = classifyBlock(world.getBlock(new BlockPos(pos.x, pos.y - 1, pos.z)))
   return below.standable && isPassableAt(world, pos)
 }

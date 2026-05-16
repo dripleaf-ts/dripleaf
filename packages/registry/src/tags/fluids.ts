@@ -2,9 +2,8 @@
 
 import { Fluid } from "../builtin";
 
-const Water = [
+const BubbleColumnCanOccupy = [
 	Fluid.Water,
-	Fluid.FlowingWater,
 ] as const;
 
 const Lava = [
@@ -12,21 +11,22 @@ const Lava = [
 	Fluid.FlowingLava,
 ] as const;
 
-const SupportsSugarCaneAdjacently = [
+const SupportsFrogspawn = [
 	Fluid.Water,
-	Fluid.FlowingWater,
 ] as const;
 
 const SupportsLilyPad = [
 	Fluid.Water,
 ] as const;
 
-const SupportsFrogspawn = [
+const SupportsSugarCaneAdjacently = [
 	Fluid.Water,
+	Fluid.FlowingWater,
 ] as const;
 
-const BubbleColumnCanOccupy = [
+const Water = [
 	Fluid.Water,
+	Fluid.FlowingWater,
 ] as const;
 
-export { Water, Lava, SupportsSugarCaneAdjacently, SupportsLilyPad, SupportsFrogspawn, BubbleColumnCanOccupy };
+export { BubbleColumnCanOccupy, Lava, SupportsFrogspawn, SupportsLilyPad, SupportsSugarCaneAdjacently, Water };

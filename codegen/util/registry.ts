@@ -12,6 +12,7 @@ export async function getDataRegistries() {
       const entries = files
         .filter(f => f.endsWith(".json"))
         .map(f => f.slice(0, -5))
+        .sort()
       if (entries.length)
         registries[registryPath] = entries
     } catch {}
@@ -19,12 +20,13 @@ export async function getDataRegistries() {
 
   let baseEntries: string[] = []
   try {
-    baseEntries = await readdir(dataPath())
+    baseEntries = (await readdir(dataPath())).sort()
   } catch {
     return registries
   }
 
-  await Promise.all(baseEntries.map(name => addEntriesInDir(name)))
+  for (const name of baseEntries)
+    await addEntriesInDir(name)
   await addEntriesInDir(path.join("worldgen", "biome"))
 
   return registries

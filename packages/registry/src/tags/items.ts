@@ -2,514 +2,11 @@
 
 import { ItemType } from "../builtin";
 
-const Wool = [
-	ItemType.WhiteWool,
-	ItemType.OrangeWool,
-	ItemType.MagentaWool,
-	ItemType.LightBlueWool,
-	ItemType.YellowWool,
-	ItemType.LimeWool,
-	ItemType.PinkWool,
-	ItemType.GrayWool,
-	ItemType.LightGrayWool,
-	ItemType.CyanWool,
-	ItemType.PurpleWool,
-	ItemType.BlueWool,
-	ItemType.BrownWool,
-	ItemType.GreenWool,
-	ItemType.RedWool,
-	ItemType.BlackWool,
-] as const;
-
-const Planks = [
-	ItemType.OakPlanks,
-	ItemType.SprucePlanks,
-	ItemType.BirchPlanks,
-	ItemType.JunglePlanks,
-	ItemType.AcaciaPlanks,
-	ItemType.DarkOakPlanks,
-	ItemType.PaleOakPlanks,
-	ItemType.CrimsonPlanks,
-	ItemType.WarpedPlanks,
-	ItemType.MangrovePlanks,
-	ItemType.BambooPlanks,
-	ItemType.CherryPlanks,
-] as const;
-
-const StoneBricks = [
-	ItemType.StoneBricks,
-	ItemType.MossyStoneBricks,
-	ItemType.CrackedStoneBricks,
-	ItemType.ChiseledStoneBricks,
-] as const;
-
-const WoodenButtons = [
-	ItemType.OakButton,
-	ItemType.SpruceButton,
-	ItemType.BirchButton,
-	ItemType.JungleButton,
-	ItemType.AcaciaButton,
-	ItemType.DarkOakButton,
-	ItemType.PaleOakButton,
-	ItemType.CrimsonButton,
-	ItemType.WarpedButton,
-	ItemType.MangroveButton,
-	ItemType.BambooButton,
-	ItemType.CherryButton,
-] as const;
-
-const StoneButtons = [
-	ItemType.StoneButton,
-	ItemType.PolishedBlackstoneButton,
-] as const;
-
-const Buttons = [
-	ItemType.OakButton,
-	ItemType.SpruceButton,
-	ItemType.BirchButton,
-	ItemType.JungleButton,
-	ItemType.AcaciaButton,
-	ItemType.DarkOakButton,
-	ItemType.PaleOakButton,
-	ItemType.CrimsonButton,
-	ItemType.WarpedButton,
-	ItemType.MangroveButton,
-	ItemType.BambooButton,
-	ItemType.CherryButton,
-	ItemType.StoneButton,
-	ItemType.PolishedBlackstoneButton,
-] as const;
-
-const WoolCarpets = [
-	ItemType.WhiteCarpet,
-	ItemType.OrangeCarpet,
-	ItemType.MagentaCarpet,
-	ItemType.LightBlueCarpet,
-	ItemType.YellowCarpet,
-	ItemType.LimeCarpet,
-	ItemType.PinkCarpet,
-	ItemType.GrayCarpet,
-	ItemType.LightGrayCarpet,
-	ItemType.CyanCarpet,
-	ItemType.PurpleCarpet,
-	ItemType.BlueCarpet,
-	ItemType.BrownCarpet,
-	ItemType.GreenCarpet,
-	ItemType.RedCarpet,
-	ItemType.BlackCarpet,
-] as const;
-
-const WoodenDoors = [
-	ItemType.OakDoor,
-	ItemType.SpruceDoor,
-	ItemType.BirchDoor,
-	ItemType.JungleDoor,
-	ItemType.AcaciaDoor,
-	ItemType.DarkOakDoor,
-	ItemType.PaleOakDoor,
-	ItemType.CrimsonDoor,
-	ItemType.WarpedDoor,
-	ItemType.MangroveDoor,
-	ItemType.BambooDoor,
-	ItemType.CherryDoor,
-] as const;
-
-const WoodenStairs = [
-	ItemType.OakStairs,
-	ItemType.SpruceStairs,
-	ItemType.BirchStairs,
-	ItemType.JungleStairs,
-	ItemType.AcaciaStairs,
-	ItemType.DarkOakStairs,
-	ItemType.PaleOakStairs,
-	ItemType.CrimsonStairs,
-	ItemType.WarpedStairs,
-	ItemType.MangroveStairs,
-	ItemType.BambooStairs,
-	ItemType.CherryStairs,
-] as const;
-
-const WoodenSlabs = [
-	ItemType.OakSlab,
-	ItemType.SpruceSlab,
-	ItemType.BirchSlab,
-	ItemType.JungleSlab,
-	ItemType.AcaciaSlab,
-	ItemType.DarkOakSlab,
-	ItemType.PaleOakSlab,
-	ItemType.CrimsonSlab,
-	ItemType.WarpedSlab,
-	ItemType.MangroveSlab,
-	ItemType.BambooSlab,
-	ItemType.CherrySlab,
-] as const;
-
-const WoodenFences = [
-	ItemType.OakFence,
-	ItemType.AcaciaFence,
-	ItemType.DarkOakFence,
-	ItemType.PaleOakFence,
-	ItemType.SpruceFence,
-	ItemType.BirchFence,
-	ItemType.JungleFence,
-	ItemType.CrimsonFence,
-	ItemType.WarpedFence,
-	ItemType.MangroveFence,
-	ItemType.BambooFence,
-	ItemType.CherryFence,
-] as const;
-
-const FenceGates = [
-	ItemType.AcaciaFenceGate,
-	ItemType.BirchFenceGate,
-	ItemType.DarkOakFenceGate,
-	ItemType.PaleOakFenceGate,
-	ItemType.JungleFenceGate,
-	ItemType.OakFenceGate,
-	ItemType.SpruceFenceGate,
-	ItemType.CrimsonFenceGate,
-	ItemType.WarpedFenceGate,
-	ItemType.MangroveFenceGate,
-	ItemType.BambooFenceGate,
-	ItemType.CherryFenceGate,
-] as const;
-
-const WoodenPressurePlates = [
-	ItemType.OakPressurePlate,
-	ItemType.SprucePressurePlate,
-	ItemType.BirchPressurePlate,
-	ItemType.JunglePressurePlate,
-	ItemType.AcaciaPressurePlate,
-	ItemType.DarkOakPressurePlate,
-	ItemType.PaleOakPressurePlate,
-	ItemType.CrimsonPressurePlate,
-	ItemType.WarpedPressurePlate,
-	ItemType.MangrovePressurePlate,
-	ItemType.BambooPressurePlate,
-	ItemType.CherryPressurePlate,
-] as const;
-
-const Doors = [
-	ItemType.CopperDoor,
-	ItemType.ExposedCopperDoor,
-	ItemType.WeatheredCopperDoor,
-	ItemType.OxidizedCopperDoor,
-	ItemType.WaxedCopperDoor,
-	ItemType.WaxedExposedCopperDoor,
-	ItemType.WaxedWeatheredCopperDoor,
-	ItemType.WaxedOxidizedCopperDoor,
-	ItemType.IronDoor,
-	ItemType.OakDoor,
-	ItemType.SpruceDoor,
-	ItemType.BirchDoor,
-	ItemType.JungleDoor,
-	ItemType.AcaciaDoor,
-	ItemType.DarkOakDoor,
-	ItemType.PaleOakDoor,
-	ItemType.CrimsonDoor,
-	ItemType.WarpedDoor,
-	ItemType.MangroveDoor,
-	ItemType.BambooDoor,
-	ItemType.CherryDoor,
-] as const;
-
-const OakLogs = [
-	ItemType.OakLog,
-	ItemType.OakWood,
-	ItemType.StrippedOakLog,
-	ItemType.StrippedOakWood,
-] as const;
-
-const Saplings = [
-	ItemType.OakSapling,
-	ItemType.SpruceSapling,
-	ItemType.BirchSapling,
-	ItemType.JungleSapling,
-	ItemType.AcaciaSapling,
-	ItemType.DarkOakSapling,
-	ItemType.PaleOakSapling,
-	ItemType.Azalea,
-	ItemType.FloweringAzalea,
-	ItemType.MangrovePropagule,
-	ItemType.CherrySapling,
-] as const;
-
-const BambooBlocks = [
-	ItemType.BambooBlock,
-	ItemType.StrippedBambooBlock,
-] as const;
-
-const DarkOakLogs = [
-	ItemType.DarkOakLog,
-	ItemType.DarkOakWood,
-	ItemType.StrippedDarkOakLog,
-	ItemType.StrippedDarkOakWood,
-] as const;
-
-const PaleOakLogs = [
-	ItemType.PaleOakLog,
-	ItemType.PaleOakWood,
-	ItemType.StrippedPaleOakLog,
-	ItemType.StrippedPaleOakWood,
-] as const;
-
-const BirchLogs = [
-	ItemType.BirchLog,
-	ItemType.BirchWood,
-	ItemType.StrippedBirchLog,
-	ItemType.StrippedBirchWood,
-] as const;
-
 const AcaciaLogs = [
 	ItemType.AcaciaLog,
 	ItemType.AcaciaWood,
 	ItemType.StrippedAcaciaLog,
 	ItemType.StrippedAcaciaWood,
-] as const;
-
-const SpruceLogs = [
-	ItemType.SpruceLog,
-	ItemType.SpruceWood,
-	ItemType.StrippedSpruceLog,
-	ItemType.StrippedSpruceWood,
-] as const;
-
-const MangroveLogs = [
-	ItemType.MangroveLog,
-	ItemType.MangroveWood,
-	ItemType.StrippedMangroveLog,
-	ItemType.StrippedMangroveWood,
-] as const;
-
-const JungleLogs = [
-	ItemType.JungleLog,
-	ItemType.JungleWood,
-	ItemType.StrippedJungleLog,
-	ItemType.StrippedJungleWood,
-] as const;
-
-const CherryLogs = [
-	ItemType.CherryLog,
-	ItemType.CherryWood,
-	ItemType.StrippedCherryLog,
-	ItemType.StrippedCherryWood,
-] as const;
-
-const CrimsonStems = [
-	ItemType.CrimsonStem,
-	ItemType.StrippedCrimsonStem,
-	ItemType.CrimsonHyphae,
-	ItemType.StrippedCrimsonHyphae,
-] as const;
-
-const WarpedStems = [
-	ItemType.WarpedStem,
-	ItemType.StrippedWarpedStem,
-	ItemType.WarpedHyphae,
-	ItemType.StrippedWarpedHyphae,
-] as const;
-
-const WartBlocks = [
-	ItemType.NetherWartBlock,
-	ItemType.WarpedWartBlock,
-] as const;
-
-const LogsThatBurn = [
-	ItemType.DarkOakLog,
-	ItemType.DarkOakWood,
-	ItemType.StrippedDarkOakLog,
-	ItemType.StrippedDarkOakWood,
-	ItemType.PaleOakLog,
-	ItemType.PaleOakWood,
-	ItemType.StrippedPaleOakLog,
-	ItemType.StrippedPaleOakWood,
-	ItemType.OakLog,
-	ItemType.OakWood,
-	ItemType.StrippedOakLog,
-	ItemType.StrippedOakWood,
-	ItemType.AcaciaLog,
-	ItemType.AcaciaWood,
-	ItemType.StrippedAcaciaLog,
-	ItemType.StrippedAcaciaWood,
-	ItemType.BirchLog,
-	ItemType.BirchWood,
-	ItemType.StrippedBirchLog,
-	ItemType.StrippedBirchWood,
-	ItemType.JungleLog,
-	ItemType.JungleWood,
-	ItemType.StrippedJungleLog,
-	ItemType.StrippedJungleWood,
-	ItemType.SpruceLog,
-	ItemType.SpruceWood,
-	ItemType.StrippedSpruceLog,
-	ItemType.StrippedSpruceWood,
-	ItemType.MangroveLog,
-	ItemType.MangroveWood,
-	ItemType.StrippedMangroveLog,
-	ItemType.StrippedMangroveWood,
-	ItemType.CherryLog,
-	ItemType.CherryWood,
-	ItemType.StrippedCherryLog,
-	ItemType.StrippedCherryWood,
-] as const;
-
-const Logs = [
-	ItemType.CrimsonStem,
-	ItemType.StrippedCrimsonStem,
-	ItemType.CrimsonHyphae,
-	ItemType.StrippedCrimsonHyphae,
-	ItemType.WarpedStem,
-	ItemType.StrippedWarpedStem,
-	ItemType.WarpedHyphae,
-	ItemType.StrippedWarpedHyphae,
-	ItemType.DarkOakLog,
-	ItemType.DarkOakWood,
-	ItemType.StrippedDarkOakLog,
-	ItemType.StrippedDarkOakWood,
-	ItemType.PaleOakLog,
-	ItemType.PaleOakWood,
-	ItemType.StrippedPaleOakLog,
-	ItemType.StrippedPaleOakWood,
-	ItemType.OakLog,
-	ItemType.OakWood,
-	ItemType.StrippedOakLog,
-	ItemType.StrippedOakWood,
-	ItemType.AcaciaLog,
-	ItemType.AcaciaWood,
-	ItemType.StrippedAcaciaLog,
-	ItemType.StrippedAcaciaWood,
-	ItemType.BirchLog,
-	ItemType.BirchWood,
-	ItemType.StrippedBirchLog,
-	ItemType.StrippedBirchWood,
-	ItemType.JungleLog,
-	ItemType.JungleWood,
-	ItemType.StrippedJungleLog,
-	ItemType.StrippedJungleWood,
-	ItemType.SpruceLog,
-	ItemType.SpruceWood,
-	ItemType.StrippedSpruceLog,
-	ItemType.StrippedSpruceWood,
-	ItemType.MangroveLog,
-	ItemType.MangroveWood,
-	ItemType.StrippedMangroveLog,
-	ItemType.StrippedMangroveWood,
-	ItemType.CherryLog,
-	ItemType.CherryWood,
-	ItemType.StrippedCherryLog,
-	ItemType.StrippedCherryWood,
-] as const;
-
-const Sand = [
-	ItemType.Sand,
-	ItemType.RedSand,
-	ItemType.SuspiciousSand,
-] as const;
-
-const SmeltsToGlass = [
-	ItemType.Sand,
-	ItemType.RedSand,
-] as const;
-
-const Walls = [
-	ItemType.CobblestoneWall,
-	ItemType.MossyCobblestoneWall,
-	ItemType.BrickWall,
-	ItemType.PrismarineWall,
-	ItemType.RedSandstoneWall,
-	ItemType.MossyStoneBrickWall,
-	ItemType.GraniteWall,
-	ItemType.StoneBrickWall,
-	ItemType.NetherBrickWall,
-	ItemType.AndesiteWall,
-	ItemType.RedNetherBrickWall,
-	ItemType.SandstoneWall,
-	ItemType.EndStoneBrickWall,
-	ItemType.DioriteWall,
-	ItemType.BlackstoneWall,
-	ItemType.PolishedBlackstoneBrickWall,
-	ItemType.PolishedBlackstoneWall,
-	ItemType.CobbledDeepslateWall,
-	ItemType.PolishedDeepslateWall,
-	ItemType.DeepslateTileWall,
-	ItemType.DeepslateBrickWall,
-	ItemType.MudBrickWall,
-	ItemType.TuffWall,
-	ItemType.PolishedTuffWall,
-	ItemType.TuffBrickWall,
-	ItemType.ResinBrickWall,
-] as const;
-
-const Slabs = [
-	ItemType.BambooMosaicSlab,
-	ItemType.StoneSlab,
-	ItemType.SmoothStoneSlab,
-	ItemType.StoneBrickSlab,
-	ItemType.SandstoneSlab,
-	ItemType.PurpurSlab,
-	ItemType.QuartzSlab,
-	ItemType.RedSandstoneSlab,
-	ItemType.BrickSlab,
-	ItemType.CobblestoneSlab,
-	ItemType.NetherBrickSlab,
-	ItemType.PetrifiedOakSlab,
-	ItemType.PrismarineSlab,
-	ItemType.PrismarineBrickSlab,
-	ItemType.DarkPrismarineSlab,
-	ItemType.PolishedGraniteSlab,
-	ItemType.SmoothRedSandstoneSlab,
-	ItemType.MossyStoneBrickSlab,
-	ItemType.PolishedDioriteSlab,
-	ItemType.MossyCobblestoneSlab,
-	ItemType.EndStoneBrickSlab,
-	ItemType.SmoothSandstoneSlab,
-	ItemType.SmoothQuartzSlab,
-	ItemType.GraniteSlab,
-	ItemType.AndesiteSlab,
-	ItemType.RedNetherBrickSlab,
-	ItemType.PolishedAndesiteSlab,
-	ItemType.DioriteSlab,
-	ItemType.CutSandstoneSlab,
-	ItemType.CutRedSandstoneSlab,
-	ItemType.BlackstoneSlab,
-	ItemType.PolishedBlackstoneBrickSlab,
-	ItemType.PolishedBlackstoneSlab,
-	ItemType.CobbledDeepslateSlab,
-	ItemType.PolishedDeepslateSlab,
-	ItemType.DeepslateTileSlab,
-	ItemType.DeepslateBrickSlab,
-	ItemType.WaxedWeatheredCutCopperSlab,
-	ItemType.WaxedExposedCutCopperSlab,
-	ItemType.WaxedCutCopperSlab,
-	ItemType.OxidizedCutCopperSlab,
-	ItemType.WeatheredCutCopperSlab,
-	ItemType.ExposedCutCopperSlab,
-	ItemType.CutCopperSlab,
-	ItemType.WaxedOxidizedCutCopperSlab,
-	ItemType.MudBrickSlab,
-	ItemType.TuffSlab,
-	ItemType.PolishedTuffSlab,
-	ItemType.TuffBrickSlab,
-	ItemType.ResinBrickSlab,
-	ItemType.OakSlab,
-	ItemType.SpruceSlab,
-	ItemType.BirchSlab,
-	ItemType.JungleSlab,
-	ItemType.AcaciaSlab,
-	ItemType.DarkOakSlab,
-	ItemType.PaleOakSlab,
-	ItemType.CrimsonSlab,
-	ItemType.WarpedSlab,
-	ItemType.MangroveSlab,
-	ItemType.BambooSlab,
-	ItemType.CherrySlab,
-] as const;
-
-const Rails = [
-	ItemType.Rail,
-	ItemType.PoweredRail,
-	ItemType.DetectorRail,
-	ItemType.ActivatorRail,
 ] as const;
 
 const Anvil = [
@@ -518,172 +15,72 @@ const Anvil = [
 	ItemType.DamagedAnvil,
 ] as const;
 
-const Stairs = [
-	ItemType.BambooMosaicStairs,
-	ItemType.CobblestoneStairs,
-	ItemType.SandstoneStairs,
-	ItemType.NetherBrickStairs,
-	ItemType.StoneBrickStairs,
-	ItemType.BrickStairs,
-	ItemType.PurpurStairs,
-	ItemType.QuartzStairs,
-	ItemType.RedSandstoneStairs,
-	ItemType.PrismarineBrickStairs,
-	ItemType.PrismarineStairs,
-	ItemType.DarkPrismarineStairs,
-	ItemType.PolishedGraniteStairs,
-	ItemType.SmoothRedSandstoneStairs,
-	ItemType.MossyStoneBrickStairs,
-	ItemType.PolishedDioriteStairs,
-	ItemType.MossyCobblestoneStairs,
-	ItemType.EndStoneBrickStairs,
-	ItemType.StoneStairs,
-	ItemType.SmoothSandstoneStairs,
-	ItemType.SmoothQuartzStairs,
-	ItemType.GraniteStairs,
-	ItemType.AndesiteStairs,
-	ItemType.RedNetherBrickStairs,
-	ItemType.PolishedAndesiteStairs,
-	ItemType.DioriteStairs,
-	ItemType.BlackstoneStairs,
-	ItemType.PolishedBlackstoneBrickStairs,
-	ItemType.PolishedBlackstoneStairs,
-	ItemType.CobbledDeepslateStairs,
-	ItemType.PolishedDeepslateStairs,
-	ItemType.DeepslateTileStairs,
-	ItemType.DeepslateBrickStairs,
-	ItemType.OxidizedCutCopperStairs,
-	ItemType.WeatheredCutCopperStairs,
-	ItemType.ExposedCutCopperStairs,
-	ItemType.CutCopperStairs,
-	ItemType.WaxedWeatheredCutCopperStairs,
-	ItemType.WaxedExposedCutCopperStairs,
-	ItemType.WaxedCutCopperStairs,
-	ItemType.WaxedOxidizedCutCopperStairs,
-	ItemType.MudBrickStairs,
-	ItemType.TuffStairs,
-	ItemType.PolishedTuffStairs,
-	ItemType.TuffBrickStairs,
-	ItemType.ResinBrickStairs,
-	ItemType.OakStairs,
-	ItemType.SpruceStairs,
-	ItemType.BirchStairs,
-	ItemType.JungleStairs,
-	ItemType.AcaciaStairs,
-	ItemType.DarkOakStairs,
-	ItemType.PaleOakStairs,
-	ItemType.CrimsonStairs,
-	ItemType.WarpedStairs,
-	ItemType.MangroveStairs,
-	ItemType.BambooStairs,
-	ItemType.CherryStairs,
+const ArmadilloFood = [
+	ItemType.SpiderEye,
 ] as const;
 
-const Leaves = [
-	ItemType.JungleLeaves,
-	ItemType.OakLeaves,
-	ItemType.SpruceLeaves,
-	ItemType.PaleOakLeaves,
-	ItemType.DarkOakLeaves,
-	ItemType.AcaciaLeaves,
-	ItemType.BirchLeaves,
-	ItemType.AzaleaLeaves,
-	ItemType.FloweringAzaleaLeaves,
-	ItemType.MangroveLeaves,
-	ItemType.CherryLeaves,
+const Arrows = [
+	ItemType.Arrow,
+	ItemType.TippedArrow,
+	ItemType.SpectralArrow,
 ] as const;
 
-const WoodenTrapdoors = [
-	ItemType.AcaciaTrapdoor,
-	ItemType.BirchTrapdoor,
-	ItemType.DarkOakTrapdoor,
-	ItemType.PaleOakTrapdoor,
-	ItemType.JungleTrapdoor,
-	ItemType.OakTrapdoor,
-	ItemType.SpruceTrapdoor,
-	ItemType.CrimsonTrapdoor,
-	ItemType.WarpedTrapdoor,
-	ItemType.MangroveTrapdoor,
-	ItemType.BambooTrapdoor,
-	ItemType.CherryTrapdoor,
+const Axes = [
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
 ] as const;
 
-const Trapdoors = [
-	ItemType.IronTrapdoor,
-	ItemType.CopperTrapdoor,
-	ItemType.ExposedCopperTrapdoor,
-	ItemType.WeatheredCopperTrapdoor,
-	ItemType.OxidizedCopperTrapdoor,
-	ItemType.WaxedCopperTrapdoor,
-	ItemType.WaxedExposedCopperTrapdoor,
-	ItemType.WaxedWeatheredCopperTrapdoor,
-	ItemType.WaxedOxidizedCopperTrapdoor,
-	ItemType.AcaciaTrapdoor,
-	ItemType.BirchTrapdoor,
-	ItemType.DarkOakTrapdoor,
-	ItemType.PaleOakTrapdoor,
-	ItemType.JungleTrapdoor,
-	ItemType.OakTrapdoor,
-	ItemType.SpruceTrapdoor,
-	ItemType.CrimsonTrapdoor,
-	ItemType.WarpedTrapdoor,
-	ItemType.MangroveTrapdoor,
-	ItemType.BambooTrapdoor,
-	ItemType.CherryTrapdoor,
+const AxolotlFood = [
+	ItemType.TropicalFishBucket,
 ] as const;
 
-const SmallFlowers = [
-	ItemType.Dandelion,
-	ItemType.OpenEyeblossom,
-	ItemType.Poppy,
-	ItemType.BlueOrchid,
-	ItemType.Allium,
-	ItemType.AzureBluet,
-	ItemType.RedTulip,
-	ItemType.OrangeTulip,
-	ItemType.WhiteTulip,
-	ItemType.PinkTulip,
-	ItemType.OxeyeDaisy,
-	ItemType.Cornflower,
-	ItemType.LilyOfTheValley,
-	ItemType.WitherRose,
-	ItemType.Torchflower,
-	ItemType.ClosedEyeblossom,
-	ItemType.GoldenDandelion,
+const BambooBlocks = [
+	ItemType.BambooBlock,
+	ItemType.StrippedBambooBlock,
 ] as const;
 
-const Flowers = [
-	ItemType.Sunflower,
-	ItemType.Lilac,
-	ItemType.Peony,
-	ItemType.RoseBush,
-	ItemType.PitcherPlant,
-	ItemType.FloweringAzaleaLeaves,
-	ItemType.FloweringAzalea,
-	ItemType.MangrovePropagule,
-	ItemType.CherryLeaves,
-	ItemType.PinkPetals,
-	ItemType.Wildflowers,
-	ItemType.ChorusFlower,
-	ItemType.SporeBlossom,
-	ItemType.CactusFlower,
-	ItemType.Dandelion,
-	ItemType.OpenEyeblossom,
-	ItemType.Poppy,
-	ItemType.BlueOrchid,
-	ItemType.Allium,
-	ItemType.AzureBluet,
-	ItemType.RedTulip,
-	ItemType.OrangeTulip,
-	ItemType.WhiteTulip,
-	ItemType.PinkTulip,
-	ItemType.OxeyeDaisy,
-	ItemType.Cornflower,
-	ItemType.LilyOfTheValley,
-	ItemType.WitherRose,
-	ItemType.Torchflower,
-	ItemType.ClosedEyeblossom,
-	ItemType.GoldenDandelion,
+const Banners = [
+	ItemType.WhiteBanner,
+	ItemType.OrangeBanner,
+	ItemType.MagentaBanner,
+	ItemType.LightBlueBanner,
+	ItemType.YellowBanner,
+	ItemType.LimeBanner,
+	ItemType.PinkBanner,
+	ItemType.GrayBanner,
+	ItemType.LightGrayBanner,
+	ItemType.CyanBanner,
+	ItemType.PurpleBanner,
+	ItemType.BlueBanner,
+	ItemType.BrownBanner,
+	ItemType.GreenBanner,
+	ItemType.RedBanner,
+	ItemType.BlackBanner,
+] as const;
+
+const Bars = [
+	ItemType.IronBars,
+	ItemType.CopperBars,
+	ItemType.WaxedCopperBars,
+	ItemType.ExposedCopperBars,
+	ItemType.WaxedExposedCopperBars,
+	ItemType.WeatheredCopperBars,
+	ItemType.WaxedWeatheredCopperBars,
+	ItemType.OxidizedCopperBars,
+	ItemType.WaxedOxidizedCopperBars,
+] as const;
+
+const BeaconPaymentItems = [
+	ItemType.NetheriteIngot,
+	ItemType.Emerald,
+	ItemType.Diamond,
+	ItemType.GoldIngot,
+	ItemType.IronIngot,
 ] as const;
 
 const Beds = [
@@ -705,66 +102,167 @@ const Beds = [
 	ItemType.YellowBed,
 ] as const;
 
-const Fences = [
-	ItemType.NetherBrickFence,
-	ItemType.OakFence,
-	ItemType.AcaciaFence,
-	ItemType.DarkOakFence,
-	ItemType.PaleOakFence,
-	ItemType.SpruceFence,
-	ItemType.BirchFence,
-	ItemType.JungleFence,
-	ItemType.CrimsonFence,
-	ItemType.WarpedFence,
-	ItemType.MangroveFence,
-	ItemType.BambooFence,
-	ItemType.CherryFence,
+const BeeFood = [
+	ItemType.Dandelion,
+	ItemType.OpenEyeblossom,
+	ItemType.Poppy,
+	ItemType.BlueOrchid,
+	ItemType.Allium,
+	ItemType.AzureBluet,
+	ItemType.RedTulip,
+	ItemType.OrangeTulip,
+	ItemType.WhiteTulip,
+	ItemType.PinkTulip,
+	ItemType.OxeyeDaisy,
+	ItemType.Cornflower,
+	ItemType.LilyOfTheValley,
+	ItemType.WitherRose,
+	ItemType.Torchflower,
+	ItemType.Sunflower,
+	ItemType.Lilac,
+	ItemType.Peony,
+	ItemType.RoseBush,
+	ItemType.PitcherPlant,
+	ItemType.FloweringAzaleaLeaves,
+	ItemType.FloweringAzalea,
+	ItemType.MangrovePropagule,
+	ItemType.CherryLeaves,
+	ItemType.PinkPetals,
+	ItemType.Wildflowers,
+	ItemType.ChorusFlower,
+	ItemType.SporeBlossom,
+	ItemType.CactusFlower,
 ] as const;
 
-const SoulFireBaseBlocks = [
-	ItemType.SoulSand,
-	ItemType.SoulSoil,
+const BirchLogs = [
+	ItemType.BirchLog,
+	ItemType.BirchWood,
+	ItemType.StrippedBirchLog,
+	ItemType.StrippedBirchWood,
 ] as const;
 
-const GoldOres = [
-	ItemType.GoldOre,
-	ItemType.NetherGoldOre,
-	ItemType.DeepslateGoldOre,
+const Boats = [
+	ItemType.OakBoat,
+	ItemType.SpruceBoat,
+	ItemType.BirchBoat,
+	ItemType.JungleBoat,
+	ItemType.AcaciaBoat,
+	ItemType.DarkOakBoat,
+	ItemType.PaleOakBoat,
+	ItemType.MangroveBoat,
+	ItemType.BambooRaft,
+	ItemType.CherryBoat,
+	ItemType.OakChestBoat,
+	ItemType.SpruceChestBoat,
+	ItemType.BirchChestBoat,
+	ItemType.JungleChestBoat,
+	ItemType.AcaciaChestBoat,
+	ItemType.DarkOakChestBoat,
+	ItemType.PaleOakChestBoat,
+	ItemType.MangroveChestBoat,
+	ItemType.BambooChestRaft,
+	ItemType.CherryChestBoat,
 ] as const;
 
-const DampensVibrations = [
-	ItemType.WhiteWool,
-	ItemType.OrangeWool,
-	ItemType.MagentaWool,
-	ItemType.LightBlueWool,
-	ItemType.YellowWool,
-	ItemType.LimeWool,
-	ItemType.PinkWool,
-	ItemType.GrayWool,
-	ItemType.LightGrayWool,
-	ItemType.CyanWool,
-	ItemType.PurpleWool,
-	ItemType.BlueWool,
-	ItemType.BrownWool,
-	ItemType.GreenWool,
-	ItemType.RedWool,
-	ItemType.BlackWool,
-	ItemType.WhiteCarpet,
-	ItemType.OrangeCarpet,
-	ItemType.MagentaCarpet,
-	ItemType.LightBlueCarpet,
-	ItemType.YellowCarpet,
-	ItemType.LimeCarpet,
-	ItemType.PinkCarpet,
-	ItemType.GrayCarpet,
-	ItemType.LightGrayCarpet,
-	ItemType.CyanCarpet,
-	ItemType.PurpleCarpet,
-	ItemType.BlueCarpet,
-	ItemType.BrownCarpet,
-	ItemType.GreenCarpet,
-	ItemType.RedCarpet,
-	ItemType.BlackCarpet,
+const BookCloningTarget = [
+	ItemType.WritableBook,
+] as const;
+
+const BookshelfBooks = [
+	ItemType.Book,
+	ItemType.WrittenBook,
+	ItemType.EnchantedBook,
+	ItemType.WritableBook,
+	ItemType.KnowledgeBook,
+] as const;
+
+const BreaksDecoratedPots = [
+	ItemType.Trident,
+	ItemType.Mace,
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
+	ItemType.DiamondPickaxe,
+	ItemType.StonePickaxe,
+	ItemType.GoldenPickaxe,
+	ItemType.NetheritePickaxe,
+	ItemType.WoodenPickaxe,
+	ItemType.IronPickaxe,
+	ItemType.CopperPickaxe,
+	ItemType.DiamondShovel,
+	ItemType.StoneShovel,
+	ItemType.GoldenShovel,
+	ItemType.NetheriteShovel,
+	ItemType.WoodenShovel,
+	ItemType.IronShovel,
+	ItemType.CopperShovel,
+	ItemType.DiamondHoe,
+	ItemType.StoneHoe,
+	ItemType.GoldenHoe,
+	ItemType.NetheriteHoe,
+	ItemType.WoodenHoe,
+	ItemType.IronHoe,
+	ItemType.CopperHoe,
+] as const;
+
+const BrewingFuel = [
+	ItemType.BlazePowder,
+] as const;
+
+const Bundles = [
+	ItemType.Bundle,
+	ItemType.BlackBundle,
+	ItemType.BlueBundle,
+	ItemType.BrownBundle,
+	ItemType.CyanBundle,
+	ItemType.GrayBundle,
+	ItemType.GreenBundle,
+	ItemType.LightBlueBundle,
+	ItemType.LightGrayBundle,
+	ItemType.LimeBundle,
+	ItemType.MagentaBundle,
+	ItemType.OrangeBundle,
+	ItemType.PinkBundle,
+	ItemType.PurpleBundle,
+	ItemType.RedBundle,
+	ItemType.YellowBundle,
+	ItemType.WhiteBundle,
+] as const;
+
+const Buttons = [
+	ItemType.OakButton,
+	ItemType.SpruceButton,
+	ItemType.BirchButton,
+	ItemType.JungleButton,
+	ItemType.AcaciaButton,
+	ItemType.DarkOakButton,
+	ItemType.PaleOakButton,
+	ItemType.CrimsonButton,
+	ItemType.WarpedButton,
+	ItemType.MangroveButton,
+	ItemType.BambooButton,
+	ItemType.CherryButton,
+	ItemType.StoneButton,
+	ItemType.PolishedBlackstoneButton,
+] as const;
+
+const CamelFood = [
+	ItemType.Cactus,
+] as const;
+
+const CamelHuskFood = [
+	ItemType.RabbitFoot,
 ] as const;
 
 const Candles = [
@@ -787,24 +285,98 @@ const Candles = [
 	ItemType.BlackCandle,
 ] as const;
 
-const IronOres = [
-	ItemType.IronOre,
-	ItemType.DeepslateIronOre,
+const CatCollarDyes = [
+	ItemType.WhiteDye,
+	ItemType.OrangeDye,
+	ItemType.MagentaDye,
+	ItemType.LightBlueDye,
+	ItemType.YellowDye,
+	ItemType.LimeDye,
+	ItemType.PinkDye,
+	ItemType.GrayDye,
+	ItemType.LightGrayDye,
+	ItemType.CyanDye,
+	ItemType.PurpleDye,
+	ItemType.BlueDye,
+	ItemType.BrownDye,
+	ItemType.GreenDye,
+	ItemType.RedDye,
+	ItemType.BlackDye,
 ] as const;
 
-const RedstoneOres = [
-	ItemType.RedstoneOre,
-	ItemType.DeepslateRedstoneOre,
+const CatFood = [
+	ItemType.Cod,
+	ItemType.Salmon,
 ] as const;
 
-const DiamondOres = [
-	ItemType.DiamondOre,
-	ItemType.DeepslateDiamondOre,
+const CauldronCanRemoveDye = [
+	ItemType.LeatherHelmet,
+	ItemType.LeatherChestplate,
+	ItemType.LeatherLeggings,
+	ItemType.LeatherBoots,
+	ItemType.LeatherHorseArmor,
+	ItemType.WolfArmor,
 ] as const;
 
-const LapisOres = [
-	ItemType.LapisOre,
-	ItemType.DeepslateLapisOre,
+const Chains = [
+	ItemType.IronChain,
+	ItemType.CopperChain,
+	ItemType.WaxedCopperChain,
+	ItemType.ExposedCopperChain,
+	ItemType.WaxedExposedCopperChain,
+	ItemType.WeatheredCopperChain,
+	ItemType.WaxedWeatheredCopperChain,
+	ItemType.OxidizedCopperChain,
+	ItemType.WaxedOxidizedCopperChain,
+] as const;
+
+const CherryLogs = [
+	ItemType.CherryLog,
+	ItemType.CherryWood,
+	ItemType.StrippedCherryLog,
+	ItemType.StrippedCherryWood,
+] as const;
+
+const ChestArmor = [
+	ItemType.LeatherChestplate,
+	ItemType.CopperChestplate,
+	ItemType.ChainmailChestplate,
+	ItemType.GoldenChestplate,
+	ItemType.IronChestplate,
+	ItemType.DiamondChestplate,
+	ItemType.NetheriteChestplate,
+] as const;
+
+const ChestBoats = [
+	ItemType.OakChestBoat,
+	ItemType.SpruceChestBoat,
+	ItemType.BirchChestBoat,
+	ItemType.JungleChestBoat,
+	ItemType.AcaciaChestBoat,
+	ItemType.DarkOakChestBoat,
+	ItemType.PaleOakChestBoat,
+	ItemType.MangroveChestBoat,
+	ItemType.BambooChestRaft,
+	ItemType.CherryChestBoat,
+] as const;
+
+const ChickenFood = [
+	ItemType.WheatSeeds,
+	ItemType.MelonSeeds,
+	ItemType.PumpkinSeeds,
+	ItemType.BeetrootSeeds,
+	ItemType.TorchflowerSeeds,
+	ItemType.PitcherPod,
+] as const;
+
+const ClusterMaxHarvestables = [
+	ItemType.DiamondPickaxe,
+	ItemType.GoldenPickaxe,
+	ItemType.IronPickaxe,
+	ItemType.NetheritePickaxe,
+	ItemType.StonePickaxe,
+	ItemType.WoodenPickaxe,
+	ItemType.CopperPickaxe,
 ] as const;
 
 const CoalOres = [
@@ -812,56 +384,14 @@ const CoalOres = [
 	ItemType.DeepslateCoalOre,
 ] as const;
 
-const EmeraldOres = [
-	ItemType.EmeraldOre,
-	ItemType.DeepslateEmeraldOre,
+const Coals = [
+	ItemType.Coal,
+	ItemType.Charcoal,
 ] as const;
 
-const CopperOres = [
-	ItemType.CopperOre,
-	ItemType.DeepslateCopperOre,
-] as const;
-
-const Dirt = [
-	ItemType.Dirt,
-	ItemType.CoarseDirt,
-	ItemType.RootedDirt,
-] as const;
-
-const MossBlocks = [
-	ItemType.MossBlock,
-	ItemType.PaleMossBlock,
-] as const;
-
-const Mud = [
-	ItemType.Mud,
-	ItemType.MuddyMangroveRoots,
-] as const;
-
-const GrassBlocks = [
-	ItemType.GrassBlock,
-	ItemType.Podzol,
-	ItemType.Mycelium,
-] as const;
-
-const Terracotta = [
-	ItemType.Terracotta,
-	ItemType.WhiteTerracotta,
-	ItemType.OrangeTerracotta,
-	ItemType.MagentaTerracotta,
-	ItemType.LightBlueTerracotta,
-	ItemType.YellowTerracotta,
-	ItemType.LimeTerracotta,
-	ItemType.PinkTerracotta,
-	ItemType.GrayTerracotta,
-	ItemType.LightGrayTerracotta,
-	ItemType.CyanTerracotta,
-	ItemType.PurpleTerracotta,
-	ItemType.BlueTerracotta,
-	ItemType.BrownTerracotta,
-	ItemType.GreenTerracotta,
-	ItemType.RedTerracotta,
-	ItemType.BlackTerracotta,
+const Compasses = [
+	ItemType.Compass,
+	ItemType.RecoveryCompass,
 ] as const;
 
 const CompletesFindTreeTutorial = [
@@ -924,24 +454,15 @@ const CompletesFindTreeTutorial = [
 	ItemType.StrippedCherryWood,
 ] as const;
 
-const ShulkerBoxes = [
-	ItemType.ShulkerBox,
-	ItemType.BlackShulkerBox,
-	ItemType.BlueShulkerBox,
-	ItemType.BrownShulkerBox,
-	ItemType.CyanShulkerBox,
-	ItemType.GrayShulkerBox,
-	ItemType.GreenShulkerBox,
-	ItemType.LightBlueShulkerBox,
-	ItemType.LightGrayShulkerBox,
-	ItemType.LimeShulkerBox,
-	ItemType.MagentaShulkerBox,
-	ItemType.OrangeShulkerBox,
-	ItemType.PinkShulkerBox,
-	ItemType.PurpleShulkerBox,
-	ItemType.RedShulkerBox,
-	ItemType.WhiteShulkerBox,
-	ItemType.YellowShulkerBox,
+const Copper = [
+	ItemType.CopperBlock,
+	ItemType.ExposedCopper,
+	ItemType.WeatheredCopper,
+	ItemType.OxidizedCopper,
+	ItemType.WaxedCopperBlock,
+	ItemType.WaxedExposedCopper,
+	ItemType.WaxedWeatheredCopper,
+	ItemType.WaxedOxidizedCopper,
 ] as const;
 
 const CopperChests = [
@@ -966,230 +487,17 @@ const CopperGolemStatues = [
 	ItemType.WaxedOxidizedCopperGolemStatue,
 ] as const;
 
-const LightningRods = [
-	ItemType.LightningRod,
-	ItemType.ExposedLightningRod,
-	ItemType.WeatheredLightningRod,
-	ItemType.OxidizedLightningRod,
-	ItemType.WaxedLightningRod,
-	ItemType.WaxedExposedLightningRod,
-	ItemType.WaxedWeatheredLightningRod,
-	ItemType.WaxedOxidizedLightningRod,
+const CopperOres = [
+	ItemType.CopperOre,
+	ItemType.DeepslateCopperOre,
 ] as const;
 
-const Copper = [
-	ItemType.CopperBlock,
-	ItemType.ExposedCopper,
-	ItemType.WeatheredCopper,
-	ItemType.OxidizedCopper,
-	ItemType.WaxedCopperBlock,
-	ItemType.WaxedExposedCopper,
-	ItemType.WaxedWeatheredCopper,
-	ItemType.WaxedOxidizedCopper,
+const CopperToolMaterials = [
+	ItemType.CopperIngot,
 ] as const;
 
-const Chains = [
-	ItemType.IronChain,
-	ItemType.CopperChain,
-	ItemType.WaxedCopperChain,
-	ItemType.ExposedCopperChain,
-	ItemType.WaxedExposedCopperChain,
-	ItemType.WeatheredCopperChain,
-	ItemType.WaxedWeatheredCopperChain,
-	ItemType.OxidizedCopperChain,
-	ItemType.WaxedOxidizedCopperChain,
-] as const;
-
-const WoodenShelves = [
-	ItemType.AcaciaShelf,
-	ItemType.BambooShelf,
-	ItemType.BirchShelf,
-	ItemType.CherryShelf,
-	ItemType.CrimsonShelf,
-	ItemType.DarkOakShelf,
-	ItemType.JungleShelf,
-	ItemType.MangroveShelf,
-	ItemType.OakShelf,
-	ItemType.PaleOakShelf,
-	ItemType.SpruceShelf,
-	ItemType.WarpedShelf,
-] as const;
-
-const Lanterns = [
-	ItemType.Lantern,
-	ItemType.SoulLantern,
-	ItemType.CopperLantern,
-	ItemType.WaxedCopperLantern,
-	ItemType.ExposedCopperLantern,
-	ItemType.WaxedExposedCopperLantern,
-	ItemType.WeatheredCopperLantern,
-	ItemType.WaxedWeatheredCopperLantern,
-	ItemType.OxidizedCopperLantern,
-	ItemType.WaxedOxidizedCopperLantern,
-] as const;
-
-const Bars = [
-	ItemType.IronBars,
-	ItemType.CopperBars,
-	ItemType.WaxedCopperBars,
-	ItemType.ExposedCopperBars,
-	ItemType.WaxedExposedCopperBars,
-	ItemType.WeatheredCopperBars,
-	ItemType.WaxedWeatheredCopperBars,
-	ItemType.OxidizedCopperBars,
-	ItemType.WaxedOxidizedCopperBars,
-] as const;
-
-const Signs = [
-	ItemType.OakSign,
-	ItemType.SpruceSign,
-	ItemType.BirchSign,
-	ItemType.AcaciaSign,
-	ItemType.JungleSign,
-	ItemType.DarkOakSign,
-	ItemType.PaleOakSign,
-	ItemType.CrimsonSign,
-	ItemType.WarpedSign,
-	ItemType.MangroveSign,
-	ItemType.BambooSign,
-	ItemType.CherrySign,
-] as const;
-
-const HangingSigns = [
-	ItemType.OakHangingSign,
-	ItemType.SpruceHangingSign,
-	ItemType.BirchHangingSign,
-	ItemType.AcaciaHangingSign,
-	ItemType.CherryHangingSign,
-	ItemType.JungleHangingSign,
-	ItemType.DarkOakHangingSign,
-	ItemType.PaleOakHangingSign,
-	ItemType.CrimsonHangingSign,
-	ItemType.WarpedHangingSign,
-	ItemType.MangroveHangingSign,
-	ItemType.BambooHangingSign,
-] as const;
-
-const BeeFood = [
-	ItemType.Dandelion,
-	ItemType.OpenEyeblossom,
-	ItemType.Poppy,
-	ItemType.BlueOrchid,
-	ItemType.Allium,
-	ItemType.AzureBluet,
-	ItemType.RedTulip,
-	ItemType.OrangeTulip,
-	ItemType.WhiteTulip,
-	ItemType.PinkTulip,
-	ItemType.OxeyeDaisy,
-	ItemType.Cornflower,
-	ItemType.LilyOfTheValley,
-	ItemType.WitherRose,
-	ItemType.Torchflower,
-	ItemType.Sunflower,
-	ItemType.Lilac,
-	ItemType.Peony,
-	ItemType.RoseBush,
-	ItemType.PitcherPlant,
-	ItemType.FloweringAzaleaLeaves,
-	ItemType.FloweringAzalea,
-	ItemType.MangrovePropagule,
-	ItemType.CherryLeaves,
-	ItemType.PinkPetals,
-	ItemType.Wildflowers,
-	ItemType.ChorusFlower,
-	ItemType.SporeBlossom,
-	ItemType.CactusFlower,
-] as const;
-
-const Banners = [
-	ItemType.WhiteBanner,
-	ItemType.OrangeBanner,
-	ItemType.MagentaBanner,
-	ItemType.LightBlueBanner,
-	ItemType.YellowBanner,
-	ItemType.LimeBanner,
-	ItemType.PinkBanner,
-	ItemType.GrayBanner,
-	ItemType.LightGrayBanner,
-	ItemType.CyanBanner,
-	ItemType.PurpleBanner,
-	ItemType.BlueBanner,
-	ItemType.BrownBanner,
-	ItemType.GreenBanner,
-	ItemType.RedBanner,
-	ItemType.BlackBanner,
-] as const;
-
-const Boats = [
-	ItemType.OakBoat,
-	ItemType.SpruceBoat,
-	ItemType.BirchBoat,
-	ItemType.JungleBoat,
-	ItemType.AcaciaBoat,
-	ItemType.DarkOakBoat,
-	ItemType.PaleOakBoat,
-	ItemType.MangroveBoat,
-	ItemType.BambooRaft,
-	ItemType.CherryBoat,
-	ItemType.OakChestBoat,
-	ItemType.SpruceChestBoat,
-	ItemType.BirchChestBoat,
-	ItemType.JungleChestBoat,
-	ItemType.AcaciaChestBoat,
-	ItemType.DarkOakChestBoat,
-	ItemType.PaleOakChestBoat,
-	ItemType.MangroveChestBoat,
-	ItemType.BambooChestRaft,
-	ItemType.CherryChestBoat,
-] as const;
-
-const Bundles = [
-	ItemType.Bundle,
-	ItemType.BlackBundle,
-	ItemType.BlueBundle,
-	ItemType.BrownBundle,
-	ItemType.CyanBundle,
-	ItemType.GrayBundle,
-	ItemType.GreenBundle,
-	ItemType.LightBlueBundle,
-	ItemType.LightGrayBundle,
-	ItemType.LimeBundle,
-	ItemType.MagentaBundle,
-	ItemType.OrangeBundle,
-	ItemType.PinkBundle,
-	ItemType.PurpleBundle,
-	ItemType.RedBundle,
-	ItemType.YellowBundle,
-	ItemType.WhiteBundle,
-] as const;
-
-const ChestBoats = [
-	ItemType.OakChestBoat,
-	ItemType.SpruceChestBoat,
-	ItemType.BirchChestBoat,
-	ItemType.JungleChestBoat,
-	ItemType.AcaciaChestBoat,
-	ItemType.DarkOakChestBoat,
-	ItemType.PaleOakChestBoat,
-	ItemType.MangroveChestBoat,
-	ItemType.BambooChestRaft,
-	ItemType.CherryChestBoat,
-] as const;
-
-const Eggs = [
-	ItemType.Egg,
-	ItemType.BlueEgg,
-	ItemType.BrownEgg,
-] as const;
-
-const Fishes = [
-	ItemType.Cod,
-	ItemType.CookedCod,
-	ItemType.Salmon,
-	ItemType.CookedSalmon,
-	ItemType.Pufferfish,
-	ItemType.TropicalFish,
+const CowFood = [
+	ItemType.Wheat,
 ] as const;
 
 const CreeperDropMusicDiscs = [
@@ -1207,313 +515,58 @@ const CreeperDropMusicDiscs = [
 	ItemType.MusicDiscWait,
 ] as const;
 
-const Coals = [
-	ItemType.Coal,
-	ItemType.Charcoal,
-] as const;
-
-const Arrows = [
-	ItemType.Arrow,
-	ItemType.TippedArrow,
-	ItemType.SpectralArrow,
-] as const;
-
-const LecternBooks = [
-	ItemType.WrittenBook,
-	ItemType.WritableBook,
-] as const;
-
-const BeaconPaymentItems = [
-	ItemType.NetheriteIngot,
-	ItemType.Emerald,
-	ItemType.Diamond,
-	ItemType.GoldIngot,
-	ItemType.IronIngot,
-] as const;
-
-const PiglinRepellents = [
-	ItemType.SoulTorch,
-	ItemType.SoulLantern,
-	ItemType.SoulCampfire,
-] as const;
-
-const IgnoredByPiglinBabies = [
-	ItemType.Leather,
-] as const;
-
-const PiglinLoved = [
-	ItemType.GoldBlock,
-	ItemType.GildedBlackstone,
-	ItemType.LightWeightedPressurePlate,
-	ItemType.GoldIngot,
-	ItemType.Bell,
-	ItemType.Clock,
-	ItemType.GoldenCarrot,
-	ItemType.GlisteringMelonSlice,
-	ItemType.GoldenApple,
-	ItemType.EnchantedGoldenApple,
-	ItemType.GoldenHelmet,
-	ItemType.GoldenChestplate,
-	ItemType.GoldenLeggings,
-	ItemType.GoldenBoots,
-	ItemType.GoldenHorseArmor,
-	ItemType.GoldenNautilusArmor,
-	ItemType.GoldenSword,
-	ItemType.GoldenSpear,
-	ItemType.GoldenPickaxe,
-	ItemType.GoldenShovel,
-	ItemType.GoldenAxe,
-	ItemType.GoldenHoe,
-	ItemType.RawGold,
-	ItemType.RawGoldBlock,
-	ItemType.GoldenDandelion,
-	ItemType.GoldOre,
-	ItemType.NetherGoldOre,
-	ItemType.DeepslateGoldOre,
-] as const;
-
-const PiglinFood = [
-	ItemType.Porkchop,
-	ItemType.CookedPorkchop,
-] as const;
-
-const PiglinSafeArmor = [
-	ItemType.GoldenHelmet,
-	ItemType.GoldenChestplate,
-	ItemType.GoldenLeggings,
-	ItemType.GoldenBoots,
-] as const;
-
-const DuplicatesAllays = [
-	ItemType.AmethystShard,
-] as const;
-
-const FoxFood = [
-	ItemType.SweetBerries,
-	ItemType.GlowBerries,
-] as const;
-
-const BrewingFuel = [
-	ItemType.BlazePowder,
-] as const;
-
-const WoodenToolMaterials = [
-	ItemType.OakPlanks,
-	ItemType.SprucePlanks,
-	ItemType.BirchPlanks,
-	ItemType.JunglePlanks,
-	ItemType.AcaciaPlanks,
-	ItemType.DarkOakPlanks,
-	ItemType.PaleOakPlanks,
-	ItemType.CrimsonPlanks,
-	ItemType.WarpedPlanks,
-	ItemType.MangrovePlanks,
-	ItemType.BambooPlanks,
-	ItemType.CherryPlanks,
-] as const;
-
-const NonFlammableWood = [
-	ItemType.WarpedStem,
-	ItemType.StrippedWarpedStem,
-	ItemType.WarpedHyphae,
-	ItemType.StrippedWarpedHyphae,
-	ItemType.CrimsonStem,
-	ItemType.StrippedCrimsonStem,
-	ItemType.CrimsonHyphae,
-	ItemType.StrippedCrimsonHyphae,
-	ItemType.CrimsonPlanks,
-	ItemType.WarpedPlanks,
-	ItemType.CrimsonSlab,
-	ItemType.WarpedSlab,
-	ItemType.CrimsonPressurePlate,
-	ItemType.WarpedPressurePlate,
-	ItemType.CrimsonFence,
-	ItemType.WarpedFence,
-	ItemType.CrimsonTrapdoor,
-	ItemType.WarpedTrapdoor,
-	ItemType.CrimsonFenceGate,
-	ItemType.WarpedFenceGate,
-	ItemType.CrimsonStairs,
-	ItemType.WarpedStairs,
-	ItemType.CrimsonButton,
-	ItemType.WarpedButton,
-	ItemType.CrimsonDoor,
-	ItemType.WarpedDoor,
-	ItemType.CrimsonSign,
-	ItemType.WarpedSign,
-	ItemType.WarpedHangingSign,
-	ItemType.CrimsonHangingSign,
-	ItemType.WarpedShelf,
-	ItemType.CrimsonShelf,
-] as const;
-
-const StoneToolMaterials = [
-	ItemType.Cobblestone,
-	ItemType.Blackstone,
-	ItemType.CobbledDeepslate,
-] as const;
-
-const CopperToolMaterials = [
-	ItemType.CopperIngot,
-] as const;
-
-const IronToolMaterials = [
-	ItemType.IronIngot,
-] as const;
-
-const GoldToolMaterials = [
-	ItemType.GoldIngot,
-] as const;
-
-const DiamondToolMaterials = [
-	ItemType.Diamond,
-] as const;
-
-const NetheriteToolMaterials = [
-	ItemType.NetheriteIngot,
-] as const;
-
-const RepairsLeatherArmor = [
-	ItemType.Leather,
-] as const;
-
-const RepairsCopperArmor = [
-	ItemType.CopperIngot,
-] as const;
-
-const RepairsChainArmor = [
-	ItemType.IronIngot,
-] as const;
-
-const RepairsIronArmor = [
-	ItemType.IronIngot,
-] as const;
-
-const RepairsGoldArmor = [
-	ItemType.GoldIngot,
-] as const;
-
-const RepairsDiamondArmor = [
-	ItemType.Diamond,
-] as const;
-
-const RepairsNetheriteArmor = [
-	ItemType.NetheriteIngot,
-] as const;
-
-const RepairsTurtleHelmet = [
-	ItemType.TurtleScute,
-] as const;
-
-const RepairsWolfArmor = [
-	ItemType.ArmadilloScute,
-] as const;
-
-const StoneCraftingMaterials = [
-	ItemType.Cobblestone,
-	ItemType.Blackstone,
-	ItemType.CobbledDeepslate,
-] as const;
-
-const FreezeImmuneWearables = [
-	ItemType.LeatherBoots,
-	ItemType.LeatherLeggings,
-	ItemType.LeatherChestplate,
-	ItemType.LeatherHelmet,
-	ItemType.LeatherHorseArmor,
-] as const;
-
-const AxolotlFood = [
-	ItemType.TropicalFishBucket,
-] as const;
-
-const ClusterMaxHarvestables = [
-	ItemType.DiamondPickaxe,
-	ItemType.GoldenPickaxe,
-	ItemType.IronPickaxe,
-	ItemType.NetheritePickaxe,
-	ItemType.StonePickaxe,
-	ItemType.WoodenPickaxe,
-	ItemType.CopperPickaxe,
-] as const;
-
-const SkeletonPreferredWeapons = [
-	ItemType.Bow,
-] as const;
-
-const Compasses = [
-	ItemType.Compass,
-	ItemType.RecoveryCompass,
-] as const;
-
-const PiglinPreferredWeapons = [
-	ItemType.Crossbow,
-	ItemType.GoldenSpear,
-] as const;
-
-const DrownedPreferredWeapons = [
-	ItemType.Trident,
-] as const;
-
 const CreeperIgniters = [
 	ItemType.FlintAndSteel,
 	ItemType.FireCharge,
 ] as const;
 
-const Swords = [
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
+const CrimsonStems = [
+	ItemType.CrimsonStem,
+	ItemType.StrippedCrimsonStem,
+	ItemType.CrimsonHyphae,
+	ItemType.StrippedCrimsonHyphae,
 ] as const;
 
-const DecoratedPotSherds = [
-	ItemType.AnglerPotterySherd,
-	ItemType.ArcherPotterySherd,
-	ItemType.ArmsUpPotterySherd,
-	ItemType.BladePotterySherd,
-	ItemType.BrewerPotterySherd,
-	ItemType.BurnPotterySherd,
-	ItemType.DangerPotterySherd,
-	ItemType.ExplorerPotterySherd,
-	ItemType.FriendPotterySherd,
-	ItemType.HeartPotterySherd,
-	ItemType.HeartbreakPotterySherd,
-	ItemType.HowlPotterySherd,
-	ItemType.MinerPotterySherd,
-	ItemType.MournerPotterySherd,
-	ItemType.PlentyPotterySherd,
-	ItemType.PrizePotterySherd,
-	ItemType.SheafPotterySherd,
-	ItemType.ShelterPotterySherd,
-	ItemType.SkullPotterySherd,
-	ItemType.SnortPotterySherd,
-	ItemType.FlowPotterySherd,
-	ItemType.GusterPotterySherd,
-	ItemType.ScrapePotterySherd,
+const DampensVibrations = [
+	ItemType.WhiteWool,
+	ItemType.OrangeWool,
+	ItemType.MagentaWool,
+	ItemType.LightBlueWool,
+	ItemType.YellowWool,
+	ItemType.LimeWool,
+	ItemType.PinkWool,
+	ItemType.GrayWool,
+	ItemType.LightGrayWool,
+	ItemType.CyanWool,
+	ItemType.PurpleWool,
+	ItemType.BlueWool,
+	ItemType.BrownWool,
+	ItemType.GreenWool,
+	ItemType.RedWool,
+	ItemType.BlackWool,
+	ItemType.WhiteCarpet,
+	ItemType.OrangeCarpet,
+	ItemType.MagentaCarpet,
+	ItemType.LightBlueCarpet,
+	ItemType.YellowCarpet,
+	ItemType.LimeCarpet,
+	ItemType.PinkCarpet,
+	ItemType.GrayCarpet,
+	ItemType.LightGrayCarpet,
+	ItemType.CyanCarpet,
+	ItemType.PurpleCarpet,
+	ItemType.BlueCarpet,
+	ItemType.BrownCarpet,
+	ItemType.GreenCarpet,
+	ItemType.RedCarpet,
+	ItemType.BlackCarpet,
 ] as const;
 
-const Axes = [
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-] as const;
-
-const FootArmor = [
-	ItemType.LeatherBoots,
-	ItemType.CopperBoots,
-	ItemType.ChainmailBoots,
-	ItemType.GoldenBoots,
-	ItemType.IronBoots,
-	ItemType.DiamondBoots,
-	ItemType.NetheriteBoots,
+const DarkOakLogs = [
+	ItemType.DarkOakLog,
+	ItemType.DarkOakWood,
+	ItemType.StrippedDarkOakLog,
+	ItemType.StrippedDarkOakWood,
 ] as const;
 
 const DecoratedPotIngredients = [
@@ -1543,148 +596,77 @@ const DecoratedPotIngredients = [
 	ItemType.ScrapePotterySherd,
 ] as const;
 
-const LegArmor = [
-	ItemType.LeatherLeggings,
-	ItemType.CopperLeggings,
-	ItemType.ChainmailLeggings,
-	ItemType.GoldenLeggings,
-	ItemType.IronLeggings,
-	ItemType.DiamondLeggings,
-	ItemType.NetheriteLeggings,
+const DecoratedPotSherds = [
+	ItemType.AnglerPotterySherd,
+	ItemType.ArcherPotterySherd,
+	ItemType.ArmsUpPotterySherd,
+	ItemType.BladePotterySherd,
+	ItemType.BrewerPotterySherd,
+	ItemType.BurnPotterySherd,
+	ItemType.DangerPotterySherd,
+	ItemType.ExplorerPotterySherd,
+	ItemType.FriendPotterySherd,
+	ItemType.HeartPotterySherd,
+	ItemType.HeartbreakPotterySherd,
+	ItemType.HowlPotterySherd,
+	ItemType.MinerPotterySherd,
+	ItemType.MournerPotterySherd,
+	ItemType.PlentyPotterySherd,
+	ItemType.PrizePotterySherd,
+	ItemType.SheafPotterySherd,
+	ItemType.ShelterPotterySherd,
+	ItemType.SkullPotterySherd,
+	ItemType.SnortPotterySherd,
+	ItemType.FlowPotterySherd,
+	ItemType.GusterPotterySherd,
+	ItemType.ScrapePotterySherd,
 ] as const;
 
-const ChestArmor = [
-	ItemType.LeatherChestplate,
-	ItemType.CopperChestplate,
-	ItemType.ChainmailChestplate,
-	ItemType.GoldenChestplate,
-	ItemType.IronChestplate,
-	ItemType.DiamondChestplate,
-	ItemType.NetheriteChestplate,
+const DiamondOres = [
+	ItemType.DiamondOre,
+	ItemType.DeepslateDiamondOre,
 ] as const;
 
-const HeadArmor = [
-	ItemType.LeatherHelmet,
-	ItemType.CopperHelmet,
-	ItemType.ChainmailHelmet,
-	ItemType.GoldenHelmet,
-	ItemType.IronHelmet,
-	ItemType.DiamondHelmet,
-	ItemType.NetheriteHelmet,
-	ItemType.TurtleHelmet,
-] as const;
-
-const Skulls = [
-	ItemType.PlayerHead,
-	ItemType.CreeperHead,
-	ItemType.ZombieHead,
-	ItemType.SkeletonSkull,
-	ItemType.WitherSkeletonSkull,
-	ItemType.DragonHead,
-	ItemType.PiglinHead,
-] as const;
-
-const TrimmableArmor = [
-	ItemType.LeatherBoots,
-	ItemType.CopperBoots,
-	ItemType.ChainmailBoots,
-	ItemType.GoldenBoots,
-	ItemType.IronBoots,
-	ItemType.DiamondBoots,
-	ItemType.NetheriteBoots,
-	ItemType.LeatherLeggings,
-	ItemType.CopperLeggings,
-	ItemType.ChainmailLeggings,
-	ItemType.GoldenLeggings,
-	ItemType.IronLeggings,
-	ItemType.DiamondLeggings,
-	ItemType.NetheriteLeggings,
-	ItemType.LeatherChestplate,
-	ItemType.CopperChestplate,
-	ItemType.ChainmailChestplate,
-	ItemType.GoldenChestplate,
-	ItemType.IronChestplate,
-	ItemType.DiamondChestplate,
-	ItemType.NetheriteChestplate,
-	ItemType.LeatherHelmet,
-	ItemType.CopperHelmet,
-	ItemType.ChainmailHelmet,
-	ItemType.GoldenHelmet,
-	ItemType.IronHelmet,
-	ItemType.DiamondHelmet,
-	ItemType.NetheriteHelmet,
-	ItemType.TurtleHelmet,
-] as const;
-
-const TrimMaterials = [
-	ItemType.AmethystShard,
-	ItemType.CopperIngot,
+const DiamondToolMaterials = [
 	ItemType.Diamond,
-	ItemType.Emerald,
-	ItemType.GoldIngot,
-	ItemType.IronIngot,
-	ItemType.LapisLazuli,
-	ItemType.NetheriteIngot,
-	ItemType.Quartz,
-	ItemType.Redstone,
-	ItemType.ResinBrick,
 ] as const;
 
-const BookshelfBooks = [
-	ItemType.Book,
-	ItemType.WrittenBook,
-	ItemType.EnchantedBook,
-	ItemType.WritableBook,
-	ItemType.KnowledgeBook,
+const Dirt = [
+	ItemType.Dirt,
+	ItemType.CoarseDirt,
+	ItemType.RootedDirt,
 ] as const;
 
-const NoteblockTopInstruments = [
-	ItemType.ZombieHead,
-	ItemType.SkeletonSkull,
-	ItemType.CreeperHead,
-	ItemType.DragonHead,
-	ItemType.WitherSkeletonSkull,
-	ItemType.PiglinHead,
-	ItemType.PlayerHead,
+const Doors = [
+	ItemType.CopperDoor,
+	ItemType.ExposedCopperDoor,
+	ItemType.WeatheredCopperDoor,
+	ItemType.OxidizedCopperDoor,
+	ItemType.WaxedCopperDoor,
+	ItemType.WaxedExposedCopperDoor,
+	ItemType.WaxedWeatheredCopperDoor,
+	ItemType.WaxedOxidizedCopperDoor,
+	ItemType.IronDoor,
+	ItemType.OakDoor,
+	ItemType.SpruceDoor,
+	ItemType.BirchDoor,
+	ItemType.JungleDoor,
+	ItemType.AcaciaDoor,
+	ItemType.DarkOakDoor,
+	ItemType.PaleOakDoor,
+	ItemType.CrimsonDoor,
+	ItemType.WarpedDoor,
+	ItemType.MangroveDoor,
+	ItemType.BambooDoor,
+	ItemType.CherryDoor,
 ] as const;
 
-const SnifferFood = [
-	ItemType.TorchflowerSeeds,
+const DrownedPreferredWeapons = [
+	ItemType.Trident,
 ] as const;
 
-const VillagerPlantableSeeds = [
-	ItemType.WheatSeeds,
-	ItemType.Potato,
-	ItemType.Carrot,
-	ItemType.BeetrootSeeds,
-	ItemType.TorchflowerSeeds,
-	ItemType.PitcherPod,
-] as const;
-
-const VillagerPicksUp = [
-	ItemType.Bread,
-	ItemType.Wheat,
-	ItemType.Beetroot,
-	ItemType.WheatSeeds,
-	ItemType.Potato,
-	ItemType.Carrot,
-	ItemType.BeetrootSeeds,
-	ItemType.TorchflowerSeeds,
-	ItemType.PitcherPod,
-] as const;
-
-const BookCloningTarget = [
-	ItemType.WritableBook,
-] as const;
-
-const Pickaxes = [
-	ItemType.DiamondPickaxe,
-	ItemType.StonePickaxe,
-	ItemType.GoldenPickaxe,
-	ItemType.NetheritePickaxe,
-	ItemType.WoodenPickaxe,
-	ItemType.IronPickaxe,
-	ItemType.CopperPickaxe,
+const DuplicatesAllays = [
+	ItemType.AmethystShard,
 ] as const;
 
 const Dyes = [
@@ -1706,457 +688,15 @@ const Dyes = [
 	ItemType.BlackDye,
 ] as const;
 
-const CauldronCanRemoveDye = [
-	ItemType.LeatherHelmet,
-	ItemType.LeatherChestplate,
-	ItemType.LeatherLeggings,
-	ItemType.LeatherBoots,
-	ItemType.LeatherHorseArmor,
-	ItemType.WolfArmor,
+const Eggs = [
+	ItemType.Egg,
+	ItemType.BlueEgg,
+	ItemType.BrownEgg,
 ] as const;
 
-const FurnaceMinecartFuel = [
-	ItemType.Coal,
-	ItemType.Charcoal,
-] as const;
-
-const Meat = [
-	ItemType.Beef,
-	ItemType.Chicken,
-	ItemType.CookedBeef,
-	ItemType.CookedChicken,
-	ItemType.CookedMutton,
-	ItemType.CookedPorkchop,
-	ItemType.CookedRabbit,
-	ItemType.Mutton,
-	ItemType.Porkchop,
-	ItemType.Rabbit,
-	ItemType.RottenFlesh,
-] as const;
-
-const WolfFood = [
-	ItemType.Cod,
-	ItemType.CookedCod,
-	ItemType.Salmon,
-	ItemType.CookedSalmon,
-	ItemType.TropicalFish,
-	ItemType.Pufferfish,
-	ItemType.RabbitStew,
-	ItemType.Beef,
-	ItemType.Chicken,
-	ItemType.CookedBeef,
-	ItemType.CookedChicken,
-	ItemType.CookedMutton,
-	ItemType.CookedPorkchop,
-	ItemType.CookedRabbit,
-	ItemType.Mutton,
-	ItemType.Porkchop,
-	ItemType.Rabbit,
-	ItemType.RottenFlesh,
-] as const;
-
-const OcelotFood = [
-	ItemType.Cod,
-	ItemType.Salmon,
-] as const;
-
-const CatFood = [
-	ItemType.Cod,
-	ItemType.Salmon,
-] as const;
-
-const HorseFood = [
-	ItemType.Wheat,
-	ItemType.Sugar,
-	ItemType.HayBlock,
-	ItemType.Apple,
-	ItemType.Carrot,
-	ItemType.GoldenCarrot,
-	ItemType.GoldenApple,
-	ItemType.EnchantedGoldenApple,
-] as const;
-
-const ZombieHorseFood = [
-	ItemType.RedMushroom,
-] as const;
-
-const HorseTemptItems = [
-	ItemType.GoldenCarrot,
-	ItemType.GoldenApple,
-	ItemType.EnchantedGoldenApple,
-] as const;
-
-const Harnesses = [
-	ItemType.WhiteHarness,
-	ItemType.OrangeHarness,
-	ItemType.MagentaHarness,
-	ItemType.LightBlueHarness,
-	ItemType.YellowHarness,
-	ItemType.LimeHarness,
-	ItemType.PinkHarness,
-	ItemType.GrayHarness,
-	ItemType.LightGrayHarness,
-	ItemType.CyanHarness,
-	ItemType.PurpleHarness,
-	ItemType.BlueHarness,
-	ItemType.BrownHarness,
-	ItemType.GreenHarness,
-	ItemType.RedHarness,
-	ItemType.BlackHarness,
-] as const;
-
-const HappyGhastFood = [
-	ItemType.Snowball,
-] as const;
-
-const HappyGhastTemptItems = [
-	ItemType.Snowball,
-	ItemType.WhiteHarness,
-	ItemType.OrangeHarness,
-	ItemType.MagentaHarness,
-	ItemType.LightBlueHarness,
-	ItemType.YellowHarness,
-	ItemType.LimeHarness,
-	ItemType.PinkHarness,
-	ItemType.GrayHarness,
-	ItemType.LightGrayHarness,
-	ItemType.CyanHarness,
-	ItemType.PurpleHarness,
-	ItemType.BlueHarness,
-	ItemType.BrownHarness,
-	ItemType.GreenHarness,
-	ItemType.RedHarness,
-	ItemType.BlackHarness,
-] as const;
-
-const CamelFood = [
-	ItemType.Cactus,
-] as const;
-
-const CamelHuskFood = [
-	ItemType.RabbitFoot,
-] as const;
-
-const ArmadilloFood = [
-	ItemType.SpiderEye,
-] as const;
-
-const ChickenFood = [
-	ItemType.WheatSeeds,
-	ItemType.MelonSeeds,
-	ItemType.PumpkinSeeds,
-	ItemType.BeetrootSeeds,
-	ItemType.TorchflowerSeeds,
-	ItemType.PitcherPod,
-] as const;
-
-const FrogFood = [
-	ItemType.SlimeBall,
-] as const;
-
-const HoglinFood = [
-	ItemType.CrimsonFungus,
-] as const;
-
-const LlamaTemptItems = [
-	ItemType.HayBlock,
-] as const;
-
-const NautilusTamingItems = [
-	ItemType.PufferfishBucket,
-	ItemType.Pufferfish,
-] as const;
-
-const NautilusBucketFood = [
-	ItemType.PufferfishBucket,
-	ItemType.CodBucket,
-	ItemType.SalmonBucket,
-	ItemType.TropicalFishBucket,
-] as const;
-
-const NautilusFood = [
-	ItemType.Cod,
-	ItemType.CookedCod,
-	ItemType.Salmon,
-	ItemType.CookedSalmon,
-	ItemType.Pufferfish,
-	ItemType.TropicalFish,
-	ItemType.PufferfishBucket,
-	ItemType.CodBucket,
-	ItemType.SalmonBucket,
-	ItemType.TropicalFishBucket,
-] as const;
-
-const PandaFood = [
-	ItemType.Bamboo,
-] as const;
-
-const PandaEatsFromGround = [
-	ItemType.Cake,
-	ItemType.Bamboo,
-] as const;
-
-const PigFood = [
-	ItemType.Carrot,
-	ItemType.Potato,
-	ItemType.Beetroot,
-] as const;
-
-const RabbitFood = [
-	ItemType.Carrot,
-	ItemType.GoldenCarrot,
-	ItemType.Dandelion,
-] as const;
-
-const StriderFood = [
-	ItemType.WarpedFungus,
-] as const;
-
-const StriderTemptItems = [
-	ItemType.WarpedFungusOnAStick,
-	ItemType.WarpedFungus,
-] as const;
-
-const TurtleFood = [
-	ItemType.Seagrass,
-] as const;
-
-const ParrotFood = [
-	ItemType.WheatSeeds,
-	ItemType.MelonSeeds,
-	ItemType.PumpkinSeeds,
-	ItemType.BeetrootSeeds,
-	ItemType.TorchflowerSeeds,
-	ItemType.PitcherPod,
-] as const;
-
-const ParrotPoisonousFood = [
-	ItemType.Cookie,
-] as const;
-
-const CowFood = [
-	ItemType.Wheat,
-] as const;
-
-const SheepFood = [
-	ItemType.Wheat,
-] as const;
-
-const GoatFood = [
-	ItemType.Wheat,
-] as const;
-
-const MapInvisibilityEquipment = [
-	ItemType.CarvedPumpkin,
-] as const;
-
-const GazeDisguiseEquipment = [
-	ItemType.CarvedPumpkin,
-] as const;
-
-const ShearableFromCopperGolem = [
-	ItemType.Poppy,
-] as const;
-
-const MetalNuggets = [
-	ItemType.CopperNugget,
-	ItemType.IronNugget,
-	ItemType.GoldNugget,
-] as const;
-
-const LoomDyes = [
-	ItemType.WhiteDye,
-	ItemType.OrangeDye,
-	ItemType.MagentaDye,
-	ItemType.LightBlueDye,
-	ItemType.YellowDye,
-	ItemType.LimeDye,
-	ItemType.PinkDye,
-	ItemType.GrayDye,
-	ItemType.LightGrayDye,
-	ItemType.CyanDye,
-	ItemType.PurpleDye,
-	ItemType.BlueDye,
-	ItemType.BrownDye,
-	ItemType.GreenDye,
-	ItemType.RedDye,
-	ItemType.BlackDye,
-] as const;
-
-const LoomPatterns = [
-	ItemType.FlowerBannerPattern,
-	ItemType.CreeperBannerPattern,
-	ItemType.SkullBannerPattern,
-	ItemType.MojangBannerPattern,
-	ItemType.GlobeBannerPattern,
-	ItemType.PiglinBannerPattern,
-	ItemType.FlowBannerPattern,
-	ItemType.GusterBannerPattern,
-	ItemType.FieldMasonedBannerPattern,
-	ItemType.BordureIndentedBannerPattern,
-] as const;
-
-const CatCollarDyes = [
-	ItemType.WhiteDye,
-	ItemType.OrangeDye,
-	ItemType.MagentaDye,
-	ItemType.LightBlueDye,
-	ItemType.YellowDye,
-	ItemType.LimeDye,
-	ItemType.PinkDye,
-	ItemType.GrayDye,
-	ItemType.LightGrayDye,
-	ItemType.CyanDye,
-	ItemType.PurpleDye,
-	ItemType.BlueDye,
-	ItemType.BrownDye,
-	ItemType.GreenDye,
-	ItemType.RedDye,
-	ItemType.BlackDye,
-] as const;
-
-const WolfCollarDyes = [
-	ItemType.WhiteDye,
-	ItemType.OrangeDye,
-	ItemType.MagentaDye,
-	ItemType.LightBlueDye,
-	ItemType.YellowDye,
-	ItemType.LimeDye,
-	ItemType.PinkDye,
-	ItemType.GrayDye,
-	ItemType.LightGrayDye,
-	ItemType.CyanDye,
-	ItemType.PurpleDye,
-	ItemType.BlueDye,
-	ItemType.BrownDye,
-	ItemType.GreenDye,
-	ItemType.RedDye,
-	ItemType.BlackDye,
-] as const;
-
-const LlamaFood = [
-	ItemType.Wheat,
-	ItemType.HayBlock,
-] as const;
-
-const Hoes = [
-	ItemType.DiamondHoe,
-	ItemType.StoneHoe,
-	ItemType.GoldenHoe,
-	ItemType.NetheriteHoe,
-	ItemType.WoodenHoe,
-	ItemType.IronHoe,
-	ItemType.CopperHoe,
-] as const;
-
-const Shovels = [
-	ItemType.DiamondShovel,
-	ItemType.StoneShovel,
-	ItemType.GoldenShovel,
-	ItemType.NetheriteShovel,
-	ItemType.WoodenShovel,
-	ItemType.IronShovel,
-	ItemType.CopperShovel,
-] as const;
-
-const Spears = [
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
-const BreaksDecoratedPots = [
-	ItemType.Trident,
-	ItemType.Mace,
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-	ItemType.DiamondPickaxe,
-	ItemType.StonePickaxe,
-	ItemType.GoldenPickaxe,
-	ItemType.NetheritePickaxe,
-	ItemType.WoodenPickaxe,
-	ItemType.IronPickaxe,
-	ItemType.CopperPickaxe,
-	ItemType.DiamondShovel,
-	ItemType.StoneShovel,
-	ItemType.GoldenShovel,
-	ItemType.NetheriteShovel,
-	ItemType.WoodenShovel,
-	ItemType.IronShovel,
-	ItemType.CopperShovel,
-	ItemType.DiamondHoe,
-	ItemType.StoneHoe,
-	ItemType.GoldenHoe,
-	ItemType.NetheriteHoe,
-	ItemType.WoodenHoe,
-	ItemType.IronHoe,
-	ItemType.CopperHoe,
-] as const;
-
-const WitherSkeletonDislikedWeapons = [
-	ItemType.Bow,
-	ItemType.Crossbow,
-] as const;
-
-const PillagerPreferredWeapons = [
-	ItemType.Crossbow,
-] as const;
-
-const EnchantableFootArmor = [
-	ItemType.LeatherBoots,
-	ItemType.CopperBoots,
-	ItemType.ChainmailBoots,
-	ItemType.GoldenBoots,
-	ItemType.IronBoots,
-	ItemType.DiamondBoots,
-	ItemType.NetheriteBoots,
-] as const;
-
-const EnchantableHeadArmor = [
-	ItemType.LeatherHelmet,
-	ItemType.CopperHelmet,
-	ItemType.ChainmailHelmet,
-	ItemType.GoldenHelmet,
-	ItemType.IronHelmet,
-	ItemType.DiamondHelmet,
-	ItemType.NetheriteHelmet,
-	ItemType.TurtleHelmet,
-] as const;
-
-const EnchantableLegArmor = [
-	ItemType.LeatherLeggings,
-	ItemType.CopperLeggings,
-	ItemType.ChainmailLeggings,
-	ItemType.GoldenLeggings,
-	ItemType.IronLeggings,
-	ItemType.DiamondLeggings,
-	ItemType.NetheriteLeggings,
-] as const;
-
-const EnchantableChestArmor = [
-	ItemType.LeatherChestplate,
-	ItemType.CopperChestplate,
-	ItemType.ChainmailChestplate,
-	ItemType.GoldenChestplate,
-	ItemType.IronChestplate,
-	ItemType.DiamondChestplate,
-	ItemType.NetheriteChestplate,
+const EmeraldOres = [
+	ItemType.EmeraldOre,
+	ItemType.DeepslateEmeraldOre,
 ] as const;
 
 const EnchantableArmor = [
@@ -2191,187 +731,22 @@ const EnchantableArmor = [
 	ItemType.TurtleHelmet,
 ] as const;
 
-const EnchantableMeleeWeapon = [
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
-const EnchantableSweeping = [
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-] as const;
-
-const EnchantableFireAspect = [
-	ItemType.Mace,
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
-const EnchantableSharpWeapon = [
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
-const EnchantableWeapon = [
-	ItemType.Mace,
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-	ItemType.DiamondSword,
-	ItemType.StoneSword,
-	ItemType.GoldenSword,
-	ItemType.NetheriteSword,
-	ItemType.WoodenSword,
-	ItemType.IronSword,
-	ItemType.CopperSword,
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
-const EnchantableMace = [
-	ItemType.Mace,
-] as const;
-
-const EnchantableMining = [
-	ItemType.Shears,
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-	ItemType.DiamondPickaxe,
-	ItemType.StonePickaxe,
-	ItemType.GoldenPickaxe,
-	ItemType.NetheritePickaxe,
-	ItemType.WoodenPickaxe,
-	ItemType.IronPickaxe,
-	ItemType.CopperPickaxe,
-	ItemType.DiamondShovel,
-	ItemType.StoneShovel,
-	ItemType.GoldenShovel,
-	ItemType.NetheriteShovel,
-	ItemType.WoodenShovel,
-	ItemType.IronShovel,
-	ItemType.CopperShovel,
-	ItemType.DiamondHoe,
-	ItemType.StoneHoe,
-	ItemType.GoldenHoe,
-	ItemType.NetheriteHoe,
-	ItemType.WoodenHoe,
-	ItemType.IronHoe,
-	ItemType.CopperHoe,
-] as const;
-
-const EnchantableMiningLoot = [
-	ItemType.DiamondAxe,
-	ItemType.StoneAxe,
-	ItemType.GoldenAxe,
-	ItemType.NetheriteAxe,
-	ItemType.WoodenAxe,
-	ItemType.IronAxe,
-	ItemType.CopperAxe,
-	ItemType.DiamondPickaxe,
-	ItemType.StonePickaxe,
-	ItemType.GoldenPickaxe,
-	ItemType.NetheritePickaxe,
-	ItemType.WoodenPickaxe,
-	ItemType.IronPickaxe,
-	ItemType.CopperPickaxe,
-	ItemType.DiamondShovel,
-	ItemType.StoneShovel,
-	ItemType.GoldenShovel,
-	ItemType.NetheriteShovel,
-	ItemType.WoodenShovel,
-	ItemType.IronShovel,
-	ItemType.CopperShovel,
-	ItemType.DiamondHoe,
-	ItemType.StoneHoe,
-	ItemType.GoldenHoe,
-	ItemType.NetheriteHoe,
-	ItemType.WoodenHoe,
-	ItemType.IronHoe,
-	ItemType.CopperHoe,
-] as const;
-
-const EnchantableFishing = [
-	ItemType.FishingRod,
-] as const;
-
-const EnchantableTrident = [
-	ItemType.Trident,
-] as const;
-
-const EnchantableLunge = [
-	ItemType.DiamondSpear,
-	ItemType.StoneSpear,
-	ItemType.GoldenSpear,
-	ItemType.NetheriteSpear,
-	ItemType.WoodenSpear,
-	ItemType.IronSpear,
-	ItemType.CopperSpear,
-] as const;
-
 const EnchantableBow = [
 	ItemType.Bow,
+] as const;
+
+const EnchantableChestArmor = [
+	ItemType.LeatherChestplate,
+	ItemType.CopperChestplate,
+	ItemType.ChainmailChestplate,
+	ItemType.GoldenChestplate,
+	ItemType.IronChestplate,
+	ItemType.DiamondChestplate,
+	ItemType.NetheriteChestplate,
+] as const;
+
+const EnchantableCrossbow = [
+	ItemType.Crossbow,
 ] as const;
 
 const EnchantableDurability = [
@@ -2501,8 +876,189 @@ const EnchantableEquippable = [
 	ItemType.PiglinHead,
 ] as const;
 
-const EnchantableCrossbow = [
-	ItemType.Crossbow,
+const EnchantableFireAspect = [
+	ItemType.Mace,
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const EnchantableFishing = [
+	ItemType.FishingRod,
+] as const;
+
+const EnchantableFootArmor = [
+	ItemType.LeatherBoots,
+	ItemType.CopperBoots,
+	ItemType.ChainmailBoots,
+	ItemType.GoldenBoots,
+	ItemType.IronBoots,
+	ItemType.DiamondBoots,
+	ItemType.NetheriteBoots,
+] as const;
+
+const EnchantableHeadArmor = [
+	ItemType.LeatherHelmet,
+	ItemType.CopperHelmet,
+	ItemType.ChainmailHelmet,
+	ItemType.GoldenHelmet,
+	ItemType.IronHelmet,
+	ItemType.DiamondHelmet,
+	ItemType.NetheriteHelmet,
+	ItemType.TurtleHelmet,
+] as const;
+
+const EnchantableLegArmor = [
+	ItemType.LeatherLeggings,
+	ItemType.CopperLeggings,
+	ItemType.ChainmailLeggings,
+	ItemType.GoldenLeggings,
+	ItemType.IronLeggings,
+	ItemType.DiamondLeggings,
+	ItemType.NetheriteLeggings,
+] as const;
+
+const EnchantableLunge = [
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const EnchantableMace = [
+	ItemType.Mace,
+] as const;
+
+const EnchantableMeleeWeapon = [
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const EnchantableMining = [
+	ItemType.Shears,
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
+	ItemType.DiamondPickaxe,
+	ItemType.StonePickaxe,
+	ItemType.GoldenPickaxe,
+	ItemType.NetheritePickaxe,
+	ItemType.WoodenPickaxe,
+	ItemType.IronPickaxe,
+	ItemType.CopperPickaxe,
+	ItemType.DiamondShovel,
+	ItemType.StoneShovel,
+	ItemType.GoldenShovel,
+	ItemType.NetheriteShovel,
+	ItemType.WoodenShovel,
+	ItemType.IronShovel,
+	ItemType.CopperShovel,
+	ItemType.DiamondHoe,
+	ItemType.StoneHoe,
+	ItemType.GoldenHoe,
+	ItemType.NetheriteHoe,
+	ItemType.WoodenHoe,
+	ItemType.IronHoe,
+	ItemType.CopperHoe,
+] as const;
+
+const EnchantableMiningLoot = [
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
+	ItemType.DiamondPickaxe,
+	ItemType.StonePickaxe,
+	ItemType.GoldenPickaxe,
+	ItemType.NetheritePickaxe,
+	ItemType.WoodenPickaxe,
+	ItemType.IronPickaxe,
+	ItemType.CopperPickaxe,
+	ItemType.DiamondShovel,
+	ItemType.StoneShovel,
+	ItemType.GoldenShovel,
+	ItemType.NetheriteShovel,
+	ItemType.WoodenShovel,
+	ItemType.IronShovel,
+	ItemType.CopperShovel,
+	ItemType.DiamondHoe,
+	ItemType.StoneHoe,
+	ItemType.GoldenHoe,
+	ItemType.NetheriteHoe,
+	ItemType.WoodenHoe,
+	ItemType.IronHoe,
+	ItemType.CopperHoe,
+] as const;
+
+const EnchantableSharpWeapon = [
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const EnchantableSweeping = [
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+] as const;
+
+const EnchantableTrident = [
+	ItemType.Trident,
 ] as const;
 
 const EnchantableVanishing = [
@@ -2600,4 +1156,1448 @@ const EnchantableVanishing = [
 	ItemType.CopperSpear,
 ] as const;
 
-export { Wool, Planks, StoneBricks, WoodenButtons, StoneButtons, Buttons, WoolCarpets, WoodenDoors, WoodenStairs, WoodenSlabs, WoodenFences, FenceGates, WoodenPressurePlates, Doors, OakLogs, Saplings, BambooBlocks, DarkOakLogs, PaleOakLogs, BirchLogs, AcaciaLogs, SpruceLogs, MangroveLogs, JungleLogs, CherryLogs, CrimsonStems, WarpedStems, WartBlocks, LogsThatBurn, Logs, Sand, SmeltsToGlass, Walls, Slabs, Rails, Anvil, Stairs, Leaves, WoodenTrapdoors, Trapdoors, SmallFlowers, Flowers, Beds, Fences, SoulFireBaseBlocks, GoldOres, DampensVibrations, Candles, IronOres, RedstoneOres, DiamondOres, LapisOres, CoalOres, EmeraldOres, CopperOres, Dirt, MossBlocks, Mud, GrassBlocks, Terracotta, CompletesFindTreeTutorial, ShulkerBoxes, CopperChests, CopperGolemStatues, LightningRods, Copper, Chains, WoodenShelves, Lanterns, Bars, Signs, HangingSigns, BeeFood, Banners, Boats, Bundles, ChestBoats, Eggs, Fishes, CreeperDropMusicDiscs, Coals, Arrows, LecternBooks, BeaconPaymentItems, PiglinRepellents, IgnoredByPiglinBabies, PiglinLoved, PiglinFood, PiglinSafeArmor, DuplicatesAllays, FoxFood, BrewingFuel, WoodenToolMaterials, NonFlammableWood, StoneToolMaterials, CopperToolMaterials, IronToolMaterials, GoldToolMaterials, DiamondToolMaterials, NetheriteToolMaterials, RepairsLeatherArmor, RepairsCopperArmor, RepairsChainArmor, RepairsIronArmor, RepairsGoldArmor, RepairsDiamondArmor, RepairsNetheriteArmor, RepairsTurtleHelmet, RepairsWolfArmor, StoneCraftingMaterials, FreezeImmuneWearables, AxolotlFood, ClusterMaxHarvestables, SkeletonPreferredWeapons, Compasses, PiglinPreferredWeapons, DrownedPreferredWeapons, CreeperIgniters, Swords, DecoratedPotSherds, Axes, FootArmor, DecoratedPotIngredients, LegArmor, ChestArmor, HeadArmor, Skulls, TrimmableArmor, TrimMaterials, BookshelfBooks, NoteblockTopInstruments, SnifferFood, VillagerPlantableSeeds, VillagerPicksUp, BookCloningTarget, Pickaxes, Dyes, CauldronCanRemoveDye, FurnaceMinecartFuel, Meat, WolfFood, OcelotFood, CatFood, HorseFood, ZombieHorseFood, HorseTemptItems, Harnesses, HappyGhastFood, HappyGhastTemptItems, CamelFood, CamelHuskFood, ArmadilloFood, ChickenFood, FrogFood, HoglinFood, LlamaTemptItems, NautilusTamingItems, NautilusBucketFood, NautilusFood, PandaFood, PandaEatsFromGround, PigFood, RabbitFood, StriderFood, StriderTemptItems, TurtleFood, ParrotFood, ParrotPoisonousFood, CowFood, SheepFood, GoatFood, MapInvisibilityEquipment, GazeDisguiseEquipment, ShearableFromCopperGolem, MetalNuggets, LoomDyes, LoomPatterns, CatCollarDyes, WolfCollarDyes, LlamaFood, Hoes, Shovels, Spears, BreaksDecoratedPots, WitherSkeletonDislikedWeapons, PillagerPreferredWeapons, EnchantableFootArmor, EnchantableHeadArmor, EnchantableLegArmor, EnchantableChestArmor, EnchantableArmor, EnchantableMeleeWeapon, EnchantableSweeping, EnchantableFireAspect, EnchantableSharpWeapon, EnchantableWeapon, EnchantableMace, EnchantableMining, EnchantableMiningLoot, EnchantableFishing, EnchantableTrident, EnchantableLunge, EnchantableBow, EnchantableDurability, EnchantableEquippable, EnchantableCrossbow, EnchantableVanishing };
+const EnchantableWeapon = [
+	ItemType.Mace,
+	ItemType.DiamondAxe,
+	ItemType.StoneAxe,
+	ItemType.GoldenAxe,
+	ItemType.NetheriteAxe,
+	ItemType.WoodenAxe,
+	ItemType.IronAxe,
+	ItemType.CopperAxe,
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const FenceGates = [
+	ItemType.AcaciaFenceGate,
+	ItemType.BirchFenceGate,
+	ItemType.DarkOakFenceGate,
+	ItemType.PaleOakFenceGate,
+	ItemType.JungleFenceGate,
+	ItemType.OakFenceGate,
+	ItemType.SpruceFenceGate,
+	ItemType.CrimsonFenceGate,
+	ItemType.WarpedFenceGate,
+	ItemType.MangroveFenceGate,
+	ItemType.BambooFenceGate,
+	ItemType.CherryFenceGate,
+] as const;
+
+const Fences = [
+	ItemType.NetherBrickFence,
+	ItemType.OakFence,
+	ItemType.AcaciaFence,
+	ItemType.DarkOakFence,
+	ItemType.PaleOakFence,
+	ItemType.SpruceFence,
+	ItemType.BirchFence,
+	ItemType.JungleFence,
+	ItemType.CrimsonFence,
+	ItemType.WarpedFence,
+	ItemType.MangroveFence,
+	ItemType.BambooFence,
+	ItemType.CherryFence,
+] as const;
+
+const Fishes = [
+	ItemType.Cod,
+	ItemType.CookedCod,
+	ItemType.Salmon,
+	ItemType.CookedSalmon,
+	ItemType.Pufferfish,
+	ItemType.TropicalFish,
+] as const;
+
+const Flowers = [
+	ItemType.Sunflower,
+	ItemType.Lilac,
+	ItemType.Peony,
+	ItemType.RoseBush,
+	ItemType.PitcherPlant,
+	ItemType.FloweringAzaleaLeaves,
+	ItemType.FloweringAzalea,
+	ItemType.MangrovePropagule,
+	ItemType.CherryLeaves,
+	ItemType.PinkPetals,
+	ItemType.Wildflowers,
+	ItemType.ChorusFlower,
+	ItemType.SporeBlossom,
+	ItemType.CactusFlower,
+	ItemType.Dandelion,
+	ItemType.OpenEyeblossom,
+	ItemType.Poppy,
+	ItemType.BlueOrchid,
+	ItemType.Allium,
+	ItemType.AzureBluet,
+	ItemType.RedTulip,
+	ItemType.OrangeTulip,
+	ItemType.WhiteTulip,
+	ItemType.PinkTulip,
+	ItemType.OxeyeDaisy,
+	ItemType.Cornflower,
+	ItemType.LilyOfTheValley,
+	ItemType.WitherRose,
+	ItemType.Torchflower,
+	ItemType.ClosedEyeblossom,
+	ItemType.GoldenDandelion,
+] as const;
+
+const FootArmor = [
+	ItemType.LeatherBoots,
+	ItemType.CopperBoots,
+	ItemType.ChainmailBoots,
+	ItemType.GoldenBoots,
+	ItemType.IronBoots,
+	ItemType.DiamondBoots,
+	ItemType.NetheriteBoots,
+] as const;
+
+const FoxFood = [
+	ItemType.SweetBerries,
+	ItemType.GlowBerries,
+] as const;
+
+const FreezeImmuneWearables = [
+	ItemType.LeatherBoots,
+	ItemType.LeatherLeggings,
+	ItemType.LeatherChestplate,
+	ItemType.LeatherHelmet,
+	ItemType.LeatherHorseArmor,
+] as const;
+
+const FrogFood = [
+	ItemType.SlimeBall,
+] as const;
+
+const FurnaceMinecartFuel = [
+	ItemType.Coal,
+	ItemType.Charcoal,
+] as const;
+
+const GazeDisguiseEquipment = [
+	ItemType.CarvedPumpkin,
+] as const;
+
+const GoatFood = [
+	ItemType.Wheat,
+] as const;
+
+const GoldOres = [
+	ItemType.GoldOre,
+	ItemType.NetherGoldOre,
+	ItemType.DeepslateGoldOre,
+] as const;
+
+const GoldToolMaterials = [
+	ItemType.GoldIngot,
+] as const;
+
+const GrassBlocks = [
+	ItemType.GrassBlock,
+	ItemType.Podzol,
+	ItemType.Mycelium,
+] as const;
+
+const HangingSigns = [
+	ItemType.OakHangingSign,
+	ItemType.SpruceHangingSign,
+	ItemType.BirchHangingSign,
+	ItemType.AcaciaHangingSign,
+	ItemType.CherryHangingSign,
+	ItemType.JungleHangingSign,
+	ItemType.DarkOakHangingSign,
+	ItemType.PaleOakHangingSign,
+	ItemType.CrimsonHangingSign,
+	ItemType.WarpedHangingSign,
+	ItemType.MangroveHangingSign,
+	ItemType.BambooHangingSign,
+] as const;
+
+const HappyGhastFood = [
+	ItemType.Snowball,
+] as const;
+
+const HappyGhastTemptItems = [
+	ItemType.Snowball,
+	ItemType.WhiteHarness,
+	ItemType.OrangeHarness,
+	ItemType.MagentaHarness,
+	ItemType.LightBlueHarness,
+	ItemType.YellowHarness,
+	ItemType.LimeHarness,
+	ItemType.PinkHarness,
+	ItemType.GrayHarness,
+	ItemType.LightGrayHarness,
+	ItemType.CyanHarness,
+	ItemType.PurpleHarness,
+	ItemType.BlueHarness,
+	ItemType.BrownHarness,
+	ItemType.GreenHarness,
+	ItemType.RedHarness,
+	ItemType.BlackHarness,
+] as const;
+
+const Harnesses = [
+	ItemType.WhiteHarness,
+	ItemType.OrangeHarness,
+	ItemType.MagentaHarness,
+	ItemType.LightBlueHarness,
+	ItemType.YellowHarness,
+	ItemType.LimeHarness,
+	ItemType.PinkHarness,
+	ItemType.GrayHarness,
+	ItemType.LightGrayHarness,
+	ItemType.CyanHarness,
+	ItemType.PurpleHarness,
+	ItemType.BlueHarness,
+	ItemType.BrownHarness,
+	ItemType.GreenHarness,
+	ItemType.RedHarness,
+	ItemType.BlackHarness,
+] as const;
+
+const HeadArmor = [
+	ItemType.LeatherHelmet,
+	ItemType.CopperHelmet,
+	ItemType.ChainmailHelmet,
+	ItemType.GoldenHelmet,
+	ItemType.IronHelmet,
+	ItemType.DiamondHelmet,
+	ItemType.NetheriteHelmet,
+	ItemType.TurtleHelmet,
+] as const;
+
+const Hoes = [
+	ItemType.DiamondHoe,
+	ItemType.StoneHoe,
+	ItemType.GoldenHoe,
+	ItemType.NetheriteHoe,
+	ItemType.WoodenHoe,
+	ItemType.IronHoe,
+	ItemType.CopperHoe,
+] as const;
+
+const HoglinFood = [
+	ItemType.CrimsonFungus,
+] as const;
+
+const HorseFood = [
+	ItemType.Wheat,
+	ItemType.Sugar,
+	ItemType.HayBlock,
+	ItemType.Apple,
+	ItemType.Carrot,
+	ItemType.GoldenCarrot,
+	ItemType.GoldenApple,
+	ItemType.EnchantedGoldenApple,
+] as const;
+
+const HorseTemptItems = [
+	ItemType.GoldenCarrot,
+	ItemType.GoldenApple,
+	ItemType.EnchantedGoldenApple,
+] as const;
+
+const IgnoredByPiglinBabies = [
+	ItemType.Leather,
+] as const;
+
+const IronOres = [
+	ItemType.IronOre,
+	ItemType.DeepslateIronOre,
+] as const;
+
+const IronToolMaterials = [
+	ItemType.IronIngot,
+] as const;
+
+const JungleLogs = [
+	ItemType.JungleLog,
+	ItemType.JungleWood,
+	ItemType.StrippedJungleLog,
+	ItemType.StrippedJungleWood,
+] as const;
+
+const Lanterns = [
+	ItemType.Lantern,
+	ItemType.SoulLantern,
+	ItemType.CopperLantern,
+	ItemType.WaxedCopperLantern,
+	ItemType.ExposedCopperLantern,
+	ItemType.WaxedExposedCopperLantern,
+	ItemType.WeatheredCopperLantern,
+	ItemType.WaxedWeatheredCopperLantern,
+	ItemType.OxidizedCopperLantern,
+	ItemType.WaxedOxidizedCopperLantern,
+] as const;
+
+const LapisOres = [
+	ItemType.LapisOre,
+	ItemType.DeepslateLapisOre,
+] as const;
+
+const Leaves = [
+	ItemType.JungleLeaves,
+	ItemType.OakLeaves,
+	ItemType.SpruceLeaves,
+	ItemType.PaleOakLeaves,
+	ItemType.DarkOakLeaves,
+	ItemType.AcaciaLeaves,
+	ItemType.BirchLeaves,
+	ItemType.AzaleaLeaves,
+	ItemType.FloweringAzaleaLeaves,
+	ItemType.MangroveLeaves,
+	ItemType.CherryLeaves,
+] as const;
+
+const LecternBooks = [
+	ItemType.WrittenBook,
+	ItemType.WritableBook,
+] as const;
+
+const LegArmor = [
+	ItemType.LeatherLeggings,
+	ItemType.CopperLeggings,
+	ItemType.ChainmailLeggings,
+	ItemType.GoldenLeggings,
+	ItemType.IronLeggings,
+	ItemType.DiamondLeggings,
+	ItemType.NetheriteLeggings,
+] as const;
+
+const LightningRods = [
+	ItemType.LightningRod,
+	ItemType.ExposedLightningRod,
+	ItemType.WeatheredLightningRod,
+	ItemType.OxidizedLightningRod,
+	ItemType.WaxedLightningRod,
+	ItemType.WaxedExposedLightningRod,
+	ItemType.WaxedWeatheredLightningRod,
+	ItemType.WaxedOxidizedLightningRod,
+] as const;
+
+const LlamaFood = [
+	ItemType.Wheat,
+	ItemType.HayBlock,
+] as const;
+
+const LlamaTemptItems = [
+	ItemType.HayBlock,
+] as const;
+
+const Logs = [
+	ItemType.CrimsonStem,
+	ItemType.StrippedCrimsonStem,
+	ItemType.CrimsonHyphae,
+	ItemType.StrippedCrimsonHyphae,
+	ItemType.WarpedStem,
+	ItemType.StrippedWarpedStem,
+	ItemType.WarpedHyphae,
+	ItemType.StrippedWarpedHyphae,
+	ItemType.DarkOakLog,
+	ItemType.DarkOakWood,
+	ItemType.StrippedDarkOakLog,
+	ItemType.StrippedDarkOakWood,
+	ItemType.PaleOakLog,
+	ItemType.PaleOakWood,
+	ItemType.StrippedPaleOakLog,
+	ItemType.StrippedPaleOakWood,
+	ItemType.OakLog,
+	ItemType.OakWood,
+	ItemType.StrippedOakLog,
+	ItemType.StrippedOakWood,
+	ItemType.AcaciaLog,
+	ItemType.AcaciaWood,
+	ItemType.StrippedAcaciaLog,
+	ItemType.StrippedAcaciaWood,
+	ItemType.BirchLog,
+	ItemType.BirchWood,
+	ItemType.StrippedBirchLog,
+	ItemType.StrippedBirchWood,
+	ItemType.JungleLog,
+	ItemType.JungleWood,
+	ItemType.StrippedJungleLog,
+	ItemType.StrippedJungleWood,
+	ItemType.SpruceLog,
+	ItemType.SpruceWood,
+	ItemType.StrippedSpruceLog,
+	ItemType.StrippedSpruceWood,
+	ItemType.MangroveLog,
+	ItemType.MangroveWood,
+	ItemType.StrippedMangroveLog,
+	ItemType.StrippedMangroveWood,
+	ItemType.CherryLog,
+	ItemType.CherryWood,
+	ItemType.StrippedCherryLog,
+	ItemType.StrippedCherryWood,
+] as const;
+
+const LogsThatBurn = [
+	ItemType.DarkOakLog,
+	ItemType.DarkOakWood,
+	ItemType.StrippedDarkOakLog,
+	ItemType.StrippedDarkOakWood,
+	ItemType.PaleOakLog,
+	ItemType.PaleOakWood,
+	ItemType.StrippedPaleOakLog,
+	ItemType.StrippedPaleOakWood,
+	ItemType.OakLog,
+	ItemType.OakWood,
+	ItemType.StrippedOakLog,
+	ItemType.StrippedOakWood,
+	ItemType.AcaciaLog,
+	ItemType.AcaciaWood,
+	ItemType.StrippedAcaciaLog,
+	ItemType.StrippedAcaciaWood,
+	ItemType.BirchLog,
+	ItemType.BirchWood,
+	ItemType.StrippedBirchLog,
+	ItemType.StrippedBirchWood,
+	ItemType.JungleLog,
+	ItemType.JungleWood,
+	ItemType.StrippedJungleLog,
+	ItemType.StrippedJungleWood,
+	ItemType.SpruceLog,
+	ItemType.SpruceWood,
+	ItemType.StrippedSpruceLog,
+	ItemType.StrippedSpruceWood,
+	ItemType.MangroveLog,
+	ItemType.MangroveWood,
+	ItemType.StrippedMangroveLog,
+	ItemType.StrippedMangroveWood,
+	ItemType.CherryLog,
+	ItemType.CherryWood,
+	ItemType.StrippedCherryLog,
+	ItemType.StrippedCherryWood,
+] as const;
+
+const LoomDyes = [
+	ItemType.WhiteDye,
+	ItemType.OrangeDye,
+	ItemType.MagentaDye,
+	ItemType.LightBlueDye,
+	ItemType.YellowDye,
+	ItemType.LimeDye,
+	ItemType.PinkDye,
+	ItemType.GrayDye,
+	ItemType.LightGrayDye,
+	ItemType.CyanDye,
+	ItemType.PurpleDye,
+	ItemType.BlueDye,
+	ItemType.BrownDye,
+	ItemType.GreenDye,
+	ItemType.RedDye,
+	ItemType.BlackDye,
+] as const;
+
+const LoomPatterns = [
+	ItemType.FlowerBannerPattern,
+	ItemType.CreeperBannerPattern,
+	ItemType.SkullBannerPattern,
+	ItemType.MojangBannerPattern,
+	ItemType.GlobeBannerPattern,
+	ItemType.PiglinBannerPattern,
+	ItemType.FlowBannerPattern,
+	ItemType.GusterBannerPattern,
+	ItemType.FieldMasonedBannerPattern,
+	ItemType.BordureIndentedBannerPattern,
+] as const;
+
+const MangroveLogs = [
+	ItemType.MangroveLog,
+	ItemType.MangroveWood,
+	ItemType.StrippedMangroveLog,
+	ItemType.StrippedMangroveWood,
+] as const;
+
+const MapInvisibilityEquipment = [
+	ItemType.CarvedPumpkin,
+] as const;
+
+const Meat = [
+	ItemType.Beef,
+	ItemType.Chicken,
+	ItemType.CookedBeef,
+	ItemType.CookedChicken,
+	ItemType.CookedMutton,
+	ItemType.CookedPorkchop,
+	ItemType.CookedRabbit,
+	ItemType.Mutton,
+	ItemType.Porkchop,
+	ItemType.Rabbit,
+	ItemType.RottenFlesh,
+] as const;
+
+const MetalNuggets = [
+	ItemType.CopperNugget,
+	ItemType.IronNugget,
+	ItemType.GoldNugget,
+] as const;
+
+const MossBlocks = [
+	ItemType.MossBlock,
+	ItemType.PaleMossBlock,
+] as const;
+
+const Mud = [
+	ItemType.Mud,
+	ItemType.MuddyMangroveRoots,
+] as const;
+
+const NautilusBucketFood = [
+	ItemType.PufferfishBucket,
+	ItemType.CodBucket,
+	ItemType.SalmonBucket,
+	ItemType.TropicalFishBucket,
+] as const;
+
+const NautilusFood = [
+	ItemType.Cod,
+	ItemType.CookedCod,
+	ItemType.Salmon,
+	ItemType.CookedSalmon,
+	ItemType.Pufferfish,
+	ItemType.TropicalFish,
+	ItemType.PufferfishBucket,
+	ItemType.CodBucket,
+	ItemType.SalmonBucket,
+	ItemType.TropicalFishBucket,
+] as const;
+
+const NautilusTamingItems = [
+	ItemType.PufferfishBucket,
+	ItemType.Pufferfish,
+] as const;
+
+const NetheriteToolMaterials = [
+	ItemType.NetheriteIngot,
+] as const;
+
+const NonFlammableWood = [
+	ItemType.WarpedStem,
+	ItemType.StrippedWarpedStem,
+	ItemType.WarpedHyphae,
+	ItemType.StrippedWarpedHyphae,
+	ItemType.CrimsonStem,
+	ItemType.StrippedCrimsonStem,
+	ItemType.CrimsonHyphae,
+	ItemType.StrippedCrimsonHyphae,
+	ItemType.CrimsonPlanks,
+	ItemType.WarpedPlanks,
+	ItemType.CrimsonSlab,
+	ItemType.WarpedSlab,
+	ItemType.CrimsonPressurePlate,
+	ItemType.WarpedPressurePlate,
+	ItemType.CrimsonFence,
+	ItemType.WarpedFence,
+	ItemType.CrimsonTrapdoor,
+	ItemType.WarpedTrapdoor,
+	ItemType.CrimsonFenceGate,
+	ItemType.WarpedFenceGate,
+	ItemType.CrimsonStairs,
+	ItemType.WarpedStairs,
+	ItemType.CrimsonButton,
+	ItemType.WarpedButton,
+	ItemType.CrimsonDoor,
+	ItemType.WarpedDoor,
+	ItemType.CrimsonSign,
+	ItemType.WarpedSign,
+	ItemType.WarpedHangingSign,
+	ItemType.CrimsonHangingSign,
+	ItemType.WarpedShelf,
+	ItemType.CrimsonShelf,
+] as const;
+
+const NoteblockTopInstruments = [
+	ItemType.ZombieHead,
+	ItemType.SkeletonSkull,
+	ItemType.CreeperHead,
+	ItemType.DragonHead,
+	ItemType.WitherSkeletonSkull,
+	ItemType.PiglinHead,
+	ItemType.PlayerHead,
+] as const;
+
+const OakLogs = [
+	ItemType.OakLog,
+	ItemType.OakWood,
+	ItemType.StrippedOakLog,
+	ItemType.StrippedOakWood,
+] as const;
+
+const OcelotFood = [
+	ItemType.Cod,
+	ItemType.Salmon,
+] as const;
+
+const PaleOakLogs = [
+	ItemType.PaleOakLog,
+	ItemType.PaleOakWood,
+	ItemType.StrippedPaleOakLog,
+	ItemType.StrippedPaleOakWood,
+] as const;
+
+const PandaEatsFromGround = [
+	ItemType.Cake,
+	ItemType.Bamboo,
+] as const;
+
+const PandaFood = [
+	ItemType.Bamboo,
+] as const;
+
+const ParrotFood = [
+	ItemType.WheatSeeds,
+	ItemType.MelonSeeds,
+	ItemType.PumpkinSeeds,
+	ItemType.BeetrootSeeds,
+	ItemType.TorchflowerSeeds,
+	ItemType.PitcherPod,
+] as const;
+
+const ParrotPoisonousFood = [
+	ItemType.Cookie,
+] as const;
+
+const Pickaxes = [
+	ItemType.DiamondPickaxe,
+	ItemType.StonePickaxe,
+	ItemType.GoldenPickaxe,
+	ItemType.NetheritePickaxe,
+	ItemType.WoodenPickaxe,
+	ItemType.IronPickaxe,
+	ItemType.CopperPickaxe,
+] as const;
+
+const PigFood = [
+	ItemType.Carrot,
+	ItemType.Potato,
+	ItemType.Beetroot,
+] as const;
+
+const PiglinFood = [
+	ItemType.Porkchop,
+	ItemType.CookedPorkchop,
+] as const;
+
+const PiglinLoved = [
+	ItemType.GoldBlock,
+	ItemType.GildedBlackstone,
+	ItemType.LightWeightedPressurePlate,
+	ItemType.GoldIngot,
+	ItemType.Bell,
+	ItemType.Clock,
+	ItemType.GoldenCarrot,
+	ItemType.GlisteringMelonSlice,
+	ItemType.GoldenApple,
+	ItemType.EnchantedGoldenApple,
+	ItemType.GoldenHelmet,
+	ItemType.GoldenChestplate,
+	ItemType.GoldenLeggings,
+	ItemType.GoldenBoots,
+	ItemType.GoldenHorseArmor,
+	ItemType.GoldenNautilusArmor,
+	ItemType.GoldenSword,
+	ItemType.GoldenSpear,
+	ItemType.GoldenPickaxe,
+	ItemType.GoldenShovel,
+	ItemType.GoldenAxe,
+	ItemType.GoldenHoe,
+	ItemType.RawGold,
+	ItemType.RawGoldBlock,
+	ItemType.GoldenDandelion,
+	ItemType.GoldOre,
+	ItemType.NetherGoldOre,
+	ItemType.DeepslateGoldOre,
+] as const;
+
+const PiglinPreferredWeapons = [
+	ItemType.Crossbow,
+	ItemType.GoldenSpear,
+] as const;
+
+const PiglinRepellents = [
+	ItemType.SoulTorch,
+	ItemType.SoulLantern,
+	ItemType.SoulCampfire,
+] as const;
+
+const PiglinSafeArmor = [
+	ItemType.GoldenHelmet,
+	ItemType.GoldenChestplate,
+	ItemType.GoldenLeggings,
+	ItemType.GoldenBoots,
+] as const;
+
+const PillagerPreferredWeapons = [
+	ItemType.Crossbow,
+] as const;
+
+const Planks = [
+	ItemType.OakPlanks,
+	ItemType.SprucePlanks,
+	ItemType.BirchPlanks,
+	ItemType.JunglePlanks,
+	ItemType.AcaciaPlanks,
+	ItemType.DarkOakPlanks,
+	ItemType.PaleOakPlanks,
+	ItemType.CrimsonPlanks,
+	ItemType.WarpedPlanks,
+	ItemType.MangrovePlanks,
+	ItemType.BambooPlanks,
+	ItemType.CherryPlanks,
+] as const;
+
+const RabbitFood = [
+	ItemType.Carrot,
+	ItemType.GoldenCarrot,
+	ItemType.Dandelion,
+] as const;
+
+const Rails = [
+	ItemType.Rail,
+	ItemType.PoweredRail,
+	ItemType.DetectorRail,
+	ItemType.ActivatorRail,
+] as const;
+
+const RedstoneOres = [
+	ItemType.RedstoneOre,
+	ItemType.DeepslateRedstoneOre,
+] as const;
+
+const RepairsChainArmor = [
+	ItemType.IronIngot,
+] as const;
+
+const RepairsCopperArmor = [
+	ItemType.CopperIngot,
+] as const;
+
+const RepairsDiamondArmor = [
+	ItemType.Diamond,
+] as const;
+
+const RepairsGoldArmor = [
+	ItemType.GoldIngot,
+] as const;
+
+const RepairsIronArmor = [
+	ItemType.IronIngot,
+] as const;
+
+const RepairsLeatherArmor = [
+	ItemType.Leather,
+] as const;
+
+const RepairsNetheriteArmor = [
+	ItemType.NetheriteIngot,
+] as const;
+
+const RepairsTurtleHelmet = [
+	ItemType.TurtleScute,
+] as const;
+
+const RepairsWolfArmor = [
+	ItemType.ArmadilloScute,
+] as const;
+
+const Sand = [
+	ItemType.Sand,
+	ItemType.RedSand,
+	ItemType.SuspiciousSand,
+] as const;
+
+const Saplings = [
+	ItemType.OakSapling,
+	ItemType.SpruceSapling,
+	ItemType.BirchSapling,
+	ItemType.JungleSapling,
+	ItemType.AcaciaSapling,
+	ItemType.DarkOakSapling,
+	ItemType.PaleOakSapling,
+	ItemType.Azalea,
+	ItemType.FloweringAzalea,
+	ItemType.MangrovePropagule,
+	ItemType.CherrySapling,
+] as const;
+
+const ShearableFromCopperGolem = [
+	ItemType.Poppy,
+] as const;
+
+const SheepFood = [
+	ItemType.Wheat,
+] as const;
+
+const Shovels = [
+	ItemType.DiamondShovel,
+	ItemType.StoneShovel,
+	ItemType.GoldenShovel,
+	ItemType.NetheriteShovel,
+	ItemType.WoodenShovel,
+	ItemType.IronShovel,
+	ItemType.CopperShovel,
+] as const;
+
+const ShulkerBoxes = [
+	ItemType.ShulkerBox,
+	ItemType.BlackShulkerBox,
+	ItemType.BlueShulkerBox,
+	ItemType.BrownShulkerBox,
+	ItemType.CyanShulkerBox,
+	ItemType.GrayShulkerBox,
+	ItemType.GreenShulkerBox,
+	ItemType.LightBlueShulkerBox,
+	ItemType.LightGrayShulkerBox,
+	ItemType.LimeShulkerBox,
+	ItemType.MagentaShulkerBox,
+	ItemType.OrangeShulkerBox,
+	ItemType.PinkShulkerBox,
+	ItemType.PurpleShulkerBox,
+	ItemType.RedShulkerBox,
+	ItemType.WhiteShulkerBox,
+	ItemType.YellowShulkerBox,
+] as const;
+
+const Signs = [
+	ItemType.OakSign,
+	ItemType.SpruceSign,
+	ItemType.BirchSign,
+	ItemType.AcaciaSign,
+	ItemType.JungleSign,
+	ItemType.DarkOakSign,
+	ItemType.PaleOakSign,
+	ItemType.CrimsonSign,
+	ItemType.WarpedSign,
+	ItemType.MangroveSign,
+	ItemType.BambooSign,
+	ItemType.CherrySign,
+] as const;
+
+const SkeletonPreferredWeapons = [
+	ItemType.Bow,
+] as const;
+
+const Skulls = [
+	ItemType.PlayerHead,
+	ItemType.CreeperHead,
+	ItemType.ZombieHead,
+	ItemType.SkeletonSkull,
+	ItemType.WitherSkeletonSkull,
+	ItemType.DragonHead,
+	ItemType.PiglinHead,
+] as const;
+
+const Slabs = [
+	ItemType.BambooMosaicSlab,
+	ItemType.StoneSlab,
+	ItemType.SmoothStoneSlab,
+	ItemType.StoneBrickSlab,
+	ItemType.SandstoneSlab,
+	ItemType.PurpurSlab,
+	ItemType.QuartzSlab,
+	ItemType.RedSandstoneSlab,
+	ItemType.BrickSlab,
+	ItemType.CobblestoneSlab,
+	ItemType.NetherBrickSlab,
+	ItemType.PetrifiedOakSlab,
+	ItemType.PrismarineSlab,
+	ItemType.PrismarineBrickSlab,
+	ItemType.DarkPrismarineSlab,
+	ItemType.PolishedGraniteSlab,
+	ItemType.SmoothRedSandstoneSlab,
+	ItemType.MossyStoneBrickSlab,
+	ItemType.PolishedDioriteSlab,
+	ItemType.MossyCobblestoneSlab,
+	ItemType.EndStoneBrickSlab,
+	ItemType.SmoothSandstoneSlab,
+	ItemType.SmoothQuartzSlab,
+	ItemType.GraniteSlab,
+	ItemType.AndesiteSlab,
+	ItemType.RedNetherBrickSlab,
+	ItemType.PolishedAndesiteSlab,
+	ItemType.DioriteSlab,
+	ItemType.CutSandstoneSlab,
+	ItemType.CutRedSandstoneSlab,
+	ItemType.BlackstoneSlab,
+	ItemType.PolishedBlackstoneBrickSlab,
+	ItemType.PolishedBlackstoneSlab,
+	ItemType.CobbledDeepslateSlab,
+	ItemType.PolishedDeepslateSlab,
+	ItemType.DeepslateTileSlab,
+	ItemType.DeepslateBrickSlab,
+	ItemType.WaxedWeatheredCutCopperSlab,
+	ItemType.WaxedExposedCutCopperSlab,
+	ItemType.WaxedCutCopperSlab,
+	ItemType.OxidizedCutCopperSlab,
+	ItemType.WeatheredCutCopperSlab,
+	ItemType.ExposedCutCopperSlab,
+	ItemType.CutCopperSlab,
+	ItemType.WaxedOxidizedCutCopperSlab,
+	ItemType.MudBrickSlab,
+	ItemType.TuffSlab,
+	ItemType.PolishedTuffSlab,
+	ItemType.TuffBrickSlab,
+	ItemType.ResinBrickSlab,
+	ItemType.OakSlab,
+	ItemType.SpruceSlab,
+	ItemType.BirchSlab,
+	ItemType.JungleSlab,
+	ItemType.AcaciaSlab,
+	ItemType.DarkOakSlab,
+	ItemType.PaleOakSlab,
+	ItemType.CrimsonSlab,
+	ItemType.WarpedSlab,
+	ItemType.MangroveSlab,
+	ItemType.BambooSlab,
+	ItemType.CherrySlab,
+] as const;
+
+const SmallFlowers = [
+	ItemType.Dandelion,
+	ItemType.OpenEyeblossom,
+	ItemType.Poppy,
+	ItemType.BlueOrchid,
+	ItemType.Allium,
+	ItemType.AzureBluet,
+	ItemType.RedTulip,
+	ItemType.OrangeTulip,
+	ItemType.WhiteTulip,
+	ItemType.PinkTulip,
+	ItemType.OxeyeDaisy,
+	ItemType.Cornflower,
+	ItemType.LilyOfTheValley,
+	ItemType.WitherRose,
+	ItemType.Torchflower,
+	ItemType.ClosedEyeblossom,
+	ItemType.GoldenDandelion,
+] as const;
+
+const SmeltsToGlass = [
+	ItemType.Sand,
+	ItemType.RedSand,
+] as const;
+
+const SnifferFood = [
+	ItemType.TorchflowerSeeds,
+] as const;
+
+const SoulFireBaseBlocks = [
+	ItemType.SoulSand,
+	ItemType.SoulSoil,
+] as const;
+
+const Spears = [
+	ItemType.DiamondSpear,
+	ItemType.StoneSpear,
+	ItemType.GoldenSpear,
+	ItemType.NetheriteSpear,
+	ItemType.WoodenSpear,
+	ItemType.IronSpear,
+	ItemType.CopperSpear,
+] as const;
+
+const SpruceLogs = [
+	ItemType.SpruceLog,
+	ItemType.SpruceWood,
+	ItemType.StrippedSpruceLog,
+	ItemType.StrippedSpruceWood,
+] as const;
+
+const Stairs = [
+	ItemType.BambooMosaicStairs,
+	ItemType.CobblestoneStairs,
+	ItemType.SandstoneStairs,
+	ItemType.NetherBrickStairs,
+	ItemType.StoneBrickStairs,
+	ItemType.BrickStairs,
+	ItemType.PurpurStairs,
+	ItemType.QuartzStairs,
+	ItemType.RedSandstoneStairs,
+	ItemType.PrismarineBrickStairs,
+	ItemType.PrismarineStairs,
+	ItemType.DarkPrismarineStairs,
+	ItemType.PolishedGraniteStairs,
+	ItemType.SmoothRedSandstoneStairs,
+	ItemType.MossyStoneBrickStairs,
+	ItemType.PolishedDioriteStairs,
+	ItemType.MossyCobblestoneStairs,
+	ItemType.EndStoneBrickStairs,
+	ItemType.StoneStairs,
+	ItemType.SmoothSandstoneStairs,
+	ItemType.SmoothQuartzStairs,
+	ItemType.GraniteStairs,
+	ItemType.AndesiteStairs,
+	ItemType.RedNetherBrickStairs,
+	ItemType.PolishedAndesiteStairs,
+	ItemType.DioriteStairs,
+	ItemType.BlackstoneStairs,
+	ItemType.PolishedBlackstoneBrickStairs,
+	ItemType.PolishedBlackstoneStairs,
+	ItemType.CobbledDeepslateStairs,
+	ItemType.PolishedDeepslateStairs,
+	ItemType.DeepslateTileStairs,
+	ItemType.DeepslateBrickStairs,
+	ItemType.OxidizedCutCopperStairs,
+	ItemType.WeatheredCutCopperStairs,
+	ItemType.ExposedCutCopperStairs,
+	ItemType.CutCopperStairs,
+	ItemType.WaxedWeatheredCutCopperStairs,
+	ItemType.WaxedExposedCutCopperStairs,
+	ItemType.WaxedCutCopperStairs,
+	ItemType.WaxedOxidizedCutCopperStairs,
+	ItemType.MudBrickStairs,
+	ItemType.TuffStairs,
+	ItemType.PolishedTuffStairs,
+	ItemType.TuffBrickStairs,
+	ItemType.ResinBrickStairs,
+	ItemType.OakStairs,
+	ItemType.SpruceStairs,
+	ItemType.BirchStairs,
+	ItemType.JungleStairs,
+	ItemType.AcaciaStairs,
+	ItemType.DarkOakStairs,
+	ItemType.PaleOakStairs,
+	ItemType.CrimsonStairs,
+	ItemType.WarpedStairs,
+	ItemType.MangroveStairs,
+	ItemType.BambooStairs,
+	ItemType.CherryStairs,
+] as const;
+
+const StoneBricks = [
+	ItemType.StoneBricks,
+	ItemType.MossyStoneBricks,
+	ItemType.CrackedStoneBricks,
+	ItemType.ChiseledStoneBricks,
+] as const;
+
+const StoneButtons = [
+	ItemType.StoneButton,
+	ItemType.PolishedBlackstoneButton,
+] as const;
+
+const StoneCraftingMaterials = [
+	ItemType.Cobblestone,
+	ItemType.Blackstone,
+	ItemType.CobbledDeepslate,
+] as const;
+
+const StoneToolMaterials = [
+	ItemType.Cobblestone,
+	ItemType.Blackstone,
+	ItemType.CobbledDeepslate,
+] as const;
+
+const StriderFood = [
+	ItemType.WarpedFungus,
+] as const;
+
+const StriderTemptItems = [
+	ItemType.WarpedFungusOnAStick,
+	ItemType.WarpedFungus,
+] as const;
+
+const Swords = [
+	ItemType.DiamondSword,
+	ItemType.StoneSword,
+	ItemType.GoldenSword,
+	ItemType.NetheriteSword,
+	ItemType.WoodenSword,
+	ItemType.IronSword,
+	ItemType.CopperSword,
+] as const;
+
+const Terracotta = [
+	ItemType.Terracotta,
+	ItemType.WhiteTerracotta,
+	ItemType.OrangeTerracotta,
+	ItemType.MagentaTerracotta,
+	ItemType.LightBlueTerracotta,
+	ItemType.YellowTerracotta,
+	ItemType.LimeTerracotta,
+	ItemType.PinkTerracotta,
+	ItemType.GrayTerracotta,
+	ItemType.LightGrayTerracotta,
+	ItemType.CyanTerracotta,
+	ItemType.PurpleTerracotta,
+	ItemType.BlueTerracotta,
+	ItemType.BrownTerracotta,
+	ItemType.GreenTerracotta,
+	ItemType.RedTerracotta,
+	ItemType.BlackTerracotta,
+] as const;
+
+const Trapdoors = [
+	ItemType.IronTrapdoor,
+	ItemType.CopperTrapdoor,
+	ItemType.ExposedCopperTrapdoor,
+	ItemType.WeatheredCopperTrapdoor,
+	ItemType.OxidizedCopperTrapdoor,
+	ItemType.WaxedCopperTrapdoor,
+	ItemType.WaxedExposedCopperTrapdoor,
+	ItemType.WaxedWeatheredCopperTrapdoor,
+	ItemType.WaxedOxidizedCopperTrapdoor,
+	ItemType.AcaciaTrapdoor,
+	ItemType.BirchTrapdoor,
+	ItemType.DarkOakTrapdoor,
+	ItemType.PaleOakTrapdoor,
+	ItemType.JungleTrapdoor,
+	ItemType.OakTrapdoor,
+	ItemType.SpruceTrapdoor,
+	ItemType.CrimsonTrapdoor,
+	ItemType.WarpedTrapdoor,
+	ItemType.MangroveTrapdoor,
+	ItemType.BambooTrapdoor,
+	ItemType.CherryTrapdoor,
+] as const;
+
+const TrimMaterials = [
+	ItemType.AmethystShard,
+	ItemType.CopperIngot,
+	ItemType.Diamond,
+	ItemType.Emerald,
+	ItemType.GoldIngot,
+	ItemType.IronIngot,
+	ItemType.LapisLazuli,
+	ItemType.NetheriteIngot,
+	ItemType.Quartz,
+	ItemType.Redstone,
+	ItemType.ResinBrick,
+] as const;
+
+const TrimmableArmor = [
+	ItemType.LeatherBoots,
+	ItemType.CopperBoots,
+	ItemType.ChainmailBoots,
+	ItemType.GoldenBoots,
+	ItemType.IronBoots,
+	ItemType.DiamondBoots,
+	ItemType.NetheriteBoots,
+	ItemType.LeatherLeggings,
+	ItemType.CopperLeggings,
+	ItemType.ChainmailLeggings,
+	ItemType.GoldenLeggings,
+	ItemType.IronLeggings,
+	ItemType.DiamondLeggings,
+	ItemType.NetheriteLeggings,
+	ItemType.LeatherChestplate,
+	ItemType.CopperChestplate,
+	ItemType.ChainmailChestplate,
+	ItemType.GoldenChestplate,
+	ItemType.IronChestplate,
+	ItemType.DiamondChestplate,
+	ItemType.NetheriteChestplate,
+	ItemType.LeatherHelmet,
+	ItemType.CopperHelmet,
+	ItemType.ChainmailHelmet,
+	ItemType.GoldenHelmet,
+	ItemType.IronHelmet,
+	ItemType.DiamondHelmet,
+	ItemType.NetheriteHelmet,
+	ItemType.TurtleHelmet,
+] as const;
+
+const TurtleFood = [
+	ItemType.Seagrass,
+] as const;
+
+const VillagerPicksUp = [
+	ItemType.Bread,
+	ItemType.Wheat,
+	ItemType.Beetroot,
+	ItemType.WheatSeeds,
+	ItemType.Potato,
+	ItemType.Carrot,
+	ItemType.BeetrootSeeds,
+	ItemType.TorchflowerSeeds,
+	ItemType.PitcherPod,
+] as const;
+
+const VillagerPlantableSeeds = [
+	ItemType.WheatSeeds,
+	ItemType.Potato,
+	ItemType.Carrot,
+	ItemType.BeetrootSeeds,
+	ItemType.TorchflowerSeeds,
+	ItemType.PitcherPod,
+] as const;
+
+const Walls = [
+	ItemType.CobblestoneWall,
+	ItemType.MossyCobblestoneWall,
+	ItemType.BrickWall,
+	ItemType.PrismarineWall,
+	ItemType.RedSandstoneWall,
+	ItemType.MossyStoneBrickWall,
+	ItemType.GraniteWall,
+	ItemType.StoneBrickWall,
+	ItemType.NetherBrickWall,
+	ItemType.AndesiteWall,
+	ItemType.RedNetherBrickWall,
+	ItemType.SandstoneWall,
+	ItemType.EndStoneBrickWall,
+	ItemType.DioriteWall,
+	ItemType.BlackstoneWall,
+	ItemType.PolishedBlackstoneBrickWall,
+	ItemType.PolishedBlackstoneWall,
+	ItemType.CobbledDeepslateWall,
+	ItemType.PolishedDeepslateWall,
+	ItemType.DeepslateTileWall,
+	ItemType.DeepslateBrickWall,
+	ItemType.MudBrickWall,
+	ItemType.TuffWall,
+	ItemType.PolishedTuffWall,
+	ItemType.TuffBrickWall,
+	ItemType.ResinBrickWall,
+] as const;
+
+const WarpedStems = [
+	ItemType.WarpedStem,
+	ItemType.StrippedWarpedStem,
+	ItemType.WarpedHyphae,
+	ItemType.StrippedWarpedHyphae,
+] as const;
+
+const WartBlocks = [
+	ItemType.NetherWartBlock,
+	ItemType.WarpedWartBlock,
+] as const;
+
+const WitherSkeletonDislikedWeapons = [
+	ItemType.Bow,
+	ItemType.Crossbow,
+] as const;
+
+const WolfCollarDyes = [
+	ItemType.WhiteDye,
+	ItemType.OrangeDye,
+	ItemType.MagentaDye,
+	ItemType.LightBlueDye,
+	ItemType.YellowDye,
+	ItemType.LimeDye,
+	ItemType.PinkDye,
+	ItemType.GrayDye,
+	ItemType.LightGrayDye,
+	ItemType.CyanDye,
+	ItemType.PurpleDye,
+	ItemType.BlueDye,
+	ItemType.BrownDye,
+	ItemType.GreenDye,
+	ItemType.RedDye,
+	ItemType.BlackDye,
+] as const;
+
+const WolfFood = [
+	ItemType.Cod,
+	ItemType.CookedCod,
+	ItemType.Salmon,
+	ItemType.CookedSalmon,
+	ItemType.TropicalFish,
+	ItemType.Pufferfish,
+	ItemType.RabbitStew,
+	ItemType.Beef,
+	ItemType.Chicken,
+	ItemType.CookedBeef,
+	ItemType.CookedChicken,
+	ItemType.CookedMutton,
+	ItemType.CookedPorkchop,
+	ItemType.CookedRabbit,
+	ItemType.Mutton,
+	ItemType.Porkchop,
+	ItemType.Rabbit,
+	ItemType.RottenFlesh,
+] as const;
+
+const WoodenButtons = [
+	ItemType.OakButton,
+	ItemType.SpruceButton,
+	ItemType.BirchButton,
+	ItemType.JungleButton,
+	ItemType.AcaciaButton,
+	ItemType.DarkOakButton,
+	ItemType.PaleOakButton,
+	ItemType.CrimsonButton,
+	ItemType.WarpedButton,
+	ItemType.MangroveButton,
+	ItemType.BambooButton,
+	ItemType.CherryButton,
+] as const;
+
+const WoodenDoors = [
+	ItemType.OakDoor,
+	ItemType.SpruceDoor,
+	ItemType.BirchDoor,
+	ItemType.JungleDoor,
+	ItemType.AcaciaDoor,
+	ItemType.DarkOakDoor,
+	ItemType.PaleOakDoor,
+	ItemType.CrimsonDoor,
+	ItemType.WarpedDoor,
+	ItemType.MangroveDoor,
+	ItemType.BambooDoor,
+	ItemType.CherryDoor,
+] as const;
+
+const WoodenFences = [
+	ItemType.OakFence,
+	ItemType.AcaciaFence,
+	ItemType.DarkOakFence,
+	ItemType.PaleOakFence,
+	ItemType.SpruceFence,
+	ItemType.BirchFence,
+	ItemType.JungleFence,
+	ItemType.CrimsonFence,
+	ItemType.WarpedFence,
+	ItemType.MangroveFence,
+	ItemType.BambooFence,
+	ItemType.CherryFence,
+] as const;
+
+const WoodenPressurePlates = [
+	ItemType.OakPressurePlate,
+	ItemType.SprucePressurePlate,
+	ItemType.BirchPressurePlate,
+	ItemType.JunglePressurePlate,
+	ItemType.AcaciaPressurePlate,
+	ItemType.DarkOakPressurePlate,
+	ItemType.PaleOakPressurePlate,
+	ItemType.CrimsonPressurePlate,
+	ItemType.WarpedPressurePlate,
+	ItemType.MangrovePressurePlate,
+	ItemType.BambooPressurePlate,
+	ItemType.CherryPressurePlate,
+] as const;
+
+const WoodenShelves = [
+	ItemType.AcaciaShelf,
+	ItemType.BambooShelf,
+	ItemType.BirchShelf,
+	ItemType.CherryShelf,
+	ItemType.CrimsonShelf,
+	ItemType.DarkOakShelf,
+	ItemType.JungleShelf,
+	ItemType.MangroveShelf,
+	ItemType.OakShelf,
+	ItemType.PaleOakShelf,
+	ItemType.SpruceShelf,
+	ItemType.WarpedShelf,
+] as const;
+
+const WoodenSlabs = [
+	ItemType.OakSlab,
+	ItemType.SpruceSlab,
+	ItemType.BirchSlab,
+	ItemType.JungleSlab,
+	ItemType.AcaciaSlab,
+	ItemType.DarkOakSlab,
+	ItemType.PaleOakSlab,
+	ItemType.CrimsonSlab,
+	ItemType.WarpedSlab,
+	ItemType.MangroveSlab,
+	ItemType.BambooSlab,
+	ItemType.CherrySlab,
+] as const;
+
+const WoodenStairs = [
+	ItemType.OakStairs,
+	ItemType.SpruceStairs,
+	ItemType.BirchStairs,
+	ItemType.JungleStairs,
+	ItemType.AcaciaStairs,
+	ItemType.DarkOakStairs,
+	ItemType.PaleOakStairs,
+	ItemType.CrimsonStairs,
+	ItemType.WarpedStairs,
+	ItemType.MangroveStairs,
+	ItemType.BambooStairs,
+	ItemType.CherryStairs,
+] as const;
+
+const WoodenToolMaterials = [
+	ItemType.OakPlanks,
+	ItemType.SprucePlanks,
+	ItemType.BirchPlanks,
+	ItemType.JunglePlanks,
+	ItemType.AcaciaPlanks,
+	ItemType.DarkOakPlanks,
+	ItemType.PaleOakPlanks,
+	ItemType.CrimsonPlanks,
+	ItemType.WarpedPlanks,
+	ItemType.MangrovePlanks,
+	ItemType.BambooPlanks,
+	ItemType.CherryPlanks,
+] as const;
+
+const WoodenTrapdoors = [
+	ItemType.AcaciaTrapdoor,
+	ItemType.BirchTrapdoor,
+	ItemType.DarkOakTrapdoor,
+	ItemType.PaleOakTrapdoor,
+	ItemType.JungleTrapdoor,
+	ItemType.OakTrapdoor,
+	ItemType.SpruceTrapdoor,
+	ItemType.CrimsonTrapdoor,
+	ItemType.WarpedTrapdoor,
+	ItemType.MangroveTrapdoor,
+	ItemType.BambooTrapdoor,
+	ItemType.CherryTrapdoor,
+] as const;
+
+const Wool = [
+	ItemType.WhiteWool,
+	ItemType.OrangeWool,
+	ItemType.MagentaWool,
+	ItemType.LightBlueWool,
+	ItemType.YellowWool,
+	ItemType.LimeWool,
+	ItemType.PinkWool,
+	ItemType.GrayWool,
+	ItemType.LightGrayWool,
+	ItemType.CyanWool,
+	ItemType.PurpleWool,
+	ItemType.BlueWool,
+	ItemType.BrownWool,
+	ItemType.GreenWool,
+	ItemType.RedWool,
+	ItemType.BlackWool,
+] as const;
+
+const WoolCarpets = [
+	ItemType.WhiteCarpet,
+	ItemType.OrangeCarpet,
+	ItemType.MagentaCarpet,
+	ItemType.LightBlueCarpet,
+	ItemType.YellowCarpet,
+	ItemType.LimeCarpet,
+	ItemType.PinkCarpet,
+	ItemType.GrayCarpet,
+	ItemType.LightGrayCarpet,
+	ItemType.CyanCarpet,
+	ItemType.PurpleCarpet,
+	ItemType.BlueCarpet,
+	ItemType.BrownCarpet,
+	ItemType.GreenCarpet,
+	ItemType.RedCarpet,
+	ItemType.BlackCarpet,
+] as const;
+
+const ZombieHorseFood = [
+	ItemType.RedMushroom,
+] as const;
+
+export { AcaciaLogs, Anvil, ArmadilloFood, Arrows, Axes, AxolotlFood, BambooBlocks, Banners, Bars, BeaconPaymentItems, Beds, BeeFood, BirchLogs, Boats, BookCloningTarget, BookshelfBooks, BreaksDecoratedPots, BrewingFuel, Bundles, Buttons, CamelFood, CamelHuskFood, Candles, CatCollarDyes, CatFood, CauldronCanRemoveDye, Chains, CherryLogs, ChestArmor, ChestBoats, ChickenFood, ClusterMaxHarvestables, CoalOres, Coals, Compasses, CompletesFindTreeTutorial, Copper, CopperChests, CopperGolemStatues, CopperOres, CopperToolMaterials, CowFood, CreeperDropMusicDiscs, CreeperIgniters, CrimsonStems, DampensVibrations, DarkOakLogs, DecoratedPotIngredients, DecoratedPotSherds, DiamondOres, DiamondToolMaterials, Dirt, Doors, DrownedPreferredWeapons, DuplicatesAllays, Dyes, Eggs, EmeraldOres, EnchantableArmor, EnchantableBow, EnchantableChestArmor, EnchantableCrossbow, EnchantableDurability, EnchantableEquippable, EnchantableFireAspect, EnchantableFishing, EnchantableFootArmor, EnchantableHeadArmor, EnchantableLegArmor, EnchantableLunge, EnchantableMace, EnchantableMeleeWeapon, EnchantableMining, EnchantableMiningLoot, EnchantableSharpWeapon, EnchantableSweeping, EnchantableTrident, EnchantableVanishing, EnchantableWeapon, FenceGates, Fences, Fishes, Flowers, FootArmor, FoxFood, FreezeImmuneWearables, FrogFood, FurnaceMinecartFuel, GazeDisguiseEquipment, GoatFood, GoldOres, GoldToolMaterials, GrassBlocks, HangingSigns, HappyGhastFood, HappyGhastTemptItems, Harnesses, HeadArmor, Hoes, HoglinFood, HorseFood, HorseTemptItems, IgnoredByPiglinBabies, IronOres, IronToolMaterials, JungleLogs, Lanterns, LapisOres, Leaves, LecternBooks, LegArmor, LightningRods, LlamaFood, LlamaTemptItems, Logs, LogsThatBurn, LoomDyes, LoomPatterns, MangroveLogs, MapInvisibilityEquipment, Meat, MetalNuggets, MossBlocks, Mud, NautilusBucketFood, NautilusFood, NautilusTamingItems, NetheriteToolMaterials, NonFlammableWood, NoteblockTopInstruments, OakLogs, OcelotFood, PaleOakLogs, PandaEatsFromGround, PandaFood, ParrotFood, ParrotPoisonousFood, Pickaxes, PigFood, PiglinFood, PiglinLoved, PiglinPreferredWeapons, PiglinRepellents, PiglinSafeArmor, PillagerPreferredWeapons, Planks, RabbitFood, Rails, RedstoneOres, RepairsChainArmor, RepairsCopperArmor, RepairsDiamondArmor, RepairsGoldArmor, RepairsIronArmor, RepairsLeatherArmor, RepairsNetheriteArmor, RepairsTurtleHelmet, RepairsWolfArmor, Sand, Saplings, ShearableFromCopperGolem, SheepFood, Shovels, ShulkerBoxes, Signs, SkeletonPreferredWeapons, Skulls, Slabs, SmallFlowers, SmeltsToGlass, SnifferFood, SoulFireBaseBlocks, Spears, SpruceLogs, Stairs, StoneBricks, StoneButtons, StoneCraftingMaterials, StoneToolMaterials, StriderFood, StriderTemptItems, Swords, Terracotta, Trapdoors, TrimMaterials, TrimmableArmor, TurtleFood, VillagerPicksUp, VillagerPlantableSeeds, Walls, WarpedStems, WartBlocks, WitherSkeletonDislikedWeapons, WolfCollarDyes, WolfFood, WoodenButtons, WoodenDoors, WoodenFences, WoodenPressurePlates, WoodenShelves, WoodenSlabs, WoodenStairs, WoodenToolMaterials, WoodenTrapdoors, Wool, WoolCarpets, ZombieHorseFood };

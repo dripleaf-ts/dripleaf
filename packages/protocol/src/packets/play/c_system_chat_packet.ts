@@ -2,6 +2,7 @@
 
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
+import type { UnnamedNbtTag } from '@dripleaf/nbt';
 
 export class ClientboundSystemChatPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundSystemChatPacket, {
@@ -10,7 +11,7 @@ export class ClientboundSystemChatPacket extends DripleafPacket {
 	});
 
 	constructor(
-		public content: object,
+		public content: UnnamedNbtTag,
 		public overlay: boolean,
 	) {
 		super();

@@ -25,4 +25,7 @@ jobs:
         run: bun run codegen && git diff --exit-code
 
       - name: Run unit tests
-        run: bun test packages/nbt/tests packages/registry/tests packages/chunk/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests
+        run: bun run test
+
+      - name: Run typecheck
+        run: bun run typecheck

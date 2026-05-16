@@ -7,7 +7,8 @@
 | prismarine-chat | @dripleaf/chat | Medium — MessageBuilder |
 | prismarine-window | @dripleaf/inventory | Medium — click API, windows |
 | prismarine-block | @dripleaf/block | Medium — embedded block states |
-| prismarine-world | @dripleaf/world | Medium — chunks, getBlock, getBiome |
+| prismarine-chunk | @dripleaf/chunk | Medium — chunk sections, palettes, packet chunk parsing |
+| prismarine-world | @dripleaf/world | Medium — loaded chunks, getBlock, getBiome, findBlocks |
 | prismarine-entity | @dripleaf/entity | Medium — metadata codec |
 | prismarine-registry | @dripleaf/registry | Medium — runtime RegistryData |
 | mineflayer | dripleaf | WIP — Client + plugins |
@@ -22,3 +23,4 @@
 | azalea-client | dripleaf Client |
 
 Reference clone: `references/` (optional) for API comparison only.
+`azalea/` is also optional local reference material and must stay ignored/untracked.

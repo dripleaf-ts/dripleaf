@@ -1,7 +1,7 @@
 import { MenuType } from "@dripleaf/registry"
 import { chatComponentFromNbt } from "@dripleaf/chat"
 import { Window, menuSlotCount, menuTypeToWindowType } from "@dripleaf/inventory"
-import * as play from "@dripleaf/protocol"
+import { play } from "@dripleaf/protocol"
 import type { ItemStack } from "@dripleaf/inventory"
 import type { ClientContext, EquipmentEntry } from "../context"
 import type { ClientPlugin } from "./types"

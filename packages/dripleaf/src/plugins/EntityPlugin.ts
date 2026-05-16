@@ -1,5 +1,4 @@
-import { PacketReader } from "@dripleaf/protocol"
-import * as play from "@dripleaf/protocol"
+import { PacketReader, play } from "@dripleaf/protocol"
 import { EntityData, Vec3, decodeMetadata } from "@dripleaf/entity"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"

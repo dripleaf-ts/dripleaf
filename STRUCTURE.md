@@ -12,7 +12,8 @@ TypeScript Minecraft **26.1** bot ecosystem (protocol **775**), inspired by [Aza
 | `@dripleaf/chat` | prismarine-chat | Chat components |
 | `@dripleaf/inventory` | prismarine-window | Windows, items |
 | `@dripleaf/block` | prismarine-block | Block state registry |
-| `@dripleaf/world` | prismarine-world | Chunks, `World` |
+| `@dripleaf/chunk` | prismarine-chunk | Chunk sections, palettes, chunk packet parsing |
+| `@dripleaf/world` | prismarine-world | Loaded world state, chunk storage, block queries |
 | `@dripleaf/entity` | prismarine-entity | Entity metadata |
 | `@dripleaf/registry` | prismarine-registry | Identifiers, registries, tags |
 | `@dripleaf/physics` | azalea-physics (concepts) | Block passability for movement |
@@ -24,11 +25,11 @@ TypeScript Minecraft **26.1** bot ecosystem (protocol **775**), inspired by [Aza
 
 ```bash
 pnpm install
-git submodule update --init --recursive   # azalea/, codegen/azalea-burger/
+git submodule update --init --recursive   # codegen/azalea-burger/
 bun run codegen                           # packets, registries, embedded package data
 ```
 
-Codegen downloads the 26.1 server JAR into `codegen/cache/` (gitignored). Outputs are committed `.ts` files inside packages (Azalea-style).
+Codegen downloads the 26.1 server JAR into `codegen/cache/` (gitignored). Outputs are committed `.ts` files inside packages (Azalea-style). `azalea/` is an optional local reference checkout and is intentionally ignored, not tracked.
 
 ## Local server
 
@@ -40,7 +41,8 @@ bun run example:bot
 ## Scripts
 
 - `bun run codegen` — regenerate protocol packets and registries from 26.1 JAR
-- `bun test` — unit tests (NBT, registry, world, pathfinder, inventory)
+- `bun run test` — unit tests (NBT, protocol, registry, chunk, world, pathfinder, inventory)
+- `bun run typecheck` — workspace TypeScript check
 - `scripts/clone-references.sh` — shallow-clone PrismarineJS repos into `references/`
 - `bun run test:smoke` — live server smoke (`REAL_SERVER_HOST`)
 
@@ -54,3 +56,7 @@ bun run example:bot
 | `codegen/generate_data_components.ts` | `packages/inventory/.../generated.ts` |
 | `codegen/generate_blocks.ts` | `packages/block/src/states.generated.ts` |
 | `codegen/generate_recipes.ts` | `packages/recipe/src/data.generated.ts` |
+
+## Protocol exports
+
+`@dripleaf/protocol` exports packet phase namespaces (`configuration`, `handshake`, `login`, `play`, `status`) plus unique packet class names at the root. Packet names that collide across phases remain available through their phase namespace.

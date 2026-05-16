@@ -12,7 +12,8 @@ export async function getRegistryTags(jar: string, name: string) {
 
   if (!existsSync(tagDir)) return {}
   const tags: Record<string, { values: string[] }> = {}
-  for (const file of await readdir(tagDir, { recursive: true })) {
+  const files = (await readdir(tagDir, { recursive: true })).sort()
+  for (const file of files) {
     if (file && file.endsWith(".json"))
       tags[file.replace(".json", "")] = await Bun.file(path.join(tagDir, file)).json()
   }
@@ -35,7 +36,7 @@ export async function generateTag(
   ]
   const arrayNames = new Set<string>()
 
-  for (const [tagName, tag] of Object.entries(tags)) {
+  for (const [tagName, tag] of Object.entries(tags).sort(([left], [right]) => left.localeCompare(right))) {
     const entries: string[] = []
     const queue = [...tag.values]
 
@@ -43,7 +44,8 @@ export async function generateTag(
       const identifier = queue.shift()!
       if (identifier.startsWith("#")) {
         const nested = identifierToPath(identifier.slice(1))
-        if (nested) queue.push(...tags[nested].values)
+        const nestedTag = nested ? tags[nested] : undefined
+        if (nestedTag) queue.push(...nestedTag.values)
         continue
       }
       const entry = identifierToPath(identifier)

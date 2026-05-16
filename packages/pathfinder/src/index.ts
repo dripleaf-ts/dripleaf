@@ -1,4 +1,4 @@
-import type { BlockPos } from "@dripleaf/core"
+import { BlockPos } from "@dripleaf/core"
 import { isPassableAt, isStandableAt, type PhysicsWorld } from "@dripleaf/physics"
 
 export type PathNode = BlockPos
@@ -42,25 +42,21 @@ function posKey(p: BlockPos): string {
 }
 
 export function feetBlockFromPosition(p: { x: number; y: number; z: number }): BlockPos {
-  return {
-    x: Math.floor(p.x),
-    y: Math.floor(p.y + 0.5),
-    z: Math.floor(p.z),
-  }
+  return new BlockPos(Math.floor(p.x), Math.floor(p.y + 0.5), Math.floor(p.z))
 }
 
 function basicSuccessors(world: PhysicsWorld, pos: PathNode): PathEdge[] {
   const edges: PathEdge[] = []
   for (const { dx, dz } of CARDINALS) {
-    const next = { x: pos.x + dx, y: pos.y, z: pos.z + dz }
+    const next = new BlockPos(pos.x + dx, pos.y, pos.z + dz)
     if (!isStandableAt(world, next)) continue
     edges.push({ to: next, cost: SPRINT_COST })
 
-    const up = { x: next.x, y: next.y + 1, z: next.z }
+    const up = new BlockPos(next.x, next.y + 1, next.z)
     if (isStandableAt(world, up))
       edges.push({ to: up, cost: WALK_COST + JUMP_PENALTY })
 
-    const down = { x: next.x, y: next.y - 1, z: next.z }
+    const down = new BlockPos(next.x, next.y - 1, next.z)
     if (isStandableAt(world, down))
       edges.push({ to: down, cost: WALK_COST })
   }
