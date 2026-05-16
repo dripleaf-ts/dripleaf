@@ -1,4 +1,4 @@
-import { Client } from "../packages/dripleaf/src/index.ts"
+import { Client, toPlainText } from "../packages/dripleaf/src/index.ts"
 import { BlockPos } from "../packages/core/src/index.ts"
 
 const host = process.argv[2] ?? "localhost"
@@ -28,10 +28,12 @@ bot.on("health", (health, food, saturation) => {
   console.log(`health: ${health}, food: ${food}, saturation: ${saturation}`)
 })
 
-bot.on("chat", (message: string) => {
-  console.log("chat:", message)
+bot.on("chat", (message, sender) => {
+  const text = toPlainText(message)
+  const senderName = sender ? toPlainText(sender) : "server"
+  console.log(`chat [${senderName}]:`, text)
 
-  if (message.includes("position")) {
+  if (text.includes("position")) {
     bot.chat(`My position is ${bot.position.x.toFixed(1)}, ${bot.position.y.toFixed(1)}, ${bot.position.z.toFixed(1)}`)
   }
 })

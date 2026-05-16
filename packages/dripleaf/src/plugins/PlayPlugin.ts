@@ -3,6 +3,7 @@ import { World, type Dimension } from "@dripleaf/world"
 import { Pathfinder } from "@dripleaf/pathfinder"
 import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/dripleaf"
 import { toPlainText } from "@dripleaf/chat"
+import type { ChatComponent } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
@@ -29,18 +30,16 @@ export class PlayPlugin implements ClientPlugin {
     })
 
     conn.onPacket(play.ClientboundSystemChatPacket, (packet) => {
-      ctx.emit("chat", toPlainText(packet.content), null)
+      ctx.emit("chat", packet.content, null)
     })
 
     conn.onPacket(play.ClientboundPlayerChatPacket, (packet) => {
-      const text = packet.unsignedContent
-        ? toPlainText(packet.unsignedContent)
-        : packet.body.content
-      ctx.emit("chat", text, packet.sender)
+      const message = packet.unsignedContent ?? { text: packet.body.content }
+      ctx.emit("chat", message, packet.chatType.name)
     })
 
     conn.onPacket(play.ClientboundDisguisedChatPacket, (packet) => {
-      ctx.emit("chat", toPlainText(packet.message), null)
+      ctx.emit("chat", packet.message, packet.chatType.name)
     })
 
     conn.onPacket(play.ClientboundSetHealthPacket, (packet) => {

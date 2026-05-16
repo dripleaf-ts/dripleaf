@@ -1,4 +1,4 @@
-import { Client } from "../packages/dripleaf/src/index.ts"
+import { Client, toPlainText } from "../packages/dripleaf/src/index.ts"
 
 const host = process.argv[2] ?? "localhost"
 const port = parseInt(process.argv[3] ?? "25565", 10)
@@ -11,8 +11,9 @@ bot.on("spawn", () => {
   bot.chat("Hello from dripleaf!")
 })
 
-bot.on("chat", (message: string) => {
-  console.log("chat:", message)
+bot.on("chat", (message, sender) => {
+  const senderName = sender ? toPlainText(sender) : "server"
+  console.log(`chat [${senderName}]:`, toPlainText(message))
 })
 
 bot.on("error", (err: Error) => {

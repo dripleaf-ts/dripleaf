@@ -1,4 +1,4 @@
-import { Client } from "../packages/dripleaf/src/index.ts"
+import { Client, toPlainText } from "../packages/dripleaf/src/index.ts"
 import { BlockPos } from "../packages/core/src/index.ts"
 import { InteractionHand, BlockFace } from "../packages/protocol/src/index.ts"
 
@@ -55,9 +55,10 @@ bot.on("move", () => {
   moveReceived = true
 })
 
-bot.on("chat", (message: string, sender: string | null) => {
+bot.on("chat", (message, sender) => {
   chatReceived = true
-  console.log(`  chat from ${sender ?? "server"}: ${message}`)
+  const senderName = sender ? toPlainText(sender) : "server"
+  console.log(`  chat from ${senderName}: ${toPlainText(message)}`)
 })
 
 bot.on("health", (health: number, food: number, saturation: number) => {

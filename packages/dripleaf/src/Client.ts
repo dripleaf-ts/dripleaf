@@ -12,10 +12,11 @@ import type { EntityData } from "@dripleaf/entity"
 import type { Pathfinder, PathResult } from "@dripleaf/pathfinder"
 import type { ClientContext, EquipmentEntry } from "./context"
 import { defaultPlugins, ConnectionPlugin, goto as gotoPath, stopPathfinding, startMining, finishMining, stopMining } from "./plugins"
+import type { ChatComponent } from "@dripleaf/chat"
 
 type ClientEvents = {
   spawn: (packet: play.ClientboundLoginPacket) => void
-  chat: (message: string, sender: string | null) => void
+  chat: (message: ChatComponent, sender: ChatComponent | null) => void
   disconnect: (reason: string) => void
   error: (error: Error) => void
   end: () => void
