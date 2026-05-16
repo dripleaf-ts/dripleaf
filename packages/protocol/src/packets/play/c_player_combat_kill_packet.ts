@@ -8,11 +8,13 @@ import type { ChatComponent } from '@dripleaf/chat';
 export class ClientboundPlayerCombatKillPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundPlayerCombatKillPacket, {
 		playerId: Codecs.varInt,
+		messageId: Codecs.int,
 		message: ChatComponentCodec,
 	});
 
 	constructor(
 		public playerId: number,
+		public messageId: number,
 		public message: ChatComponent
 	) {
 		super();

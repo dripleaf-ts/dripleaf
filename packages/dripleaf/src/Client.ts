@@ -319,6 +319,7 @@ export class Client {
   attack(entityId: number): void {
     if (!this.connection || !this.loggedIn) throw new Error("Not connected")
     this.connection.write(new play.ServerboundAttackPacket(entityId))
+    this.connection.write(new play.ServerboundSwingPacket(InteractionHand.MainHand))
   }
 
   mine(x: number, y: number, z: number, face = BlockFace.Up): void {
@@ -387,7 +388,6 @@ export class Client {
   interactEntity(entityId: number, hand: InteractionHand = InteractionHand.MainHand, location?: { x: number; y: number; z: number }): void {
     if (!this.connection || !this.loggedIn) throw new Error("Not connected")
     const loc = location ?? { x: this.position.x, y: this.position.y, z: this.position.z }
-    this.connection.write(new play.ServerboundInteractPacket(entityId, hand, new Vec3(loc.x, loc.y, loc.z), false))
     this.connection.write(new play.ServerboundInteractPacket(entityId, hand, new Vec3(loc.x, loc.y, loc.z), false))
   }
 

@@ -35,7 +35,10 @@ export class EntityPlugin implements ClientPlugin {
     conn.onPacket(play.ClientboundSetEntityDataPacket, (packet) => {
       const entity = ctx.entities.get(packet.entityId)
       if (!entity) return
-      entity.metadata = decodeMetadata(new PacketReader(packet.packedItems))
+      const newMetadata = decodeMetadata(new PacketReader(packet.packedItems))
+      for (const [key, value] of newMetadata) {
+        entity.metadata.set(key, value)
+      }
     })
 
     conn.onPacket(play.ClientboundMoveEntityPosPacket, (packet) => {

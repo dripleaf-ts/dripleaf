@@ -41,7 +41,7 @@ export const Codecs = {
   double: primitive<number>((writer, value) => writer.writeDouble(value), reader => reader.readDouble()),
   varInt: primitive<number>((writer, value) => writer.writeVarInt(value), reader => reader.readVarInt()),
   varLong: primitive<bigint>((writer, value) => writer.writeVarLong(value), reader => reader.readVarLong()),
-  containerId: primitive<number>((writer, value) => writer.writeVarInt(value), reader => reader.readVarInt()),
+  containerId: primitive<number>((writer, value) => writer.writeByte(value), reader => reader.readByte()),
   string(maxLength = 32767): Codec<string> {
     return primitive<string>((writer, value) => writer.writeString(value, maxLength), reader => reader.readString(maxLength));
   },

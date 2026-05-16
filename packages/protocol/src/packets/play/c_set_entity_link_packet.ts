@@ -5,8 +5,8 @@ import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 export class ClientboundSetEntityLinkPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundSetEntityLinkPacket, {
-		sourceId: Codecs.int,
-		destId: Codecs.int,
+		sourceId: Codecs.varInt,
+		destId: Codecs.varInt,
 	});
 
 	constructor(

@@ -14,6 +14,7 @@ export class ClientboundChunksBiomesPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundChunksBiomesPacket, {
 		chunkBiomeData: Codecs.array({
 			encode(writer, value) {
+				ChunkPosCodec.encode(writer, value.chunkPos);
 				writer.writeByteArray(value.data);
 			},
 			decode(reader) {
