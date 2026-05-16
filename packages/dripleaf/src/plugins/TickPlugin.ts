@@ -10,8 +10,12 @@ export class TickPlugin implements ClientPlugin {
   register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
     this.#interval = setInterval(() => {
       if (!ctx.loggedIn) return
-      conn.write(new play.ServerboundClientTickEndPacket())
-      tickPathfinder(ctx, conn)
+      try {
+        conn.write(new play.ServerboundClientTickEndPacket())
+        tickPathfinder(ctx, conn)
+      } catch (error) {
+        console.error("tick error:", error)
+      }
     }, 50)
     conn.on("end", () => {
       if (this.#interval) clearInterval(this.#interval)
