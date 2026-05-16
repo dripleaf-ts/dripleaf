@@ -11,6 +11,7 @@ interface Instant {
 interface LastSeenMessagesUpdate {
 	offset: number;
 	acknowledged: Uint8Array;
+	checksum: number;
 }
 
 interface ArgumentSignature {
@@ -23,14 +24,15 @@ export class ServerboundChatCommandSignedPacket extends DripleafPacket {
 		encode(writer: PacketWriter, value: ServerboundChatCommandSignedPacket) {
 			writer.writeString(value.command);
 			writer.writeLong(value.timestamp.seconds);
-			writer.writeVarInt(value.timestamp.nanos);
+			writer.writeInt(value.timestamp.nanos);
 			writer.writeLong(value.salt);
 			writer.writeArray(value.argumentSignatures, entry => {
 				writer.writeString(entry.name);
-				writer.writeByteArray(entry.signature);
+				writer.writeBytes(entry.signature);
 			});
 			writer.writeVarInt(value.lastSeenMessages.offset);
 			writer.writeFixedBitSet(value.lastSeenMessages.acknowledged, 20);
+			writer.writeByte(value.lastSeenMessages.checksum);
 		},
 		decode(reader: PacketReader): ServerboundChatCommandSignedPacket {
 			return new ServerboundChatCommandSignedPacket(
@@ -42,11 +44,12 @@ export class ServerboundChatCommandSignedPacket extends DripleafPacket {
 				reader.readLong(),
 				reader.readArray(() => ({
 					name: reader.readString(),
-					signature: reader.readByteArray(),
+					signature: reader.readBytes(256),
 				})),
 				{
 					offset: reader.readVarInt(),
 					acknowledged: reader.readFixedBitSet(20),
+					checksum: reader.readByte(),
 				},
 			);
 		},

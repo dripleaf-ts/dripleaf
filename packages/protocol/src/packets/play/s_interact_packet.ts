@@ -5,49 +5,28 @@ import { Codecs, type PacketReader, type PacketWriter } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
 import type { Vec3 } from 'vec3';
 
-export type InteractAction =
-	| { kind: "interact"; hand: InteractionHand }
-	| { kind: "interactAt"; hand: InteractionHand; location: Vec3 };
-
 export class ServerboundInteractPacket extends DripleafPacket {
 	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundInteractPacket) {
 			writer.writeVarInt(value.entityId);
-			switch (value.action.kind) {
-				case "interact":
-					writer.writeVarInt(0);
-					Codecs.varIntEnum(InteractionHand).encode(writer, value.action.hand);
-					break;
-				case "interactAt":
-					writer.writeVarInt(1);
-					Codecs.varIntEnum(InteractionHand).encode(writer, value.action.hand);
-					writer.writeLpVec3(value.action.location);
-					break;
-			}
+			Codecs.varIntEnum(InteractionHand).encode(writer, value.hand);
+			writer.writeLpVec3(value.location);
 			writer.writeBoolean(value.usingSecondaryAction);
 		},
 		decode(reader: PacketReader): ServerboundInteractPacket {
-			const entityId = reader.readVarInt();
-			const type = reader.readVarInt();
-			let action: InteractAction;
-			switch (type) {
-				case 0:
-					action = { kind: "interact", hand: Codecs.varIntEnum(InteractionHand).decode(reader) };
-					break;
-				case 1:
-					action = { kind: "interactAt", hand: Codecs.varIntEnum(InteractionHand).decode(reader), location: reader.readLpVec3() };
-					break;
-				default:
-					throw new Error(`Unknown interact type: ${type}`);
-			}
-			const usingSecondaryAction = reader.readBoolean();
-			return new ServerboundInteractPacket(entityId, action, usingSecondaryAction);
+			return new ServerboundInteractPacket(
+				reader.readVarInt(),
+				Codecs.varIntEnum(InteractionHand).decode(reader),
+				reader.readLpVec3(),
+				reader.readBoolean(),
+			);
 		},
 	});
 
 	constructor(
 		public entityId: number,
-		public action: InteractAction,
+		public hand: InteractionHand,
+		public location: Vec3,
 		public usingSecondaryAction: boolean,
 	) {
 		super();

@@ -3,6 +3,11 @@
 import { Codecs, type PacketReader, type PacketWriter } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
+interface Instant {
+	seconds: bigint;
+	nanos: number;
+}
+
 interface LastSeenMessagesUpdate {
 	offset: number;
 	acknowledged: Uint8Array;
@@ -13,7 +18,8 @@ export class ServerboundChatPacket extends DripleafPacket {
 	static readonly codec = packetCodec({
 		encode(writer: PacketWriter, value: ServerboundChatPacket) {
 			writer.writeString(value.message, 256);
-			writer.writeLong(value.timestamp);
+			writer.writeLong(value.timestamp.seconds);
+			writer.writeInt(value.timestamp.nanos);
 			writer.writeLong(value.salt);
 			writer.writePrefixedOptional(value.signature, sig => writer.writeBytes(sig));
 			writer.writeVarInt(value.lastSeenMessages.offset);
@@ -23,7 +29,7 @@ export class ServerboundChatPacket extends DripleafPacket {
 		decode(reader: PacketReader): ServerboundChatPacket {
 			return new ServerboundChatPacket(
 				reader.readString(256),
-				reader.readLong(),
+				{ seconds: reader.readLong(), nanos: reader.readInt() },
 				reader.readLong(),
 				reader.readPrefixedOptional(() => reader.readBytes(256)),
 				{
@@ -37,7 +43,7 @@ export class ServerboundChatPacket extends DripleafPacket {
 
 	constructor(
 		public message: string,
-		public timestamp: bigint,
+		public timestamp: Instant,
 		public salt: bigint,
 		public signature: Uint8Array | null,
 		public lastSeenMessages: LastSeenMessagesUpdate,

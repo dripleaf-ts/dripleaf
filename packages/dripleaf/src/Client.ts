@@ -180,7 +180,7 @@ export class Client {
     } else {
       this.connection.write(new play.ServerboundChatPacket(
         message,
-        BigInt(Date.now()),
+        { seconds: BigInt(Math.floor(Date.now() / 1000)), nanos: 0 },
         0n,
         null,
         { offset: 0, acknowledged: new Uint8Array(3), checksum: 0 },
