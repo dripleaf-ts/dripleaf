@@ -2,25 +2,33 @@ import { State, configuration, play } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
+function safeWrite(conn: import("@dripleaf/protocol").Connection, packet: import("@dripleaf/protocol").DripleafPacket) {
+  try {
+    conn.write(packet)
+  } catch (error) {
+    console.error("keepalive write error:", error)
+  }
+}
+
 export class KeepAlivePlugin implements ClientPlugin {
   readonly name = "keepAlive"
 
   register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
     conn.onPacket(configuration.ClientboundKeepAlivePacket, (packet) => {
       if (conn.state === State.Configuration)
-        conn.write(new configuration.ServerboundKeepAlivePacket(packet.keepAliveId))
+        safeWrite(conn, new configuration.ServerboundKeepAlivePacket(packet.keepAliveId))
     })
 
     conn.onPacket(configuration.ClientboundPingPacket, (packet) => {
-      conn.write(new configuration.ServerboundPongPacket(BigInt(packet.pingId)))
+      safeWrite(conn, new configuration.ServerboundPongPacket(BigInt(packet.pingId)))
     })
 
     conn.onPacket(play.ClientboundKeepAlivePacket, (packet) => {
-      conn.write(new play.ServerboundKeepAlivePacket(packet.keepAliveId))
+      safeWrite(conn, new play.ServerboundKeepAlivePacket(packet.keepAliveId))
     })
 
     conn.onPacket(play.ClientboundPingPacket, (packet) => {
-      conn.write(new play.ServerboundPongPacket(packet.id))
+      safeWrite(conn, new play.ServerboundPongPacket(packet.id))
     })
   }
 }
