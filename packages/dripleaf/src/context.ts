@@ -6,6 +6,7 @@ import type { Window, ItemStack } from "@dripleaf/inventory"
 import type { RegistryManager } from "@dripleaf/registry"
 import type { Pathfinder } from "@dripleaf/pathfinder"
 import type { EventEmitter } from "node:events"
+import type { Vec3 } from "vec3"
 
 export type EquipmentEntry = {
   slot: number
@@ -18,7 +19,7 @@ export type ClientContext = {
   profile: GameProfile | null
   loggedIn: boolean
   entityId: number
-  position: { x: number; y: number; z: number }
+  position: Vec3
   yaw: number
   pitch: number
   onGround: boolean
@@ -51,7 +52,7 @@ export type ClientContext = {
   experienceLevel: number
   experienceProgress: number
   totalExperience: number
-  velocity: { x: number; y: number; z: number }
+  velocity: Vec3
   isDead: boolean
   attackCooldown: number
   attackCooldownMax: number

@@ -3,7 +3,6 @@ import { World, type Dimension } from "@dripleaf/world"
 import { Pathfinder } from "@dripleaf/pathfinder"
 import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/dripleaf"
 import { toPlainText } from "@dripleaf/chat"
-import type { ChatComponent } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
@@ -22,12 +21,8 @@ export class PlayPlugin implements ClientPlugin {
       ctx.world = new World(dim)
       ctx.pathfinder = new Pathfinder(pathWorldFromDripleaf(ctx.world))
       ctx.gameMode = packet.commonPlayerSpawnInfo.gameType
-      ctx.position.x = 0
-      ctx.position.y = 0
-      ctx.position.z = 0
-      ctx.velocity.x = 0
-      ctx.velocity.y = 0
-      ctx.velocity.z = 0
+      ctx.position.set(0, 0, 0)
+      ctx.velocity.set(0, 0, 0)
       conn.write(new play.ServerboundPlayerLoadedPacket())
       ctx.emit("spawn", packet)
     })
@@ -42,12 +37,8 @@ export class PlayPlugin implements ClientPlugin {
       ctx.pathfinder = new Pathfinder(pathWorldFromDripleaf(ctx.world))
       ctx.previousGameMode = ctx.gameMode
       ctx.gameMode = packet.commonPlayerSpawnInfo.gameType
-      ctx.position.x = 0
-      ctx.position.y = 0
-      ctx.position.z = 0
-      ctx.velocity.x = 0
-      ctx.velocity.y = 0
-      ctx.velocity.z = 0
+      ctx.position.set(0, 0, 0)
+      ctx.velocity.set(0, 0, 0)
       ctx.emit("gameModeChanged", ctx.gameMode, ctx.previousGameMode)
       ctx.emit("respawn", packet)
     })
@@ -99,9 +90,7 @@ export class PlayPlugin implements ClientPlugin {
 
     conn.onPacket(play.ClientboundSetEntityMotionPacket, (packet) => {
       if (packet.entityId === ctx.entityId) {
-        ctx.velocity.x = packet.movement.x
-        ctx.velocity.y = packet.movement.y
-        ctx.velocity.z = packet.movement.z
+        ctx.velocity.set(packet.movement.x, packet.movement.y, packet.movement.z)
         ctx.emit("velocity", ctx.velocity)
       }
     })
@@ -129,9 +118,7 @@ export class PlayPlugin implements ClientPlugin {
       if (rel & play.Relative.Pitch) ctx.pitch += packet.change.pitch
       else ctx.pitch = packet.change.pitch
       if (!(rel & play.Relative.X) && !(rel & play.Relative.Y) && !(rel & play.Relative.Z)) {
-        ctx.velocity.x = 0
-        ctx.velocity.y = 0
-        ctx.velocity.z = 0
+        ctx.velocity.set(0, 0, 0)
       }
       conn.write(new play.ServerboundAcceptTeleportationPacket(packet.teleportId))
       ctx.emit("move")

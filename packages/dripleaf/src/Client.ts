@@ -29,7 +29,7 @@ type ClientEvents = {
   gameModeChanged: (gameMode: number, previousGameMode: number) => void
   abilitiesChanged: () => void
   death: () => void
-  velocity: (velocity: { x: number; y: number; z: number }) => void
+  velocity: (velocity: Vec3) => void
   heldItemChange: (slot: number) => void
   entitySpawn: (entity: EntityData) => void
   entityDespawn: (entityId: number) => void
@@ -59,7 +59,7 @@ export class Client {
   loggedIn = false
   entityId = -1
 
-  position = { x: 0, y: 0, z: 0 }
+  position = new Vec3(0, 0, 0)
   yaw = 0
   pitch = 0
   onGround = true
@@ -80,7 +80,7 @@ export class Client {
   experienceProgress = 0
   totalExperience = 0
 
-  velocity = { x: 0, y: 0, z: 0 }
+  velocity = new Vec3(0, 0, 0)
   isDead = false
 
   attackCooldown = 0
