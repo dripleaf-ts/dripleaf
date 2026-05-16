@@ -5,6 +5,7 @@ import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/dripleaf"
 import { toPlainText } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
+import { Vec3 } from "vec3"
 
 export class PlayPlugin implements ClientPlugin {
   readonly name = "play"
@@ -257,6 +258,35 @@ export class PlayPlugin implements ClientPlugin {
     conn.onPacket(play.ClientboundRecipeBookSettingsPacket, (packet) => {
       ctx.advancements.recipeBookOpen = packet.settings.crafting.open
       ctx.advancements.recipeBookFiltering = packet.settings.crafting.filtering
+    })
+
+    conn.onPacket(play.ClientboundHurtAnimationPacket, (packet) => {
+      ctx.emit("hurtAnimation", packet.entityId, packet.yaw)
+    })
+
+    conn.onPacket(play.ClientboundChangeDifficultyPacket, (packet) => {
+      ctx.difficulty = packet.difficulty as number
+      ctx.emit("difficulty", packet.difficulty as number)
+    })
+
+    conn.onPacket(play.ClientboundSetTimePacket, (packet) => {
+      ctx.gameTime = Number(packet.gameTime)
+      ctx.emit("time", ctx.gameTime, ctx.timeOfDay)
+    })
+
+    conn.onPacket(play.ClientboundSetDefaultSpawnPositionPacket, (packet) => {
+      const pos = packet.respawnData.globalPos.pos
+      ctx.spawnPosition = new Vec3(pos.x, pos.y, pos.z)
+      ctx.emit("spawnPosition", ctx.spawnPosition)
+    })
+
+    conn.onPacket(play.ClientboundEntityEventPacket, (packet) => {
+      ctx.emit("entityEvent", packet.entityId, packet.eventId)
+    })
+
+    conn.onPacket(play.ClientboundCooldownPacket, (packet) => {
+      ctx.itemCooldowns.set(packet.cooldownGroup, packet.cooldownTicks)
+      ctx.emit("itemCooldown", packet.cooldownGroup, packet.cooldownTicks)
     })
   }
 }

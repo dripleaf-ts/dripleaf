@@ -30,6 +30,12 @@ type ClientEvents = {
   abilitiesChanged: () => void
   death: () => void
   velocity: (velocity: Vec3) => void
+  hurtAnimation: (entityId: number, yaw: number) => void
+  difficulty: (difficulty: number) => void
+  time: (gameTime: number, timeOfDay: number) => void
+  spawnPosition: (position: Vec3) => void
+  entityEvent: (entityId: number, eventId: number) => void
+  itemCooldown: (itemId: string, ticks: number) => void
   heldItemChange: (slot: number) => void
   entitySpawn: (entity: EntityData) => void
   entityDespawn: (entityId: number) => void
@@ -101,6 +107,12 @@ export class Client {
     recipeBookOpen: false,
     recipeBookFiltering: false,
   }
+
+  difficulty = 0
+  timeOfDay = 0
+  gameTime = 0
+  spawnPosition: Vec3 | null = null
+  itemCooldowns = new Map<string, number>()
 
   world: World | null = null
   entities: Map<number, EntityData> = new Map()
@@ -195,6 +207,16 @@ export class Client {
       set worldBorder(v) { client.worldBorder = v },
       get advancements() { return client.advancements },
       set advancements(v) { client.advancements = v },
+      get difficulty() { return client.difficulty },
+      set difficulty(v) { client.difficulty = v },
+      get timeOfDay() { return client.timeOfDay },
+      set timeOfDay(v) { client.timeOfDay = v },
+      get gameTime() { return client.gameTime },
+      set gameTime(v) { client.gameTime = v },
+      get spawnPosition() { return client.spawnPosition },
+      set spawnPosition(v) { client.spawnPosition = v },
+      get itemCooldowns() { return client.itemCooldowns },
+      set itemCooldowns(v) { client.itemCooldowns = v },
       emitter: this.emitter,
       emit: (event, ...args) => client.emit(event, ...args),
     }

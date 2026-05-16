@@ -70,4 +70,9 @@ export type ClientContext = {
     recipeBookOpen: boolean
     recipeBookFiltering: boolean
   }
+  difficulty: number
+  timeOfDay: number
+  gameTime: number
+  spawnPosition: Vec3 | null
+  itemCooldowns: Map<string, number>
 }

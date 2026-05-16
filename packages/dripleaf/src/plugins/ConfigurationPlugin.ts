@@ -29,6 +29,11 @@ export class ConfigurationPlugin implements ClientPlugin {
           "en_us", 24, ChatVisibility.Full, true, 0,
           HumanoidArm.Right, false, true, ParticleStatus.All,
         ))
+        const brandBytes = new TextEncoder().encode("dripleaf")
+        conn.write(new configuration.ServerboundCustomPayloadPacket(
+          "minecraft:brand" as any,
+          brandBytes,
+        ))
       }
     })
 
@@ -43,6 +48,11 @@ export class ConfigurationPlugin implements ClientPlugin {
       conn.write(new configuration.ServerboundClientInformationPacket(
         "en_us", 24, ChatVisibility.Full, true, 0,
         HumanoidArm.Right, false, true, ParticleStatus.All,
+      ))
+      const brandBytes = new TextEncoder().encode("dripleaf")
+      conn.write(new configuration.ServerboundCustomPayloadPacket(
+        "minecraft:brand" as any,
+        brandBytes,
       ))
     })
   }
