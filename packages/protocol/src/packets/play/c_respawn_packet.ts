@@ -6,9 +6,9 @@ import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 enum DataToKeep {
-	KeepAttributeModifiers = 0x01,
-	KeepInventory = 0x02,
-	KeepEnderChestContents = 0x03,
+	KeepAttributeModifiers = 1,
+	KeepEntityData = 2,
+	KeepAllData = 3,
 }
 
 export class ClientboundRespawnPacket extends DripleafPacket {
