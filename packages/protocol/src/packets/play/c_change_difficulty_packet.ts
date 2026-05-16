@@ -6,7 +6,7 @@ import { DripleafPacket, packetCodec } from '../DripleafPacket';
 
 export class ClientboundChangeDifficultyPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundChangeDifficultyPacket, {
-		difficulty: Codecs.unsignedByteEnum(Difficulty),
+		difficulty: Codecs.varIntEnum(Difficulty),
 		locked: Codecs.bool,
 	});
 

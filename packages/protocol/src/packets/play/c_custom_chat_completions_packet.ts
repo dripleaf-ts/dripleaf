@@ -11,7 +11,7 @@ export enum CustomChatCompletionsAction {
 
 export class ClientboundCustomChatCompletionsPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundCustomChatCompletionsPacket, {
-		action: Codecs.varIntEnum(CustomChatCompletionsAction),
+		action: Codecs.byteEnum(CustomChatCompletionsAction),
 		entries: Codecs.array(Codecs.string()),
 	});
 

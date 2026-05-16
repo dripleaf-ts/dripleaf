@@ -11,12 +11,12 @@ export class ClientboundStopSoundPacket extends DripleafPacket {
 			if (value.source != null) flags |= 1
 			if (value.name != null) flags |= 2
 			writer.writeByte(flags)
-			if (value.source != null) writer.writeVarInt(value.source)
+			if (value.source != null) writer.writeByte(value.source)
 			if (value.name != null) writer.writeIdentifier(value.name)
 		},
 		decode(reader) {
 			const flags = reader.readByte()
-			const source = (flags & 1) !== 0 ? reader.readVarInt() as SoundSource : null
+			const source = (flags & 1) !== 0 ? reader.readByte() as SoundSource : null
 			const name = (flags & 2) !== 0 ? reader.readIdentifier() : null
 			return new ClientboundStopSoundPacket(source, name)
 		},

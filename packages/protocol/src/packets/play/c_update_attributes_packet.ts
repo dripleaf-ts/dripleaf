@@ -19,14 +19,14 @@ type AttributeSnapshot = {
 function encodeModifier(writer: PacketWriter, value: AttributeModifierData) {
 	writer.writeIdentifier(value.id);
 	writer.writeDouble(value.amount);
-	writer.writeByte(value.operation);
+	writer.writeVarInt(value.operation);
 }
 
 function decodeModifier(reader: PacketReader): AttributeModifierData {
 	return {
 		id: reader.readIdentifier(),
 		amount: reader.readDouble(),
-		operation: reader.readByte(),
+		operation: reader.readVarInt(),
 	};
 }
 

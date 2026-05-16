@@ -2,19 +2,19 @@
 
 import { Codecs } from '../../buffer';
 import { DripleafPacket, packetCodec } from '../DripleafPacket';
-import { ChatVisibility, ChatVisibilityCodec, HumanoidArm, HumanoidArmCodec, ParticleStatus, ParticleStatusCodec, DisplayedSkinPartsCodec } from '../../datatypes';
+import { ChatVisibility, HumanoidArm, ParticleStatus, DisplayedSkinPartsCodec } from '../../datatypes';
 
 export class ServerboundClientInformationPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ServerboundClientInformationPacket, {
 		locale: Codecs.string(),
 		viewDistance: Codecs.byte,
-		chatMode: ChatVisibilityCodec,
+		chatMode: Codecs.byteEnum(ChatVisibility),
 		chatColors: Codecs.bool,
 		displayedSkinParts: DisplayedSkinPartsCodec,
-		mainHand: HumanoidArmCodec,
+		mainHand: Codecs.byteEnum(HumanoidArm),
 		enableTextFiltering: Codecs.bool,
 		allowServerListings: Codecs.bool,
-		particleStatus: ParticleStatusCodec,
+		particleStatus: Codecs.byteEnum(ParticleStatus),
 	});
 
 	constructor(

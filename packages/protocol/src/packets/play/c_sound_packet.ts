@@ -9,7 +9,7 @@ import { soundHolderCodec } from '../../datatypes';
 export class ClientboundSoundPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundSoundPacket, {
 		sound: soundHolderCodec,
-		source: Codecs.varIntEnum(SoundSource),
+		source: Codecs.byteEnum(SoundSource),
 		x: Codecs.int,
 		y: Codecs.int,
 		z: Codecs.int,

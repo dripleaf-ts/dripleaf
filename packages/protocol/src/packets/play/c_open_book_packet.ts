@@ -6,7 +6,7 @@ import { InteractionHand } from '../../types';
 
 export class ClientboundOpenBookPacket extends DripleafPacket {
 	static readonly codec = packetCodec(ClientboundOpenBookPacket, {
-		hand: Codecs.varIntEnum(InteractionHand),
+		hand: Codecs.byteEnum(InteractionHand),
 	});
 
 	constructor(
