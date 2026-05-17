@@ -1,5 +1,5 @@
 import { DataComponentType, EntityType, ItemType } from "@dripleaf/registry"
-import { PacketReader, PacketWriter, Codecs } from "@dripleaf/protocol"
+import { PacketReader, PacketWriter, Codecs, DataComponentPatchCodec } from "@dripleaf/protocol"
 import { BlockPos, GlobalPos } from "@dripleaf/core"
 
 export { EntityType, EntityTypeRegistry } from "@dripleaf/registry"
@@ -428,68 +428,11 @@ function writeMetadataValue(writer: PacketWriter, entry: MetadataEntry): void {
 }
 
 function readDataComponentPatch(reader: PacketReader): Record<string, unknown> {
-  const patch: Record<string, unknown> = {}
-  const positiveCount = reader.readVarInt()
-  const negativeCount = reader.readVarInt()
-
-  for (let i = 0; i < positiveCount; i++) {
-    const type = Codecs.varIntEnum(DataComponentType).decode(reader) as string
-    const nbt = reader.readNbt()
-    patch[type] = nbtValueToPlain(nbt.value)
-  }
-
-  for (let i = 0; i < negativeCount; i++) {
-    const type = Codecs.varIntEnum(DataComponentType).decode(reader) as string
-    patch[type] = null
-  }
-
-  return patch
+  return DataComponentPatchCodec.decode(reader)
 }
 
 function writeDataComponentPatch(writer: PacketWriter, patch: Record<string, unknown>): void {
-  const entries = Object.entries(patch)
-  const positive = entries.filter(([, v]) => v !== null && v !== undefined)
-  const negative = entries.filter(([, v]) => v === null || v === undefined)
-
-  writer.writeVarInt(positive.length)
-  writer.writeVarInt(negative.length)
-
-  for (const [key, val] of positive) {
-    Codecs.varIntEnum(DataComponentType).encode(writer, key as any)
-    writer.writeNbt({
-      type: 10,
-      value: plainToNbtValue(val),
-    } as any)
-  }
-
-  for (const [key] of negative) {
-    Codecs.varIntEnum(DataComponentType).encode(writer, key as any)
-  }
+  DataComponentPatchCodec.encode(writer, patch)
 }
 
-function nbtValueToPlain(value: unknown): unknown {
-  if (value === null || value === undefined) return null
-  if (typeof value === "number" || typeof value === "bigint" || typeof value === "string") return value
-  if (value instanceof Uint8Array) return Array.from(value)
-  if (Array.isArray(value)) return value.map(nbtValueToPlain)
-  if (typeof value === "object" && "elementType" in value && "items" in value)
-    return (value as any).items.map(nbtValueToPlain)
-  const result: Record<string, unknown> = {}
-  for (const [k, v] of Object.entries(value as Record<string, unknown>))
-    result[k] = nbtValueToPlain(v)
-  return result
-}
 
-function plainToNbtValue(value: unknown): unknown {
-  if (value === null || value === undefined) return 0
-  if (typeof value === "number" || typeof value === "bigint" || typeof value === "string") return value
-  if (typeof value === "boolean") return value ? 1 : 0
-  if (Array.isArray(value)) return value.map(plainToNbtValue)
-  if (typeof value === "object") {
-    const compound: Record<string, unknown> = {}
-    for (const [k, v] of Object.entries(value as Record<string, unknown>))
-      compound[k] = plainToNbtValue(v)
-    return compound
-  }
-  return String(value)
-}
