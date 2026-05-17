@@ -19,27 +19,39 @@ export class WorldPlugin implements ClientPlugin {
 
     conn.onPacket(play.ClientboundLevelChunkWithLightPacket, (packet) => {
       if (!ctx.world) return
-      applyLevelChunk(ctx.world.chunks, packet.x, packet.z, packet.chunkData.data, undefined, packet.chunkData.heightmaps)
-      ctx.world.cache.invalidateChunk(packet.x, packet.z)
-      ctx.world.cache.invalidateSection(packet.x, packet.z)
+      try {
+        applyLevelChunk(ctx.world.chunks, packet.x, packet.z, packet.chunkData.data, undefined, packet.chunkData.heightmaps)
+        ctx.world.cache.invalidateChunk(packet.x, packet.z)
+        ctx.world.cache.invalidateSection(packet.x, packet.z)
+      } catch (e) {
+        console.error("failed to apply chunk:", e)
+      }
     })
 
     conn.onPacket(play.ClientboundBlockUpdatePacket, (packet) => {
       if (!ctx.world) return
-      const p = packet.position
-      ctx.world.setBlock(new BlockPos(p.x, p.y, p.z), packet.blockState)
+      try {
+        const p = packet.position
+        ctx.world.setBlock(new BlockPos(p.x, p.y, p.z), packet.blockState)
+      } catch (e) {
+        console.error("failed to apply block update:", e)
+      }
     })
 
     conn.onPacket(play.ClientboundSectionBlocksUpdatePacket, (packet) => {
       if (!ctx.world) return
-      for (const change of packet.blocks) {
-        const localX = change.position & 0xf
-        const localY = (change.position >> 8) & 0xf
-        const localZ = (change.position >> 4) & 0xf
-        const x = packet.sectionX * 16 + localX
-        const y = packet.sectionY * 16 + localY
-        const z = packet.sectionZ * 16 + localZ
-        ctx.world.setBlock(new BlockPos(x, y, z), change.blockStateId)
+      try {
+        for (const change of packet.blocks) {
+          const localX = change.position & 0xf
+          const localY = (change.position >> 8) & 0xf
+          const localZ = (change.position >> 4) & 0xf
+          const x = packet.sectionX * 16 + localX
+          const y = packet.sectionY * 16 + localY
+          const z = packet.sectionZ * 16 + localZ
+          ctx.world.setBlock(new BlockPos(x, y, z), change.blockStateId)
+        }
+      } catch (e) {
+        console.error("failed to apply section blocks update:", e)
       }
     })
 
