@@ -1,6 +1,8 @@
 import type { ParticleOptions } from "@dripleaf/core"
 import { ParticleType } from "@dripleaf/registry"
 import { codec, Codecs, type PacketReader, type PacketWriter } from "../buffer"
+import { DataComponentPatchCodec } from "./DataComponentPatch"
+import { ItemType } from "@dripleaf/registry"
 import type { Vec3 } from "vec3"
 
 const SIMPLE_PARTICLES = new Set<ParticleType>([
@@ -136,6 +138,15 @@ export function encodeParticleOptions(writer: PacketWriter, value: ParticleOptio
     case ParticleType.Shriek:
       writer.writeVarInt((value as Extract<ParticleOptions, { type: ParticleType.Shriek }>).delay)
       return
+    case ParticleType.Block:
+    case ParticleType.BlockMarker:
+    case ParticleType.FallingDust:
+      writer.writeVarInt((value as Extract<ParticleOptions, { type: ParticleType.Block | ParticleType.BlockMarker | ParticleType.FallingDust }>).blockState)
+      return
+    case ParticleType.DustPillar:
+      writer.writeVarInt((value as Extract<ParticleOptions, { type: ParticleType.DustPillar }>).blockState)
+      writer.writeFloat((value as Extract<ParticleOptions, { type: ParticleType.DustPillar }>).scale)
+      return
     case ParticleType.Trail:
       writer.writeVec3d((value as Extract<ParticleOptions, { type: ParticleType.Trail }>).target)
       writer.writeInt((value as Extract<ParticleOptions, { type: ParticleType.Trail }>).color)
@@ -168,6 +179,33 @@ export function decodeParticleOptions(reader: PacketReader): ParticleOptions {
       return { type, roll: reader.readFloat() }
     case ParticleType.Shriek:
       return { type, delay: reader.readVarInt() }
+    case ParticleType.Block:
+    case ParticleType.BlockMarker:
+    case ParticleType.FallingDust:
+      return { type, blockState: reader.readVarInt() }
+    case ParticleType.Item: {
+      const holderId = reader.readVarInt()
+      if (holderId === 0) reader.readString()
+      const count = reader.readVarInt()
+      if (count > 0) DataComponentPatchCodec.decode(reader)
+      return { type }
+    }
+    case ParticleType.Vibration: {
+      const originType = reader.readVarInt()
+      if (originType === 0) {
+        reader.readDouble()
+        reader.readDouble()
+        reader.readDouble()
+      } else if (originType === 1) {
+        reader.readVarInt()
+        reader.readDouble()
+        reader.readDouble()
+        reader.readDouble()
+      }
+      return { type }
+    }
+    case ParticleType.DustPillar:
+      return { type, blockState: reader.readVarInt(), scale: reader.readFloat() }
     case ParticleType.Trail:
       return { type, target: reader.readVec3d(), color: reader.readInt(), duration: reader.readVarInt() }
     default:

@@ -10,4 +10,6 @@ export type ParticleOptions =
   | { type: ParticleType.EntityEffect | ParticleType.Flash | ParticleType.TintedLeaves; color: number }
   | { type: ParticleType.SculkCharge; roll: number }
   | { type: ParticleType.Shriek; delay: number }
+  | { type: ParticleType.Block | ParticleType.BlockMarker | ParticleType.FallingDust; blockState: number }
+  | { type: ParticleType.DustPillar; blockState: number; scale: number }
   | { type: ParticleType.Trail; target: Vec3; color: number; duration: number }
