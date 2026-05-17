@@ -79,6 +79,7 @@ function writeLong(buffer: Uint8Array, offset: number, value: bigint): void {
 }
 
 function readEntry(buffer: Uint8Array, index: number, bitsPerEntry: number): number {
+  if (bitsPerEntry <= 0) return 0
   const valuesPerLong = Math.floor(64 / bitsPerEntry)
   const longIndex = Math.floor(index / valuesPerLong)
   const bitOffset = (index % valuesPerLong) * bitsPerEntry
@@ -87,6 +88,7 @@ function readEntry(buffer: Uint8Array, index: number, bitsPerEntry: number): num
 }
 
 function writeEntry(buffer: Uint8Array, index: number, bitsPerEntry: number, value: number): void {
+  if (bitsPerEntry <= 0) return
   const valuesPerLong = Math.floor(64 / bitsPerEntry)
   const longIndex = Math.floor(index / valuesPerLong)
   const bitOffset = (index % valuesPerLong) * bitsPerEntry
