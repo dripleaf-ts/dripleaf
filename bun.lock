@@ -4,9 +4,27 @@
   "workspaces": {
     "": {
       "name": "dripleaf-project",
+      "dependencies": {
+        "@dripleaf/chunk": "workspace:*",
+        "@dripleaf/pathfinder": "workspace:*",
+        "@dripleaf/physics": "workspace:*",
+      },
       "devDependencies": {
         "@types/bun": "latest",
         "@types/node": "^25.6.0",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/block": {
+      "name": "@dripleaf/block",
+      "dependencies": {
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
       },
       "peerDependencies": {
         "typescript": "^5",
@@ -24,11 +42,62 @@
         "typescript": "^5",
       },
     },
+    "packages/chunk": {
+      "name": "@dripleaf/chunk",
+      "dependencies": {
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/protocol": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
     "packages/core": {
       "name": "@dripleaf/core",
       "dependencies": {
         "@dripleaf/registry": "workspace:*",
         "vec3": "^0.2.0",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/dripleaf": {
+      "name": "dripleaf",
+      "dependencies": {
+        "@dripleaf/block": "workspace:*",
+        "@dripleaf/chat": "workspace:*",
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/entity": "workspace:*",
+        "@dripleaf/inventory": "workspace:*",
+        "@dripleaf/item": "workspace:*",
+        "@dripleaf/pathfinder": "workspace:*",
+        "@dripleaf/physics": "workspace:*",
+        "@dripleaf/protocol": "workspace:*",
+        "@dripleaf/recipe": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+        "@dripleaf/world": "workspace:*",
+        "vec3": "^0.2.0",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/entity": {
+      "name": "@dripleaf/entity",
+      "dependencies": {
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/protocol": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -52,6 +121,14 @@
         "typescript": "^5",
       },
     },
+    "packages/item": {
+      "name": "@dripleaf/item",
+      "version": "0.0.0",
+      "dependencies": {
+        "@dripleaf/inventory": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+      },
+    },
     "packages/nbt": {
       "name": "@dripleaf/nbt",
       "devDependencies": {
@@ -62,10 +139,32 @@
         "typescript": "^5",
       },
     },
+    "packages/pathfinder": {
+      "name": "@dripleaf/pathfinder",
+      "dependencies": {
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/physics": "workspace:*",
+        "@dripleaf/world": "workspace:*",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "packages/physics": {
+      "name": "@dripleaf/physics",
+      "dependencies": {
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
     "packages/protocol": {
       "name": "@dripleaf/protocol",
       "dependencies": {
         "@dripleaf/chat": "workspace:*",
+        "@dripleaf/core": "workspace:*",
         "@dripleaf/inventory": "workspace:*",
         "@dripleaf/nbt": "workspace:*",
         "@dripleaf/registry": "workspace:*",
@@ -78,6 +177,13 @@
         "typescript": "^5",
       },
     },
+    "packages/recipe": {
+      "name": "@dripleaf/recipe",
+      "version": "0.0.0",
+      "dependencies": {
+        "@dripleaf/registry": "workspace:*",
+      },
+    },
     "packages/registry": {
       "name": "@dripleaf/registry",
       "devDependencies": {
@@ -87,25 +193,60 @@
         "typescript": "^5",
       },
     },
+    "packages/world": {
+      "name": "@dripleaf/world",
+      "dependencies": {
+        "@dripleaf/block": "workspace:*",
+        "@dripleaf/chunk": "workspace:*",
+        "@dripleaf/core": "workspace:*",
+        "@dripleaf/entity": "workspace:*",
+        "@dripleaf/protocol": "workspace:*",
+        "@dripleaf/registry": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
   },
   "packages": {
+    "@dripleaf/block": ["@dripleaf/block@workspace:packages/block"],
+
     "@dripleaf/chat": ["@dripleaf/chat@workspace:packages/chat"],
+
+    "@dripleaf/chunk": ["@dripleaf/chunk@workspace:packages/chunk"],
 
     "@dripleaf/core": ["@dripleaf/core@workspace:packages/core"],
 
+    "@dripleaf/entity": ["@dripleaf/entity@workspace:packages/entity"],
+
     "@dripleaf/inventory": ["@dripleaf/inventory@workspace:packages/inventory"],
+
+    "@dripleaf/item": ["@dripleaf/item@workspace:packages/item"],
 
     "@dripleaf/nbt": ["@dripleaf/nbt@workspace:packages/nbt"],
 
+    "@dripleaf/pathfinder": ["@dripleaf/pathfinder@workspace:packages/pathfinder"],
+
+    "@dripleaf/physics": ["@dripleaf/physics@workspace:packages/physics"],
+
     "@dripleaf/protocol": ["@dripleaf/protocol@workspace:packages/protocol"],
 
+    "@dripleaf/recipe": ["@dripleaf/recipe@workspace:packages/recipe"],
+
     "@dripleaf/registry": ["@dripleaf/registry@workspace:packages/registry"],
+
+    "@dripleaf/world": ["@dripleaf/world@workspace:packages/world"],
 
     "@types/bun": ["@types/bun@1.3.14", "", { "dependencies": { "bun-types": "1.3.14" } }, "sha512-h1hFqFVcvAvD9j9K7ZW7vd82aSA+rTdznZa+5bwvCwqSB1jmmfLcbIWhOLx1/+boy/xmjgCs/OMUL8hRJSmnPw=="],
 
     "@types/node": ["@types/node@25.8.0", "", { "dependencies": { "undici-types": ">=7.24.0 <7.24.7" } }, "sha512-TCFSk8IZh+iLX1xtksoBVtdmgL+1IX0fC9BeU4QqFSuNdN/K+HUlhqOzEmSYYpZUVsLYcPqc9KX+60iDuninSQ=="],
 
     "bun-types": ["bun-types@1.3.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-4N0ig0fEomHt5R0KCFWjovxow98rIoRwKolrYdCcknNwMekCXRnWEUvgu5soYV8QXtVsrUD8B95MBOZGPvr6KQ=="],
+
+    "dripleaf": ["dripleaf@workspace:packages/dripleaf"],
 
     "rxjs": ["rxjs@7.8.2", "", { "dependencies": { "tslib": "^2.1.0" } }, "sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA=="],
 
