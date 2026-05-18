@@ -1,4 +1,4 @@
-import { play } from "@dripleaf/protocol"
+import { Connection, play } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
@@ -7,7 +7,7 @@ export class TickPlugin implements ClientPlugin {
   #interval: ReturnType<typeof setInterval> | null = null
   #tickCount = 0
 
-  register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+  register(ctx: ClientContext, conn: Connection): void {
     this.#interval = setInterval(() => {
       if (!ctx.loggedIn) return
       try {

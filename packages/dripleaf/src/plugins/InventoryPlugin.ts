@@ -1,7 +1,7 @@
 import { MenuType } from "@dripleaf/registry"
 import { toPlainText } from "@dripleaf/chat"
 import { Window, menuSlotCount, menuTypeToWindowType } from "@dripleaf/inventory"
-import { play } from "@dripleaf/protocol"
+import { Connection, play } from "@dripleaf/protocol"
 import type { ItemStack } from "@dripleaf/inventory"
 import type { ClientContext, EquipmentEntry } from "../context"
 import type { ClientPlugin } from "./types"
@@ -14,7 +14,7 @@ function getWindow(ctx: ClientContext, windowId: number): Window | undefined {
 export class InventoryPlugin implements ClientPlugin {
   readonly name = "inventory"
 
-  register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+  register(ctx: ClientContext, conn: Connection): void {
     conn.onPacket(play.ClientboundOpenScreenPacket, (packet) => {
       const slotCount = menuSlotCount(packet.type as MenuType)
       const window = new Window(

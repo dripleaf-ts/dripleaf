@@ -1,4 +1,4 @@
-import type { Connection } from "@dripleaf/protocol"
+import type { BlockFace, Connection } from "@dripleaf/protocol"
 import type { GameProfile, BlockPos } from "@dripleaf/core"
 import type { World } from "@dripleaf/world"
 import type { EntityData } from "@dripleaf/entity"
@@ -35,7 +35,7 @@ export type ClientContext = {
   equipment: Map<number, EquipmentEntry[]>
   registries: RegistryManager
   chunkBatchSize: number
-  mining: { pos: BlockPos; face: import("@dripleaf/protocol").BlockFace } | null
+  mining: { pos: BlockPos; face: BlockFace } | null
   players: Map<string, { uuid: string; name: string }>
   emitter: EventEmitter
   emit(event: string, ...args: unknown[]): void

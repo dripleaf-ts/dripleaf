@@ -1,4 +1,4 @@
-import { PacketReader, play } from "@dripleaf/protocol"
+import { Connection, PacketReader, play } from "@dripleaf/protocol"
 import { EntityData, Vec3, decodeMetadata } from "@dripleaf/entity"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
@@ -6,7 +6,7 @@ import type { ClientPlugin } from "./types"
 export class EntityPlugin implements ClientPlugin {
   readonly name = "entity"
 
-  register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+  register(ctx: ClientContext, conn: Connection): void {
     conn.onPacket(play.ClientboundAddEntityPacket, (packet) => {
       const entity = new EntityData(
         packet.entityId,

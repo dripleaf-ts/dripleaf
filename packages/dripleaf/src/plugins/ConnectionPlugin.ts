@@ -1,13 +1,13 @@
 import { randomBytes, publicEncrypt, createPublicKey, constants, randomUUID } from "node:crypto"
 import type { UUID } from "node:crypto"
-import { State, ClientIntention, handshake, login } from "@dripleaf/protocol"
+import { State, ClientIntention, handshake, login, Connection } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
 export class ConnectionPlugin implements ClientPlugin {
   readonly name = "connection"
 
-  register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+  register(ctx: ClientContext, conn: Connection): void {
     conn.on("packet", (packet: unknown) => ctx.emit("packet", packet))
     conn.on("state", (state: State) => ctx.emit("state", state))
     conn.on("error", (error: Error) => ctx.emit("error", error))
@@ -37,7 +37,7 @@ export class ConnectionPlugin implements ClientPlugin {
     })
   }
 
-  startLogin(conn: import("@dripleaf/protocol").Connection, host: string, port: number, username: string): void {
+  startLogin(conn: Connection, host: string, port: number, username: string): void {
     conn.write(new handshake.ServerboundIntentionPacket(775, host, port, ClientIntention.Login))
     conn.setState(State.Login)
     conn.write(new login.ServerboundHelloPacket(username, randomUUID() as UUID))

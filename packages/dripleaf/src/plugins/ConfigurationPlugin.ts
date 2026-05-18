@@ -1,4 +1,4 @@
-import { State, ChatVisibility, HumanoidArm, ParticleStatus, configuration, play, PacketWriter } from "@dripleaf/protocol"
+import { State, ChatVisibility, HumanoidArm, ParticleStatus, configuration, play, PacketWriter, Connection } from "@dripleaf/protocol"
 import { toPlainText } from "@dripleaf/chat"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
@@ -12,7 +12,7 @@ function encodeBrand(brand: string): Uint8Array {
 export class ConfigurationPlugin implements ClientPlugin {
 	readonly name = "configuration"
 
-	register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+	register(ctx: ClientContext, conn: Connection): void {
 		conn.onPacket(configuration.ClientboundDisconnectPacket, (packet) => {
 			ctx.emit("disconnect", toPlainText(packet.reason))
 			conn.disconnect()

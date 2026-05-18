@@ -1,4 +1,4 @@
-import { play } from "@dripleaf/protocol"
+import { Connection, play } from "@dripleaf/protocol"
 import { BlockPos } from "@dripleaf/core"
 import { applyLevelChunk } from "@dripleaf/world"
 import type { ClientContext } from "../context"
@@ -7,7 +7,7 @@ import type { ClientPlugin } from "./types"
 export class WorldPlugin implements ClientPlugin {
   readonly name = "world"
 
-  register(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+  register(ctx: ClientContext, conn: Connection): void {
     conn.onPacket(play.ClientboundChunkBatchStartPacket, () => {
       ctx.chunkBatchSize = 0
     })

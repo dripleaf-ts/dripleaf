@@ -1,17 +1,17 @@
 import { BlockPos } from "@dripleaf/core"
-import { BlockFace, InteractionHand, play } from "@dripleaf/protocol"
+import { BlockFace, Connection, InteractionHand, play } from "@dripleaf/protocol"
 import type { ClientContext } from "../context"
 import type { ClientPlugin } from "./types"
 
 export class MiningPlugin implements ClientPlugin {
   readonly name = "mining"
 
-  register(ctx: ClientContext, _conn: import("@dripleaf/protocol").Connection): void {}
+  register(ctx: ClientContext, _conn: Connection): void {}
 }
 
 export function startMining(
   ctx: ClientContext,
-  conn: import("@dripleaf/protocol").Connection,
+  conn: Connection,
   x: number,
   y: number,
   z: number,
@@ -36,7 +36,7 @@ export function startMining(
   conn.write(new play.ServerboundSwingPacket(InteractionHand.MainHand))
 }
 
-export function finishMining(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+export function finishMining(ctx: ClientContext, conn: Connection): void {
   if (!ctx.mining) return
   conn.write(new play.ServerboundPlayerActionPacket(
     play.PlayerAction.StopDestroyBlock,
@@ -47,7 +47,7 @@ export function finishMining(ctx: ClientContext, conn: import("@dripleaf/protoco
   ctx.mining = null
 }
 
-export function stopMining(ctx: ClientContext, conn: import("@dripleaf/protocol").Connection): void {
+export function stopMining(ctx: ClientContext, conn: Connection): void {
   if (!ctx.mining) return
   conn.write(new play.ServerboundPlayerActionPacket(
     play.PlayerAction.AbortDestroyBlock,
