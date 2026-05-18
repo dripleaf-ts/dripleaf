@@ -1,4 +1,4 @@
-import { Connection, play } from "@dripleaf/protocol"
+import { Connection, GameEvent, play } from "@dripleaf/protocol"
 import { World, type Dimension } from "@dripleaf/world"
 import { Pathfinder } from "@dripleaf/pathfinder"
 import { pathWorldFromDripleaf } from "@dripleaf/pathfinder/dripleaf"
@@ -192,7 +192,7 @@ export class PlayPlugin implements ClientPlugin {
     })
 
     conn.onPacket(play.ClientboundGameEventPacket, (packet) => {
-      if (packet.event === 3) {
+      if (packet.event === GameEvent.ChangeGameMode) {
         ctx.previousGameMode = ctx.gameMode
         ctx.gameMode = packet.value
         ctx.emit("gameModeChanged", ctx.gameMode, ctx.previousGameMode)
