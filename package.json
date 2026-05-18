@@ -12,11 +12,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {
-    "@dripleaf/chunk": "workspace:*",
-    "@dripleaf/pathfinder": "workspace:*",
-    "@dripleaf/physics": "workspace:*"
-  },
   "scripts": {
     "codegen": "bun run codegen/generate_packets.ts && bun run codegen/generate_registries.ts && bun run codegen/generate_tags.ts && bun run codegen/generate_data_components.ts && bun run codegen/generate_blocks.ts && bun run codegen/generate_recipes.ts",
     "test": "bun test packages/nbt/tests packages/protocol/tests packages/registry/tests packages/chunk/tests packages/world/tests packages/pathfinder/tests packages/inventory/tests",
